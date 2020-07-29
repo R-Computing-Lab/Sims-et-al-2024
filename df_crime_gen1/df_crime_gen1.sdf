@@ -1,0 +1,99 @@
+
+
+Reference
+Number     Year    Variable Description                                                             Question Name     
+------------------------------------------------------------------------------------------------------------------------
+R00001.00  1979    IDENTIFICATION CODE                                                              CASEID            
+R01736.00  1979    SAMPLE IDENTIFICATION CODE                                                       SAMPLE_ID         
+R02147.00  78SCRN  R'S RACIAL/ETHNIC COHORT FROM SCREENER                                           SAMPLE_RACE       
+R02148.00  1979    SEX OF R                                                                         SAMPLE_SEX        
+R03046.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES RUN AWAY FROM HOME IN PAST YR (AGE 17 OR UNDER)  DELIN-1           
+R03049.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES INTENTIONALLY DAMAGED PROPERTY IN PAST YEAR      DELIN-4           
+R03050.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES FOUGHT AT SCHOOL OR WORK IN PAST YEAR            DELIN-5           
+R03051.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES SHOPLIFTED IN PAST YEAR                          DELIN-6           
+R03052.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES STOLEN OTHER'S BELONGINGS PAST YR (WORTH <$50)   DELIN-7           
+R03053.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES STOLEN OTHER'S BELONGINGS PAST YR (WORTH >$50)   DELIN-8           
+R03054.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES USED FORCE TO OBTAIN THINGS IN PAST YEAR         DELIN-9           
+R03055.00  1980    ILLEGAL ACTIVITY - TIMES SERIOUSLY THREATENED TO HIT/HIT SOMEONE PAST YEAR       DELIN-10          
+R03056.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES ATTACKED W/INTENT TO INJURE/KILL IN PAST YEAR    DELIN-11          
+R03059.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES SOLD MARIJUANA/HASHISH IN PAST YEAR              DELIN-14          
+R03060.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES SOLD HARD DRUGS IN PAST YEAR                     DELIN-15          
+R03061.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES ATTEMPTED TO "CON" SOMEONE IN PAST YEAR          DELIN-16          
+R03062.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES TAKEN AUTO W/OUT OWNER PERMISSION IN PAST YEAR   DELIN-17          
+R03063.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES BROKEN INTO A BUILDING IN PAST YEAR              DELIN-18          
+R03064.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES KNOWINGLY SOLD/HELD STOLEN GOODS IN PAST YEAR    DELIN-19          
+R03065.00  1980    ILLEGAL ACTIVITY 80 INT - TIMES AIDED IN GAMBLING OPERATION IN PAST YEAR         DELIN-20          
+R03067.00  1980    EVER "STOPPED" BY POLICE FOR OTHER THAN MINOR TRAFFIC OFFENSE?                   POLICE-1          
+R03068.00  1980    TIMES "STOPPED" BY POLICE 80 INT (EXC MINOR TRAFFIC OFFENSE)                     POLICE-1A         
+R03069.00  1980    TIMES "STOPPED" BY POLICE IN PAST YEAR 80 INT (EXC MINOR TRAFFIC OFFENSE)        POLICE-1B         
+R03070.00  1980    AGE OF R 1ST TIME "STOPPED" BY POLICE                                            POLIC-1C          
+R03071.00  1980    EVER CHARGED WITH ILLEGAL ACTIVITY? 80 INT (EXC MINOR TRAFFIC OFFENSE)           POLICE-2          
+R03072.00  1980    TIMES CHARGED WITH ILLEGAL ACTIVITY 80 INT (EXC MINOR TRAFFIC OFFENSE)           POLICE-2A         
+R03073.00  1980    TIMES CHARGED WITH ILLEGAL ACTIVITY IN PAST YR (EXC MINOR TRAFFIC OFFENSE)       POLICE-2B         
+R03074.00  1980    MONTH OF MOST RECENT ILLEGAL ACTIVITY CHARGE 80 INT (EXC MINOR TRAFFIC OFFENSE)  POLICE-2C_M       
+R03075.00  1980    YEAR OF MOST RECENT ILLEGAL ACTIVITY CHARGE 80 INT (EXC MINOR TRAFFIC OFFENSE)   POLICE-2C_Y       
+R03076.00  1980    AGE AT TIME OF 1ST ILLEGAL ACTIVITY CHARGE 80 INT (EXC MINOR TRAFFIC OFFENSE)    POLICE-2D         
+R03077.00  1980    EVER CHARGED WITH ANY ILLEGAL ACTIVITY IN ADULT COURT?                           POLICE-2E         
+R03078.00  1980    EVER CONVICTED ON ILLEGAL ACTIVITY CHARGES OTHER THAN MINOR TRAFFIC OFFENSE?     POLICE-3          
+R03079.00  1980    TIMES CONVICTED OF ILLEGAL ACTIVITY 80 INT (EXC MINOR TRAFFIC OFFENSE)           POLICE-3A         
+R03080.00  1980    AGE AT TIME OF 1ST ILLEGAL ACTIVITY CONVICTION (EXC MINOR TRAFFIC OFFENSE)       POLICE-3B         
+R03081.00  1980    MONTH OF MOST RECENT ILLEGAL ACTIVITY CONVICTION (EXC MINOR TRAFFIC OFFENSE)     POLICE-3C_M       
+R03082.00  1980    YEAR OF MOST RECENT ILLEGAL ACTIVITY CONVICTION (EXC MINOR TRAFFIC OFFENSE)      POLICE-3C_Y       
+R03083.00  1980    ILLEGAL ACTIVITY 80 INT - ASSAULT                                                POLICE-3D_000001  
+R03084.00  1980    ILLEGAL ACTIVITY 80 INT - ROBBERY                                                POLICE-3D_000002  
+R03085.00  1980    ILLEGAL ACTIVITY 80 INT - THEFT                                                  POLICE-3D_000003  
+R03086.00  1980    ILLEGAL ACTIVITY 80 INT - THEFT BY DECEPTION                                     POLICE-3D_000004  
+R03087.00  1980    ILLEGAL ACTIVITY 80 INT - RECEIVING/POSSESSING/SELLING STOLEN PROPERTY           POLICE-3D_000005  
+R03088.00  1980    ILLEGAL ACTIVITY 80 INT - DESTRUCTION OF PROPERTY                                POLICE-3D_000006  
+R03089.00  1980    ILLEGAL ACTIVITY 80 INT - OTHER PROPERTY OFFENSE                                 POLICE-3D_000007  
+R03090.00  1980    ILLEGAL ACTIVITY 80 INT - GAMBLING                                               POLICE-3D_000008  
+R03091.00  1980    ILLEGAL ACTIVITY 80 INT - COMMERCIAL VICE                                        POLICE-3D_000009  
+R03092.00  1980    ILLEGAL ACTIVITY 80 INT - POSSESSION OF MARIJUANA/HASHISH                        POLICE-3D_000010  
+R03093.00  1980    ILLEGAL ACTIVITY 80 INT - SELLING MARIJUANA/HASHISH                              POLICE-3D_000011  
+R03094.00  1980    ILLEGAL ACTIVITY 80 INT - POSSESSION OF OTHER ILLICIT DRUGS                      POLICE-3D_000012  
+R03095.00  1980    ILLEGAL ACTIVITY 80 INT - SALE/MANUFACTURE OF OTHER ILLICIT DRUGS                POLICE-3D_000013  
+R03096.00  1980    ILLEGAL ACTIVITY 80 INT - MAJOR TRAFFIC OFFENSE                                  POLICE-3D_000014  
+R03098.00  1980    ILLEGAL ACTIVITY 80 INT - STATUS OFFENSE                                         POLICE-3D_000016  
+R03099.00  1980    ILLEGAL ACTIVITY 80 INT - OTHER                                                  POLICE-3D_000017  
+R03100.00  1980    EVER BEEN CONVICTED FOR ILLEGAL ACTIVITY IN ADULT COURT (R HAS BEEN CONVICTED)   POLICE-3E         
+R03101.00  1980    EVER BEEN REFERRED TO COURT-RELATED COUNSELING?                                  POLICE-4          
+R03102.00  1980    TIMES REFERRED TO COURT-RELATED COUNSELING                                       POLICE-4A         
+R03103.00  1980    AGE AT TIME OF 1ST REFERRAL TO COURT-RELATED COUNSELING                          POLICE-4B         
+R03104.00  1980    MONTH MOST RECENT COURT-RELATED COUNSELING ENDED                                 POLICE-4C_M       
+R03104.10  1980    YEAR MOST RECENT COURT-RELATED COUNSELING ENDED                                  POLICE-4C_Y       
+R03106.00  1980    EVER BEEN ON PROBATION?                                                          POLICE-6          
+R03107.00  1980    TIMES ON PROBATION                                                               POLICE-6A         
+R03108.00  1980    DATE MOST RECENT PROBATION PERIOD ENDED                                          POLICE-6B_M       
+R03108.10  1980    YEAR MOST RECENT PROBATION PERIOD ENDED                                          POLICE-6B_Y       
+R03109.00  1980    EVER BEEN SENTENCED TO ANY TYPE OF CORRECTIONAL INSTITUTION?                     POLICE-7          
+R03110.00  1980    TIMES SENT TO YOUTH CORRECTIONAL INSTITUTION                                     POLICE-7A         
+R03111.00  1980    TIMES SENT TO ADULT CORRECTIONAL INSTITUTION                                     POLICE-7B         
+R03112.00  1980    MONTH OF MOST RECENT RELEASE FROM A CORRECTIONAL INSTITUTION                     POLICE-7C_M       
+R03112.10  1980    YEAR OF MOST RECENT RELEASE FROM A CORRECTIONAL INSTITUTION                      POLICE-7C_Y       
+R04063.10  1980    REASON FOR NONINTERVIEW                                                          RNI               
+R06188.10  1981    REASON FOR NONINTERVIEW                                                          RNI               
+R08985.10  1982    REASON FOR NONINTERVIEW                                                          RNI               
+R11447.10  1983    REASON FOR NONINTERVIEW                                                          RNI               
+R15199.10  1984    REASON FOR NONINTERVIEW                                                          RNI               
+R18903.00  1985    REASON FOR NONINTERVIEW                                                          RNI               
+R22574.00  1986    REASON FOR NONINTERVIEW                                                          RNI               
+R24446.00  1987    REASON FOR NONINTERVIEW                                                          RNI               
+R28701.00  1988    REASON FOR NONINTERVIEW                                                          RNI               
+R30739.00  1989    REASON FOR NONINTERVIEW                                                          RNI               
+R34005.00  1990    REASON FOR NONINTERVIEW                                                          RNI               
+R36559.00  1991    REASON FOR NONINTERVIEW                                                          RNI               
+R40064.00  1992    REASON FOR NONINTERVIEW                                                          RNI               
+R44175.00  1993    REASON FOR NONINTERVIEW                                                          RNI               
+R49808.00  1994    ALCOHOL USE - FREQUENCY BEEN ARRESTED OR IN TROUBLE WITH POLICE                  Q12-7N            
+R50805.00  1994    REASON FOR NONINTERVIEW                                                          RNI               
+R51658.00  1996    REASON FOR NONINTERVIEW                                                          RNI               
+R64785.00  1998    REASON FOR NONINTERVIEW                                                          RNI               
+R70063.00  2000    REASON FOR NONINTERVIEW                                                          RNI               
+R77035.00  2002    REASON FOR NONINTERVIEW                                                          RNI               
+R84959.00  2004    REASON FOR NONINTERVIEW                                                          RNI               
+T09875.00  2006    REASON FOR NONINTERVIEW                                                          RNI               
+T22098.00  2008    REASON FOR NONINTERVIEW                                                          RNI               
+T31076.00  2010    REASON FOR NONINTERVIEW                                                          RNI               
+T41121.00  2012    REASON FOR NONINTERVIEW                                                          RNI               
+T50223.00  2014    REASON FOR NONINTERVIEW                                                          RNI               
+T57706.00  2016    REASON FOR NONINTERVIEW                                                          RNI               

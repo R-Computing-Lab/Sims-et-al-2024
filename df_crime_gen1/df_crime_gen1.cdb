@@ -1,0 +1,3190 @@
+R00001.00    [CASEID]                                       Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             IDENTIFICATION CODE
+ 
+ORIGINAL QUESTION NAME: CASEID
+ 
+NOTE: THIS NUMBER WAS ASSIGNED ACCORDING TO THE RECORD NUMBER OF EACH RESPONDENT
+ON THE TAPE. THE FIRST RESPONDENT WAS ASSIGNED ID#1, THE SECOND WAS ASSIGNED 
+ID#2, ETC.
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: All
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:          12686        Mean:              6343.5
+ 
+Lead In: None.
+Default Next Question: R00001.49
+--------------------------------------------------------------------------------
+R01736.00    [SAMPLE_ID]                                    Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             SAMPLE IDENTIFICATION CODE
+ 
+ORIGINAL QUESTION NAME: S24Q01
+ 
+UNIVERSE: Entire Sample
+ 
+    2236       1 CROSS MALE WHITE
+     203       2 CROSS MALE WH. POOR
+     346       3 CROSS MALE BLACK
+     218       4 CROSS MALE HISPANIC
+    2279       5 CROSS FEMALE WHITE
+     198       6 CROSS FEMALE WH POOR
+     405       7 CROSS FEMALE BLACK
+     226       8 CROSS FEMALE HISPANIC
+     742       9 SUP MALE WH POOR
+    1105      10 SUP MALE BLACK
+     729      11 SUP MALE HISPANIC
+     901      12 SUP FEM WH POOR
+    1067      13 SUP FEMALE BLACK
+     751      14 SUP FEMALE HISPANIC
+     609      15 MIL MALE WHITE
+     162      16 MIL MALE BLACK
+      53      17 MIL MALE HISPANIC
+     342      18 MIL FEMALE WHITE
+      89      19 MIL FEMALE BLACK
+      25      20 MIL FEMALE HISPANIC
+  -------
+   12686
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:             20        Mean:                8.17
+ 
+MARCH 1, 1986  NORC
+ 
+SEX CODE CHANGED ON 42 CASES
+ 
+Lead In: R01735.19[Default]
+Default Next Question: R01737.00
+--------------------------------------------------------------------------------
+R02147.00    [SAMPLE_RACE]                                  Survey Year: 78SCRN
+  PRIMARY VARIABLE
+
+ 
+             R'S RACIAL/ETHNIC COHORT FROM SCREENER
+ 
+UNIVERSE: Entire Sample
+ 
+    2002       1 HISPANIC
+    3174       2 BLACK
+    7510       3 NON-BLACK, NON-HISPANIC
+  -------
+   12686
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              3        Mean:                2.43
+ 
+AUGUST 26, 1980  DENNIS GREY
+ 
+DESCRIPTION:
+COHORT=3;
+IF R(1736.)=4 ! R(1736.)=8 ! R(1736.)=11 ! R(1736.)=14 THEN COHORT=1;
+IF R(1736.)=17 ! R(1736.)=20 THEN COHORT=1;
+IF R(1736.)=3 ! R(1736.)=7 ! R(1736.)=10 ! R(1736.)=13 THEN COHORT=2;
+IF R(1736.)=16 ! R(1736.)=19 THEN COHORT=2;
+R(2147.)=COHORT;
+ 
+Lead In: R02146.00[Default]
+Default Next Question: R02148.00
+--------------------------------------------------------------------------------
+R02148.00    [SAMPLE_SEX]                                   Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             SEX OF R
+ 
+UNIVERSE: Entire sample
+ 
+    6403       1 MALE
+    6283       2 FEMALE
+  -------
+   12686
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              2        Mean:                 1.5
+ 
+AUGUST 26, 1980  DENNIS GREY
+MARCH 1, 1986  NORC
+ 
+DESCRIPTION:
+IF (R(1736.)>0 & R(1736.)<=4) ! (R(1736.)>=9 & R(1736.)<=11) THEN SEX=1;
+IF R(1736.)>=15 & R(1736.)<=17 THEN SEX=1;
+IF (R(1736.)>=5 & R(1736.)<=8) ! (R(1736.)>=12 & R(1736.)<=14) THEN SEX=
+IF R(1736.)>=18 & R(1736.)<=20 THEN SEX=2;
+R(2148.)=SEX;
+SEX CODE CHANGED ON 42 CASES
+ 
+Lead In: R02147.00[Default]
+Default Next Question: R02149.00
+--------------------------------------------------------------------------------
+R03046.00    [DELIN-1]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES RUN AWAY FROM HOME IN PAST YR (AGE 
+             17 OR UNDER)
+ 
+ORIGINAL QUESTION NAME: S40Q01
+ 
+ON THIS FORM ARE DESCRIPTIONS OF TYPES OF ACTIVITIES THAT SOME YOUNG PEOPLE CAN 
+GET INTO TROUBLE FOR. I WANT YOU TO READ EACH ITEM, AND PUT A CHECK MARK AFTER 
+THE CATEGORY WHICH BEST DESCRIBES THE NUMBER OF TIMES IN THE LAST YEAR YOU HAVE 
+DONE THE ACTIVITIES DESCRIBED. IF YOU CANNOT REMEMBER EXACTLY THE NUMBER OF 
+TIMES YOU HAVE DONE SOMETHING, JUST WRITE DOWN YOUR BEST GUESS. (HAND FORM J) IF
+R IS 18 YEARS OLD OR OLDER, SAY: PLEASE SKIP QUESTIONS 1-3, AS THOSE QUESTIONS 
+ARE ONLY FOR PEOPLE UNDER 18 YEARS OF AGE. RUNAWAY FROM HOME?
+ 
+UNIVERSE: R is >= 17
+ 
+    3524       0 NEVER
+     226       1 ONCE
+      74       2 TWICE
+      55       3 3-5 TIMES
+      11       4 6-10 TIMES
+       4       5 11-50 TIMES
+       4       6 MORE THAN 50 TIMES
+  -------
+    3898
+ 
+Refusal(-1)           37
+Don't Know(-2)         0
+Invalid Skip(-3)      79
+TOTAL =========>    4014   VALID SKIP(-4)    8127     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .16
+ 
+Lead In: R03045.00[Default]
+Default Next Question: R03047.00
+--------------------------------------------------------------------------------
+R03049.00    [DELIN-4]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES INTENTIONALLY DAMAGED PROPERTY IN 
+             PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q04
+ 
+SEE R(3046.) PURPOSELY DAMAGED OR DESTROYED PROPERTY THAT DID NOT BELONG TO YOU?
+ 
+UNIVERSE: All
+ 
+    9603       0 NEVER
+    1019       1 ONCE
+     447       2 TWICE
+     434       3 3-5 TIMES
+     143       4 6-10 TIMES
+      58       5 11-50 TIMES
+      30       6 MORE THAN 50 TIMES
+  -------
+   11734
+ 
+Refusal(-1)          110
+Don't Know(-2)         0
+Invalid Skip(-3)     297
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .36
+ 
+Lead In: R03048.00[Default]
+Default Next Question: R03050.00
+--------------------------------------------------------------------------------
+R03050.00    [DELIN-5]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES FOUGHT AT SCHOOL OR WORK IN PAST 
+             YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q05
+ 
+SEE R(3046.) GOTTEN INTO A PHYSICAL FIGHT AT SCHOOL OR WORK?
+ 
+UNIVERSE: All
+ 
+    8485       0 NEVER
+    1544       1 ONCE
+     733       2 TWICE
+     686       3 3-5 TIMES
+     235       4 6-10 TIMES
+      83       5 11-50 TIMES
+      34       6 MORE THAN 50 TIMES
+  -------
+   11800
+ 
+Refusal(-1)           70
+Don't Know(-2)         0
+Invalid Skip(-3)     271
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .56
+ 
+Lead In: R03049.00[Default]
+Default Next Question: R03051.00
+--------------------------------------------------------------------------------
+R03051.00    [DELIN-6]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES SHOPLIFTED IN PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q06
+ 
+SEE R(3046.) TAKEN SOMETHING FROM A STORE WITHOUT PAYING FOR IT?
+ 
+UNIVERSE: All
+ 
+    8748       0 NEVER
+    1408       1 ONCE
+     637       2 TWICE
+     609       3 3-5 TIMES
+     205       4 6-10 TIMES
+     132       5 11-50 TIMES
+      49       6 MORE THAN 50 TIMES
+  -------
+   11788
+ 
+Refusal(-1)           77
+Don't Know(-2)         0
+Invalid Skip(-3)     276
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .53
+ 
+Lead In: R03050.00[Default]
+Default Next Question: R03052.00
+--------------------------------------------------------------------------------
+R03052.00    [DELIN-7]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES STOLEN OTHER'S BELONGINGS PAST YR 
+             (WORTH <$50)
+ 
+ORIGINAL QUESTION NAME: S40Q07
+ 
+SEE R(3046.) OTHER THAN FROM A STORE, TAKEN SOMETHING NOT BELONGING TO YOU WORTH
+UNDER $50?
+ 
+UNIVERSE: All
+ 
+    9551       0 NEVER
+    1118       1 ONCE
+     472       2 TWICE
+     426       3 3-5 TIMES
+     125       4 6-10 TIMES
+      65       5 11-50 TIMES
+      31       6 MORE THAN 50 TIMES
+  -------
+   11788
+ 
+Refusal(-1)           82
+Don't Know(-2)         0
+Invalid Skip(-3)     271
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .37
+ 
+Lead In: R03051.00[Default]
+Default Next Question: R03053.00
+--------------------------------------------------------------------------------
+R03053.00    [DELIN-8]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES STOLEN OTHER'S BELONGINGS PAST YR 
+             (WORTH >$50)
+ 
+ORIGINAL QUESTION NAME: S40Q08
+ 
+SEE R(3046.) OTHER THAN FROM A STORE, TAKEN SOMETHING NOT BELONGING TO YOU WORTH
+$50 OR MORE?
+ 
+UNIVERSE: All
+ 
+   11118       0 NEVER
+     356       1 ONCE
+     121       2 TWICE
+      96       3 3-5 TIMES
+      40       4 6-10 TIMES
+      24       5 11-50 TIMES
+      21       6 MORE THAN 50 TIMES
+  -------
+   11776
+ 
+Refusal(-1)           89
+Don't Know(-2)         0
+Invalid Skip(-3)     276
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .11
+ 
+Lead In: R03052.00[Default]
+Default Next Question: R03054.00
+--------------------------------------------------------------------------------
+R03054.00    [DELIN-9]                                      Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES USED FORCE TO OBTAIN THINGS IN PAST
+             YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q09
+ 
+SEE R(3046.) USED FORCE OR STRONG ARM METHODS TO GET MONEY OR THINGS FROM A 
+PERSON?
+ 
+UNIVERSE: All
+ 
+   11192       0 NEVER
+     317       1 ONCE
+     125       2 TWICE
+      90       3 3-5 TIMES
+      32       4 6-10 TIMES
+      19       5 11-50 TIMES
+      19       6 MORE THAN 50 TIMES
+  -------
+   11794
+ 
+Refusal(-1)           77
+Don't Know(-2)         0
+Invalid Skip(-3)     270
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                  .1
+ 
+Lead In: R03053.00[Default]
+Default Next Question: R03055.00
+--------------------------------------------------------------------------------
+R03055.00    [DELIN-10]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY - TIMES SERIOUSLY THREATENED TO HIT/HIT SOMEONE 
+             PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q10
+ 
+SEE R(3046.) HIT OR SERIOUSLY THREATENED TO HIT SOMEONE?
+ 
+UNIVERSE: All
+ 
+    7390       0 NEVER
+    1879       1 ONCE
+     908       2 TWICE
+     950       3 3-5 TIMES
+     354       4 6-10 TIMES
+     180       5 11-50 TIMES
+     124       6 MORE THAN 50 TIMES
+  -------
+   11785
+ 
+Refusal(-1)           80
+Don't Know(-2)         0
+Invalid Skip(-3)     276
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .82
+ 
+Lead In: R03054.00[Default]
+Default Next Question: R03056.00
+--------------------------------------------------------------------------------
+R03056.00    [DELIN-11]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES ATTACKED W/INTENT TO INJURE/KILL IN
+             PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q11
+ 
+SEE R(3046.) ATTACKED SOMEONE WITH THE IDEA OF SERIOUSLY HURTING OR KILLING 
+THEM?
+ 
+UNIVERSE: All
+ 
+   10547       0 NEVER
+     687       1 ONCE
+     225       2 TWICE
+     183       3 3-5 TIMES
+      71       4 6-10 TIMES
+      36       5 11-50 TIMES
+      43       6 MORE THAN 50 TIMES
+  -------
+   11792
+ 
+Refusal(-1)           78
+Don't Know(-2)         0
+Invalid Skip(-3)     271
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                  .2
+ 
+Lead In: R03055.00[Default]
+Default Next Question: R03057.00
+--------------------------------------------------------------------------------
+R03059.00    [DELIN-14]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES SOLD MARIJUANA/HASHISH IN PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q14
+ 
+SEE R(3046.) SOLD MARIJUANA OR HASHISH?
+ 
+UNIVERSE: All
+ 
+   10427       0 NEVER
+     315       1 ONCE
+     210       2 TWICE
+     263       3 3-5 TIMES
+     185       4 6-10 TIMES
+     150       5 11-50 TIMES
+     143       6 MORE THAN 50 TIMES
+  -------
+   11693
+ 
+Refusal(-1)          144
+Don't Know(-2)         0
+Invalid Skip(-3)     304
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .33
+ 
+Lead In: R03058.00[Default]
+Default Next Question: R03060.00
+--------------------------------------------------------------------------------
+R03060.00    [DELIN-15]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES SOLD HARD DRUGS IN PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q15
+ 
+SEE R(3046.) SOLD HARD DRUGS SUCH AS HEROIN, COCAINE, OR LSD (TOTAL # OF ALL 
+HARD DRUG SALES)
+ 
+UNIVERSE: All
+ 
+   11423       0 NEVER
+      79       1 ONCE
+      57       2 TWICE
+      50       3 3-5 TIMES
+      41       4 6-10 TIMES
+      32       5 11-50 TIMES
+      35       6 MORE THAN 50 TIMES
+  -------
+   11717
+ 
+Refusal(-1)          124
+Don't Know(-2)         0
+Invalid Skip(-3)     300
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .07
+ 
+Lead In: R03059.00[Default]
+Default Next Question: R03061.00
+--------------------------------------------------------------------------------
+R03061.00    [DELIN-16]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES ATTEMPTED TO "CON" SOMEONE IN PAST 
+             YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q16
+ 
+TRIED TO GET SOMETHING BY LYING TO A PERSON ABOUT WHAT YOU WOULD DO FOR HIM, 
+THAT IS, TRIED TO CON SOMEONE?
+ 
+UNIVERSE: All
+ 
+    9140       0 NEVER
+    1054       1 ONCE
+     585       2 TWICE
+     591       3 3-5 TIMES
+     185       4 6-10 TIMES
+      90       5 11-50 TIMES
+      76       6 MORE THAN 50 TIMES
+  -------
+   11721
+ 
+Refusal(-1)          118
+Don't Know(-2)         0
+Invalid Skip(-3)     302
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .48
+ 
+Lead In: R03060.00[Default]
+Default Next Question: R03062.00
+--------------------------------------------------------------------------------
+R03062.00    [DELIN-17]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES TAKEN AUTO W/OUT OWNER PERMISSION 
+             IN PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q17
+ 
+SEE R(3046.) TAKEN A VEHICLE FOR A RIDE OR DRIVE WITHOUT THE OWNER'S PERMISSION?
+ 
+UNIVERSE: All
+ 
+   10830       0 NEVER
+     525       1 ONCE
+     176       2 TWICE
+     138       3 3-5 TIMES
+      43       4 6-10 TIMES
+      24       5 11-50 TIMES
+      16       6 MORE THAN 50 TIMES
+  -------
+   11752
+ 
+Refusal(-1)          101
+Don't Know(-2)         0
+Invalid Skip(-3)     288
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .14
+ 
+Lead In: R03061.00[Default]
+Default Next Question: R03063.00
+--------------------------------------------------------------------------------
+R03063.00    [DELIN-18]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES BROKEN INTO A BUILDING IN PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q18
+ 
+SEE R(3046.) BROKEN INTO A BUILDING OR VEHICLE TO STEAL SOMETHING OR JUST TO 
+LOOK AROUND?
+ 
+UNIVERSE: All
+ 
+   11042       0 NEVER
+     360       1 ONCE
+     162       2 TWICE
+     100       3 3-5 TIMES
+      43       4 6-10 TIMES
+      21       5 11-50 TIMES
+      20       6 MORE THAN 50 TIMES
+  -------
+   11748
+ 
+Refusal(-1)          101
+Don't Know(-2)         0
+Invalid Skip(-3)     292
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .12
+ 
+Lead In: R03062.00[Default]
+Default Next Question: R03064.00
+--------------------------------------------------------------------------------
+R03064.00    [DELIN-19]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES KNOWINGLY SOLD/HELD STOLEN GOODS IN
+             PAST YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q19
+ 
+SEE R(3046.) KNOWINGLY SOLD OR HELD STOLEN GOODS?
+ 
+UNIVERSE: All
+ 
+   10406       0 NEVER
+     655       1 ONCE
+     279       2 TWICE
+     243       3 3-5 TIMES
+      90       4 6-10 TIMES
+      44       5 11-50 TIMES
+      32       6 MORE THAN 50 TIMES
+  -------
+   11749
+ 
+Refusal(-1)          101
+Don't Know(-2)         0
+Invalid Skip(-3)     291
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .23
+ 
+Lead In: R03063.00[Default]
+Default Next Question: R03065.00
+--------------------------------------------------------------------------------
+R03065.00    [DELIN-20]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - TIMES AIDED IN GAMBLING OPERATION IN PAST
+             YEAR
+ 
+ORIGINAL QUESTION NAME: S40Q20
+ 
+SEE R(3046.) HELPED IN A GAMBLING OPERATION, LIKE RUNNING NUMBERS OR POLICY OR 
+BOOKS?
+ 
+UNIVERSE: All
+ 
+   11456       0 NEVER
+     110       1 ONCE
+      53       2 TWICE
+      47       3 3-5 TIMES
+      27       4 6-10 TIMES
+      22       5 11-50 TIMES
+      22       6 MORE THAN 50 TIMES
+  -------
+   11737
+ 
+Refusal(-1)          109
+Don't Know(-2)         0
+Invalid Skip(-3)     295
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              6        Mean:                 .06
+ 
+Lead In: R03064.00[Default]
+Default Next Question: R03066.00
+--------------------------------------------------------------------------------
+R03067.00    [POLICE-1]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER "STOPPED" BY POLICE FOR OTHER THAN MINOR TRAFFIC OFFENSE?
+ 
+ORIGINAL QUESTION NAME: S16Q01
+ 
+OTHER THAN FOR A MINOR TRAFFIC VIOLATION, HAVE YOU EVER BEEN STOPPED BY THE 
+POLICE, BUT NOT PICKED UP OR ARRESTED?
+ 
+UNIVERSE: All
+ 
+    2248       1 YES
+    9881       0 NO
+  -------
+   12129
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      12
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .19
+ 
+Lead In: R03066.00[Default]
+Default Next Question: R03068.00
+--------------------------------------------------------------------------------
+R03068.00    [POLICE-1A]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES "STOPPED" BY POLICE 80 INT (EXC MINOR TRAFFIC OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q01A
+ 
+HOW MANY TIMES HAVE YOU EVER BEEN STOPPED?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been stopped by police other than for minor traffic offense
+ 
+       0           0
+     930           1
+     449           2
+     235           3
+     122           4
+     114           5
+      61           6
+      18           7
+      27           8
+       7           9
+      83          10
+       2          11
+      16          12
+       1          13
+       0          14
+      29          15
+     128          16 TO 99999: 16+
+  -------
+    2222
+ 
+Refusal(-1)            0
+Don't Know(-2)         3
+Invalid Skip(-3)      35
+TOTAL =========>    2260   VALID SKIP(-4)    9881     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             96        Mean:                4.59
+ 
+Lead In: R03067.00[Default]
+Default Next Question: R03069.00
+--------------------------------------------------------------------------------
+R03069.00    [POLICE-1B]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES "STOPPED" BY POLICE IN PAST YEAR 80 INT (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q01B
+ 
+HOW MANY TIMES IN THE LAST 12 MONTHS?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been stopped by police other than for minor traffic offense
+ 
+     807           0
+     777           1
+     278           2
+     127           3
+      62           4
+      53           5
+      24           6
+      12           7
+      10           8
+       2           9
+      30          10
+       3          11
+       6          12
+       1          13
+       0          14
+       6          15
+      32          16 TO 99999: 16+
+  -------
+    2230
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      30
+TOTAL =========>    2260   VALID SKIP(-4)    9881     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:             65        Mean:                1.78
+ 
+Lead In: R03068.00[Default]
+Default Next Question: R03070.00
+--------------------------------------------------------------------------------
+R03070.00    [POLIC-1C]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             AGE OF R 1ST TIME "STOPPED" BY POLICE
+ 
+ORIGINAL QUESTION NAME: S16Q01C
+ 
+HOW OLD WERE YOU WHEN THIS HAPPENED (THE FIRST TIME)?
+ 
+ACTUAL AGE
+ 
+UNIVERSE: R has been stopped by police other than for minor traffic offense
+ 
+       6           0 TO 5: < 6
+       3           6
+       4           7
+      15           8
+      13           9
+      17          10
+      25          11
+      74          12
+     113          13
+     208          14
+     299          15
+     399          16
+     358          17
+     264          18
+     158          19
+     114          20
+      97          21
+      63          22 TO 99999: 22+
+  -------
+    2230
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      30
+TOTAL =========>    2260   VALID SKIP(-4)    9881     NON-INTERVIEW(-5)     545
+ 
+Min:              4        Max:             23        Mean:               16.34
+ 
+Lead In: R03069.00[Default]
+Default Next Question: R03071.00
+--------------------------------------------------------------------------------
+R03071.00    [POLICE-2]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER CHARGED WITH ILLEGAL ACTIVITY? 80 INT (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q02
+ 
+NOT COUNTING MINOR TRAFFIC OFFENSES, HAVE YOU EVER BEEN BOOKED OR CHARGED FOR 
+BREAKING A LAW, EITHER BY THE POLICE OR BY SOMEONE CONNECTED WITH THE COURTS?
+ 
+UNIVERSE: All
+ 
+    1325       1 YES
+   10811       0 NO
+  -------
+   12136
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       5
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .11
+ 
+Lead In: R03070.00[Default]
+Default Next Question: R03072.00
+--------------------------------------------------------------------------------
+R03072.00    [POLICE-2A]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES CHARGED WITH ILLEGAL ACTIVITY 80 INT (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q02A
+ 
+HOW MANY TIMES HAVE YOU EVER BEEN BOOKED OR CHARGED WITH SOMETHING?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been booked/charged for breaking a law
+ 
+       0           0
+     822           1
+     254           2
+      87           3
+      52           4
+      26           5
+      16           6
+       9           7
+       6           8
+       6           9
+      14          10
+       3          11
+       5          12
+       1          13
+       0          14
+       4          15
+      16          16 TO 99999: 16+
+  -------
+    1321
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       9
+TOTAL =========>    1330   VALID SKIP(-4)   10811     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             37        Mean:                2.15
+ 
+Lead In: R03071.00[Default]
+Default Next Question: R03073.00
+--------------------------------------------------------------------------------
+R03073.00    [POLICE-2B]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES CHARGED WITH ILLEGAL ACTIVITY IN PAST YR (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q02B
+ 
+HOW MANY TIMES HAVE YOU BEEN BOOKED OR CHARGED IN THE LAST 12 MONTHS?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been booked/charged for breaking a law
+ 
+     676           0
+     493           1
+      97           2
+      20           3
+      12           4
+       6           5
+       3           6
+       1           7
+       6           8
+       1           9
+       2          10
+       2          11
+       0          12
+       0          13
+       0          14
+       0          15
+       0          16 TO 99999: 16+
+  -------
+    1319
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      11
+TOTAL =========>    1330   VALID SKIP(-4)   10811     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:             11        Mean:                 .72
+ 
+Lead In: R03072.00[Default]
+Default Next Question: R03074.00
+--------------------------------------------------------------------------------
+R03074.00    [POLICE-2C_M]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             MONTH OF MOST RECENT ILLEGAL ACTIVITY CHARGE 80 INT (EXC MINOR 
+             TRAFFIC OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q02C
+ 
+(THE MOST RECENT TIME), WHEN WERE YOU BOOKED OR CHARGED?
+ 
+1 THRU 12 ACTUAL MONTH
+ 
+UNIVERSE: R has been booked/charged for breaking a law
+ 
+       0           0: < 1
+     134           1
+      87           2
+     109           3
+     116           4
+      65           5
+     130           6
+     116           7
+     106           8
+      67           9
+      91          10
+     119          11
+     123          12
+       0          13
+       0          14
+       0          15
+       0          16
+       0          17 TO 99999: 17+
+  -------
+    1263
+ 
+Refusal(-1)            0
+Don't Know(-2)        48
+Invalid Skip(-3)      19
+TOTAL =========>    1330   VALID SKIP(-4)   10811     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             12        Mean:                6.46
+ 
+Lead In: R03073.00[Default]
+Default Next Question: R03075.00
+--------------------------------------------------------------------------------
+R03075.00    [POLICE-2C_Y]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             YEAR OF MOST RECENT ILLEGAL ACTIVITY CHARGE 80 INT (EXC MINOR 
+             TRAFFIC OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q02C1
+ 
+SEE R(3074.)
+ 
+ACTUAL YEAR
+ 
+UNIVERSE: R has been booked/charged for breaking a law
+ 
+       0           0 TO 65: < 66
+       1          66
+       1          67
+       0          68
+       0          69
+       2          70
+       5          71
+       5          72
+      23          73
+      43          74
+      76          75
+      97          76
+     130          77
+     232          78
+     526          79
+     166          80
+       0          81
+       0          82 TO 99999: 82+
+  -------
+    1307
+ 
+Refusal(-1)            0
+Don't Know(-2)        11
+Invalid Skip(-3)      12
+TOTAL =========>    1330   VALID SKIP(-4)   10811     NON-INTERVIEW(-5)     545
+ 
+Min:             66        Max:             80        Mean:               77.93
+ 
+Lead In: R03074.00[Default]
+Default Next Question: R03076.00
+--------------------------------------------------------------------------------
+R03076.00    [POLICE-2D]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             AGE AT TIME OF 1ST ILLEGAL ACTIVITY CHARGE 80 INT (EXC MINOR 
+             TRAFFIC OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q02D
+ 
+(THE VERY FIRST TIME YOU WERE BOOKED OR CHARGED), HOW OLD WERE YOU THEN?
+ 
+ACTUAL AGE
+ 
+UNIVERSE: R has been booked/charged for breaking a law
+ 
+       1           0 TO 6: < 7
+       2           7
+       2           8
+       4           9
+       8          10
+      22          11
+      51          12
+      53          13
+      96          14
+     172          15
+     202          16
+     181          17
+     193          18
+     143          19
+      86          20
+      69          21
+      33          22
+       0          23 TO 99999: 23+
+  -------
+    1318
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      12
+TOTAL =========>    1330   VALID SKIP(-4)   10811     NON-INTERVIEW(-5)     545
+ 
+Min:              6        Max:             22        Mean:                16.7
+ 
+Lead In: R03075.00[Default]
+Default Next Question: R03077.00
+--------------------------------------------------------------------------------
+R03077.00    [POLICE-2E]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER CHARGED WITH ANY ILLEGAL ACTIVITY IN ADULT COURT?
+ 
+ORIGINAL QUESTION NAME: S16Q02E
+ 
+OTHER THAN FOR A MINOR TRAFFIC OFFENSE, HAVE YOU EVER BEEN BOOKED OR CHARGED 
+WITH ANYTHING IN ADULT COURT?
+ 
+UNIVERSE: R has been booked/charged for breaking a law
+ 
+     607       1 YES
+     715       0 NO
+  -------
+    1322
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       8
+TOTAL =========>    1330   VALID SKIP(-4)   10811     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .46
+ 
+Lead In: R03076.00[Default]
+Default Next Question: R03078.00
+--------------------------------------------------------------------------------
+R03078.00    [POLICE-3]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER CONVICTED ON ILLEGAL ACTIVITY CHARGES OTHER THAN MINOR TRAFFIC
+             OFFENSE?
+ 
+ORIGINAL QUESTION NAME: S16Q03
+ 
+HAVE YOU EVER BEEN CONVICTED OF ANY CHARGES OTHER THAN A MINOR TRAFFIC 
+VIOLATION?
+ 
+UNIVERSE: All
+ 
+     753       1 YES
+   11377       0 NO
+  -------
+   12130
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+Invalid Skip(-3)      10
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .06
+ 
+Lead In: R03077.00[Default]
+Default Next Question: R03079.00
+--------------------------------------------------------------------------------
+R03079.00    [POLICE-3A]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES CONVICTED OF ILLEGAL ACTIVITY 80 INT (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q03A
+ 
+HOW MANY TIMES HAVE YOU EVER BEEN CONVICTED OF SOMETHING?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       0           0: < 1
+     506           1
+     128           2
+      49           3
+      26           4
+      16           5
+       7           6
+       2           7
+       2           8
+       4           9
+       5          10
+       1          11
+       2          12
+       0          13
+       0          14
+       0          15
+       0          16
+       3          17 TO 99999: 17+
+  -------
+     751
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+Invalid Skip(-3)      11
+TOTAL =========>     763   VALID SKIP(-4)   11378     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             21        Mean:                 1.8
+ 
+Lead In: R03078.00[Default]
+Default Next Question: R03080.00
+--------------------------------------------------------------------------------
+R03080.00    [POLICE-3B]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             AGE AT TIME OF 1ST ILLEGAL ACTIVITY CONVICTION (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q03B
+ 
+HOW OLD WERE YOU (THE FIRST TIME/WHEN) THIS HAPPENED?
+ 
+ACTUAL AGE
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       6           0 TO 9: < 10
+       3          10
+       9          11
+      27          12
+      34          13
+      51          14
+      94          15
+     112          16
+     104          17
+     124          18
+      75          19
+      57          20
+      37          21
+      18          22
+       1          23
+       0          24
+       0          25
+       0          26 TO 99999: 26+
+  -------
+     752
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      11
+TOTAL =========>     763   VALID SKIP(-4)   11378     NON-INTERVIEW(-5)     545
+ 
+Min:              6        Max:             23        Mean:               16.78
+ 
+Lead In: R03079.00[Default]
+Default Next Question: R03081.00
+--------------------------------------------------------------------------------
+R03081.00    [POLICE-3C_M]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             MONTH OF MOST RECENT ILLEGAL ACTIVITY CONVICTION (EXC MINOR TRAFFIC
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q03C
+ 
+WHEN WAS YOUR (MOST RECENT) CONVICTION?
+ 
+1 THRU 12 ACTUAL MONTH
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       0           0: < 1
+      74           1
+      57           2
+      56           3
+      59           4
+      46           5
+      69           6
+      69           7
+      62           8
+      44           9
+      52          10
+      65          11
+      67          12
+       0          13
+       0          14
+       0          15
+       0          16
+       0          17 TO 99999: 17+
+  -------
+     720
+ 
+Refusal(-1)            0
+Don't Know(-2)        26
+Invalid Skip(-3)      17
+TOTAL =========>     763   VALID SKIP(-4)   11378     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             12        Mean:                6.46
+ 
+Lead In: R03080.00[Default]
+Default Next Question: R03082.00
+--------------------------------------------------------------------------------
+R03082.00    [POLICE-3C_Y]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             YEAR OF MOST RECENT ILLEGAL ACTIVITY CONVICTION (EXC MINOR TRAFFIC 
+             OFFENSE)
+ 
+ORIGINAL QUESTION NAME: S16Q03C1
+ 
+SEE R(3081.)
+ 
+ACTUAL YEAR
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       0           0 TO 65: < 66
+       2          66
+       0          67
+       0          68
+       0          69
+       1          70
+       3          71
+       1          72
+       9          73
+      23          74
+      44          75
+      45          76
+      87          77
+     129          78
+     319          79
+      88          80
+       0          81
+       0          82 TO 99999: 82+
+  -------
+     751
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      12
+TOTAL =========>     763   VALID SKIP(-4)   11378     NON-INTERVIEW(-5)     545
+ 
+Min:             66        Max:             80        Mean:               77.99
+ 
+Lead In: R03081.00[Default]
+Default Next Question: R03083.00
+--------------------------------------------------------------------------------
+R03083.00    [POLICE-3D_000001]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - ASSAULT
+ 
+ORIGINAL QUESTION NAME: S16Q03DA
+ 
+WHAT CHARGES HAVE YOU EVER BEEN CONVICTED OF?
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      90       1 ASSAULT
+  -------
+      90
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>     104   VALID SKIP(-4)   12037     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:              1        Mean:                   1
+ 
+Lead In: R03082.00[Default]
+Default Next Question: R03084.00
+--------------------------------------------------------------------------------
+R03084.00    [POLICE-3D_000002]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - ROBBERY
+ 
+ORIGINAL QUESTION NAME: S16Q03DB
+ 
+SEE R(3083.) ROBBERY
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      49       2 ROBBERY
+  -------
+      49
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      63   VALID SKIP(-4)   12078     NON-INTERVIEW(-5)     545
+ 
+Min:              2        Max:              2        Mean:                   2
+ 
+Lead In: R03083.00[Default]
+Default Next Question: R03085.00
+--------------------------------------------------------------------------------
+R03085.00    [POLICE-3D_000003]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - THEFT
+ 
+ORIGINAL QUESTION NAME: S16Q03DC
+ 
+SEE R(3083.) THEFT
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+     237       3 THEFT
+  -------
+     237
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>     251   VALID SKIP(-4)   11890     NON-INTERVIEW(-5)     545
+ 
+Min:              3        Max:              3        Mean:                   3
+ 
+Lead In: R03084.00[Default]
+Default Next Question: R03086.00
+--------------------------------------------------------------------------------
+R03086.00    [POLICE-3D_000004]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - THEFT BY DECEPTION
+ 
+ORIGINAL QUESTION NAME: S16Q03DD
+ 
+SEE R(3083.) THEFT BY DECEPTION
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      17       4 THEFT BY DECEPTION
+  -------
+      17
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      31   VALID SKIP(-4)   12110     NON-INTERVIEW(-5)     545
+ 
+Min:              4        Max:              4        Mean:                   4
+ 
+Lead In: R03085.00[Default]
+Default Next Question: R03087.00
+--------------------------------------------------------------------------------
+R03087.00    [POLICE-3D_000005]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - RECEIVING/POSSESSING/SELLING STOLEN 
+             PROPERTY
+ 
+ORIGINAL QUESTION NAME: S16Q03DE
+ 
+SEE R(3083.) RECEIVING/POSSESSING/SELLING STOLEN PROPERTY
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      17       5 CONVICTED REGARDING STOLEN PROPERTY
+  -------
+      17
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      31   VALID SKIP(-4)   12110     NON-INTERVIEW(-5)     545
+ 
+Min:              5        Max:              5        Mean:                   5
+ 
+Lead In: R03086.00[Default]
+Default Next Question: R03088.00
+--------------------------------------------------------------------------------
+R03088.00    [POLICE-3D_000006]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - DESTRUCTION OF PROPERTY
+ 
+ORIGINAL QUESTION NAME: S16Q03DF
+ 
+SEE R(3083.) DESTRUCTION OF PROPERTY
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      62       6 DESTRUCTION OF PROPERTY
+  -------
+      62
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      76   VALID SKIP(-4)   12065     NON-INTERVIEW(-5)     545
+ 
+Min:              6        Max:              6        Mean:                   6
+ 
+Lead In: R03087.00[Default]
+Default Next Question: R03089.00
+--------------------------------------------------------------------------------
+R03089.00    [POLICE-3D_000007]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - OTHER PROPERTY OFFENSE
+ 
+ORIGINAL QUESTION NAME: S16Q03DG
+ 
+SEE R(3083.) OTHER PROPERTY OFFENSE
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      90       7 OTHER PROPERTY OFFENSE
+  -------
+      90
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>     104   VALID SKIP(-4)   12037     NON-INTERVIEW(-5)     545
+ 
+Min:              7        Max:              7        Mean:                   7
+ 
+Lead In: R03088.00[Default]
+Default Next Question: R03090.00
+--------------------------------------------------------------------------------
+R03090.00    [POLICE-3D_000008]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - GAMBLING
+ 
+ORIGINAL QUESTION NAME: S16Q03DH
+ 
+SEE R(3083.) GAMBLING
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       1       8 GAMBLING OFFENSE
+  -------
+       1
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      15   VALID SKIP(-4)   12126     NON-INTERVIEW(-5)     545
+ 
+Min:              8        Max:              8        Mean:                   8
+ 
+Lead In: R03089.00[Default]
+Default Next Question: R03091.00
+--------------------------------------------------------------------------------
+R03091.00    [POLICE-3D_000009]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - COMMERCIAL VICE
+ 
+ORIGINAL QUESTION NAME: S16Q03DI
+ 
+SEE R(3083.) COMMERCIAL VICE
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       2       9 COMMERCIAL VICE
+  -------
+       2
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      16   VALID SKIP(-4)   12125     NON-INTERVIEW(-5)     545
+ 
+Min:              9        Max:              9        Mean:                   9
+ 
+Lead In: R03090.00[Default]
+Default Next Question: R03092.00
+--------------------------------------------------------------------------------
+R03092.00    [POLICE-3D_000010]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - POSSESSION OF MARIJUANA/HASHISH
+ 
+ORIGINAL QUESTION NAME: S16Q03DJ
+ 
+SEE R(3083.) POSSESSION OR USE OF MARIJUANA OR HASHISH...
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      82      10 POSSESSION OF MARIJUANA/HASHISH
+  -------
+      82
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      96   VALID SKIP(-4)   12045     NON-INTERVIEW(-5)     545
+ 
+Min:             10        Max:             10        Mean:                  10
+ 
+Lead In: R03091.00[Default]
+Default Next Question: R03093.00
+--------------------------------------------------------------------------------
+R03093.00    [POLICE-3D_000011]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - SELLING MARIJUANA/HASHISH
+ 
+ORIGINAL QUESTION NAME: S16Q03DK
+ 
+SEE R(3083.) SELLING MARIJUANA OR HASHISH...
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      14      11 SELLING MARIJUANA/HASHISH
+  -------
+      14
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      28   VALID SKIP(-4)   12113     NON-INTERVIEW(-5)     545
+ 
+Min:             11        Max:             11        Mean:                  11
+ 
+Lead In: R03092.00[Default]
+Default Next Question: R03094.00
+--------------------------------------------------------------------------------
+R03094.00    [POLICE-3D_000012]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - POSSESSION OF OTHER ILLICIT DRUGS
+ 
+ORIGINAL QUESTION NAME: S16Q03DL
+ 
+SEE R(3083.) POSSESSION OR USE OF OTHER ILLICIT DRUGS...
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      18      12 POSSESSION OF OTHER ILLICIT DRUGS
+  -------
+      18
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      32   VALID SKIP(-4)   12109     NON-INTERVIEW(-5)     545
+ 
+Min:             12        Max:             12        Mean:                  12
+ 
+Lead In: R03093.00[Default]
+Default Next Question: R03095.00
+--------------------------------------------------------------------------------
+R03095.00    [POLICE-3D_000013]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - SALE/MANUFACTURE OF OTHER ILLICIT DRUGS
+ 
+ORIGINAL QUESTION NAME: S16Q03DM
+ 
+SEE R(3083.) SALE OR MANUFACTURE OF OTHER ILLICIT DRUGS...
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+       2      13 SALE/MANUFACTURE OF OTHER ILLICIT DRUGS
+  -------
+       2
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      16   VALID SKIP(-4)   12125     NON-INTERVIEW(-5)     545
+ 
+Min:             13        Max:             13        Mean:                  13
+ 
+Lead In: R03094.00[Default]
+Default Next Question: R03096.00
+--------------------------------------------------------------------------------
+R03096.00    [POLICE-3D_000014]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - MAJOR TRAFFIC OFFENSE
+ 
+ORIGINAL QUESTION NAME: S16Q03DN
+ 
+SEE R(3083.) MAJOR TRAFFIC OFFENSE
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+     118      14 MAJOR TRAFFIC OFFENSE
+  -------
+     118
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>     132   VALID SKIP(-4)   12009     NON-INTERVIEW(-5)     545
+ 
+Min:             14        Max:             14        Mean:                  14
+ 
+Lead In: R03095.00[Default]
+Default Next Question: R03097.00
+--------------------------------------------------------------------------------
+R03098.00    [POLICE-3D_000016]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - STATUS OFFENSE
+ 
+ORIGINAL QUESTION NAME: S16Q03DP
+ 
+SEE R(3083.) STATUS OFFENSE
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+      35      16 STATUS OFFENSE
+  -------
+      35
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>      49   VALID SKIP(-4)   12092     NON-INTERVIEW(-5)     545
+ 
+Min:             16        Max:             16        Mean:                  16
+ 
+Lead In: R03097.00[Default]
+Default Next Question: R03099.00
+--------------------------------------------------------------------------------
+R03099.00    [POLICE-3D_000017]                             Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             ILLEGAL ACTIVITY 80 INT - OTHER
+ 
+ORIGINAL QUESTION NAME: S16Q03DQ
+ 
+SEE R(3083.) OTHER (SPECIFY)...
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+     148      17 OTHER OFFENSE
+  -------
+     148
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)      13
+TOTAL =========>     162   VALID SKIP(-4)   11979     NON-INTERVIEW(-5)     545
+ 
+Min:             17        Max:             17        Mean:                  17
+ 
+Lead In: R03098.00[Default]
+Default Next Question: R03100.00
+--------------------------------------------------------------------------------
+R03100.00    [POLICE-3E]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER BEEN CONVICTED FOR ILLEGAL ACTIVITY IN ADULT COURT (R HAS BEEN
+             CONVICTED)
+ 
+ORIGINAL QUESTION NAME: S16Q03E
+ 
+OTHER THAN A MINOR TRAFFIC VIOLATION, HAVE YOU EVER BEEN CONVICTED OF ANYTHING 
+IN AN ADULT COURT?
+ 
+UNIVERSE: R has been convicted of crime other than minor traffic offense
+ 
+     374       1 YES
+     374       0 NO
+  -------
+     748
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      15
+TOTAL =========>     763   VALID SKIP(-4)   11378     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                  .5
+ 
+Lead In: R03099.00[Default]
+Default Next Question: R03101.00
+--------------------------------------------------------------------------------
+R03101.00    [POLICE-4]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER BEEN REFERRED TO COURT-RELATED COUNSELING?
+ 
+ORIGINAL QUESTION NAME: S16Q04
+ 
+HAVE YOU EVER BEEN REFERRED TO A COURT-RELATED COUNSELING OR DIVERSION PROGRAM 
+BY THE POLICE, COURTS, SCHOOL, OR BY YOUR PARENTS?
+ 
+UNIVERSE: All
+ 
+     638       1 YES
+   11483       0 NO
+  -------
+   12121
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      20
+TOTAL =========>   12141   VALID SKIP(-4)       0     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .05
+ 
+Lead In: R03100.00[Default]
+Default Next Question: R03102.00
+--------------------------------------------------------------------------------
+R03102.00    [POLICE-4A]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES REFERRED TO COURT-RELATED COUNSELING
+ 
+ORIGINAL QUESTION NAME: S16Q04A
+ 
+HOW MANY TIMES WERE YOU EVER REFERRED TO THIS KIND OF PROGRAM?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been referred to court-related counseling
+ 
+       0           0
+     505           1
+      79           2
+      22           3
+       6           4
+       7           5
+       6           6
+       4           7
+       2           8
+       1           9
+       2          10
+       0          11
+       0          12
+       0          13
+       0          14
+       0          15
+       0          16 TO 99999: 16+
+  -------
+     634
+ 
+Refusal(-1)            0
+Don't Know(-2)         2
+Invalid Skip(-3)      22
+TOTAL =========>     658   VALID SKIP(-4)   11483     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             10        Mean:                1.41
+ 
+Lead In: R03101.00[Default]
+Default Next Question: R03103.00
+--------------------------------------------------------------------------------
+R03103.00    [POLICE-4B]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             AGE AT TIME OF 1ST REFERRAL TO COURT-RELATED COUNSELING
+ 
+ORIGINAL QUESTION NAME: S16Q04B
+ 
+HOW OLD WERE YOU WHEN THIS HAPPENED (THE FIRST TIME)?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been referred to court-related counseling
+ 
+       4           0 TO 9: < 10
+       2          10
+       6          11
+      16          12
+      45          13
+      79          14
+     125          15
+     120          16
+      83          17
+      54          18
+      47          19
+      29          20
+      17          21
+       9          22
+       0          23
+       0          24
+       0          25
+       0          26 TO 99999: 26+
+  -------
+     636
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      22
+TOTAL =========>     658   VALID SKIP(-4)   11483     NON-INTERVIEW(-5)     545
+ 
+Min:              6        Max:             22        Mean:               16.05
+ 
+Lead In: R03102.00[Default]
+Default Next Question: R03104.00
+--------------------------------------------------------------------------------
+R03104.00    [POLICE-4C_M]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             MONTH MOST RECENT COURT-RELATED COUNSELING ENDED
+ 
+ORIGINAL QUESTION NAME: S16Q04C
+ 
+WHEN DID YOUR (MOST RECENT) COUNSELING PROGRAM END?
+ 
+0 NEVER ATTENDED COUNSELING
+95 NOW IN COUNSELING
+ 
+1 THRU 12 ACTUAL MONTH
+ 
+UNIVERSE: R has been referred to court-related counseling
+ 
+      44           0
+      35           1
+      32           2
+      31           3
+      32           4
+      33           5
+      68           6
+      32           7
+      38           8
+      40           9
+      32          10
+      38          11
+      43          12
+       0          13
+       0          14
+       0          15
+      80          16 TO 99999: 16+
+  -------
+     578
+ 
+Refusal(-1)            2
+Don't Know(-2)        50
+Invalid Skip(-3)      28
+TOTAL =========>     658   VALID SKIP(-4)   11483     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:             95        Mean:                18.4
+ 
+Lead In: R03103.00[Default]
+Default Next Question: R03104.10
+--------------------------------------------------------------------------------
+R03104.10    [POLICE-4C_Y]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             YEAR MOST RECENT COURT-RELATED COUNSELING ENDED
+ 
+ORIGINAL QUESTION NAME: S16Q04C1
+ 
+SEE R(3104.)
+ 
+0 NEVER ATTENDED COUNSELING
+95 NOW IN COUNSELING
+ 
+ACTUAL YEAR
+ 
+UNIVERSE: R has been referred to court-related counseling
+ 
+      44           0 TO 63: < 64
+       0          64
+       0          65
+       1          66
+       0          67
+       0          68
+       0          69
+       2          70
+       3          71
+       4          72
+      21          73
+      24          74
+      40          75
+      60          76
+      59          77
+      81          78
+     173          79
+     111          80 TO 99999: 80+
+  -------
+     623
+ 
+Refusal(-1)            0
+Don't Know(-2)        12
+Invalid Skip(-3)      23
+TOTAL =========>     658   VALID SKIP(-4)   11483     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:             95        Mean:               74.13
+ 
+Lead In: R03104.00[Default]
+Default Next Question: R03105.00
+--------------------------------------------------------------------------------
+R03106.00    [POLICE-6]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER BEEN ON PROBATION?
+ 
+ORIGINAL QUESTION NAME: S16Q06
+ 
+HAVE YOU EVER BEEN ON PROBATION?
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense
+ 
+     715       1 YES
+    2034       0 NO
+  -------
+    2749
+ 
+Refusal(-1)            1
+Don't Know(-2)         1
+Invalid Skip(-3)     152
+TOTAL =========>    2903   VALID SKIP(-4)    9238     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .26
+ 
+Lead In: R03105.00[Default]
+Default Next Question: R03107.00
+--------------------------------------------------------------------------------
+R03107.00    [POLICE-6A]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES ON PROBATION
+ 
+ORIGINAL QUESTION NAME: S16Q06A
+ 
+HOW MANY TIMES WERE YOU EVER ON PROBATION?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been on probation
+ 
+       0           0
+     559           1
+     112           2
+      29           3
+      10           4
+       2           5
+       0           6
+       2           7
+       0           8
+       0           9
+       0          10
+       0          11
+       0          12
+       0          13
+       0          14
+       1          15
+       0          16 TO 99999: 16+
+  -------
+     715
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     152
+TOTAL =========>     867   VALID SKIP(-4)   11274     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             15        Mean:                1.33
+ 
+Lead In: R03106.00[Default]
+Default Next Question: R03108.00
+--------------------------------------------------------------------------------
+R03108.00    [POLICE-6B_M]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             DATE MOST RECENT PROBATION PERIOD ENDED
+ 
+ORIGINAL QUESTION NAME: S16Q06B
+ 
+WHEN DID YOUR (MOST RECENT) PROBATION END?
+ 
+NOTE: RESPONDENTS WITH A VALUE OF 95 (NOW ON PROBATION) ON
+R3108.10 HAVE A VALUE OF -4 ON THIS VARIABLE.
+ 
+ACTUAL WEEK NUMBER
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been on probation
+ 
+       0           0: < 1
+      41           1
+      38           2
+      31           3
+      25           4
+      32           5
+      54           6
+      30           7
+      40           8
+      36           9
+      31          10
+      39          11
+      54          12
+       0          13
+       0          14
+       0          15
+       0          16
+       0          17 TO 99999: 17+
+  -------
+     451
+ 
+Refusal(-1)            0
+Don't Know(-2)        60
+Invalid Skip(-3)     162
+TOTAL =========>     673   VALID SKIP(-4)   11468     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             12        Mean:                6.73
+ 
+Lead In: R03107.00[Default]
+Default Next Question: R03108.10
+--------------------------------------------------------------------------------
+R03108.10    [POLICE-6B_Y]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             YEAR MOST RECENT PROBATION PERIOD ENDED
+ 
+ORIGINAL QUESTION NAME: S16Q06B1
+ 
+SEE R(3108.)
+ 
+95 NOW ON PROBATION
+ 
+ACTUAL YEAR
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been on probation
+ 
+       0           0 TO 64: < 65
+       0          65
+       1          66
+       1          67
+       1          68
+       0          69
+       0          70
+       4          71
+       4          72
+      14          73
+      23          74
+      35          75
+      41          76
+      89          77
+      88          78
+     159          79
+      41          80
+     195          81 TO 99999: 81+
+  -------
+     696
+ 
+Refusal(-1)            0
+Don't Know(-2)        15
+Invalid Skip(-3)     156
+TOTAL =========>     867   VALID SKIP(-4)   11274     NON-INTERVIEW(-5)     545
+ 
+Min:             66        Max:             95        Mean:               82.36
+ 
+Lead In: R03108.00[Default]
+Default Next Question: R03109.00
+--------------------------------------------------------------------------------
+R03109.00    [POLICE-7]                                     Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             EVER BEEN SENTENCED TO ANY TYPE OF CORRECTIONAL INSTITUTION?
+ 
+ORIGINAL QUESTION NAME: S16Q07
+ 
+HAVE YOU EVER BEEN SENTENCED TO SPEND TIME IN A CORRECTIONS INSTITUTION, LIKE A 
+JAIL, PRISON, OR A YOUTH INSTITION LIKE A TRAINING SCHOOL OR REFORM SCHOOL?
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense
+ 
+     313       1 YES
+    2436       0 NO
+  -------
+    2749
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)     153
+TOTAL =========>    2903   VALID SKIP(-4)    9238     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:              1        Mean:                 .11
+ 
+Lead In: R03108.10[Default]
+Default Next Question: R03110.00
+--------------------------------------------------------------------------------
+R03110.00    [POLICE-7A]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES SENT TO YOUTH CORRECTIONAL INSTITUTION
+ 
+ORIGINAL QUESTION NAME: S16Q07A
+ 
+HOW MANY TIMES WERE YOU EVER SENT TO A YOUTH CORRECTIONS INSTITUTION?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been sent to a corrections institution
+ 
+     126           0
+     129           1
+      24           2
+      13           3
+       7           4
+       4           5
+       2           6
+       3           7
+       0           8
+       0           9
+       0          10
+       0          11
+       0          12
+       0          13
+       0          14
+       0          15
+       1          16 TO 99999: 16+
+  -------
+     309
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     157
+TOTAL =========>     466   VALID SKIP(-4)   11675     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:             22        Mean:                1.03
+ 
+Lead In: R03109.00[Default]
+Default Next Question: R03111.00
+--------------------------------------------------------------------------------
+R03111.00    [POLICE-7B]                                    Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TIMES SENT TO ADULT CORRECTIONAL INSTITUTION
+ 
+ORIGINAL QUESTION NAME: S16Q07B
+ 
+HOW MANY TIMES WERE YOU EVER SENT TO AN ADULT CORRECTIONS INSTITUTION?
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been sent to a youth corrections institution
+ 
+     151           0
+     116           1
+      24           2
+       4           3
+       6           4
+       3           5
+       1           6
+       1           7
+       0           8
+       0           9
+       1          10
+       0          11
+       0          12
+       0          13
+       0          14
+       0          15
+       1          16 TO 99999: 16+
+  -------
+     308
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     158
+TOTAL =========>     466   VALID SKIP(-4)   11675     NON-INTERVIEW(-5)     545
+ 
+Min:              0        Max:             20        Mean:                 .84
+ 
+Lead In: R03110.00[Default]
+Default Next Question: R03112.00
+--------------------------------------------------------------------------------
+R03112.00    [POLICE-7C_M]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             MONTH OF MOST RECENT RELEASE FROM A CORRECTIONAL INSTITUTION
+ 
+ORIGINAL QUESTION NAME: S16Q07C
+ 
+WHEN WERE YOU RELEASED (THE MOST RECENT TIME)?
+ 
+NOTE: RESPONDENTS WITH A VALUE OF 95 (NOW IN CORRECTIONS
+INSTITUTION) ON R3112.10 HAVE A VALUE OF -4 ON THIS VARIABLE.
+ 
+1 THRU 12 ACTUAL MONTH
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been sent to a corrections institution
+ 
+       0           0: < 1
+      18           1
+      14           2
+      16           3
+      21           4
+      19           5
+      28           6
+      17           7
+      18           8
+      19           9
+      18          10
+      16          11
+      20          12
+       0          13
+       0          14
+       0          15
+       0          16
+       0          17 TO 99999: 17+
+  -------
+     224
+ 
+Refusal(-1)            0
+Don't Know(-2)        20
+Invalid Skip(-3)     161
+TOTAL =========>     405   VALID SKIP(-4)   11736     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             12        Mean:                6.57
+ 
+Lead In: R03111.00[Default]
+Default Next Question: R03112.10
+--------------------------------------------------------------------------------
+R03112.10    [POLICE-7C_Y]                                  Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             YEAR OF MOST RECENT RELEASE FROM A CORRECTIONAL INSTITUTION
+ 
+ORIGINAL QUESTION NAME: S16Q07C1
+ 
+SEE R(3112.)
+ 
+95 NOW IN CORRECTIONS INSTITUTION.
+ 
+ACTUAL YEAR
+ 
+UNIVERSE: R has been stopped/booked/charged/convicted for crime other than minor
+traffic offense; has been sent to a corrections institution
+ 
+       0           0 TO 65: < 66
+       0          66
+       0          67
+       1          68
+       0          69
+       2          70
+       1          71
+       2          72
+       7          73
+      11          74
+      14          75
+      29          76
+      23          77
+      35          78
+      90          79
+      24          80
+       0          81
+      60          82 TO 99999: 82+
+  -------
+     299
+ 
+Refusal(-1)            0
+Don't Know(-2)         6
+Invalid Skip(-3)     160
+TOTAL =========>     465   VALID SKIP(-4)   11676     NON-INTERVIEW(-5)     545
+ 
+Min:             68        Max:             95        Mean:               81.05
+ 
+Lead In: R03112.00[Default]
+Default Next Question: R03113.00
+--------------------------------------------------------------------------------
+R04063.10    [RNI]                                          Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+UNIVERSE: All
+ 
+      48      60 PARENT REFUSAL/BREAKOFF
+     162      61 YOUTH REFUSAL/BREAKOFF
+      43      62 PARENT AND YOUTH REFUSAL/BREAKOFF
+      25      63 UNABLE TO LOCATE FAMILY UNIT AND YOUTH
+     192      64 UNABLE TO LOCATE YOUTH
+       9      65 DECEASED
+      66      66 OTHER
+  -------
+     545
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>     545   VALID SKIP(-4)   12141     NON-INTERVIEW(-5)       0
+ 
+Min:             60        Max:             66        Mean:               62.81
+ 
+Lead In: R04063.01[Default]
+Default Next Question: R04064.00
+--------------------------------------------------------------------------------
+R06188.10    [RNI]                                          Survey Year: 1981
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+UNIVERSE: R did not take interview
+ 
+      26      60 PARENT REFUSAL/BREAKOFF
+     164      61 YOUTH REFUSAL/BREAKOFF
+      30      62 PARENT AND YOUTH REFUSAL/BREAKOFF
+      30      63 UNABLE TO LOCATE FAMILY UNIT AND YOUTH
+      84      64 UNABLE TO LOCATE YOUTH
+      29      65 DECEASED
+     128      66 OTHER
+  -------
+     491
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>     491   VALID SKIP(-4)   12195     NON-INTERVIEW(-5)       0
+ 
+Min:             60        Max:             66        Mean:               63.18
+ 
+Lead In: R06188.01[Default]
+Default Next Question: R06189.00
+--------------------------------------------------------------------------------
+R08985.10    [RNI]                                          Survey Year: 1982
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+UNIVERSE: All
+ 
+      10      60 PARENT REFUSAL/BREAKOFF
+     138      61 YOUTH REFUSAL/BREAKOFF
+      29      62 PARENT & YOUTH REFUSAL/BREAKOFF
+      58      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     151      64 UNABLE TO LOCATE YOUTH
+      44      65 DECEASED
+      50      66 OTHER
+      83      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+  -------
+     563
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>     563   VALID SKIP(-4)   12123     NON-INTERVIEW(-5)       0
+ 
+Min:             60        Max:             67        Mean:               63.69
+ 
+Lead In: R08985.01[Default]
+Default Next Question: R08986.00
+--------------------------------------------------------------------------------
+R11447.10    [RNI]                                          Survey Year: 1983
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       6      60 PARENT REFUSAL/BREAKOFF
+     186      61 YOUTH REFUSAL/BREAKOFF
+      28      62 PARENT & YOUTH REFUSAL/BREAKOFF
+      17      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     107      64 UNABLE TO LOCATE YOUTH
+      57      65 DECEASED
+      37      66 OTHER
+      27      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+  -------
+     465
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>     465   VALID SKIP(-4)   12221     NON-INTERVIEW(-5)       0
+ 
+Min:             60        Max:             67        Mean:               63.05
+ 
+Lead In: R11447.01[Default]
+Default Next Question: R11448.00
+--------------------------------------------------------------------------------
+R15199.10    [RNI]                                          Survey Year: 1984
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     374      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     151      64 UNABLE TO LOCATE YOUTH
+      67      65 DECEASED
+      25      66 OTHER
+       0      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+  -------
+     617
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>     617   VALID SKIP(-4)   12069     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             66        Mean:               62.37
+ 
+Lead In: R15199.01[Default]
+Default Next Question: R15200.00
+--------------------------------------------------------------------------------
+R18903.00    [RNI]                                          Survey Year: 1985
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     331      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     152      64 UNABLE TO LOCATE YOUTH
+      79      65 DECEASED
+      26      66 OTHER
+     125      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+  -------
+    1792
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    1792   VALID SKIP(-4)   10894     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             68        Mean:               66.14
+ 
+Lead In: R18902.10[Default]
+Default Next Question: R18904.00
+--------------------------------------------------------------------------------
+R22574.00    [RNI]                                          Survey Year: 1986
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     524      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     200      64 UNABLE TO LOCATE YOUTH
+      95      65 DECEASED
+      36      66 OTHER
+      97      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+  -------
+    2031
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    2031   VALID SKIP(-4)   10655     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             68        Mean:               65.58
+ 
+Lead In: R22573.01[Default]
+Default Next Question: R22574.10
+--------------------------------------------------------------------------------
+R24446.00    [RNI]                                          Survey Year: 1987
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     508      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     293      64 UNABLE TO LOCATE YOUTH
+     110      65 DECEASED
+      68      66 OTHER
+     143      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+  -------
+    2201
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    2201   VALID SKIP(-4)   10485     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             68        Mean:               65.58
+ 
+Lead In: R24445.01[Default]
+Default Next Question: R24446.10
+--------------------------------------------------------------------------------
+R28701.00    [RNI]                                          Survey Year: 1988
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     587      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     248      64 UNABLE TO LOCATE YOUTH
+     127      65 DECEASED
+      83      66 OTHER
+      97      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+  -------
+    2221
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    2221   VALID SKIP(-4)   10465     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             68        Mean:               65.41
+ 
+Lead In: R28700.01[Default]
+Default Next Question: R28701.10
+--------------------------------------------------------------------------------
+R30739.00    [RNI]                                          Survey Year: 1989
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     525      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     188      64 UNABLE TO LOCATE YOUTH
+     141      65 DECEASED
+      46      66 OTHER
+     102      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+  -------
+    2081
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    2081   VALID SKIP(-4)   10605     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             68        Mean:               65.58
+ 
+Lead In: R30738.01[Default]
+Default Next Question: R30739.10
+--------------------------------------------------------------------------------
+R34005.00    [RNI]                                          Survey Year: 1990
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     662      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     246      64 UNABLE TO LOCATE YOUTH
+     152      65 DECEASED
+      52      66 OTHER
+      59      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+  -------
+    2250
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    2250   VALID SKIP(-4)   10436     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             68        Mean:               65.23
+ 
+Lead In: R34004.00[Default]
+Default Next Question: R34006.00
+--------------------------------------------------------------------------------
+R36559.00    [RNI]                                          Survey Year: 1991
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     507      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     202      64 UNABLE TO LOCATE YOUTH
+     166      65 DECEASED
+      22      66 OTHER
+      71      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+     731      69 SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890      70 SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+  -------
+    3668
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    3668   VALID SKIP(-4)    9018     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             70        Mean:               67.33
+ 
+Lead In: R36558.01[Default]
+Default Next Question: R36560.00
+--------------------------------------------------------------------------------
+R40064.00    [RNI]                                          Survey Year: 1992
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     526      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     158      64 UNABLE TO LOCATE YOUTH
+     178      65 DECEASED
+      28      66 OTHER
+      80      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+     731      69 SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890      70 SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+  -------
+    3670
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    3670   VALID SKIP(-4)    9016     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             70        Mean:               67.33
+ 
+Lead In: R40063.01[Default]
+Default Next Question: R40065.00
+--------------------------------------------------------------------------------
+R44175.00    [RNI]                                          Survey Year: 1993
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+ORIGINAL QUESTION NAME: RNI
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0      60 PARENT REFUSAL/BREAKOFF
+     540      61 YOUTH REFUSAL/BREAKOFF
+       0      62 PARENT & YOUTH REFUSAL/BREAKOFF
+       0      63 UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     122      64 UNABLE TO LOCATE YOUTH
+     199      65 DECEASED
+      23      66 OTHER
+      91      67 DO NOT REFIELD (VERY DIFFICULT CASES)
+    1079      68 MILITARY SAMPLE DROPPED
+     731      69 SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890      70 SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+  -------
+    3675
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    3675   VALID SKIP(-4)    9011     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             70        Mean:               67.32
+ 
+Lead In: R44174.01[Default]
+Default Next Question: R44176.00
+--------------------------------------------------------------------------------
+R49808.00    [Q12-7N]                                       Survey Year: 1994
+  PRIMARY VARIABLE
+
+ 
+             ALCOHOL USE - FREQUENCY BEEN ARRESTED OR IN TROUBLE WITH POLICE
+ 
+(INTERVIEWER: IF NECESSARY, REMIND R:  How often have you.....)
+ 
+....been arrested or had trouble with the police because of your drinking?
+ 
+      30       1 Happened 3 or more times in the past year
+      20       2 Happened 2 times in the past year
+     109       3 Happened 1 time in the past year
+     473       4 Happened in lifetime other than in past year
+    4671       5 Never happened
+  -------
+    5303
+ 
+Refusal(-1)            3
+Don't Know(-2)         0
+TOTAL =========>    5306   VALID SKIP(-4)    3585     NON-INTERVIEW(-5)    3795
+ 
+Min:              1        Max:              5        Mean:                4.84
+ 
+Lead In: R49807.00[Default]
+Default Next Question: R49809.00
+--------------------------------------------------------------------------------
+R50805.00    [RNI]                                          Survey Year: 1994
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: 60  PARENT REFUSAL/BREAKOFF
+     603          61: 61  YOUTH REFUSAL/BREAKOFF
+       0          62: 62  PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: 63  UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     146          64: 64  UNABLE TO LOCATE YOUTH
+     226          65: 65  DECEASED
+      25          66: 66  OTHER
+      95          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+  -------
+    3795
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    3795   VALID SKIP(-4)    8891     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             70        Mean:               67.18
+ 
+Lead In: R50804.01[Default]
+Default Next Question: R50806.00
+--------------------------------------------------------------------------------
+R51658.00    [RNI]                                          Survey Year: 1996
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: PARENT REFUSAL/BREAKOFF
+     708          61: YOUTH REFUSAL/BREAKOFF
+       0          62: PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     184          64: UNABLE TO LOCATE YOUTH
+     265          65: DECEASED
+      46          66: OTHER
+     147          67: DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: MILITARY SAMPLE DROPPED
+     731          69: SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+  -------
+    4050
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    4050   VALID SKIP(-4)    8636     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             70        Mean:               66.96
+ 
+Lead In: R51657.01[Default]
+Default Next Question: R51659.00
+--------------------------------------------------------------------------------
+R64785.00    [RNI]                                          Survey Year: 1998
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: 60  PARENT REFUSAL/BREAKOFF
+     731          61: 61  YOUTH REFUSAL/BREAKOFF
+       0          62: 62  PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: 63  UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     272          64: 64  UNABLE TO LOCATE YOUTH
+     297          65: 65  DECEASED
+     134          66: 66  OTHER
+     153          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+  -------
+    4287
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    4287   VALID SKIP(-4)    8399     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             70        Mean:               66.83
+ 
+Lead In: R64663.01[Default]
+Default Next Question: R64786.00
+--------------------------------------------------------------------------------
+R70063.00    [RNI]                                          Survey Year: 2000
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: PARENT REFUSAL/BREAKOFF
+    1037          61: YOUTH REFUSAL/BREAKOFF
+       0          62: PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     353          64: UNABLE TO LOCATE YOUTH
+     335          65: DECEASED
+     124          66: OTHER
+       4          67: DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: MILITARY SAMPLE DROPPED
+     731          69: SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+     101          71: YOUTH REFUSAL - VERY DIFFICULT CASE
+  -------
+    4654
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    4654   VALID SKIP(-4)    8032     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             71        Mean:               66.47
+ 
+Lead In: R70062.01[Default]
+Default Next Question: R70064.00
+--------------------------------------------------------------------------------
+R77035.00    [RNI]                                          Survey Year: 2002
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: 60  PARENT REFUSAL/BREAKOFF
+    1092          61: 61  YOUTH REFUSAL/BREAKOFF
+       0          62: 62  PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: 63  UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     410          64: 64  UNABLE TO LOCATE YOUTH
+     368          65: 65  DECEASED
+     135          66: 66  OTHER
+      18          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+       0          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+     239          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+  -------
+    4962
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    4962   VALID SKIP(-4)    7724     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             72        Mean:               66.55
+ 
+Lead In: R77034.01[Default]
+Default Next Question: R77036.00
+--------------------------------------------------------------------------------
+R84959.00    [RNI]                                          Survey Year: 2004
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: 60  PARENT REFUSAL/BREAKOFF
+    1134          61: 61  YOUTH REFUSAL/BREAKOFF
+       0          62: 62  PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: 63  UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     452          64: 64  UNABLE TO LOCATE YOUTH
+     421          65: 65  DECEASED
+     202          66: 66  OTHER
+      20          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+       0          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+       0          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      80          73: 73  NOT INTERVIEWED - INCARCERATED
+      16          74: 74  NOT INTERVIEWED - IN MILITARY
+  -------
+    5025
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5025   VALID SKIP(-4)    7661     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             74        Mean:               66.32
+ 
+Lead In: R84958.00[Default]
+Default Next Question: R84960.00
+--------------------------------------------------------------------------------
+T09875.00    [RNI]                                          Survey Year: 2006
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: 60  PARENT REFUSAL/BREAKOFF
+    1392          61: 61  YOUTH REFUSAL/BREAKOFF
+       0          62: 62  PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: 63  UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     314          64: 64  UNABLE TO LOCATE YOUTH
+     473          65: 65  DECEASED
+      56          66: 66  OTHER
+      29          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+      13          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+       9          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      36          73: 73  NOT INTERVIEWED - INCARCERATED
+       6          74: 74  NOT INTERVIEWED - IN MILITARY
+  -------
+    5033
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5033   VALID SKIP(-4)    7653     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             75        Mean:               66.07
+ 
+Lead In: T09874.00[Default]
+Default Next Question: T09876.00
+--------------------------------------------------------------------------------
+T22098.00    [RNI]                                          Survey Year: 2008
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+    1139          61: 61  YOUTH REFUSAL/BREAKOFF
+     336          64: 64  UNABLE TO LOCATE YOUTH
+     525          65: 65  DECEASED
+     141          66: 66  OTHER
+      29          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+      12          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+      16          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      29          73: 73  NOT INTERVIEWED - INCARCERATED
+       2          74: 74  NOT INTERVIEWED - IN MILITARY
+  -------
+    4929
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    4929   VALID SKIP(-4)    7757     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             74        Mean:               66.29
+ 
+Lead In: T22097.00[Default]
+Default Next Question: T22099.00
+--------------------------------------------------------------------------------
+T31076.00    [RNI]                                          Survey Year: 2010
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+    1151          61: 61  YOUTH REFUSAL/BREAKOFF
+     370          64: 64  UNABLE TO LOCATE YOUTH
+     595          65: 65  DECEASED
+     141          66: 66  OTHER
+      29          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+      33          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+      65          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      35          73: 73  NOT INTERVIEWED - INCARCERATED
+       2          74: 74  NOT INTERVIEWED - IN MILITARY
+  -------
+    5121
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5121   VALID SKIP(-4)    7565     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             74        Mean:               66.33
+ 
+Lead In: T31075.00[Default]
+Default Next Question: T31077.00
+--------------------------------------------------------------------------------
+T41121.00    [RNI]                                          Survey Year: 2012
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+       0          60: 60  PARENT REFUSAL/BREAKOFF
+     903          61: 61  YOUTH REFUSAL/BREAKOFF
+       0          62: 62  PARENT & YOUTH REFUSAL/BREAKOFF
+       0          63: 63  UNABLE TO LOCATE FAMILY UNIT & YOUTH
+     467          64: 64  UNABLE TO LOCATE YOUTH
+     711          65: 65  DECEASED
+     480          66: 66  OTHER
+      29          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+       7          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+      65          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      24          73: 73  NOT INTERVIEWED - INCARCERATED
+       0          74: 74  NOT INTERVIEWED - IN MILITARY
+  -------
+    5386
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5386   VALID SKIP(-4)    7300     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             73        Mean:               66.44
+ 
+Lead In: T41120.00[Default]
+Default Next Question: T41122.00
+--------------------------------------------------------------------------------
+T50223.00    [RNI]                                          Survey Year: 2014
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+    1121          61: 61  YOUTH REFUSAL/BREAKOFF
+     576          64: 64  UNABLE TO LOCATE YOUTH
+     812          65: 65  DECEASED
+     167          66: 66  OTHER
+      62          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1079          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+      29          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+     116          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      33          73: 73  NOT INTERVIEWED - INCARCERATED
+  -------
+    5616
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5616   VALID SKIP(-4)    7070     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             73        Mean:               66.26
+ 
+Lead In: T50222.00[Default]
+Default Next Question: T50225.00
+--------------------------------------------------------------------------------
+T57706.00    [RNI]                                          Survey Year: 2016
+  PRIMARY VARIABLE
+
+ 
+             REASON FOR NONINTERVIEW
+ 
+COMMENT: Reason for Non-Interview
+ 
+    1060          61: 61  YOUTH REFUSAL/BREAKOFF
+     801          64: 64  UNABLE TO LOCATE YOUTH
+     915          65: 65  DECEASED
+      49          66: 66  OTHER
+      63          67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)
+    1075          68: 68  MILITARY SAMPLE DROPPED
+     731          69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED
+     890          70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED
+      46          71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE
+      85          72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT 
+                          CASE
+      33          73: 73  NOT INTERVIEWED - INCARCERATED
+      26          75: 75 DECEASED - MEMBER OF DROPPED SPECIAL SAMPLE
+  -------
+    5774
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5774   VALID SKIP(-4)    6912     NON-INTERVIEW(-5)       0
+ 
+Min:             61        Max:             75        Mean:               66.23
+ 
+Lead In: T57705.00[Default]
+Default Next Question: T57707.00
