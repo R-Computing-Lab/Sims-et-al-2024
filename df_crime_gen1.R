@@ -2,7 +2,7 @@
 # Set working directory
 # setwd()
 
-new_data <- read.table('df_crime_gen1\df_crime_gen1.dat', sep=' ')
+new_data <- read.table('df_crime_gen1\\df_crime_gen1.dat', sep=' ')
 names(new_data) <- c('R0000100',
   'R0173600',
   'R0214700',
