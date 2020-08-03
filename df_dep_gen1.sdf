@@ -1,0 +1,84 @@
+
+
+Reference
+Number     Year  Variable Description                                                                 Question Name          
+-------------------------------------------------------------------------------------------------------------------------------
+H00003.00  XRND  CES-D DEPRESSION - POOR APPETITE (CESD)                                              H40-CESD~000001        
+H00004.00  XRND  CES-D DEPRESSION - COULD NOT SHAKE BLUES (CESD)                                      H40-CESD~000002        
+H00005.00  XRND  CES-D DEPRESSION - TROUBLE KEEPING MIND ON TASKS (CESD)                              H40-CESD~000003        
+H00006.00  XRND  CES-D DEPRESSION - DEPRESSED (CESD)                                                  H40-CESD~000004        
+H00007.00  XRND  CES-D DEPRESSION - EVERYTHING TOOK EXTRA EFFORT (CESD)                               H40-CESD~000005        
+H00008.00  XRND  CES-D DEPRESSION - RESTLESS SLEEP (CESD)                                             H40-CESD~000006        
+H00009.00  XRND  CES-D DEPRESSION - FELT LONELY (CESD)                                                H40-CESD~000007        
+H00010.00  XRND  CES-D DEPRESSION - SAD (CESD)                                                        H40-CESD~000008        
+H00011.00  XRND  CES-D DEPRESSION - COULD NOT GET GOING (CESD)                                        H40-CESD~000009        
+H00011.01  XRND  H40 7-ITEM CES-D SCORE (CESD)                                                        H40-CESD_SCORE_7_ITEM  
+H00039.00  XRND  SF-12 - HAVE EMOTIONAL PROBLEMS CAUSED R TO ACCOMPLISH LESS IN PAST 4 WEEKS?         H40-SF12-5             
+H00040.00  XRND  SF-12 - HAVE EMOTIONAL PROBLEMS MADE R LESS CAREFUL IN PAST 4 WEEKS?                 H40-SF12-5B            
+H00045.00  XRND  SF-12- RS PHYSICAL/EMOTIONAL PROBS INTERFER WITH SOCIAL ACTIVITIES IN PAST 4 WKS     H40-SF12-8             
+H00069.00  XRND  CCR - DOCTOR EVER DIAGNOSED EMOTIONAL, NERVOUS, OR PSYCHIATRIC PROBLEMS?             H40-CHRC-8             
+H00070.00  XRND  CCR - DATE DOCTOR DIAGNOSED EMOTIONAL, NERVOUS OR PSYCHIATRIC PROBLEMS               H40-CHRC-8A~M          
+H00070.01  XRND  CCR - DATE DOCTOR DIAGNOSED EMOTIONAL, NERVOUS OR PSYCHIATRIC PROBLEMS               H40-CHRC-8A~Y          
+H00071.00  XRND  CCR - R HAD EMOTIONAL, NERVOUS OR PSYCHIATRIC PROBLEMS DURING LAST 12 MONTHS?        H40-CHRC-8B            
+H00086.00  XRND  CCR - HEALTH PROBLEMS - DEPRESSION, EXCESSIVE WORRY OR NERVOUS TROUBLE               H40-CHRC-10K           
+H00133.01  XRND  H50 7-ITEM CES-D SCORE (CESD)                                                        H50-CESD_SCORE_7_ITEM  
+H00134.00  XRND  CES-D DEPRESSION - POOR APPETITE (CESD)                                              H50CESD~000001         
+H00134.01  XRND  CES-D DEPRESSION - COULD NOT SHAKE BLUES (CESD)                                      H50CESD~000002         
+H00134.02  XRND  CES-D DEPRESSION - TROUBLE KEEPING MIND ON TASKS (CESD)                              H50CESD~000003         
+H00134.03  XRND  CES-D DEPRESSION - DEPRESSED (CESD)                                                  H50CESD~000004         
+H00134.04  XRND  CES-D DEPRESSION - EVERYTHING TOOK EXTRA EFFORT (CESD)                               H50CESD~000005         
+H00134.05  XRND  CES-D DEPRESSION - RESTLESS SLEEP (CESD)                                             H50CESD~000006         
+H00134.06  XRND  CES-D DEPRESSION - FELT LONELY (CESD)                                                H50CESD~000007         
+H00134.07  XRND  CES-D DEPRESSION - SAD (CESD)                                                        H50CESD~000008         
+H00134.08  XRND  CES-D DEPRESSION - COULD NOT GET GOING (CESD)                                        H50CESD~000009         
+H00164.00  XRND  SF12 - HAVE EMOTIONAL PROBLEMS CAUSED R TO ACCOMPLISH LESS IN PAST 4 WEEKS?          H50SF12-5              
+H00165.00  XRND  SF12 - HAVE EMOTIONAL PROBLEMS MADE R LESS CAREFUL IN PAST 4 WEEKS?                  H50SF12-5B             
+H00167.00  XRND  SF12 - HOW OFTEN R FELT CALM AND PEACEFUL IN PAST 4 WEEKS                            H50SF12-7              
+H00168.00  XRND  SF12 - HOW OFTEN R HAD A LOT OF ENERGY IN PAST 4 WEEKS                               H50SF12-7B             
+H00169.00  XRND  SF12 - HOW OFTEN R FELT DOWN-HEARTED AND BLUE IN PAST 4 WEEKS                        H50SF12-7C             
+H00170.00  XRND  SF12- RS PHYSICAL/EMOTIONAL PROBS INTERFER WITH SOCIAL ACTIVITIES IN PAST 4 WKS      H50SF12-8              
+H00208.00  XRND  DOCTOR EVER DIAGNOSED R SUFFERING FROM DEPRESSION                                    H50CHRC-7B             
+H00209.00  XRND  DATE R'S DEPRESSION DIAGNOSED                                                        H50CHRC-7C~M           
+H00209.01  XRND  DATE R'S DEPRESSION DIAGNOSED                                                        H50CHRC-7C~Y           
+H00210.00  XRND  R SUFFERED FROM DEPRESSION DURING LAST 12 MONTHS                                     H50CHRC-7D             
+H00211.00  XRND  R REPORT PSYCHIATRIC DIAGNOSIS IN 40+ HEALTH MODULE                                  H50CHRC_CHK6           
+H00212.00  XRND  DOCTOR EVER SAID R HAD EMOTIONAL/NERVOUS/PSYCHIATRIC PROBLEMS OTHER THAN DEPRESSION  H50CHRC-8              
+H00213.00  XRND  DATE R EMOTIONAL/NERVOUS/PSYCHIATRIC PROBLEMS DIAGNOSED                              H50CHRC-8A~M           
+H00213.01  XRND  DATE R EMOTIONAL/NERVOUS/PSYCHIATRIC PROBLEMS DIAGNOSED                              H50CHRC-8A~Y           
+H00214.00  XRND  R HAD ANY EMOTIONAL/NERVOUS/PSYCHIATRIC PROBLEMS DURING LAST 12 MONTHS               H50CHRC-8B             
+R00001.00  1979  IDENTIFICATION CODE                                                                  CASEID                 
+R01446.00  1979  HEALTH CONSOLIDATION CODE 79 INT (5-DIGIT)                                           HEALTH_CODE            
+R01736.00  1979  SAMPLE IDENTIFICATION CODE                                                           SAMPLE_ID              
+R38949.00  1992  CES-D DEPRESSION - BOTHERED BY THINGS NOT USUALLY BOTHERSOME (CESD)                  CESD~000000            
+R38950.00  1992  CES-D DEPRESSION - POOR APPETITE (CESD)                                              CESD~000001            
+R38951.00  1992  CES-D DEPRESSION - UNABLE TO SHAKE BLUES (CESD)                                      CESD~000002            
+R38952.00  1992  CES-D DEPRESSION - FELT AS GOOD AS OTHER PEOPLE (CESD)                               CESD~000002A           
+R38953.00  1992  CES-D DEPRESSION - TROUBLE KEEPING MIND ON TASKS (CESD)                              CESD~000003            
+R38954.00  1992  CES-D DEPRESSION - DEPRESSED (CESD)                                                  CESD~000004            
+R38955.00  1992  CES-D DEPRESSION - EVERYTHING TOOK EXTRA EFFORT (CESD)                               CESD~000005            
+R38956.00  1992  CES-D DEPRESSION - HOPEFUL (CESD)                                                    CESD~000005A           
+R38957.00  1992  CES-D DEPRESSION - A FAILURE (CESD)                                                  CESD~000005B           
+R38958.00  1992  CES-D DEPRESSION - FEARFUL (CESD)                                                    CESD~000005C           
+R38959.00  1992  CES-D DEPRESSION - RESTLESS SLEEP (CESD)                                             CESD~000006            
+R38960.00  1992  CES-D DEPRESSION - HAPPY (CESD)                                                      CESD~000006A           
+R38961.00  1992  CES-D DEPRESSION - LESS TALKATIVE THAN USUAL (CESD)                                  CESD~000006B           
+R38962.00  1992  CES-D DEPRESSION - LONELY (CESD)                                                     CESD~000007            
+R38963.00  1992  CES-D DEPRESSION - OTHERS WERE UNFRIENDLY (CESD)                                     CESD~000007A           
+R38964.00  1992  CES-D DEPRESSION - ENJOYED LIFE (CESD)                                               CESD~000007B           
+R38965.00  1992  CES-D DEPRESSION - CRYING SPELLS (CESD)                                              CESD~000007C           
+R38966.00  1992  CES-D DEPRESSION - SAD (CESD)                                                        CESD~000008            
+R38967.00  1992  CES-D DEPRESSION - DISLIKED BY OTHERS (CESD)                                         CESD~000008A           
+R38968.00  1992  CES-D DEPRESSION - COULD NOT GET GOING (CESD)                                        CESD~000009            
+R38968.10  1992  20-ITEM CES-D SCORE (CESD)                                                           CESD_SCORE_20_ITEM     
+R38968.11  1992  FLAG - NUMBER OF MISSING ITEMS FOR 20-ITEM CES-D SCORE (CESD)                        CESD_FLAG              
+R38968.20  1992  7-ITEM CES-D SCORE (CESD)                                                            CESD_SCORE_7_ITEM      
+R49783.00  1994  CES-D DEPRESSION - POOR APPETITE (CESD)                                              CESD~000001            
+R49784.00  1994  CES-D DEPRESSION - TROUBLE KEEPING MIND ON TASKS (CESD)                              CESD~000003            
+R49785.00  1994  CES-D DEPRESSION - DEPRESSED (CESD)                                                  CESD~000004            
+R49786.00  1994  CES-D DEPRESSION - EVERYTHING TOOK EXTRA EFFORT (CESD)                               CESD~000005            
+R49787.00  1994  CES-D DEPRESSION - RESTLESS SLEEP (CESD)                                             CESD~000006            
+R49788.00  1994  CES-D DEPRESSION - SAD (CESD)                                                        CESD~000008            
+R49789.00  1994  CES-D DEPRESSION - COULD NOT GET GOING (CESD)                                        CESD~000009            
+R49789.10  1994  7-ITEM CES-D SCORE (CESD)                                                            CESD_SCORE_7_ITEM      
+T50066.00  2014  R SATISFACTION WITH LIFE                                                             LIFE-SATISFACTION      
+T57407.00  2016  R SATISFACTION WITH LIFE                                                             LIFE-SATISFACTION      
