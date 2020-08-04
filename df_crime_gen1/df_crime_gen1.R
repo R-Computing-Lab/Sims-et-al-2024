@@ -2,8 +2,7 @@
 # Set working directory
 # setwd()
 
-
-new_data <- read.table('df_crime_gen1.dat', sep=' ')
+new_data <- read.table('df_crime_gen1\\df_crime_gen1.dat', sep=' ')
 names(new_data) <- c('R0000100',
   'R0173600',
   'R0214700',
@@ -102,18 +101,18 @@ names(new_data) <- c('R0000100',
 
 # Handle missing values
 
-  new_data[new_data == -1] = NA  # Refused 
-  new_data[new_data == -2] = NA  # Dont know 
-  new_data[new_data == -3] = NA  # Invalid missing 
-  new_data[new_data == -4] = NA  # Valid missing 
-  new_data[new_data == -5] = NA  # Non-interview 
+  new_data[new_data == -1] = NA  # Refused
+  new_data[new_data == -2] = NA  # Dont know
+  new_data[new_data == -3] = NA  # Invalid missing
+  new_data[new_data == -4] = NA  # Valid missing
+  new_data[new_data == -5] = NA  # Non-interview
 
 
 # If there are values not categorized they will be represented as NA
 
 vallabels = function(data) {
-  data$R0173600 <- factor(data$R0173600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
+  data$R0173600 <- factor(data$R0173600,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0),
     labels=c("CROSS MALE WHITE",
       "CROSS MALE WH. POOR",
       "CROSS MALE BLACK",
@@ -134,17 +133,17 @@ vallabels = function(data) {
       "MIL FEMALE WHITE",
       "MIL FEMALE BLACK",
       "MIL FEMALE HISPANIC"))
-  data$R0214700 <- factor(data$R0214700, 
-    levels=c(1.0,2.0,3.0), 
+  data$R0214700 <- factor(data$R0214700,
+    levels=c(1.0,2.0,3.0),
     labels=c("HISPANIC",
       "BLACK",
       "NON-BLACK, NON-HISPANIC"))
-  data$R0214800 <- factor(data$R0214800, 
-    levels=c(1.0,2.0), 
+  data$R0214800 <- factor(data$R0214800,
+    levels=c(1.0,2.0),
     labels=c("MALE",
       "FEMALE"))
-  data$R0304600 <- factor(data$R0304600, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0304600 <- factor(data$R0304600,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -152,8 +151,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0304900 <- factor(data$R0304900, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0304900 <- factor(data$R0304900,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -161,8 +160,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305000 <- factor(data$R0305000, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305000 <- factor(data$R0305000,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -170,8 +169,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305100 <- factor(data$R0305100, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305100 <- factor(data$R0305100,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -179,8 +178,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305200 <- factor(data$R0305200, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305200 <- factor(data$R0305200,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -188,8 +187,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305300 <- factor(data$R0305300, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305300 <- factor(data$R0305300,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -197,8 +196,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305400 <- factor(data$R0305400, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305400 <- factor(data$R0305400,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -206,8 +205,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305500 <- factor(data$R0305500, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305500 <- factor(data$R0305500,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -215,8 +214,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305600 <- factor(data$R0305600, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305600 <- factor(data$R0305600,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -224,8 +223,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0305900 <- factor(data$R0305900, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0305900 <- factor(data$R0305900,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -233,8 +232,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306000 <- factor(data$R0306000, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0306000 <- factor(data$R0306000,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -242,8 +241,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306100 <- factor(data$R0306100, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0306100 <- factor(data$R0306100,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -251,8 +250,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306200 <- factor(data$R0306200, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0306200 <- factor(data$R0306200,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -260,8 +259,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306300 <- factor(data$R0306300, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0306300 <- factor(data$R0306300,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -269,8 +268,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306400 <- factor(data$R0306400, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0306400 <- factor(data$R0306400,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -278,8 +277,8 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306500 <- factor(data$R0306500, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$R0306500 <- factor(data$R0306500,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("NEVER",
       "ONCE",
       "TWICE",
@@ -287,13 +286,13 @@ vallabels = function(data) {
       "6-10 TIMES",
       "11-50 TIMES",
       "MORE THAN 50 TIMES"))
-  data$R0306700 <- factor(data$R0306700, 
-    levels=c(0.0,1.0), 
+  data$R0306700 <- factor(data$R0306700,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0306800[16.0 <= data$R0306800 & data$R0306800 <= 99999.0] <- 16.0
-  data$R0306800 <- factor(data$R0306800, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0306800 <- factor(data$R0306800,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -312,8 +311,8 @@ vallabels = function(data) {
       "15",
       "16 TO 99999: 16+"))
   data$R0306900[16.0 <= data$R0306900 & data$R0306900 <= 99999.0] <- 16.0
-  data$R0306900 <- factor(data$R0306900, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0306900 <- factor(data$R0306900,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -333,8 +332,8 @@ vallabels = function(data) {
       "16 TO 99999: 16+"))
   data$R0307000[0.0 <= data$R0307000 & data$R0307000 <= 5.0] <- 0.0
   data$R0307000[22.0 <= data$R0307000 & data$R0307000 <= 99999.0] <- 22.0
-  data$R0307000 <- factor(data$R0307000, 
-    levels=c(0.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0), 
+  data$R0307000 <- factor(data$R0307000,
+    levels=c(0.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0),
     labels=c("0 TO 5: < 6",
       "6",
       "7",
@@ -353,13 +352,13 @@ vallabels = function(data) {
       "20",
       "21",
       "22 TO 99999: 22+"))
-  data$R0307100 <- factor(data$R0307100, 
-    levels=c(0.0,1.0), 
+  data$R0307100 <- factor(data$R0307100,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0307200[16.0 <= data$R0307200 & data$R0307200 <= 99999.0] <- 16.0
-  data$R0307200 <- factor(data$R0307200, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0307200 <- factor(data$R0307200,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -378,8 +377,8 @@ vallabels = function(data) {
       "15",
       "16 TO 99999: 16+"))
   data$R0307300[16.0 <= data$R0307300 & data$R0307300 <= 99999.0] <- 16.0
-  data$R0307300 <- factor(data$R0307300, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0307300 <- factor(data$R0307300,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -398,8 +397,8 @@ vallabels = function(data) {
       "15",
       "16 TO 99999: 16+"))
   data$R0307400[17.0 <= data$R0307400 & data$R0307400 <= 99999.0] <- 17.0
-  data$R0307400 <- factor(data$R0307400, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
+  data$R0307400 <- factor(data$R0307400,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0),
     labels=c("0: < 1",
       "1",
       "2",
@@ -420,8 +419,8 @@ vallabels = function(data) {
       "17 TO 99999: 17+"))
   data$R0307500[0.0 <= data$R0307500 & data$R0307500 <= 65.0] <- 0.0
   data$R0307500[82.0 <= data$R0307500 & data$R0307500 <= 99999.0] <- 82.0
-  data$R0307500 <- factor(data$R0307500, 
-    levels=c(0.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0), 
+  data$R0307500 <- factor(data$R0307500,
+    levels=c(0.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0),
     labels=c("0 TO 65: < 66",
       "66",
       "67",
@@ -442,8 +441,8 @@ vallabels = function(data) {
       "82 TO 99999: 82+"))
   data$R0307600[0.0 <= data$R0307600 & data$R0307600 <= 6.0] <- 0.0
   data$R0307600[23.0 <= data$R0307600 & data$R0307600 <= 99999.0] <- 23.0
-  data$R0307600 <- factor(data$R0307600, 
-    levels=c(0.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0), 
+  data$R0307600 <- factor(data$R0307600,
+    levels=c(0.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0),
     labels=c("0 TO 6: < 7",
       "7",
       "8",
@@ -462,17 +461,17 @@ vallabels = function(data) {
       "21",
       "22",
       "23 TO 99999: 23+"))
-  data$R0307700 <- factor(data$R0307700, 
-    levels=c(0.0,1.0), 
+  data$R0307700 <- factor(data$R0307700,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$R0307800 <- factor(data$R0307800, 
-    levels=c(0.0,1.0), 
+  data$R0307800 <- factor(data$R0307800,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0307900[17.0 <= data$R0307900 & data$R0307900 <= 99999.0] <- 17.0
-  data$R0307900 <- factor(data$R0307900, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
+  data$R0307900 <- factor(data$R0307900,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0),
     labels=c("0: < 1",
       "1",
       "2",
@@ -493,8 +492,8 @@ vallabels = function(data) {
       "17 TO 99999: 17+"))
   data$R0308000[0.0 <= data$R0308000 & data$R0308000 <= 9.0] <- 0.0
   data$R0308000[26.0 <= data$R0308000 & data$R0308000 <= 99999.0] <- 26.0
-  data$R0308000 <- factor(data$R0308000, 
-    levels=c(0.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0), 
+  data$R0308000 <- factor(data$R0308000,
+    levels=c(0.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0),
     labels=c("0 TO 9: < 10",
       "10",
       "11",
@@ -514,8 +513,8 @@ vallabels = function(data) {
       "25",
       "26 TO 99999: 26+"))
   data$R0308100[17.0 <= data$R0308100 & data$R0308100 <= 99999.0] <- 17.0
-  data$R0308100 <- factor(data$R0308100, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
+  data$R0308100 <- factor(data$R0308100,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0),
     labels=c("0: < 1",
       "1",
       "2",
@@ -536,8 +535,8 @@ vallabels = function(data) {
       "17 TO 99999: 17+"))
   data$R0308200[0.0 <= data$R0308200 & data$R0308200 <= 65.0] <- 0.0
   data$R0308200[82.0 <= data$R0308200 & data$R0308200 <= 99999.0] <- 82.0
-  data$R0308200 <- factor(data$R0308200, 
-    levels=c(0.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0), 
+  data$R0308200 <- factor(data$R0308200,
+    levels=c(0.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0),
     labels=c("0 TO 65: < 66",
       "66",
       "67",
@@ -556,65 +555,65 @@ vallabels = function(data) {
       "80",
       "81",
       "82 TO 99999: 82+"))
-  data$R0308300 <- factor(data$R0308300, 
-    levels=c(1.0), 
+  data$R0308300 <- factor(data$R0308300,
+    levels=c(1.0),
     labels=c("ASSAULT"))
-  data$R0308400 <- factor(data$R0308400, 
-    levels=c(2.0), 
+  data$R0308400 <- factor(data$R0308400,
+    levels=c(2.0),
     labels=c("ROBBERY"))
-  data$R0308500 <- factor(data$R0308500, 
-    levels=c(3.0), 
+  data$R0308500 <- factor(data$R0308500,
+    levels=c(3.0),
     labels=c("THEFT"))
-  data$R0308600 <- factor(data$R0308600, 
-    levels=c(4.0), 
+  data$R0308600 <- factor(data$R0308600,
+    levels=c(4.0),
     labels=c("THEFT BY DECEPTION"))
-  data$R0308700 <- factor(data$R0308700, 
-    levels=c(5.0), 
+  data$R0308700 <- factor(data$R0308700,
+    levels=c(5.0),
     labels=c("CONVICTED REGARDING STOLEN PROPERTY"))
-  data$R0308800 <- factor(data$R0308800, 
-    levels=c(6.0), 
+  data$R0308800 <- factor(data$R0308800,
+    levels=c(6.0),
     labels=c("DESTRUCTION OF PROPERTY"))
-  data$R0308900 <- factor(data$R0308900, 
-    levels=c(7.0), 
+  data$R0308900 <- factor(data$R0308900,
+    levels=c(7.0),
     labels=c("OTHER PROPERTY OFFENSE"))
-  data$R0309000 <- factor(data$R0309000, 
-    levels=c(8.0), 
+  data$R0309000 <- factor(data$R0309000,
+    levels=c(8.0),
     labels=c("GAMBLING OFFENSE"))
-  data$R0309100 <- factor(data$R0309100, 
-    levels=c(9.0), 
+  data$R0309100 <- factor(data$R0309100,
+    levels=c(9.0),
     labels=c("COMMERCIAL VICE"))
-  data$R0309200 <- factor(data$R0309200, 
-    levels=c(10.0), 
+  data$R0309200 <- factor(data$R0309200,
+    levels=c(10.0),
     labels=c("POSSESSION OF MARIJUANA/HASHISH"))
-  data$R0309300 <- factor(data$R0309300, 
-    levels=c(11.0), 
+  data$R0309300 <- factor(data$R0309300,
+    levels=c(11.0),
     labels=c("SELLING MARIJUANA/HASHISH"))
-  data$R0309400 <- factor(data$R0309400, 
-    levels=c(12.0), 
+  data$R0309400 <- factor(data$R0309400,
+    levels=c(12.0),
     labels=c("POSSESSION OF OTHER ILLICIT DRUGS"))
-  data$R0309500 <- factor(data$R0309500, 
-    levels=c(13.0), 
+  data$R0309500 <- factor(data$R0309500,
+    levels=c(13.0),
     labels=c("SALE/MANUFACTURE OF OTHER ILLICIT DRUGS"))
-  data$R0309600 <- factor(data$R0309600, 
-    levels=c(14.0), 
+  data$R0309600 <- factor(data$R0309600,
+    levels=c(14.0),
     labels=c("MAJOR TRAFFIC OFFENSE"))
-  data$R0309800 <- factor(data$R0309800, 
-    levels=c(16.0), 
+  data$R0309800 <- factor(data$R0309800,
+    levels=c(16.0),
     labels=c("STATUS OFFENSE"))
-  data$R0309900 <- factor(data$R0309900, 
-    levels=c(17.0), 
+  data$R0309900 <- factor(data$R0309900,
+    levels=c(17.0),
     labels=c("OTHER OFFENSE"))
-  data$R0310000 <- factor(data$R0310000, 
-    levels=c(0.0,1.0), 
+  data$R0310000 <- factor(data$R0310000,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$R0310100 <- factor(data$R0310100, 
-    levels=c(0.0,1.0), 
+  data$R0310100 <- factor(data$R0310100,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0310200[16.0 <= data$R0310200 & data$R0310200 <= 99999.0] <- 16.0
-  data$R0310200 <- factor(data$R0310200, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0310200 <- factor(data$R0310200,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -634,8 +633,8 @@ vallabels = function(data) {
       "16 TO 99999: 16+"))
   data$R0310300[0.0 <= data$R0310300 & data$R0310300 <= 9.0] <- 0.0
   data$R0310300[26.0 <= data$R0310300 & data$R0310300 <= 99999.0] <- 26.0
-  data$R0310300 <- factor(data$R0310300, 
-    levels=c(0.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0), 
+  data$R0310300 <- factor(data$R0310300,
+    levels=c(0.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0),
     labels=c("0 TO 9: < 10",
       "10",
       "11",
@@ -655,8 +654,8 @@ vallabels = function(data) {
       "25",
       "26 TO 99999: 26+"))
   data$R0310400[16.0 <= data$R0310400 & data$R0310400 <= 99999.0] <- 16.0
-  data$R0310400 <- factor(data$R0310400, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0310400 <- factor(data$R0310400,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -676,8 +675,8 @@ vallabels = function(data) {
       "16 TO 99999: 16+"))
   data$R0310410[0.0 <= data$R0310410 & data$R0310410 <= 63.0] <- 0.0
   data$R0310410[80.0 <= data$R0310410 & data$R0310410 <= 99999.0] <- 80.0
-  data$R0310410 <- factor(data$R0310410, 
-    levels=c(0.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0), 
+  data$R0310410 <- factor(data$R0310410,
+    levels=c(0.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0),
     labels=c("0 TO 63: < 64",
       "64",
       "65",
@@ -696,13 +695,13 @@ vallabels = function(data) {
       "78",
       "79",
       "80 TO 99999: 80+"))
-  data$R0310600 <- factor(data$R0310600, 
-    levels=c(0.0,1.0), 
+  data$R0310600 <- factor(data$R0310600,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0310700[16.0 <= data$R0310700 & data$R0310700 <= 99999.0] <- 16.0
-  data$R0310700 <- factor(data$R0310700, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0310700 <- factor(data$R0310700,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -721,8 +720,8 @@ vallabels = function(data) {
       "15",
       "16 TO 99999: 16+"))
   data$R0310800[17.0 <= data$R0310800 & data$R0310800 <= 99999.0] <- 17.0
-  data$R0310800 <- factor(data$R0310800, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
+  data$R0310800 <- factor(data$R0310800,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0),
     labels=c("0: < 1",
       "1",
       "2",
@@ -743,8 +742,8 @@ vallabels = function(data) {
       "17 TO 99999: 17+"))
   data$R0310810[0.0 <= data$R0310810 & data$R0310810 <= 64.0] <- 0.0
   data$R0310810[81.0 <= data$R0310810 & data$R0310810 <= 99999.0] <- 81.0
-  data$R0310810 <- factor(data$R0310810, 
-    levels=c(0.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0), 
+  data$R0310810 <- factor(data$R0310810,
+    levels=c(0.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0),
     labels=c("0 TO 64: < 65",
       "65",
       "66",
@@ -763,13 +762,13 @@ vallabels = function(data) {
       "79",
       "80",
       "81 TO 99999: 81+"))
-  data$R0310900 <- factor(data$R0310900, 
-    levels=c(0.0,1.0), 
+  data$R0310900 <- factor(data$R0310900,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0311000[16.0 <= data$R0311000 & data$R0311000 <= 99999.0] <- 16.0
-  data$R0311000 <- factor(data$R0311000, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0311000 <- factor(data$R0311000,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -788,8 +787,8 @@ vallabels = function(data) {
       "15",
       "16 TO 99999: 16+"))
   data$R0311100[16.0 <= data$R0311100 & data$R0311100 <= 99999.0] <- 16.0
-  data$R0311100 <- factor(data$R0311100, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0), 
+  data$R0311100 <- factor(data$R0311100,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0),
     labels=c("0",
       "1",
       "2",
@@ -808,8 +807,8 @@ vallabels = function(data) {
       "15",
       "16 TO 99999: 16+"))
   data$R0311200[17.0 <= data$R0311200 & data$R0311200 <= 99999.0] <- 17.0
-  data$R0311200 <- factor(data$R0311200, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
+  data$R0311200 <- factor(data$R0311200,
+    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0),
     labels=c("0: < 1",
       "1",
       "2",
@@ -830,8 +829,8 @@ vallabels = function(data) {
       "17 TO 99999: 17+"))
   data$R0311210[0.0 <= data$R0311210 & data$R0311210 <= 65.0] <- 0.0
   data$R0311210[82.0 <= data$R0311210 & data$R0311210 <= 99999.0] <- 82.0
-  data$R0311210 <- factor(data$R0311210, 
-    levels=c(0.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0), 
+  data$R0311210 <- factor(data$R0311210,
+    levels=c(0.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0),
     labels=c("0 TO 65: < 66",
       "66",
       "67",
@@ -850,8 +849,8 @@ vallabels = function(data) {
       "80",
       "81",
       "82 TO 99999: 82+"))
-  data$R0406310 <- factor(data$R0406310, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0), 
+  data$R0406310 <- factor(data$R0406310,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT AND YOUTH REFUSAL/BREAKOFF",
@@ -859,8 +858,8 @@ vallabels = function(data) {
       "UNABLE TO LOCATE YOUTH",
       "DECEASED",
       "OTHER"))
-  data$R0618810 <- factor(data$R0618810, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0), 
+  data$R0618810 <- factor(data$R0618810,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT AND YOUTH REFUSAL/BREAKOFF",
@@ -868,8 +867,8 @@ vallabels = function(data) {
       "UNABLE TO LOCATE YOUTH",
       "DECEASED",
       "OTHER"))
-  data$R0898510 <- factor(data$R0898510, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0), 
+  data$R0898510 <- factor(data$R0898510,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -878,8 +877,8 @@ vallabels = function(data) {
       "DECEASED",
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)"))
-  data$R1144710 <- factor(data$R1144710, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0), 
+  data$R1144710 <- factor(data$R1144710,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -888,8 +887,8 @@ vallabels = function(data) {
       "DECEASED",
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)"))
-  data$R1519910 <- factor(data$R1519910, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0), 
+  data$R1519910 <- factor(data$R1519910,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -898,8 +897,8 @@ vallabels = function(data) {
       "DECEASED",
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)"))
-  data$R1890300 <- factor(data$R1890300, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0), 
+  data$R1890300 <- factor(data$R1890300,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -909,8 +908,8 @@ vallabels = function(data) {
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)",
       "MILITARY SAMPLE DROPPED"))
-  data$R2257400 <- factor(data$R2257400, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0), 
+  data$R2257400 <- factor(data$R2257400,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -920,8 +919,8 @@ vallabels = function(data) {
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)",
       "MILITARY SAMPLE DROPPED"))
-  data$R2444600 <- factor(data$R2444600, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0), 
+  data$R2444600 <- factor(data$R2444600,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -931,8 +930,8 @@ vallabels = function(data) {
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)",
       "MILITARY SAMPLE DROPPED"))
-  data$R2870100 <- factor(data$R2870100, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0), 
+  data$R2870100 <- factor(data$R2870100,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -942,8 +941,8 @@ vallabels = function(data) {
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)",
       "MILITARY SAMPLE DROPPED"))
-  data$R3073900 <- factor(data$R3073900, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0), 
+  data$R3073900 <- factor(data$R3073900,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -953,8 +952,8 @@ vallabels = function(data) {
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)",
       "MILITARY SAMPLE DROPPED"))
-  data$R3400500 <- factor(data$R3400500, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0), 
+  data$R3400500 <- factor(data$R3400500,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -964,8 +963,8 @@ vallabels = function(data) {
       "OTHER",
       "DO NOT REFIELD (VERY DIFFICULT CASES)",
       "MILITARY SAMPLE DROPPED"))
-  data$R3655900 <- factor(data$R3655900, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0), 
+  data$R3655900 <- factor(data$R3655900,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -977,8 +976,8 @@ vallabels = function(data) {
       "MILITARY SAMPLE DROPPED",
       "SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED"))
-  data$R4006400 <- factor(data$R4006400, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0), 
+  data$R4006400 <- factor(data$R4006400,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -990,8 +989,8 @@ vallabels = function(data) {
       "MILITARY SAMPLE DROPPED",
       "SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED"))
-  data$R4417500 <- factor(data$R4417500, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0), 
+  data$R4417500 <- factor(data$R4417500,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
     labels=c("PARENT REFUSAL/BREAKOFF",
       "YOUTH REFUSAL/BREAKOFF",
       "PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1003,15 +1002,15 @@ vallabels = function(data) {
       "MILITARY SAMPLE DROPPED",
       "SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED"))
-  data$R4980800 <- factor(data$R4980800, 
-    levels=c(1.0,2.0,3.0,4.0,5.0), 
+  data$R4980800 <- factor(data$R4980800,
+    levels=c(1.0,2.0,3.0,4.0,5.0),
     labels=c("Happened 3 or more times in the past year",
       "Happened 2 times in the past year",
       "Happened 1 time in the past year",
       "Happened in lifetime other than in past year",
       "Never happened"))
-  data$R5080500 <- factor(data$R5080500, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0), 
+  data$R5080500 <- factor(data$R5080500,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1023,8 +1022,8 @@ vallabels = function(data) {
       "68: 68  MILITARY SAMPLE DROPPED",
       "69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED"))
-  data$R5165800 <- factor(data$R5165800, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0), 
+  data$R5165800 <- factor(data$R5165800,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
     labels=c("60: PARENT REFUSAL/BREAKOFF",
       "61: YOUTH REFUSAL/BREAKOFF",
       "62: PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1036,8 +1035,8 @@ vallabels = function(data) {
       "68: MILITARY SAMPLE DROPPED",
       "69: SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "70: SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED"))
-  data$R6478500 <- factor(data$R6478500, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0), 
+  data$R6478500 <- factor(data$R6478500,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1049,8 +1048,8 @@ vallabels = function(data) {
       "68: 68  MILITARY SAMPLE DROPPED",
       "69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED"))
-  data$R7006300 <- factor(data$R7006300, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0), 
+  data$R7006300 <- factor(data$R7006300,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0),
     labels=c("60: PARENT REFUSAL/BREAKOFF",
       "61: YOUTH REFUSAL/BREAKOFF",
       "62: PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1063,8 +1062,8 @@ vallabels = function(data) {
       "69: SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED",
       "70: SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED",
       "71: YOUTH REFUSAL - VERY DIFFICULT CASE"))
-  data$R7703500 <- factor(data$R7703500, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0), 
+  data$R7703500 <- factor(data$R7703500,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1078,8 +1077,8 @@ vallabels = function(data) {
       "70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED",
       "71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE",
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE"))
-  data$R8495900 <- factor(data$R8495900, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0), 
+  data$R8495900 <- factor(data$R8495900,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1095,8 +1094,8 @@ vallabels = function(data) {
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE",
       "73: 73  NOT INTERVIEWED - INCARCERATED",
       "74: 74  NOT INTERVIEWED - IN MILITARY"))
-  data$T0987500 <- factor(data$T0987500, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0), 
+  data$T0987500 <- factor(data$T0987500,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1112,8 +1111,8 @@ vallabels = function(data) {
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE",
       "73: 73  NOT INTERVIEWED - INCARCERATED",
       "74: 74  NOT INTERVIEWED - IN MILITARY"))
-  data$T2209800 <- factor(data$T2209800, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0), 
+  data$T2209800 <- factor(data$T2209800,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1129,8 +1128,8 @@ vallabels = function(data) {
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE",
       "73: 73  NOT INTERVIEWED - INCARCERATED",
       "74: 74  NOT INTERVIEWED - IN MILITARY"))
-  data$T3107600 <- factor(data$T3107600, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0), 
+  data$T3107600 <- factor(data$T3107600,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1146,8 +1145,8 @@ vallabels = function(data) {
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE",
       "73: 73  NOT INTERVIEWED - INCARCERATED",
       "74: 74  NOT INTERVIEWED - IN MILITARY"))
-  data$T4112100 <- factor(data$T4112100, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0), 
+  data$T4112100 <- factor(data$T4112100,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1163,8 +1162,8 @@ vallabels = function(data) {
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE",
       "73: 73  NOT INTERVIEWED - INCARCERATED",
       "74: 74  NOT INTERVIEWED - IN MILITARY"))
-  data$T5022300 <- factor(data$T5022300, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0), 
+  data$T5022300 <- factor(data$T5022300,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1180,8 +1179,8 @@ vallabels = function(data) {
       "72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE",
       "73: 73  NOT INTERVIEWED - INCARCERATED",
       "74: 74  NOT INTERVIEWED - IN MILITARY"))
-  data$T5770600 <- factor(data$T5770600, 
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0), 
+  data$T5770600 <- factor(data$T5770600,
+    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0),
     labels=c("60: 60  PARENT REFUSAL/BREAKOFF",
       "61: 61  YOUTH REFUSAL/BREAKOFF",
       "62: 62  PARENT & YOUTH REFUSAL/BREAKOFF",
@@ -1401,7 +1400,7 @@ qnames = function(data) {
 
 #********************************************************************************************************
 
-# Remove the '#' before the following line to create a data file called "categories" with value labels. 
+# Remove the '#' before the following line to create a data file called "categories" with value labels.
 #categories <- vallabels(new_data)
 
 # Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
