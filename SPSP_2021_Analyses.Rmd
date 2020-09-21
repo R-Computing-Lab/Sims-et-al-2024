@@ -10,7 +10,7 @@ library(tidyverse)
 library(devtools) 
 library(remotes)
 remotes::install_github(repo="nlsy-links/NlsyLinks")
-#remotes::install_github(repo="smasongarrison/discord")
+remotes::install_github(repo="R-Computing-Lab/discord")
 
 library(discord)
 library(NlsyLinks)
@@ -168,7 +168,7 @@ discord_data<- function(
 ### Crime
 ```{r data_crime}
 
-new_data <- read.table('df_crime_gen1\\df_crime_gen1.dat', sep=' ')
+new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv')
 names(new_data) <- c('R0000100',
   'R0173600',
   'R0214700',
@@ -1103,7 +1103,7 @@ summary(df_crime_gen1)
 ### Depression
 ```{r data_dep}
 
-new_data <- read.table('df_dep_gen1\\df_dep_gen1.dat', sep=' ')
+new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv')
 names(new_data) <- c('H0000300',
   'H0000400',
   'H0000500',
@@ -1850,12 +1850,23 @@ DELIN_Mean = rowMeans(select(., starts_with("DELIN_")),na.rm=TRUE)#,
 
 #df_crime_gen1=vallabels_crime(df_crime_gen1)
 
-df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,RACE,SEX,DELIN_Mean)
+df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,RACE,SEX,DELIN_Mean) %>%
+  #minority is 1, 
+  #non-minority is 0
+  mutate(RACE = case_when(RACE == 3 ~ 0,
+                          RACE == 1 | RACE == 2 ~ 1),
+         # have female be 0 and male be 1
+         SEX = case_when(SEX == 2 ~ 0,
+                         TRUE ~ 1))
+
 df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
 df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 cor(df_spsp_gen1,use="pairwise.complete")
 cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
+
+
+
 ```
 
 ```{r linking}
@@ -1885,5 +1896,48 @@ data_DEP=discord_data(outcome="CESD_20_1992",
 
 model_DEP_discord=discord_regression(outcome="CESD_20_1992",predictors = c("DELIN_Mean"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
+
+
+
+
 ```
 
+
+```{r discordRegressionUpdated}
+
+# create single entered data using Nlsylinks package
+# clean the names and remove any NAs
+dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
+linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates" & dsLinking$RFull==.5,],
+outcomeNames = outcomeNames) %>%
+  janitor::clean_names() %>%
+  tidyr::drop_na()
+
+# print number of rows in the final data set (number of sibling pairs)
+nrow(dsSingle)
+
+# run updated discordRegression function, timing it.
+library(tictoc)
+library(glue)
+ 
+tic(glue::glue("model on {nrow(dsSingle)} rows"))
+model <- discord::discordRegressionUpdating(data = dsSingle, outcome = "cesd_20_1992", predictors = "delin_mean")
+toc()
+
+#print model
+print(model)
+
+
+#make sure both individuals are males and observe the effects
+onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discordRegressionUpdating(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+
+print(onlyBoys)
+
+onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discordRegressionUpdating(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+
+print(onlyGirls)
+
+```
+
+
+If the more depressed sibling is a boy, then there is a greater difference in depression scores amongst siblings. If the less depressed sibling is a boy, then there is a greater difference in depression scores amongst siblings. If both are boys, then there would be an "average"ish difference in depression scores amongst siblings.
