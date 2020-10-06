@@ -87,66 +87,66 @@ names(new_data) <- c('H0000300',
 
 # Handle missing values
 
-  new_data[new_data == -1] = NA  # Refused 
-  new_data[new_data == -2] = NA  # Dont know 
-  new_data[new_data == -3] = NA  # Invalid missing 
-  new_data[new_data == -4] = NA  # Valid missing 
-  new_data[new_data == -5] = NA  # Non-interview 
+  new_data[new_data == -1] = NA  # Refused
+  new_data[new_data == -2] = NA  # Dont know
+  new_data[new_data == -3] = NA  # Invalid missing
+  new_data[new_data == -4] = NA  # Valid missing
+  new_data[new_data == -5] = NA  # Non-interview
 
 
 # If there are values not categorized they will be represented as NA
 
 vallabels = function(data) {
-  data$H0000300 <- factor(data$H0000300, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000300 <- factor(data$H0000300,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0000400 <- factor(data$H0000400, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000400 <- factor(data$H0000400,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0000500 <- factor(data$H0000500, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000500 <- factor(data$H0000500,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0000600 <- factor(data$H0000600, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000600 <- factor(data$H0000600,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0000700 <- factor(data$H0000700, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000700 <- factor(data$H0000700,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0000800 <- factor(data$H0000800, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000800 <- factor(data$H0000800,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0000900 <- factor(data$H0000900, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0000900 <- factor(data$H0000900,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0001000 <- factor(data$H0001000, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0001000 <- factor(data$H0001000,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0001100 <- factor(data$H0001100, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0001100 <- factor(data$H0001100,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
@@ -156,36 +156,36 @@ vallabels = function(data) {
   data$H0001101[10.0 <= data$H0001101 & data$H0001101 <= 14.0] <- 10.0
   data$H0001101[15.0 <= data$H0001101 & data$H0001101 <= 19.0] <- 15.0
   data$H0001101[20.0 <= data$H0001101 & data$H0001101 <= 24.0] <- 20.0
-  data$H0001101 <- factor(data$H0001101, 
-    levels=c(0.0,1.0,5.0,10.0,15.0,20.0), 
+  data$H0001101 <- factor(data$H0001101,
+    levels=c(0.0,1.0,5.0,10.0,15.0,20.0),
     labels=c("0",
       "1 TO 4",
       "5 TO 9",
       "10 TO 14",
       "15 TO 19",
       "20 TO 24"))
-  data$H0003900 <- factor(data$H0003900, 
-    levels=c(0.0,1.0), 
+  data$H0003900 <- factor(data$H0003900,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0004000 <- factor(data$H0004000, 
-    levels=c(0.0,1.0), 
+  data$H0004000 <- factor(data$H0004000,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0004500 <- factor(data$H0004500, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$H0004500 <- factor(data$H0004500,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("All the time",
       "Most of the time",
       "A good bit of the time",
       "Some of the time",
       "A little of the time",
       "None of the time"))
-  data$H0006900 <- factor(data$H0006900, 
-    levels=c(0.0,1.0), 
+  data$H0006900 <- factor(data$H0006900,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0007000 <- factor(data$H0007000, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0), 
+  data$H0007000 <- factor(data$H0007000,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0),
     labels=c("1: January",
       "2: February",
       "3: March",
@@ -199,8 +199,8 @@ vallabels = function(data) {
       "11: November",
       "12: December"))
   data$H0007001[0.0 <= data$H0007001 & data$H0007001 <= 1978.0] <- 0.0
-  data$H0007001 <- factor(data$H0007001, 
-    levels=c(0.0,1979.0,1980.0,1981.0,1982.0,1983.0,1984.0,1985.0,1986.0,1987.0,1988.0,1989.0,1990.0,1991.0,1992.0,1993.0,1994.0,1995.0,1996.0,1997.0,1998.0,1999.0,2000.0,2001.0,2002.0,2003.0,2004.0,2005.0,2006.0,2007.0,2008.0,2009.0,2010.0,2011.0,2012.0,2013.0,2014.0,2015.0,2016.0,2017.0), 
+  data$H0007001 <- factor(data$H0007001,
+    levels=c(0.0,1979.0,1980.0,1981.0,1982.0,1983.0,1984.0,1985.0,1986.0,1987.0,1988.0,1989.0,1990.0,1991.0,1992.0,1993.0,1994.0,1995.0,1996.0,1997.0,1998.0,1999.0,2000.0,2001.0,2002.0,2003.0,2004.0,2005.0,2006.0,2007.0,2008.0,2009.0,2010.0,2011.0,2012.0,2013.0,2014.0,2015.0,2016.0,2017.0),
     labels=c("0 TO 1978: < 1978",
       "1979",
       "1980",
@@ -241,12 +241,12 @@ vallabels = function(data) {
       "2015",
       "2016",
       "2017"))
-  data$H0007100 <- factor(data$H0007100, 
-    levels=c(0.0,1.0), 
+  data$H0007100 <- factor(data$H0007100,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0008600 <- factor(data$H0008600, 
-    levels=c(0.0,1.0), 
+  data$H0008600 <- factor(data$H0008600,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$H0013301[1.0 <= data$H0013301 & data$H0013301 <= 4.0] <- 1.0
@@ -254,114 +254,114 @@ vallabels = function(data) {
   data$H0013301[10.0 <= data$H0013301 & data$H0013301 <= 14.0] <- 10.0
   data$H0013301[15.0 <= data$H0013301 & data$H0013301 <= 19.0] <- 15.0
   data$H0013301[20.0 <= data$H0013301 & data$H0013301 <= 24.0] <- 20.0
-  data$H0013301 <- factor(data$H0013301, 
-    levels=c(0.0,1.0,5.0,10.0,15.0,20.0), 
+  data$H0013301 <- factor(data$H0013301,
+    levels=c(0.0,1.0,5.0,10.0,15.0,20.0),
     labels=c("0",
       "1 TO 4",
       "5 TO 9",
       "10 TO 14",
       "15 TO 19",
       "20 TO 24"))
-  data$H0013400 <- factor(data$H0013400, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013400 <- factor(data$H0013400,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013401 <- factor(data$H0013401, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013401 <- factor(data$H0013401,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013402 <- factor(data$H0013402, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013402 <- factor(data$H0013402,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013403 <- factor(data$H0013403, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013403 <- factor(data$H0013403,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013404 <- factor(data$H0013404, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013404 <- factor(data$H0013404,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013405 <- factor(data$H0013405, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013405 <- factor(data$H0013405,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013406 <- factor(data$H0013406, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013406 <- factor(data$H0013406,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013407 <- factor(data$H0013407, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013407 <- factor(data$H0013407,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0013408 <- factor(data$H0013408, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$H0013408 <- factor(data$H0013408,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the time/1 Day",
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-  data$H0016400 <- factor(data$H0016400, 
-    levels=c(0.0,1.0), 
+  data$H0016400 <- factor(data$H0016400,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0016500 <- factor(data$H0016500, 
-    levels=c(0.0,1.0), 
+  data$H0016500 <- factor(data$H0016500,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0016700 <- factor(data$H0016700, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$H0016700 <- factor(data$H0016700,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("All the time",
       "Most of the time",
       "A good bit of the time",
       "Some of the time",
       "A little of the time",
       "None of the time"))
-  data$H0016800 <- factor(data$H0016800, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$H0016800 <- factor(data$H0016800,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("All the time",
       "Most of the time",
       "A good bit of the time",
       "Some of the time",
       "A little of the time",
       "None of the time"))
-  data$H0016900 <- factor(data$H0016900, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$H0016900 <- factor(data$H0016900,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("All the time",
       "Most of the time",
       "A good bit of the time",
       "Some of the time",
       "A little of the time",
       "None of the time"))
-  data$H0017000 <- factor(data$H0017000, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
+  data$H0017000 <- factor(data$H0017000,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0),
     labels=c("All the time",
       "Most of the time",
       "A good bit of the time",
       "Some of the time",
       "A little of the time",
       "None of the time"))
-  data$H0020800 <- factor(data$H0020800, 
-    levels=c(0.0,1.0), 
+  data$H0020800 <- factor(data$H0020800,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0020900 <- factor(data$H0020900, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0), 
+  data$H0020900 <- factor(data$H0020900,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0),
     labels=c("1: January",
       "2: February",
       "3: March",
@@ -375,8 +375,8 @@ vallabels = function(data) {
       "11: November",
       "12: December"))
   data$H0020901[0.0 <= data$H0020901 & data$H0020901 <= 1996.0] <- 0.0
-  data$H0020901 <- factor(data$H0020901, 
-    levels=c(0.0,1997.0,1998.0,1999.0,2000.0,2001.0,2002.0,2003.0,2004.0,2005.0,2006.0,2007.0,2008.0,2009.0,2010.0,2011.0,2012.0,2013.0,2014.0,2015.0,2016.0,2017.0), 
+  data$H0020901 <- factor(data$H0020901,
+    levels=c(0.0,1997.0,1998.0,1999.0,2000.0,2001.0,2002.0,2003.0,2004.0,2005.0,2006.0,2007.0,2008.0,2009.0,2010.0,2011.0,2012.0,2013.0,2014.0,2015.0,2016.0,2017.0),
     labels=c("0 TO 1996: <= 1996",
       "1997",
       "1998",
@@ -399,20 +399,20 @@ vallabels = function(data) {
       "2015",
       "2016",
       "2017"))
-  data$H0021000 <- factor(data$H0021000, 
-    levels=c(0.0,1.0), 
+  data$H0021000 <- factor(data$H0021000,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0021100 <- factor(data$H0021100, 
-    levels=c(0.0,1.0), 
+  data$H0021100 <- factor(data$H0021100,
+    levels=c(0.0,1.0),
     labels=c("0: 0  CONDITION DOES NOT APPLY",
       "1: 1  CONDITION APPLIES"))
-  data$H0021200 <- factor(data$H0021200, 
-    levels=c(0.0,1.0), 
+  data$H0021200 <- factor(data$H0021200,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
-  data$H0021300 <- factor(data$H0021300, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0), 
+  data$H0021300 <- factor(data$H0021300,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0),
     labels=c("1: January",
       "2: February",
       "3: March",
@@ -426,8 +426,8 @@ vallabels = function(data) {
       "11: November",
       "12: December"))
   data$H0021301[0.0 <= data$H0021301 & data$H0021301 <= 1996.0] <- 0.0
-  data$H0021301 <- factor(data$H0021301, 
-    levels=c(0.0,1997.0,1998.0,1999.0,2000.0,2001.0,2002.0,2003.0,2004.0,2005.0,2006.0,2007.0,2008.0,2009.0,2010.0,2011.0,2012.0,2013.0,2014.0,2015.0,2016.0,2017.0), 
+  data$H0021301 <- factor(data$H0021301,
+    levels=c(0.0,1997.0,1998.0,1999.0,2000.0,2001.0,2002.0,2003.0,2004.0,2005.0,2006.0,2007.0,2008.0,2009.0,2010.0,2011.0,2012.0,2013.0,2014.0,2015.0,2016.0,2017.0),
     labels=c("0 TO 1996: <= 1996",
       "1997",
       "1998",
@@ -450,23 +450,23 @@ vallabels = function(data) {
       "2015",
       "2016",
       "2017"))
-  data$H0021400 <- factor(data$H0021400, 
-    levels=c(0.0,1.0), 
+  data$H0021400 <- factor(data$H0021400,
+    levels=c(0.0,1.0),
     labels=c("NO",
       "YES"))
   data$R0144600[10.0 <= data$R0144600 & data$R0144600 <= 9999.0] <- 10.0
   data$R0144600[10010.0 <= data$R0144600 & data$R0144600 <= 10829.0] <- 10010.0
   data$R0144600[11800.0 <= data$R0144600 & data$R0144600 <= 11999.0] <- 11800.0
   data$R0144600[12800.0 <= data$R0144600 & data$R0144600 <= 12997.0] <- 12800.0
-  data$R0144600 <- factor(data$R0144600, 
-    levels=c(0.0,10.0,10010.0,11800.0,12800.0), 
+  data$R0144600 <- factor(data$R0144600,
+    levels=c(0.0,10.0,10010.0,11800.0,12800.0),
     labels=c("0: 0 NO HEALTH LIMITATION",
       "10 TO 9999: 0010 THRU  9999 ICD-9 HEALTH CODE",
       "10010 TO 10829: 10010 THRU 10829 ICD-9 'V' CODE",
       "11800 TO 11999: 11800 THRU 11999 ICD-9 'E' CODE",
       "12800 TO 12997: 12800 THRU 12997 ICD-9 'M' CODE"))
-  data$R0173600 <- factor(data$R0173600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
+  data$R0173600 <- factor(data$R0173600,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0),
     labels=c("CROSS MALE WHITE",
       "CROSS MALE WH. POOR",
       "CROSS MALE BLACK",
@@ -487,122 +487,122 @@ vallabels = function(data) {
       "MIL FEMALE WHITE",
       "MIL FEMALE BLACK",
       "MIL FEMALE HISPANIC"))
-  data$R3894900 <- factor(data$R3894900, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3894900 <- factor(data$R3894900,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895000 <- factor(data$R3895000, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895000 <- factor(data$R3895000,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895100 <- factor(data$R3895100, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895100 <- factor(data$R3895100,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895200 <- factor(data$R3895200, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895200 <- factor(data$R3895200,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895300 <- factor(data$R3895300, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895300 <- factor(data$R3895300,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895400 <- factor(data$R3895400, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895400 <- factor(data$R3895400,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895500 <- factor(data$R3895500, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895500 <- factor(data$R3895500,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895600 <- factor(data$R3895600, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895600 <- factor(data$R3895600,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895700 <- factor(data$R3895700, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895700 <- factor(data$R3895700,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895800 <- factor(data$R3895800, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895800 <- factor(data$R3895800,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3895900 <- factor(data$R3895900, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3895900 <- factor(data$R3895900,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896000 <- factor(data$R3896000, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896000 <- factor(data$R3896000,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896100 <- factor(data$R3896100, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896100 <- factor(data$R3896100,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896200 <- factor(data$R3896200, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896200 <- factor(data$R3896200,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896300 <- factor(data$R3896300, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896300 <- factor(data$R3896300,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896400 <- factor(data$R3896400, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896400 <- factor(data$R3896400,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896500 <- factor(data$R3896500, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896500 <- factor(data$R3896500,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896600 <- factor(data$R3896600, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896600 <- factor(data$R3896600,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896700 <- factor(data$R3896700, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896700 <- factor(data$R3896700,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-  data$R3896800 <- factor(data$R3896800, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R3896800 <- factor(data$R3896800,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("RARELY/NONE OF THE TIME/1 DAY",
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
@@ -614,8 +614,8 @@ vallabels = function(data) {
   data$R3896810[40.0 <= data$R3896810 & data$R3896810 <= 49.0] <- 40.0
   data$R3896810[50.0 <= data$R3896810 & data$R3896810 <= 59.0] <- 50.0
   data$R3896810[60.0 <= data$R3896810 & data$R3896810 <= 69.0] <- 60.0
-  data$R3896810 <- factor(data$R3896810, 
-    levels=c(0.0,1.0,10.0,20.0,30.0,40.0,50.0,60.0), 
+  data$R3896810 <- factor(data$R3896810,
+    levels=c(0.0,1.0,10.0,20.0,30.0,40.0,50.0,60.0),
     labels=c("0",
       "1 TO 9",
       "10 TO 19",
@@ -630,8 +630,8 @@ vallabels = function(data) {
   data$R3896811[15.0 <= data$R3896811 & data$R3896811 <= 19.0] <- 15.0
   data$R3896811[20.0 <= data$R3896811 & data$R3896811 <= 24.0] <- 20.0
   data$R3896811[25.0 <= data$R3896811 & data$R3896811 <= 29.0] <- 25.0
-  data$R3896811 <- factor(data$R3896811, 
-    levels=c(0.0,1.0,5.0,10.0,15.0,20.0,25.0), 
+  data$R3896811 <- factor(data$R3896811,
+    levels=c(0.0,1.0,5.0,10.0,15.0,20.0,25.0),
     labels=c("0",
       "1 TO 4",
       "5 TO 9",
@@ -645,8 +645,8 @@ vallabels = function(data) {
   data$R3896820[15.0 <= data$R3896820 & data$R3896820 <= 19.0] <- 15.0
   data$R3896820[20.0 <= data$R3896820 & data$R3896820 <= 24.0] <- 20.0
   data$R3896820[25.0 <= data$R3896820 & data$R3896820 <= 29.0] <- 25.0
-  data$R3896820 <- factor(data$R3896820, 
-    levels=c(0.0,1.0,5.0,10.0,15.0,20.0,25.0), 
+  data$R3896820 <- factor(data$R3896820,
+    levels=c(0.0,1.0,5.0,10.0,15.0,20.0,25.0),
     labels=c("0",
       "1 TO 4",
       "5 TO 9",
@@ -654,44 +654,44 @@ vallabels = function(data) {
       "15 TO 19",
       "20 TO 24",
       "25 TO 29"))
-  data$R4978300 <- factor(data$R4978300, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978300 <- factor(data$R4978300,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
       "Most/All of the Time/5-7 Days"))
-  data$R4978400 <- factor(data$R4978400, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978400 <- factor(data$R4978400,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
       "Most/All of the Time/5-7 Days"))
-  data$R4978500 <- factor(data$R4978500, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978500 <- factor(data$R4978500,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
       "Most/All of the Time/5-7 Days"))
-  data$R4978600 <- factor(data$R4978600, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978600 <- factor(data$R4978600,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
       "Most/All of the Time/5-7 Days"))
-  data$R4978700 <- factor(data$R4978700, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978700 <- factor(data$R4978700,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
       "Most/All of the Time/5-7 Days"))
-  data$R4978800 <- factor(data$R4978800, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978800 <- factor(data$R4978800,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
       "Most/All of the Time/5-7 Days"))
-  data$R4978900 <- factor(data$R4978900, 
-    levels=c(0.0,1.0,2.0,3.0), 
+  data$R4978900 <- factor(data$R4978900,
+    levels=c(0.0,1.0,2.0,3.0),
     labels=c("Rarely/None of the Time/1 Day",
       "Some/A Little of the Time/1-2 Days",
       "Occasionally/Moderate Amount of the Time/3-4 Days",
@@ -702,8 +702,8 @@ vallabels = function(data) {
   data$R4978910[15.0 <= data$R4978910 & data$R4978910 <= 19.0] <- 15.0
   data$R4978910[20.0 <= data$R4978910 & data$R4978910 <= 24.0] <- 20.0
   data$R4978910[25.0 <= data$R4978910 & data$R4978910 <= 29.0] <- 25.0
-  data$R4978910 <- factor(data$R4978910, 
-    levels=c(0.0,1.0,5.0,10.0,15.0,20.0,25.0), 
+  data$R4978910 <- factor(data$R4978910,
+    levels=c(0.0,1.0,5.0,10.0,15.0,20.0,25.0),
     labels=c("0",
       "1 TO 4",
       "5 TO 9",
@@ -711,8 +711,8 @@ vallabels = function(data) {
       "15 TO 19",
       "20 TO 24",
       "25 TO 29"))
-  data$T5006600 <- factor(data$T5006600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0), 
+  data$T5006600 <- factor(data$T5006600,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0),
     labels=c("1 (not at all satisfied)",
       "2",
       "3",
@@ -720,8 +720,8 @@ vallabels = function(data) {
       "5",
       "6",
       "7 (completely satisfied)"))
-  data$T5740700 <- factor(data$T5740700, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0), 
+  data$T5740700 <- factor(data$T5740700,
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0),
     labels=c("1 (not at all satisfied)",
       "2",
       "3",
@@ -902,19 +902,19 @@ qnames = function(data) {
 
 #********************************************************************************************************
 
-# Remove the '#' before the following line to create a data file called "categories" with value labels. 
-#categories <- vallabels(new_data)
+# Remove the '#' before the following line to create a data file called "categories" with value labels.
+categories <- vallabels(new_data)
 
 # Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
-#new_data <- qnames(new_data)
-#categories <- qnames(categories)
+new_data <- qnames(new_data)
+categories <- qnames(categories)
 
 # Produce summaries for the raw (uncategorized) data file
 summary(new_data)
 
 # Remove the '#' before the following lines to produce summaries for the "categories" data file.
-#categories <- vallabels(new_data)
-#summary(categories)
+categories <- vallabels(new_data)
+summary(categories)
 
 #************************************************************************************************************
 

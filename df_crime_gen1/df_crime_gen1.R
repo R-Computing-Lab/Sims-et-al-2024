@@ -1401,18 +1401,18 @@ qnames = function(data) {
 #********************************************************************************************************
 
 # Remove the '#' before the following line to create a data file called "categories" with value labels.
-#categories <- vallabels(new_data)
+categories <- vallabels(new_data)
 
 # Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
-#new_data <- qnames(new_data)
-#categories <- qnames(categories)
+new_data <- qnames(new_data)
+categories <- qnames(categories)
 
 # Produce summaries for the raw (uncategorized) data file
 summary(new_data)
 
 # Remove the '#' before the following lines to produce summaries for the "categories" data file.
-#categories <- vallabels(new_data)
-#summary(categories)
+categories <- vallabels(new_data)
+summary(categories)
 
 #************************************************************************************************************
 
