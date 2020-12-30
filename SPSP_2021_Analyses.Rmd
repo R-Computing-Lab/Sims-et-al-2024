@@ -1,6 +1,8 @@
 ---
 title: "SPSP 2021 Analyses"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -10,7 +12,7 @@ library(tidyverse)
 library(devtools) 
 library(remotes)
 remotes::install_github(repo="nlsy-links/NlsyLinks")
-remotes::install_github(repo="R-Computing-Lab/discord")
+#remotes::install_github(repo="R-Computing-Lab/discord")
 
 library(discord)
 library(NlsyLinks)
@@ -1841,6 +1843,9 @@ summary(df_dep_gen1)
 
 
 ```{r recode}
+
+
+
 df_crime_gen1 = 
   df_crime_gen1%>%mutate(
     SubjectTag=CASEID*100,
@@ -1879,7 +1884,7 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_Mean")
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
 outcomeDataset = df_spsp_gen1,
@@ -1898,7 +1903,23 @@ model_DEP_discord=discord_regression(outcome="CESD_20_1992",predictors = c("DELI
 summary(model_DEP_discord)
 
 
+### v2
 
+dsDouble_G1 <- CreatePairLinksDoubleEntered(
+outcomeDataset = df_spsp_gen1,
+linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinking$RFull==.5,],
+outcomeNames=outcomeNames
+)
+
+data_DEP=discord_data(outcome="CESD_7_1994",
+                      doubleentered=T,
+                      id=dsDouble_G1$ExtendedID,
+                      df=dsDouble_G1,
+                      sep="_S",scale=F)
+
+
+model_DEP_discord=discord_regression(outcome="CESD_7_1994",predictors = c("DELIN_Mean"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
+summary(model_DEP_discord)
 
 ```
 
@@ -1920,6 +1941,8 @@ nrow(dsSingle)
 library(tictoc)
 library(glue)
  
+
+## 1992
 tic(glue::glue("model on {nrow(dsSingle)} rows"))
 model <- discord::discordRegressionUpdating(data = dsSingle, outcome = "cesd_20_1992", predictors = "delin_mean")
 toc()
@@ -1937,6 +1960,30 @@ onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discordRegressio
 
 print(onlyGirls)
 
+
+
+
+## 1994
+tic(glue::glue("model on {nrow(dsSingle)} rows"))
+model <- discord::discordRegressionUpdating(data = dsSingle, outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean")
+toc()
+
+#print model
+print(model)
+
+
+#make sure both individuals are males and observe the effects
+onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discordRegressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+
+print(onlyBoys)
+
+onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discordRegressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+
+print(onlyGirls)
+
+
+
+##### 
 ```
 
 
