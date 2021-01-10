@@ -1867,8 +1867,11 @@ df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,RACE,SEX,DELIN_Mean) %>%
 df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
 df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
+df_spsp_gen1$H40_CHRC_10K=as.numeric(df_dep_gen1$H40_CHRC_10K)
+df_spsp_gen1$H50_CHRC_7D=as.numeric(df_dep_gen1$H50_CHRC_7D)
 cor(df_spsp_gen1,use="pairwise.complete")
 cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
+
 
 
 
@@ -1884,7 +1887,7 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994","H40_CHRC_10K","H50_CHRC_7D")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
 outcomeDataset = df_spsp_gen1,
@@ -1921,6 +1924,41 @@ data_DEP=discord_data(outcome="CESD_7_1994",
 model_DEP_discord=discord_regression(outcome="CESD_7_1994",predictors = c("DELIN_Mean"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
 
+###v3
+
+dsDouble_G1 <- CreatePairLinksDoubleEntered(
+outcomeDataset = df_spsp_gen1,
+linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinking$RFull==.5,],
+outcomeNames=outcomeNames
+)
+
+data_DEP=discord_data(outcome="H40_CHRC_10K",
+                      doubleentered=T,
+                      id=dsDouble_G1$ExtendedID,
+                      df=dsDouble_G1,
+                      sep="_S",scale=F)
+
+
+model_DEP_discord=discord_regression(outcome="H40_CHRC_10K",predictors = c("DELIN_Mean"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
+summary(model_DEP_discord)
+
+##v4
+
+dsDouble_G1 <- CreatePairLinksDoubleEntered(
+outcomeDataset = df_spsp_gen1,
+linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinking$RFull==.5,],
+outcomeNames=outcomeNames
+)
+
+data_DEP=discord_data(outcome="H50_CHRC_7D",
+                      doubleentered=T,
+                      id=dsDouble_G1$ExtendedID,
+                      df=dsDouble_G1,
+                      sep="_S",scale=F)
+
+
+model_DEP_discord=discord_regression(outcome="H50_CHRC_7D",predictors = c("DELIN_Mean"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
+summary(model_DEP_discord)
 ```
 
 
