@@ -4,7 +4,7 @@ output:
   html_document:
     df_print: paged
 ---
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,errors=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 # set seed
 set.seed(20200804)
