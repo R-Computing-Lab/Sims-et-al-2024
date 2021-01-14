@@ -1,0 +1,12 @@
+
+
+Reference
+Number     Year    Variable Description                    Question Name  
+----------------------------------------------------------------------------
+R00001.00  1979    IDENTIFICATION CODE                     CASEID         
+R00003.00  1979    DATE OF BIRTH - MONTH                   Q1-3_A~M       
+R00005.00  1979    DATE OF BIRTH - YEAR                    Q1-3_A~Y       
+R00006.00  1979    AGE OF R                                FAM-1B         
+R01736.00  1979    SAMPLE IDENTIFICATION CODE              SAMPLE_ID      
+R02147.00  78SCRN  R'S RACIAL/ETHNIC COHORT FROM SCREENER  SAMPLE_RACE    
+R02148.00  1979    SEX OF R                                SAMPLE_SEX     
