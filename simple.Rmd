@@ -1722,6 +1722,8 @@ df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 df_spsp_gen1$H40_CHRC_10K=as.numeric(df_dep_gen1$H40_CHRC_10K)
 df_spsp_gen1$H50_CHRC_7D=as.numeric(df_dep_gen1$H50_CHRC_7D)
+df_spsp_gen1$RACE=as.factor(df_spsp_gen1$RACE)
+df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 
 ### Create single entered pairing
 ```

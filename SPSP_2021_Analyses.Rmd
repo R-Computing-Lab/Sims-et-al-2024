@@ -1962,7 +1962,7 @@ summary(model_DEP_discord)
 ```
 
 
-```{r discordRegressionUpdated}
+```{r discord_regressionUpdated}
 
 # create single entered data using Nlsylinks package
 # clean the names and remove any NAs
@@ -1975,14 +1975,14 @@ outcomeNames = outcomeNames) %>%
 # print number of rows in the final data set (number of sibling pairs)
 nrow(dsSingle)
 
-# run updated discordRegression function, timing it.
+# run updated discord_regression function, timing it.
 library(tictoc)
 library(glue)
  
 
 ## 1992
 tic(glue::glue("model on {nrow(dsSingle)} rows"))
-model <- discord::discordRegressionUpdating(data = dsSingle, outcome = "cesd_20_1992", predictors = "delin_mean")
+model <- discord::discord_regression(data = dsSingle, outcome = "cesd_20_1992", predictors = "delin_mean")
 toc()
 
 #print model
@@ -1990,11 +1990,11 @@ print(model)
 
 
 #make sure both individuals are males and observe the effects
-onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discordRegressionUpdating(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discord_regression(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
 
 print(onlyBoys)
 
-onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discordRegressionUpdating(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discord_regression(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
 
 print(onlyGirls)
 
@@ -2003,7 +2003,7 @@ print(onlyGirls)
 
 ## 1994
 tic(glue::glue("model on {nrow(dsSingle)} rows"))
-model <- discord::discordRegressionUpdating(data = dsSingle, outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean")
+model <- discord::discord_regressionU(data = dsSingle, outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean")
 toc()
 
 #print model
@@ -2011,11 +2011,11 @@ print(model)
 
 
 #make sure both individuals are males and observe the effects
-onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discordRegressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discord_regressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
 
 print(onlyBoys)
 
-onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discordRegressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discord_regression(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
 
 print(onlyGirls)
 
