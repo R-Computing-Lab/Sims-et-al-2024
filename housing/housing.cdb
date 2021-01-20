@@ -1,0 +1,1184 @@
+R00001.00    [CASEID]                                       Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             IDENTIFICATION CODE
+ 
+ORIGINAL QUESTION NAME: CASEID
+ 
+NOTE: THIS NUMBER WAS ASSIGNED ACCORDING TO THE RECORD NUMBER OF EACH RESPONDENT
+ON THE TAPE. THE FIRST RESPONDENT WAS ASSIGNED ID#1, THE SECOND WAS ASSIGNED 
+ID#2, ETC.
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: All
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:          12686        Mean:              6343.5
+ 
+Lead In: None.
+Default Next Question: R00001.49
+--------------------------------------------------------------------------------
+R01736.00    [SAMPLE_ID]                                    Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             SAMPLE IDENTIFICATION CODE
+ 
+ORIGINAL QUESTION NAME: S24Q01
+ 
+UNIVERSE: Entire Sample
+ 
+    2236       1 CROSS MALE WHITE
+     203       2 CROSS MALE WH. POOR
+     346       3 CROSS MALE BLACK
+     218       4 CROSS MALE HISPANIC
+    2279       5 CROSS FEMALE WHITE
+     198       6 CROSS FEMALE WH POOR
+     405       7 CROSS FEMALE BLACK
+     226       8 CROSS FEMALE HISPANIC
+     742       9 SUP MALE WH POOR
+    1105      10 SUP MALE BLACK
+     729      11 SUP MALE HISPANIC
+     901      12 SUP FEM WH POOR
+    1067      13 SUP FEMALE BLACK
+     751      14 SUP FEMALE HISPANIC
+     609      15 MIL MALE WHITE
+     162      16 MIL MALE BLACK
+      53      17 MIL MALE HISPANIC
+     342      18 MIL FEMALE WHITE
+      89      19 MIL FEMALE BLACK
+      25      20 MIL FEMALE HISPANIC
+  -------
+   12686
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:             20        Mean:                8.17
+ 
+
+
+NOTE: MARCH 1, 1986  NORC
+ 
+SEX CODE CHANGED ON 42 CASES
+ 
+Lead In: R01735.19[Default]
+Default Next Question: R01737.00
+--------------------------------------------------------------------------------
+R01880.00    [HH1-1]                                        Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: S24Q25
+ 
+I: CODE ONE. YOUTH R IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+     389       1 DORM, FRATERNITY, SORORITY
+       4       2 HOSPITAL
+      26       3 JAIL OR JUVENILE DETENTION CENTER
+      26       4 OTHER GROUP QUARTERS
+    1914      11 OWN DWELLING UNIT
+       3      12 ORPHANAGE
+       3      13 RELIGIOUS INSTITUTION
+      87      14 OTHER INDIVIDUAL QUARTERS
+  -------
+    2452
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     131
+TOTAL =========>    2583   VALID SKIP(-4)   10103     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:             14        Mean:                9.35
+ 
+Lead In: R01879.00[Default]
+Default Next Question: R01881.00
+--------------------------------------------------------------------------------
+R02147.00    [SAMPLE_RACE]                                  Survey Year: 78SCRN
+  PRIMARY VARIABLE
+
+ 
+             R'S RACIAL/ETHNIC COHORT FROM SCREENER
+ 
+UNIVERSE: Entire Sample
+ 
+    2002       1 HISPANIC
+    3174       2 BLACK
+    7510       3 NON-BLACK, NON-HISPANIC
+  -------
+   12686
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              3        Mean:                2.43
+ 
+
+
+NOTE: AUGUST 26, 1980  DENNIS GREY
+ 
+DESCRIPTION:
+COHORT=3;
+IF R(1736.)=4 ! R(1736.)=8 ! R(1736.)=11 ! R(1736.)=14 THEN COHORT=1;
+IF R(1736.)=17 ! R(1736.)=20 THEN COHORT=1;
+IF R(1736.)=3 ! R(1736.)=7 ! R(1736.)=10 ! R(1736.)=13 THEN COHORT=2;
+IF R(1736.)=16 ! R(1736.)=19 THEN COHORT=2;
+R(2147.)=COHORT;
+ 
+Lead In: R02146.00[Default]
+Default Next Question: R02148.00
+--------------------------------------------------------------------------------
+R02148.00    [SAMPLE_SEX]                                   Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             SEX OF R
+ 
+UNIVERSE: Entire sample
+ 
+    6403       1 MALE
+    6283       2 FEMALE
+  -------
+   12686
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              2        Mean:                 1.5
+ 
+
+
+NOTE: AUGUST 26, 1980  DENNIS GREY
+MARCH 1, 1986  NORC
+ 
+DESCRIPTION:
+IF (R(1736.)>0 & R(1736.)<=4) ! (R(1736.)>=9 & R(1736.)<=11) THEN SEX=1;
+IF R(1736.)>=15 & R(1736.)<=17 THEN SEX=1;
+IF (R(1736.)>=5 & R(1736.)<=8) ! (R(1736.)>=12 & R(1736.)<=14) THEN SEX=
+IF R(1736.)>=18 & R(1736.)<=20 THEN SEX=2;
+R(2148.)=SEX;
+SEX CODE CHANGED ON 42 CASES
+ 
+Lead In: R02147.00[Default]
+Default Next Question: R02149.00
+--------------------------------------------------------------------------------
+R04028.00    [HH1-1]                                        Survey Year: 1980
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: S43DA111
+ 
+I: CODE ONE: YOUTH RESPONDENT IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+     432       1 ABOARD SHIP, BARRACKS
+     113       2 BACHELOR, OFFICER QUARTERS
+     493       3 DORM, FRATERNITY, SORORITY
+       2       4 HOSPITAL
+      63       5 JAIL
+      42       6 OTHER TEMPORARY QUARTERS
+    3198      11 OWN DWELLING UNIT
+      70      12 ON-BASE MIL FAM HOUSING
+      27      13 OFF-BASE MIL FAM HOUSING
+       1      14 ORPHANAGE
+       5      15 RELIGIOUS INSTITUTION
+      54      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+       0      19 R IN PARENTAL HOUSEHOLD
+  -------
+    4500
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    4500   VALID SKIP(-4)    7641     NON-INTERVIEW(-5)     545
+ 
+Min:              1        Max:             16        Mean:                 8.9
+ 
+Lead In: R04027.00[Default]
+Default Next Question: R04029.00
+--------------------------------------------------------------------------------
+R06121.00    [HH1-1]                                        Survey Year: 1981
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: S55DA111
+ 
+I: CODE ONE: YOUTH R IS LIVING IN:
+ 
+     367       1 ABOARD SHIP, BARRACKS
+      68       2 BACHELOR, OFFICER QUARTERS
+     579       3 DORM, FRATERNITY, SORORITY
+       2       4 HOSPITAL
+      68       5 JAIL
+      35       6 OTHER TEMPORARY QUARTERS
+    4174      11 OWN DWELLING UNIT
+      88      12 ON-BASE MIL FAM HOUSING
+      21      13 OFF-BASE MIL FAM HOUSING
+       3      14 ORPHANAGE
+       3      15 RELIGIOUS INSTITUTION
+      89      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+       0      19 R IN PARENTAL HOUSEHOLD
+  -------
+    5497
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    5497   VALID SKIP(-4)    6698     NON-INTERVIEW(-5)     491
+ 
+Min:              1        Max:             16        Mean:                9.38
+ 
+Lead In: R06120.00[Default]
+Default Next Question: R06122.00
+--------------------------------------------------------------------------------
+R08284.00    [HH1-1]                                        Survey Year: 1982
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: S23DA111
+ 
+I: CODE ONE: YOUTH R IS LIVING IN:
+ 
+     306       1 ABOARD SHIP, BARRACKS
+      86       2 BACHELOR, OFFICER QUARTERS
+     498       3 DORM, FRATERNITY, SORORITY
+       1       4 HOSPITAL
+      91       5 JAIL
+      29       6 OTHER TEMPORARY QUARTERS
+    5326      11 OWN DWELLING UNIT
+      80      12 ON-BASE MIL FAM HOUSING
+      36      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       1      15 RELIGIOUS INSTITUTION
+       7      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+       0      19 R IN PARENTAL HOUSEHOLD
+  -------
+    6461
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    6461   VALID SKIP(-4)    5662     NON-INTERVIEW(-5)     563
+ 
+Min:              1        Max:             16        Mean:                9.71
+ 
+Lead In: R08283.00[Default]
+Default Next Question: R08285.00
+--------------------------------------------------------------------------------
+R10757.00    [HH1-1]                                        Survey Year: 1983
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: QA111
+ 
+I: CODE ONE: YOUTH RESPONDENT IS LIVING IN:
+ 
+     262       1 ABOARD SHIP, BARRACKS
+      90       2 BACHELOR, OFFICER QUARTERS
+     516       3 DORM, FRATERNITY, SORORITY
+       7       4 HOSPITAL
+     104       5 JAIL
+      28       6 OTHER TEMPORARY QUARTERS
+    6289      11 OWN DWELLING UNIT
+      83      12 ON-BASE MIL FAM HOUSING
+      24      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       1      15 RELIGIOUS INSTITUTION
+       2      16 OTHER INDIVIDUAL QUARTERS
+     980      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+       0      19 R IN PARENTAL HOUSEHOLD
+  -------
+    8386
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       4
+TOTAL =========>    8390   VALID SKIP(-4)    3831     NON-INTERVIEW(-5)     465
+ 
+Min:              1        Max:             17        Mean:               10.72
+ 
+Lead In: R10756.00[Default]
+Default Next Question: R10758.00
+--------------------------------------------------------------------------------
+R14514.00    [HH1-1]                                        Survey Year: 1984
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q7811
+ 
+I: CODE ONE: YOUTH RESPONDENT IS LIVING IN:
+ 
+     219       1 ABOARD SHIP, BARRACKS
+      70       2 BACHELOR, OFFICER QUARTERS
+     366       3 DORM, FRATERNITY, SORORITY
+       4       4 HOSPITAL
+     103       5 JAIL
+      31       6 OTHER TEMPORARY QUARTERS
+    6988      11 OWN DWELLING UNIT
+     108      12 ON-BASE MIL FAM HOUSING
+      29      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       4      15 RELIGIOUS INSTITUTION
+      10      16 OTHER INDIVIDUAL QUARTERS
+    1197      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+       0      19 R IN PARENTAL HOUSEHOLD
+  -------
+    9129
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      12
+TOTAL =========>    9141   VALID SKIP(-4)    2928     NON-INTERVIEW(-5)     617
+ 
+Min:              1        Max:             17        Mean:               11.09
+ 
+Lead In: R14513.00[Default]
+Default Next Question: R14515.00
+--------------------------------------------------------------------------------
+R17986.00    [HH1-1]                                        Survey Year: 1985
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q5711
+ 
+I:CODE ONE: YOUTH R IS LIVING IN:
+ 
+     138       1 ABOARD SHIP, BARRACKS
+      63       2 BACHELOR, OFFICER QUARTERS
+     205       3 DORM, FRATERNITY, SORORITY
+       5       4 HOSPITAL
+     105       5 JAIL
+      51       6 OTHER TEMPORARY QUARTERS
+    6774      11 OWN DWELLING UNIT
+      42      12 ON-BASE MIL FAM HOUSING
+      24      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       4      15 RELIGIOUS INSTITUTION
+      33      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+     522      18 HHI CONDUCTED WITH PARENT
+    2927      19 R IN PARENTAL HOUSEHOLD
+  -------
+   10893
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>   10894   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    1792
+ 
+Min:              1        Max:             19        Mean:                13.1
+ 
+Lead In: R17985.00[Default]
+Default Next Question: R17987.00
+--------------------------------------------------------------------------------
+R21602.00    [HH1-1]                                        Survey Year: 1986
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q7211
+ 
+I: CODE ONE: YOUTH R IS LIVING IN:
+ 
+      64       1 ABOARD SHIP, BARRACKS
+      53       2 BACHELOR, OFFICER QUARTERS
+     119       3 DORM, FRATERNITY, SORORITY
+       1       4 HOSPITAL
+     115       5 JAIL
+      33       6 OTHER TEMPORARY QUARTERS
+    7312      11 OWN DWELLING UNIT
+      51      12 ON-BASE MIL FAM HOUSING
+      25      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       3      15 RELIGIOUS INSTITUTION
+      24      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+     300      18 HHI CONDUCTED WITH PARENT
+    2555      19 R IN PARENTAL HOUSEHOLD
+  -------
+   10655
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   10655   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    2031
+ 
+Min:              1        Max:             19        Mean:               12.86
+ 
+Lead In: R21601.00[Default]
+Default Next Question: R21603.00
+--------------------------------------------------------------------------------
+R23691.00    [HH1-1]                                        Survey Year: 1987
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q2211
+ 
+COULD YOU PLEASE DESCRIBE YOUR CURRENT PLACE OF RESIDENCE TO ME?
+FOR EXAMPLE, DO YOU LIVE IN YOUR OWN HOME OR APARTMENT, WITH YOUR
+PARENTS OR IN-LAWS?
+ 
+      38       1 ABOARD SHIP, BARRACKS
+      21       2 BACHELOR, OFFICER QUARTERS
+      28       3 DORM, FRATERNITY, SORORITY
+       6       4 HOSPITAL
+     128       5 JAIL
+     133       6 OTHER TEMPORARY QUARTERS
+    7786      11 OWN DWELLING UNIT
+      67      12 ON-BASE MIL FAM HOUSING
+      24      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       1      15 RELIGIOUS INSTITUTION
+      29      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+    2223      19 R IN PARENTAL HOUSEHOLD
+  -------
+   10484
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       1
+TOTAL =========>   10485   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    2201
+ 
+Min:              1        Max:             19        Mean:               12.51
+ 
+Lead In: R23689.19[Default]
+Default Next Question: R23692.00
+--------------------------------------------------------------------------------
+R25000.00    [HH1-1]                                        Survey Year: 1988
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: HHI.1A
+ 
+I: CODE ONE: YOUTH RESPONDENT IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+      23       1 ABOARD SHIP, BARRACKS
+      28       2 BACHELOR, OFFICER QUARTERS
+       9       3 DORM, FRATERNITY, SORORITY
+       7       4 HOSPITAL
+     128       5 JAIL
+      79       6 OTHER TEMPORARY QUARTERS
+    8375      11 OWN DWELLING UNIT
+      56      12 ON-BASE MIL FAM HOUSING
+      29      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       3      15 RELIGIOUS INSTITUTION
+      37      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+    1689      19 R IN PARENTAL HOUSEHOLD
+  -------
+   10463
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       2
+TOTAL =========>   10465   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    2221
+ 
+Min:              1        Max:             19        Mean:               12.15
+ 
+Lead In: None.
+Default Next Question: R25001.00
+--------------------------------------------------------------------------------
+R29000.00    [HH1-1]                                        Survey Year: 1989
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q0110
+ 
+I: CODE ONE: YOUTH RESPONDENT IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+      21       1 ABOARD SHIP, BARRACKS
+      21       2 BACHELOR, OFFICER QUARTERS
+       5       3 DORM, FRATERNITY, SORORITY
+       4       4 HOSPITAL
+     139       5 JAIL
+      73       6 OTHER TEMPORARY QUARTERS
+    8776      11 OWN DWELLING UNIT
+      74      12 ON-BASE MIL FAM HOUSING
+      14      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       5      15 RELIGIOUS INSTITUTION
+      27      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+    1443      19 R IN PARENTAL HOUSEHOLD
+  -------
+   10602
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       3
+TOTAL =========>   10605   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    2081
+ 
+Min:              1        Max:             19        Mean:               11.96
+ 
+Lead In: None.
+Default Next Question: R29001.00
+--------------------------------------------------------------------------------
+R31000.00    [HH1-1]                                        Survey Year: 1990
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q0109
+ 
+I: CODE ONE: YOUTH R IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+      18       1 ABOARD SHIP, BARRACKS
+      14       2 BACHELOR, OFFICER QUARTERS
+       3       3 DORM, FRATERNITY, SORORITY
+       6       4 HOSPITAL
+     134       5 JAIL
+      68       6 OTHER TEMPORARY QUARTERS
+    8832      11 OWN DWELLING UNIT
+      52      12 ON-BASE MIL FAM HOUSING
+      17      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       6      15 RELIGIOUS INSTITUTION
+      42      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+    1244      19 R IN PARENTAL HOUSEHOLD
+  -------
+   10436
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   10436   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    2250
+ 
+Min:              1        Max:             19        Mean:               11.84
+ 
+Lead In: None.
+Default Next Question: R31001.00
+--------------------------------------------------------------------------------
+R35000.00    [HH1-1]                                        Survey Year: 1991
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q0109
+ 
+I: CODE ONE: YOUTH R IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+      17       1 ABOARD SHIP, BARRACKS
+      21       2 BACHELOR, OFFICER QUARTERS
+       6       3 DORM, FRATERNITY, SORORITY
+       3       4 HOSPITAL
+     121       5 JAIL
+      46       6 OTHER TEMPORARY QUARTERS
+    7681      11 OWN DWELLING UNIT
+      30      12 ON-BASE MIL FAM HOUSING
+      15      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       3      15 RELIGIOUS INSTITUTION
+      18      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+    1057      19 R IN PARENTAL HOUSEHOLD
+  -------
+    9018
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    9018   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    3668
+ 
+Min:              1        Max:             19        Mean:                11.8
+ 
+Lead In: None.
+Default Next Question: R35001.00
+--------------------------------------------------------------------------------
+R37000.00    [HH1-1]                                        Survey Year: 1992
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: Q0109
+ 
+I: CODE ONE: YOUTH R IS LIVING IN:
+ 
+UNIVERSE: All
+ 
+      33       1 ABOARD SHIP, BARRACKS
+       4       2 BACHELOR, OFFICER QUARTERS
+       4       3 DORM, FRATERNITY, SORORITY
+       2       4 HOSPITAL
+     138       5 JAIL
+      47       6 OTHER TEMPORARY QUARTERS
+    7856      11 OWN DWELLING UNIT
+      26      12 ON-BASE MIL FAM HOUSING
+       8      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       1      15 RELIGIOUS INSTITUTION
+      30      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+     867      19 R IN PARENTAL HOUSEHOLD
+  -------
+    9016
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    9016   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    3670
+ 
+Min:              1        Max:             19        Mean:               11.63
+ 
+Lead In: None.
+Default Next Question: R37001.00
+--------------------------------------------------------------------------------
+R41003.00    [HH1-1]                                        Survey Year: 1993
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+ORIGINAL QUESTION NAME: HH1-1
+ 
+(INTERVIEWER: CODE ONE: [Respondent's first name] [Respondent's middle name] 
+[Respondent's last name] IS LIVING
+IN:)
+ 
+UNIVERSE: All
+ 
+       2       1 ABOARD SHIP, BARRACKS
+       6       2 BACHELOR, OFFICER QUARTERS
+       5       3 DORM, FRATERNITY, SORORITY
+       4       4 HOSPITAL
+     146       5 JAIL
+      38       6 OTHER TEMPORARY QUARTERS
+    7717      11 OWN DWELLING UNIT
+      44      12 ON-BASE MIL FAM HOUSING
+      11      13 OFF-BASE MIL FAM HOUSING
+       0      14 ORPHANAGE
+       3      15 RELIGIOUS INSTITUTION
+      95      16 OTHER INDIVIDUAL QUARTERS
+       0      17 PARENTAL
+       0      18 HHI CONDUCTED WITH PARENT
+     939      19 R IN PARENTAL HOUSEHOLD
+  -------
+    9010
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>    9011   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    3675
+ 
+Min:              1        Max:             19        Mean:               11.76
+ 
+Lead In: R41002.02[Default]
+Default Next Question: R41004.00
+--------------------------------------------------------------------------------
+R45003.00    [HH1-1]                                        Survey Year: 1994
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+(INTERVIEWER: CODE ONE: [Respondent's first name] [Respondent's middle name] 
+[Respondent's last name] IS LIVING IN:)
+ 
+    7743      11 OWN DWELLING UNIT
+     807      19 RESPONDENT IN PARENT HOUSEHOLD
+       0      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       9      13 OFF-BASE MILITARY FAMILY HOUSING
+      34      12 ON-BASE MILITARY FAMILY HOUSING
+      73      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+      10       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To R45012.00)
+       1       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To R45012.00)
+       4       3 DORMITORY, FRATERNITY OR SORORITY   (Go To R45004.00)
+     153       5 JAIL   (Go To R45004.00)
+       3       4 HOSPITAL   (Go To R45004.00)
+      52       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)   
+                      (Go To R45004.00)
+  -------
+    8889
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8889   VALID SKIP(-4)       2     NON-INTERVIEW(-5)    3795
+ 
+Min:              1        Max:             19        Mean:               11.62
+ 
+Lead In: R45002.02[Default]
+Default Next Question: R45014.00
+--------------------------------------------------------------------------------
+R52003.00    [HH1-1]                                        Survey Year: 1996
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+(INTERVIEWER: CODE ONE: [Respondent's first name](9) [Respondent's middle 
+name](9) [Respondent's last name](9) IS LIVING IN:)
+ 
+    7548      11 OWN DWELLING UNIT
+     673      19 RESPONDENT IN PARENT HOUSEHOLD
+       1      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       7      13 OFF-BASE MILITARY FAMILY HOUSING
+      34      12 ON-BASE MILITARY FAMILY HOUSING
+      93      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       1       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To R52011.00)
+       2       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To R52011.00)
+       4       3 DORMITORY, FRATERNITY OR SORORITY   (Go To R52009.00)
+     150       5 JAIL   (Go To R52009.00)
+       2       4 HOSPITAL   (Go To R52009.00)
+     121       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)   
+                      (Go To R52009.00)
+  -------
+    8636
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8636   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    4050
+ 
+Min:              1        Max:             19        Mean:                11.5
+ 
+Lead In: R52002.02[Default]
+Default Next Question: R52012.00
+--------------------------------------------------------------------------------
+R58002.00    [HH1-1]                                        Survey Year: 1998
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+(INTERVIEWER: CODE ONE: [r's first name] [r's middle name] [r's last name] IS 
+LIVING IN:)
+ 
+    7490      11 OWN DWELLING UNIT
+     582      19 RESPONDENT IN PARENT HOUSEHOLD
+       3      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       6      13 OFF-BASE MILITARY FAMILY HOUSING
+      25      12 ON-BASE MILITARY FAMILY HOUSING
+      39      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       1       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To R58003.00)
+       1       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To R58003.00)
+       2       3 DORMITORY, FRATERNITY OR SORORITY
+     137       5 JAIL
+       2       4 HOSPITAL
+     110       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    8398
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>    8399   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    4287
+ 
+Min:              1        Max:             19        Mean:               11.41
+ 
+Lead In: R58001.00[Default]
+Default Next Question: R58004.00
+--------------------------------------------------------------------------------
+R65303.00    [HH1-1]                                        Survey Year: 2000
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    7293      11 OWN DWELLING UNIT
+     453      19 RESPONDENT IN PARENT HOUSEHOLD
+       1      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       2      13 OFF-BASE MILITARY FAMILY HOUSING
+      12      12 ON-BASE MILITARY FAMILY HOUSING
+      52      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       0       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To R65304.00)
+       2       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To R65304.00)
+       0       3 DORMITORY, FRATERNITY OR SORORITY
+     120       5 JAIL
+       2       4 HOSPITAL
+      95       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    8032
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8032   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    4654
+ 
+Min:              2        Max:             19        Mean:               11.33
+ 
+Lead In: R65302.00[Default]
+Default Next Question: R65305.00
+--------------------------------------------------------------------------------
+R70907.00    [HH1-1]                                        Survey Year: 2002
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    7057      11 OWN DWELLING UNIT
+     382      19 RESPONDENT IN PARENT HOUSEHOLD
+       1      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       2      13 OFF-BASE MILITARY FAMILY HOUSING
+      15      12 ON-BASE MILITARY FAMILY HOUSING
+      57      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       1       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To R70908.00)
+       0       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To R70908.00)
+       2       3 DORMITORY, FRATERNITY OR SORORITY
+     110       5 JAIL
+       6       4 HOSPITAL
+      91       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    7724
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    7724   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    4962
+ 
+Min:              1        Max:             19        Mean:               11.28
+ 
+Lead In: R70906.00[Default]
+Default Next Question: R70909.00
+--------------------------------------------------------------------------------
+R78006.00    [HH1-1]                                        Survey Year: 2004
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    7028      11 OWN DWELLING UNIT
+     394      19 RESPONDENT IN PARENT HOUSEHOLD
+       0      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       2      13 OFF-BASE MILITARY FAMILY HOUSING
+       6      12 ON-BASE MILITARY FAMILY HOUSING
+      75      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       1       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To R78007.00)
+       0       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To R78007.00)
+       0       3 DORMITORY, FRATERNITY OR SORORITY
+      37       5 JAIL
+       3       4 HOSPITAL
+     113       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    7659
+ 
+Refusal(-1)            0
+Don't Know(-2)         2
+TOTAL =========>    7661   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5025
+ 
+Min:              1        Max:             19        Mean:               11.36
+ 
+Lead In: R78005.02[Default]
+Default Next Question: R78008.00
+--------------------------------------------------------------------------------
+T00010.00    [HH1-1]                                        Survey Year: 2006
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    7089      11 OWN DWELLING UNIT
+     321      19 RESPONDENT IN PARENT HOUSEHOLD
+       2      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       2      13 OFF-BASE MILITARY FAMILY HOUSING
+       2      12 ON-BASE MILITARY FAMILY HOUSING
+      56      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       1       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP   (Go To T00011.00)
+       2       2 BACHELOR ENLISTED OR OFFICER QUARTERS   (Go To T00011.00)
+       2       3 DORMITORY, FRATERNITY OR SORORITY
+      73       5 JAIL
+       4       4 HOSPITAL
+      91       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    7645
+ 
+Refusal(-1)            2
+Don't Know(-2)         6
+TOTAL =========>    7653   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5033
+ 
+Min:              1        Max:             19        Mean:               11.25
+ 
+Lead In: T00009.02[Default]
+Default Next Question: T00012.00
+--------------------------------------------------------------------------------
+T12008.00    [HH1-1]                                        Survey Year: 2008
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    7241      11 OWN DWELLING UNIT
+     297      19 RESPONDENT IN PARENT HOUSEHOLD
+       1      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       1      13 OFF-BASE MILITARY FAMILY HOUSING
+       1      12 ON-BASE MILITARY FAMILY HOUSING
+      71      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       0       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP
+       0       2 BACHELOR ENLISTED OR OFFICER QUARTERS
+       2       3 DORMITORY, FRATERNITY OR SORORITY
+      65       5 JAIL
+       6       4 HOSPITAL
+      69       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    7754
+ 
+Refusal(-1)            0
+Don't Know(-2)         3
+TOTAL =========>    7757   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    4929
+ 
+Min:              3        Max:             19        Mean:               11.25
+ 
+Lead In: T12007.02[Default]
+Default Next Question: T12009.00
+--------------------------------------------------------------------------------
+T22607.00    [HH1-1]                                        Survey Year: 2010
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    7026      11 OWN DWELLING UNIT
+     260      19 RESPONDENT IN PARENT HOUSEHOLD
+       1      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       0      13 OFF-BASE MILITARY FAMILY HOUSING
+       3      12 ON-BASE MILITARY FAMILY HOUSING
+      82      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       0       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP
+       0       2 BACHELOR ENLISTED OR OFFICER QUARTERS
+       0       3 DORMITORY, FRATERNITY OR SORORITY
+      47       5 JAIL
+       4       4 HOSPITAL
+      80       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    7503
+ 
+Refusal(-1)            1
+Don't Know(-2)        61
+TOTAL =========>    7565   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5121
+ 
+Min:              4        Max:             19        Mean:               11.24
+ 
+Lead In: T22606.02[Default]
+Default Next Question: T22608.00
+--------------------------------------------------------------------------------
+T31957.00    [HH1-1]                                        Survey Year: 2012
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+INTERVIEWER: [r's first name] [r's middle name] [r's last name] IS LIVING IN: 
+(SELECT ONE)
+ 
+    6908      11 OWN DWELLING UNIT
+     230      19 RESPONDENT IN PARENT HOUSEHOLD
+       0      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE
+       1      13 OFF-BASE MILITARY FAMILY HOUSING
+       2      12 ON-BASE MILITARY FAMILY HOUSING
+      64      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)
+       0       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP
+       0       2 BACHELOR ENLISTED OR OFFICER QUARTERS
+       0       3 DORMITORY, FRATERNITY OR SORORITY
+      32       5 JAIL
+       4       4 HOSPITAL
+      58       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+  -------
+    7299
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>    7300   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5386
+ 
+Min:              4        Max:             19        Mean:               11.23
+ 
+Lead In: T31956.02[Default]
+Default Next Question: T31958.00
+--------------------------------------------------------------------------------
+T41815.00    [HH1-1]                                        Survey Year: 2014
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+What type of residence or dwelling unit are you living in?
+ 
+(IF NECESSARY, READ) For example, are you living in your own residence or 
+dwelling unit, your parents' household, on- or off-base mililtary family 
+housing, a dorm or religious institute or something else?
+ 
+    6809      11 OWN DWELLING UNIT
+     122      19 RESPONDENT IN PARENT HOUSEHOLD
+       2      15 CONVENT, MONASTERY, OTHER RELIGIOUS INSTITUTE   (Go To 
+                      T41828.00)
+       0      13 OFF-BASE MILITARY FAMILY HOUSING
+       0      12 ON-BASE MILITARY FAMILY HOUSING
+       1      16 OTHER INDIVIDUAL QUARTERS (SPECIFY)   (Go To T41828.00)
+       0       1 OPEN BAY OR TROOP BARRACKS, ABOARD SHIP
+       0       2 BACHELOR ENLISTED OR OFFICER QUARTERS
+       1       3 DORMITORY, FRATERNITY OR SORORITY
+      26       5 JAIL
+      19       4 HOSPITAL
+      15       6 OTHER TEMPORARY INDIVIDUAL QUARTERS (SPECIFY)
+      28      17 LIVES WITH OTHER RELATIVES
+      13      18 LIVES AT FRIEND'S RESIDENCE
+      13      21 HOMELESS
+       6      25 MOTEL/HOTEL
+       4      26 GROUP HOME OR BOARDING HOUSE
+       8      32 NURSING HOME OR RETIREMENT FACILITY
+  -------
+    7067
+ 
+Refusal(-1)            2
+Don't Know(-2)         1
+TOTAL =========>    7070   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5616
+ 
+Min:              3        Max:             32        Mean:               11.19
+ 
+Lead In: T41811.02[Default]
+Default Next Question: T41816.00
+--------------------------------------------------------------------------------
+T51521.00    [HH1-1]                                        Survey Year: 2016
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+In what type of place are you currently living?  (IF NECESSARY, READ:) For 
+example, are you living in a residence, such as a house or apartment, alone or 
+with friends or immediate family, or with other relatives, or something else?
+ 
+(INTERVIEWER: DO NOT READ CATEGORIES. “OWN RESIDENCE” CAN BE RENTED OR OWNED BY 
+R OR ANOTHER PERSON, WHERE R IS LIVING WITH IMMEDIATE FAMILY (SPOUSE/PARTNER, 
+CHILDREN, ETC) OR WITH FRIENDS OR ROOMATES.)
+ 
+    6672      11 OWN RESIDENCE SUCH AS HOUSE, APARTMENT, CONDO, OR MOBILE HOME, 
+                      ALONE OR WITH OTHERS
+      54      19 RESPONDENT IN PARENT HOUSEHOLD
+      58      20 RESPONDENT IN OTHER RELATIVE'S HOUSEHOLD
+       6      21 RETIREMENT COMMUNITY/FACILITY
+      14      22 GROUP HOME, RESIDENTIAL NURSING OR OTHER ASSISTED LIVING 
+                      FACILITY   (Go To T51608.00)
+      10      23 HALFWAY HOUSE, RESIDENTIAL MENTAL HEALTH TREATMENT OR 
+                      DRUG/ALCOHOL REHAB   (Go To T51608.00)
+      26      24 HOTEL, MOTEL, ROOMING, OR BOARDING HOUSE
+       8      25 SHELTER (FOR HOMELESS OR ABUSED) OR ON STREET   (Go To 
+                      T51608.00)
+      20       5 JAIL/PRISON   (Go To T51608.00)
+       0       4 HOSPITAL
+      43      26 OTHER (SPECIFY)
+  -------
+    6911
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>    6912   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5774
+ 
+Min:              5        Max:             26        Mean:               11.33
+ 
+Lead In: T51515.00[Default] T51517.00[Default]  T51515.00[1:1]
+Default Next Question: T51522.00
+--------------------------------------------------------------------------------
+T77217.00    [HHI1-1]                                       Survey Year: 2018
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+Do you currently live in a single family house, in an apartment or condominium, 
+or in some other type of housing?
+ 
+    5499       1 SINGLE-FAMILY HOUSE (INCL. MOBILE HOME)   (Go To T77219.00)
+    1213       2 APARTMENT/CONDO/TOWNHOUSE   (Go To T77219.00)
+     165       3 SOME OTHER TYPE OF HOUSING
+  -------
+    6877
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>    6878   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5808
+ 
+Min:              1        Max:              3        Mean:                1.22
+ 
+Lead In: T77213.00[Default]
+Default Next Question: T77218.00
+--------------------------------------------------------------------------------
+T77218.00    [HHI1-1X]                                      Survey Year: 2018
+  PRIMARY VARIABLE
+
+ 
+             TYPE OF RESIDENCE R IS LIVING IN
+ 
+Would that housing be in a …
+ 
+       1       4 Dormitory (inc. fraternity/sorority) or Military Barracks
+      28       5 Hotel, Motel, Rooming or Boarding House
+      11       6 Shelter (for homeless or abused) or on street
+      14       7 Jail/Prison/Detention/Work Release   (Go To T77295.00)
+       5       9 Hospital
+      16      10 Group Home or Treatment Center
+      52      11 Other Type of Housing
+      38       8 (IF OFFERED) Mobile Home
+  -------
+     165
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>     166   VALID SKIP(-4)    6712     NON-INTERVIEW(-5)    5808
+ 
+Min:              4        Max:             11        Mean:                8.42
+ 
+Lead In: T77217.00[Default]
+Default Next Question: T77219.00
