@@ -1764,6 +1764,18 @@ set.seed(18)
 discord::discord_regression(dsSingle, outcome = "cesd_7_1994", predictors = "delin_mean")
 ```
 
+## predict delin_mean from dep
+
+```{r}
+set.seed(18)
+discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992" )
+
+set.seed(18)
+discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994")
+```
+
+
+
 ## `H40_CHRC_10K` \~ `delin_mean`
 
 ```{r predict h40_chrc_10k by delin_mean}
