@@ -1795,8 +1795,6 @@ discord::discord_regression(dsSingle, outcome = "h50_chrc_7d", predictors = "del
 ```{r}
 
 #How old is everyone? 
-# Set working directory
-#setwd()
 
 new_data <- readr::read_csv('default/default.csv')
 
@@ -1962,10 +1960,6 @@ categories <- vallabels(new_data)
 summary(categories)
 
 #************************************************************************************************************
-head(new_data)
-names(new_data)
-library(foreign)
-summary(new_data) 
 #freq table for item 1
 table(new_data$`FAM-1B_1979`) 
 library(psych)
