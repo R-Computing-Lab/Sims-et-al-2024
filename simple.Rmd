@@ -1776,29 +1776,14 @@ discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd
 
 
 
-## `H40_CHRC_10K` \~ `delin_mean`
-
-```{r predict h40_chrc_10k by delin_mean}
-
-set.seed(18)
-discord::discord_regression(dsSingle, outcome = "h40_chrc_10k", predictors = "delin_mean")
-```
-
-## `H50_CHRC_7D` \~ `delin_mean`
-
-```{r predict h50_chrc_7d by delin_mean}
-
-set.seed(18)
-discord::discord_regression(dsSingle, outcome = "h50_chrc_7d", predictors = "delin_mean")
-```
 
 ```{r}
 
 #How old is everyone? 
 
+
 new_data <- readr::read_csv('default/default.csv')
 
-new_data <- read.table('default.dat', sep=' ')
 names(new_data) <- c('R0000100',
   'R0000300',
   'R0000500',
