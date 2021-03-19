@@ -1773,10 +1773,14 @@ discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd
 set.seed(18)
 discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994")
 
+library(psych)
+
 test1 <- discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994")
 
+describe(test1)
 summary(test1)
 summary(discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994"))
+describe(discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994"))
 
 ```
 
