@@ -22,6 +22,9 @@ library(discord)
 library(janitor)
 library(lm.beta)
 library(NlsyLinks)
+
+devtools::install_github('R-Computing-Lab/discord')
+
 ```
 
 # Prep data
@@ -1781,6 +1784,12 @@ describe(test1)
 summary(test1)
 summary(discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994"))
 describe(discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994"))
+
+discord_regression <- function(data, outcome, predictors, id = "extended_id", sex = "sex", race = "race", pair_identifiers = c("_s1", "_s2"), abridged_output = TRUE)
+
+abridged_output=FALSE
+
+  
 
 ```
 
