@@ -12,7 +12,7 @@ library(tidyverse)
 library(devtools) 
 library(remotes)
 remotes::install_github(repo="nlsy-links/NlsyLinks")
-#remotes::install_github(repo="R-Computing-Lab/discord")
+remotes::install_github(repo="R-Computing-Lab/discord")
 
 library(discord)
 library(NlsyLinks)
