@@ -5,7 +5,7 @@ output:
     df_print: paged
 ---
 ```{r setup, include=FALSE,errors=TRUE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 # set seed
 set.seed(20200804)
 library(tidyverse)
