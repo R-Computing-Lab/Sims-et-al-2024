@@ -8,10 +8,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,error=TRUE)
-```
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 
 ## Installs library if missing
 
