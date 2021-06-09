@@ -1772,27 +1772,35 @@ discord::discord_regression(dsSingle, outcome = "cesd_7_1994", predictors = "del
 
 ```{r}
 set.seed(18)
-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992" )
+discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
 
 set.seed(18)
-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994")
+discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994",abridged_output=FALSE)
 
-discord_regression <- function(data, outcome, predictors, id = "extended_id", sex = "sex", race = "race", pair_identifiers = c("_s1", "_s2"), abridged_output = TRUE)
+notBridge1992<-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
 
-library(psych)
+# Base R
+summary(notBridge1992)
 
-test1 <- discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994")
+# sweeping
+broom::tidy(notBridge1992) # should be same as abridge
 
-describe(test1)
-summary(test1)
-summary(discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994"))
-describe(discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994"))
+broom::glance(notBridge1992) # model fit such as r.squared and AIC
 
+broom::augment(notBridge1992)
 
+notBridge1994 <-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994",abridged_output=FALSE)
 
-abridged_output=FALSE
+# Base R
+summary(notBridge1994)
 
-  
+# sweeping
+broom::tidy(notBridge1994) # should be same as abridge
+
+broom::glance(notBridge1994) # model fit such as r.squared and AIC
+
+broom::augment(notBridge1994)
+
 
 ```
 
