@@ -5,14 +5,14 @@ output:
     df_print: paged
 ---
 ```{r setup, include=FALSE,errors=TRUE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 # set seed
 set.seed(20200804)
 library(tidyverse)
 library(devtools) 
 library(remotes)
 remotes::install_github(repo="nlsy-links/NlsyLinks")
-#remotes::install_github(repo="R-Computing-Lab/discord")
+remotes::install_github(repo="R-Computing-Lab/discord")
 
 library(discord)
 library(NlsyLinks)
