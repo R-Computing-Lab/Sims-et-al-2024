@@ -65,7 +65,7 @@ devtools::install_github('R-Computing-Lab/discord')
 
 
 
-```{r setup, include=FALSE,errors=TRUE}
+```{r setup2, include=FALSE,errors=TRUE}
 
 #do we need this chunck? 
 
@@ -1923,17 +1923,13 @@ summary(df_spsp_gen1)
 ###Double entered pairing
 
 ```{r}
-
-# Link Kinship Pairs
-#double or singled entered pairing? It is different depending on if simple or spsp_2021. 
-
 ### create links double entered
 
 dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
 outcomeDataset = df_spsp_gen1,
@@ -1948,7 +1944,7 @@ data_DEP=discord_data(outcome="DELIN_Mean",
                       sep="_S",scale=F)
 
 
-model_DEP_discord=discord_regression(outcome="DELIN_Mean",predictors = c("CESD_7_1994"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)")
+model_DEP_discord=discord_regression(outcome="DELIN_Mean",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
 
 
@@ -1967,9 +1963,13 @@ data_DEP=discord_data(outcome="DELIN_Mean",
                       sep="_S",scale=F)
 
 
-model_DEP_discord=discord_regression(outcome="DELIN_Mean",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)")
+model_DEP_discord=discord_regression(outcome="DELIN_Mean",predictors = c("CESD_7_1994"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
 
+#took out v3 and v4 because nnot using measure anymore. 
+
+
+summary(model_DEP_discord)
 ```
 
 
@@ -2019,15 +2019,15 @@ toc()
 #print model
 print(model)
 
-
-#make sure both individuals are males and observe the effects
-onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discord_regression(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
-
-print(onlyBoys)
-
-onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discord_regression(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
-
-print(onlyGirls)
+# 
+# #make sure both individuals are males and observe the effects
+# onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discord_regression(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+# 
+# print(onlyBoys)
+# 
+# onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discord_regression(outcome = "cesd_20_1992", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+# 
+# print(onlyGirls)
 
 
 
@@ -2040,15 +2040,15 @@ toc()
 #print model
 print(model)
 
-
-#make sure both individuals are males and observe the effects
-onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discord_regressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
-
-print(onlyBoys)
-
-onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discord_regression(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
-
-print(onlyGirls)
+# 
+# #make sure both individuals are males and observe the effects
+# onlyBoys <- dsSingle %>% filter(sex_s1 == 1 & sex_s2 == 1) %>% discord_regressionUpdating(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+# 
+# print(onlyBoys)
+# 
+# onlyGirls <- dsSingle %>% filter(sex_s1 == 0 & sex_s2 == 0) %>% discord_regression(outcome = "CESD_SCORE_7_ITEM_1994", predictors = "delin_mean") %>% filter(term != "sex_1" & term != "sex_2")
+# 
+# print(onlyGirls)
 
 
 
