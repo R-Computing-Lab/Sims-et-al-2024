@@ -56,9 +56,8 @@ library(dplyr)
 ```{r}
 
 ## Installs most recent dev version
-remotes::install_github(repo="nlsy-links/NlsyLinks", force=TRUE)
-#remotes::install_github(repo="smasongarrison/discord", force =TRUE)
-devtools::install_github('R-Computing-Lab/discord', force=TRUE)
+remotes::install_github(repo="nlsy-links/NlsyLinks")
+devtools::install_github('R-Computing-Lab/discord')
 
 
 ```
@@ -70,150 +69,150 @@ devtools::install_github('R-Computing-Lab/discord', force=TRUE)
 
 #do we need this chunck? 
 
-discord_regression<- function(df,
-                       outcome,
-                       predictors,
-                       more_args=NULL,
-                       additional_formula=more_args,
-                       ...
-                       ) {
-  #grab variables
-  outcome_diff=paste0(outcome,"_diff")
-  outcome_mean=paste0(outcome,"_mean")
-  predictors_diff=paste0(predictors,"_diff")
-  predictors_mean=paste0(predictors,"_mean")
-  # create string of predictors to go on the right side of the formula
-  right_side=paste(c(outcome_mean, predictors_diff,predictors_mean,additional_formula),collapse= "+")
+# discord_regression<- function(df,
+  #                      outcome,
+  #                      predictors,
+  #                      more_args=NULL,
+  #                      additional_formula=more_args,
+  #                      ...
+  #                      ) {
+  # #grab variables
+  # outcome_diff=paste0(outcome,"_diff")
+  # outcome_mean=paste0(outcome,"_mean")
+  # predictors_diff=paste0(predictors,"_diff")
+  # predictors_mean=paste0(predictors,"_mean")
+  # # create string of predictors to go on the right side of the formula
+  # right_side=paste(c(outcome_mean, predictors_diff,predictors_mean,additional_formula),collapse= "+")
 
-  discord_formula= formula(paste0(outcome_diff," ~ ", right_side))
+  # discord_formula= formula(paste0(outcome_diff," ~ ", right_side))
+  # 
+  # #returns lm with the actual equation, not just printing
+  # #"lm(formula = discord_formula, data = df)"
+  # 
+  # eval(bquote(lm( .(discord_formula),data=df)))
+#   }
+# discord_data<- function(
+#   outcome,
+#   predictors=NULL,
+#   doubleentered=F,
+#   sep="",
+#   scale=T,
+#   df=NULL,
+#   id=NULL,
+#   full=T,
+#   ...){
+#   arguments <- as.list(match.call())
+#   y <- ysort <- NULL
+# 
+#   IVlist <- list()
+#   outcome1=subset(df, select=paste0(arguments$outcome,sep,"1"))[,1]
+#   outcome2=subset(df, select=paste0(arguments$outcome,sep,"2"))[,1]
+# 
+#   #create id if not supplied
+#   if(is.null(id))
+#   {
+#     id<-rep(1:length(outcome1[,1]))}
+#   #If no predictors selected, grab all variables not listed as outcome, and contain sep 1 or sep 2
+#   if(is.null(predictors)){
+#     predictors<-setdiff(unique(gsub(paste0(sep,"1|",sep,"2"),"",grep(paste0(sep,"1|",sep,"2"),names(df),value = TRUE))),paste0(arguments$outcome))
+#     unpaired.predictors=setdiff(grep(paste0(sep,"1|",sep,"2"),names(df),value = TRUE,invert=TRUE),paste0(arguments$id))
+#   }
+# 
+# 
+#   if(!doubleentered){
+#     outcome2x<-outcome2
+#     outcome2<-c(outcome2[,1],outcome1[,1])
+#     outcome1<-c(outcome1[,1],outcome2x[,1])
+# 
+#     if(scale&is.numeric(outcome1)){
+#       outcome1<-scale(outcome1)
+#     outcome2<-scale(outcome2)
+#     }
+#     DV<-data.frame(outcome1,outcome2)
+#     DV$outcome_diff<- DV$outcome1-DV$outcome2
+#     DV$outcome_mean<-(DV$outcome1+DV$outcome2)/2
+# 
+#     remove(outcome1);remove(outcome2x);remove(outcome2)
+# 
+#     for(i in 1:length(predictors)){
+# 
+#       predictor1x= predictor1=subset(df, select=paste0(predictors[i],sep,"1"))[,1]
+#       predictor2=subset(df, select=paste0(predictors[i],sep,"2"))[,1]
+#       predictor1<-c(predictor1[,1],predictor2[,1])
+#       predictor2<-c(predictor2[,1],predictor1x[,1])
+#       if(scale&is.numeric(predictor1)){
+#         predictor1<-scale(predictor1)
+#         predictor2<-scale(predictor2)
+#       }
+#       remove(predictor1x)
+#       IVi<-data.frame(predictor1,predictor2)
+#       IVi$predictor_diff<-IVi$predictor1-IVi$predictor2
+#       IVi$predictor_mean<-(IVi$predictor1+IVi$predictor2)/2
+#       names(IVi)<-c(paste0(predictors[i],"_1"),paste0(predictors[i],"_2"),paste0(predictors[i],"_diff"),paste0(predictors[i],"_mean"))
+#       IVlist[[i]] <- IVi
+# 
+#       names(IVlist)[i]<-paste0("")
+#     }
+#   }else{
+#     #it asked me to add in else??like it gave the option?
+# 
+#     if(scale&is.numeric(outcome1))
+# 
+#     {outcome1<-scale(outcome1)
+#     outcome2<-scale(outcome2)
+#     }
+#     DV<-data.frame(outcome1,outcome2)
+# 
+#     DV$outcome_diff<-DV$outcome1-DV$outcome2
+#     DV$outcome_mean<-(DV$outcome1+DV$outcome2)/2
+# 
+#     remove(outcome1);remove(outcome2)
+#     for(i in 1:length(predictors)){
+#       predictor1=subset(df, select=paste0(predictors[i],sep,"1"))[,1]
+#       predictor2=subset(df, select=paste0(predictors[i],sep,"2"))[,1]
+#       if(scale&is.numeric(predictor1))
+#       {predictor1<-scale(predictor1)
+#       predictor2<-scale(predictor2)
+#       }
+#       IVi<-data.frame(predictor1,predictor2)
+#       IVi$predictor_diff<-IVi$predictor1-IVi$predictor2
+#       IVi$predictor_mean<-(IVi$predictor1+IVi$predictor2)/2
+#       names(IVi)<-c(paste0(predictors[i],"_1"),paste0(predictors[i],"_2"),paste0(predictors[i],"_diff"),paste0(predictors[i],"_mean"))
+#       IVlist[[i]] <- IVi
+#       names(IVlist)[i]<-paste0("")
+#     }
+#   }
 
-  #returns lm with the actual equation, not just printing
-  #"lm(formula = discord_formula, data = df)"
-  
-  eval(bquote(lm( .(discord_formula),data=df)))
-  }
-discord_data<- function(
-  outcome,
-  predictors=NULL,
-  doubleentered=F,
-  sep="",
-  scale=T,
-  df=NULL,
-  id=NULL,
-  full=T,
-  ...){
-  arguments <- as.list(match.call())
-  y <- ysort <- NULL
+# 
+#   DV$id<-id
+#   DV$ysort<-0
+  # DV$ysort[DV$outcome_diff>0&!is.na(DV$outcome_diff)]<-1
+  # 
+  # # randomly select for sorting on identical outcomes
+  # 
+  # if(length(unique(DV$id[DV$outcome_diff==0]))>0){
+  #   select<-sample(c(0,1), replace=TRUE, size=length(unique(DV$id[DV$outcome_diff==0&!is.na(DV$outcome_diff)])))
+  #   DV$ysort[DV$outcome_diff==0&!is.na(DV$outcome_diff)]<-c(select,abs(select-1))
+  # 
+  # }
+  # DV$id<-NULL
+  # names(DV)<-c(paste0(arguments$outcome,"_1"),paste0(arguments$outcome,"_2"),paste0(arguments$outcome,"_diff"),paste0(arguments$outcome,"_mean"),"ysort")
 
-  IVlist <- list()
-  outcome1=subset(df, select=paste0(arguments$outcome,sep,"1"))[,1]
-  outcome2=subset(df, select=paste0(arguments$outcome,sep,"2"))[,1]
-
-  #create id if not supplied
-  if(is.null(id))
-  {
-    id<-rep(1:length(outcome1[,1]))}
-  #If no predictors selected, grab all variables not listed as outcome, and contain sep 1 or sep 2
-  if(is.null(predictors)){
-    predictors<-setdiff(unique(gsub(paste0(sep,"1|",sep,"2"),"",grep(paste0(sep,"1|",sep,"2"),names(df),value = TRUE))),paste0(arguments$outcome))
-    unpaired.predictors=setdiff(grep(paste0(sep,"1|",sep,"2"),names(df),value = TRUE,invert=TRUE),paste0(arguments$id))
-  }
-
-
-  if(!doubleentered){
-    outcome2x<-outcome2
-    outcome2<-c(outcome2[,1],outcome1[,1])
-    outcome1<-c(outcome1[,1],outcome2x[,1])
-
-    if(scale&is.numeric(outcome1)){
-      outcome1<-scale(outcome1)
-    outcome2<-scale(outcome2)
-    }
-    DV<-data.frame(outcome1,outcome2)
-    DV$outcome_diff<- DV$outcome1-DV$outcome2
-    DV$outcome_mean<-(DV$outcome1+DV$outcome2)/2
-
-    remove(outcome1);remove(outcome2x);remove(outcome2)
-
-    for(i in 1:length(predictors)){
-
-      predictor1x= predictor1=subset(df, select=paste0(predictors[i],sep,"1"))[,1]
-      predictor2=subset(df, select=paste0(predictors[i],sep,"2"))[,1]
-      predictor1<-c(predictor1[,1],predictor2[,1])
-      predictor2<-c(predictor2[,1],predictor1x[,1])
-      if(scale&is.numeric(predictor1)){
-        predictor1<-scale(predictor1)
-        predictor2<-scale(predictor2)
-      }
-      remove(predictor1x)
-      IVi<-data.frame(predictor1,predictor2)
-      IVi$predictor_diff<-IVi$predictor1-IVi$predictor2
-      IVi$predictor_mean<-(IVi$predictor1+IVi$predictor2)/2
-      names(IVi)<-c(paste0(predictors[i],"_1"),paste0(predictors[i],"_2"),paste0(predictors[i],"_diff"),paste0(predictors[i],"_mean"))
-      IVlist[[i]] <- IVi
-
-      names(IVlist)[i]<-paste0("")
-    }
-  }else{
-    #it asked me to add in else??like it gave the option?
-
-    if(scale&is.numeric(outcome1))
-
-    {outcome1<-scale(outcome1)
-    outcome2<-scale(outcome2)
-    }
-    DV<-data.frame(outcome1,outcome2)
-
-    DV$outcome_diff<-DV$outcome1-DV$outcome2
-    DV$outcome_mean<-(DV$outcome1+DV$outcome2)/2
-
-    remove(outcome1);remove(outcome2)
-    for(i in 1:length(predictors)){
-      predictor1=subset(df, select=paste0(predictors[i],sep,"1"))[,1]
-      predictor2=subset(df, select=paste0(predictors[i],sep,"2"))[,1]
-      if(scale&is.numeric(predictor1))
-      {predictor1<-scale(predictor1)
-      predictor2<-scale(predictor2)
-      }
-      IVi<-data.frame(predictor1,predictor2)
-      IVi$predictor_diff<-IVi$predictor1-IVi$predictor2
-      IVi$predictor_mean<-(IVi$predictor1+IVi$predictor2)/2
-      names(IVi)<-c(paste0(predictors[i],"_1"),paste0(predictors[i],"_2"),paste0(predictors[i],"_diff"),paste0(predictors[i],"_mean"))
-      IVlist[[i]] <- IVi
-      names(IVlist)[i]<-paste0("")
-    }
-  }
-
-
-  DV$id<-id
-  DV$ysort<-0
-  DV$ysort[DV$outcome_diff>0&!is.na(DV$outcome_diff)]<-1
-
-  # randomly select for sorting on identical outcomes
-
-  if(length(unique(DV$id[DV$outcome_diff==0]))>0){
-    select<-sample(c(0,1), replace=TRUE, size=length(unique(DV$id[DV$outcome_diff==0&!is.na(DV$outcome_diff)])))
-    DV$ysort[DV$outcome_diff==0&!is.na(DV$outcome_diff)]<-c(select,abs(select-1))
-
-  }
-  DV$id<-NULL
-  names(DV)<-c(paste0(arguments$outcome,"_1"),paste0(arguments$outcome,"_2"),paste0(arguments$outcome,"_diff"),paste0(arguments$outcome,"_mean"),"ysort")
-
-  merged.data.frame =data.frame(id,DV,IVlist)
-
-  id<-ysort<-NULL #appeases R CMD check
-
-  merged.data.frame<-subset(merged.data.frame,ysort==1)
-  merged.data.frame$ysort<-NULL
-  merged.data.frame <- merged.data.frame[order(merged.data.frame$id),]
-  if(!full)
-  {varskeep<-c("id",paste0(arguments$outcome,"_diff"),paste0(arguments$outcome,"_mean"),paste0(predictors,"_diff"),paste0(predictors,"_mean"))
-
-  merged.data.frame<-merged.data.frame[varskeep]
-  }
-
-  return(merged.data.frame)
-}
+  # merged.data.frame =data.frame(id,DV,IVlist)
+  # 
+  # id<-ysort<-NULL #appeases R CMD check
+  # 
+  # merged.data.frame<-subset(merged.data.frame,ysort==1)
+  # merged.data.frame$ysort<-NULL
+  # merged.data.frame <- merged.data.frame[order(merged.data.frame$id),]
+  # if(!full)
+  # {varskeep<-c("id",paste0(arguments$outcome,"_diff"),paste0(arguments$outcome,"_mean"),paste0(predictors,"_diff"),paste0(predictors,"_mean"))
+  # 
+  # merged.data.frame<-merged.data.frame[varskeep]
+  # }
+  # 
+  # return(merged.data.frame)
+# }
 
 ```
 
@@ -1891,35 +1890,34 @@ df_crime_gen1 <- qnames_crime(new_data2) #qnames(vallabels(new_data))
 
 ```{r spsp-data}
 
-
 df_crime_gen1 = 
   df_crime_gen1%>%mutate(
     SubjectTag=CASEID*100,
-DELIN_Mean = rowMeans(select(., starts_with("DELIN_")),na.rm=TRUE),
+DELIN_Mean = rowMeans(select(., starts_with("DELIN_")),na.rm=TRUE)
 #DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
 )
 
 #df_crime_gen1=vallabels_crime(df_crime_gen1)
 
-
-df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,SEX,DELIN_Mean) %>%
-    # have female be 0 and male be 1
-  mutate(SEX = case_when(SEX == 2 ~ 0,
+df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,RACE,SEX,DELIN_Mean) %>%
+  #minority is 1, 
+  #non-minority is 0
+  mutate(RACE = case_when(RACE == 3 ~ 0,
+                          RACE == 1 | RACE == 2 ~ 1),
+         # have female be 0 and male be 1
+         SEX = case_when(SEX == 2 ~ 0,
                          TRUE ~ 1))
-
 
 df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
 df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
-#df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
+df_spsp_gen1$CESD_20_1992=df_dep_gen1$CESD_SCORE_20_ITEM_1992
 
-#do we need these:
 cor(df_spsp_gen1,use="pairwise.complete")
 cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
 
-#what does this Warning in cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992, df_crime_gen1),  :
-  #the standard deviation is zero
-#took out race because not needed. 
+df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
+summary(df_spsp_gen1)
 ```
 
 ###Double entered pairing
@@ -1980,19 +1978,19 @@ summary(model_DEP_discord)
 ```{r create-dataframe}
 
 
-dsLinks <- Links79PairExpanded
-dsLinks$R <-dsLinks$RFull
-dsLinking <- dsLinks
-
-outcomeNames=c("SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
-#took out race
-# create single entered data using Nlsylinks package
-# clean the names and remove any NAs
-dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
-linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates" & dsLinking$RFull==.5,],
-outcomeNames = outcomeNames) %>%
-  janitor::clean_names() %>%
-  tidyr::drop_na()
+# dsLinks <- Links79PairExpanded
+# dsLinks$R <-dsLinks$RFull
+# dsLinking <- dsLinks
+# 
+# outcomeNames=c("SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
+# #took out race
+# # create single entered data using Nlsylinks package
+# # clean the names and remove any NAs
+# dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
+# linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates" & dsLinking$RFull==.5,],
+# outcomeNames = outcomeNames) %>%
+#   janitor::clean_names() %>%
+#   tidyr::drop_na()
 
 ```
 
