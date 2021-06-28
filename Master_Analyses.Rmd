@@ -67,6 +67,9 @@ devtools::install_github('R-Computing-Lab/discord', force=TRUE)
 
 
 ```{r setup, include=FALSE,errors=TRUE}
+
+#do we need this chunck? 
+
 discord_regression<- function(df,
                        outcome,
                        predictors,
@@ -1914,6 +1917,8 @@ df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 cor(df_spsp_gen1,use="pairwise.complete")
 cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
 
+#what does this Warning in cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992, df_crime_gen1),  :
+  #the standard deviation is zero
 #took out race because not needed. 
 ```
 
@@ -1922,7 +1927,7 @@ cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.c
 ```{r}
 
 # Link Kinship Pairs
-
+#double or singled entered pairing? It is different depending on if simple or spsp_2021. 
 
 ### create links double entered
 
@@ -2059,10 +2064,10 @@ print(onlyGirls)
 # Set working directory
 #setwd()
 
-new_data <- readr::read_csv('default/default.csv')
+new_age_data <- readr::read_csv('default/default.csv')
 
-new_data <- read.table('default.dat', sep=' ')
-names(new_data) <- c('R0000100',
+new_age_data <- read.table('default.dat', sep=' ')
+names(new_age_data) <- c('R0000100',
   'R0000300',
   'R0000500',
   'R0000600',
@@ -2073,11 +2078,11 @@ names(new_data) <- c('R0000100',
 
 # Handle missing values
 
-  new_data[new_data == -1] = NA  # Refused 
-  new_data[new_data == -2] = NA  # Dont know 
-  new_data[new_data == -3] = NA  # Invalid missing 
-  new_data[new_data == -4] = NA  # Valid missing 
-  new_data[new_data == -5] = NA  # Non-interview 
+  new_age_data[new_age_data == -1] = NA  # Refused 
+  new_age_data[new_age_data == -2] = NA  # Dont know 
+  new_age_data[new_age_data == -3] = NA  # Invalid missing 
+  new_age_data[new_age_data == -4] = NA  # Valid missing 
+  new_age_data[new_age_data == -5] = NA  # Non-interview 
 
 
 # If there are values not categorized they will be represented as NA
@@ -2209,26 +2214,26 @@ qnames = function(data) {
 #********************************************************************************************************
 
 # Remove the '#' before the following line to create a data file called "categories" with value labels. 
-categories <- vallabels(new_data)
+categories <- vallabels(new_age_data)
 
 # Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
-new_data <- qnames(new_data)
+new_age_data <- qnames(new_age_data)
 categories <- qnames(categories)
 
 # Produce summaries for the raw (uncategorized) data file
-summary(new_data)
+summary(new_age_data)
 
 # Remove the '#' before the following lines to produce summaries for the "categories" data file.
-categories <- vallabels(new_data)
+categories <- vallabels(new_age_data)
 summary(categories)
 
 #************************************************************************************************************
-head(new_data)
-names(new_data)
-summary(new_data) 
+head(new_age_data)
+names(new_age_data)
+summary(new_age_data) 
 #freq table for item 1
-table(new_data$`FAM-1B_1979`) 
-describe(new_data$`FAM-1B_1979`)
+table(new_age_data$`FAM-1B_1979`) 
+describe(new_age_data$`FAM-1B_1979`)
 ```
 
 ## predict delin_mean from dep
