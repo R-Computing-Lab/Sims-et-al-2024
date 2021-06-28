@@ -5,6 +5,7 @@ output:
     df_print: paged
 ---
 ```{r setup, include=FALSE,errors=TRUE}
+
 knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 # set seed
 set.seed(20200804)
@@ -1844,8 +1845,6 @@ summary(df_dep_gen1)
 
 ```{r recode}
 
-
-
 df_crime_gen1 = 
   df_crime_gen1%>%mutate(
     SubjectTag=CASEID*100,
@@ -1869,6 +1868,7 @@ df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 df_spsp_gen1$H40_CHRC_10K=as.numeric(df_dep_gen1$H40_CHRC_10K)
 df_spsp_gen1$H50_CHRC_7D=as.numeric(df_dep_gen1$H50_CHRC_7D)
+df_spsp_gen1$CESD_20_1992=df_dep_gen1$CESD_SCORE_20_ITEM_1992
 cor(df_spsp_gen1,use="pairwise.complete")
 cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
 
@@ -1982,7 +1982,7 @@ library(glue)
 
 ## 1992
 tic(glue::glue("model on {nrow(dsSingle)} rows"))
-model <- discord::discord_regression(data = dsSingle, outcome = "cesd_20_1992", predictors = "delin_mean")
+model <- discord::discord_regression(data = dsSingle, outcome = "CESD_20_1992", predictors = "delin_mean")
 toc()
 
 #print model
