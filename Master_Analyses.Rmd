@@ -2231,7 +2231,7 @@ describe(new_age_data$`FAM-1B_1979`)
 
 ## predict delin_mean from dep
 
-```{r}
+```{r predict delin_mean from dep}
 
 set.seed(18)
 discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
