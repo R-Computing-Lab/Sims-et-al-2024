@@ -2055,9 +2055,10 @@ summary(model_DEP_discord)
 
 #How old is everyone? 
 
-new_age_data <- readr::read_table('default/default.dat', col_types = cols())
+new_age_data <- readr::read_csv('default/default.csv')
+#Comment the one below out, it runs. Keep it in there is a warning, 
 
-new_age_data <- read.table('default.dat', sep=' ')
+#new_age_data <- read.table('default.dat', sep=' ')
 names(new_age_data) <- c('R0000100',
   'R0000300',
   'R0000500',
@@ -2215,8 +2216,9 @@ categories <- qnames(categories)
 summary(new_age_data)
 
 # Remove the '#' before the following lines to produce summaries for the "categories" data file.
-categories <- vallabels(new_age_data)
-summary(categories)
+#if uncomment, might be a warning here. DOn't know if need this summary. 
+#categories <- vallabels(new_age_data)
+#summary(categories)
 
 #************************************************************************************************************
 head(new_age_data)
