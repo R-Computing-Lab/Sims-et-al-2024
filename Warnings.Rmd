@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+author: "Emma SIms"
+date: "6/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Warnings:
+
+#{r Double entered pairing} chunk
+#I can't figure out the +- not meanigful for factors. I did change the outcomes to the right ones- delin_mean not CESD. Would that affect it? 
+
+Warning in Ops.factor(IVi$predictor1, IVi$predictor2) :
+  ‘-’ not meaningful for factors
+Warning in Ops.factor(IVi$predictor1, IVi$predictor2) :
+  ‘+’ not meaningful for factors
+Warning in DV$ysort[DV$outcome_diff == 0 & !is.na(DV$outcome_diff)] <- c(select,  :
+  number of items to replace is not a multiple of replacement length
+
+
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
