@@ -13,7 +13,9 @@ output:
     theme: journal
     highlight: monochrome
     code_folding: hide
+    
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 
@@ -25,8 +27,8 @@ set.seed(20200804)
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("devtools")) install.packages("devtools")
 if (!require("remotes")) install.packages("remotes")
-if (!require("NlsyLinks")) install.packages("NlsyLinks")
-if (!require("discord")) install.packages("discord")
+#if (!require("NlsyLinks")) install.packages("NlsyLinks")
+#if (!require("discord")) install.packages("discord")
 if (!require("janitor")) install.packages("janitor")
 if (!require("lm.beta")) install.packages("lm.beta")
 if (!require("matrixStats")) install.packages("matrixStats")
@@ -34,6 +36,11 @@ if (!require("tictoc")) install.packages("tictoc")
 if (!require("glue")) install.packages("glue")
 if (!require("psych")) install.packages("psych")
 if (!require("foreign")) install.packages("foreign")
+
+## Installs most recent dev version
+remotes::install_github(repo="nlsy-links/NlsyLinks")
+devtools::install_github('R-Computing-Lab/discord')
+
 if (!require("dplyr")) install.packages("dplyr")
 
 library(tidyverse)
@@ -49,11 +56,6 @@ library(glue)
 library(psych)
 library(foreign)
 library(dplyr)
-
-
-## Installs most recent dev version
-remotes::install_github(repo="nlsy-links/NlsyLinks")
-devtools::install_github('R-Computing-Lab/discord')
 
 ```
 
@@ -212,7 +214,6 @@ vallabels = function(data) {
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-
   data$H0003900 <- factor(data$H0003900, 
     levels=c(0.0,1.0), 
     labels=c("NO",
@@ -931,159 +932,159 @@ vallabels = function(data) {
       "MIL FEMALE WHITE",
       "MIL FEMALE BLACK",
       "MIL FEMALE HISPANIC"))
-  data$R0214700 <- factor(data$R0214700,
-    levels=c(1.0,2.0,3.0),
-    labels=c("HISPANIC",
-      "BLACK",
-      "NON-BLACK, NON-HISPANIC"))
-  data$R0214800 <- factor(data$R0214800,
-    levels=c(1.0,2.0),
-    labels=c("MALE",
-      "FEMALE"))
-  data$R0304600 <- factor(data$R0304600,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0304900 <- factor(data$R0304900,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305000 <- factor(data$R0305000,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305100 <- factor(data$R0305100,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305200 <- factor(data$R0305200,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305300 <- factor(data$R0305300,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305400 <- factor(data$R0305400,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305500 <- factor(data$R0305500,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305600 <- factor(data$R0305600,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305900 <- factor(data$R0305900,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306000 <- factor(data$R0306000,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306100 <- factor(data$R0306100,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306200 <- factor(data$R0306200,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306300 <- factor(data$R0306300,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306400 <- factor(data$R0306400,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306500 <- factor(data$R0306500,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
+#  data$R0214700 <- factor(data$R0214700,
+#    levels=c(1.0,2.0,3.0),
+#    labels=c("HISPANIC",
+#      "BLACK",
+#      "NON-BLACK, NON-HISPANIC"))
+#  data$R0214800 <- factor(data$R0214800,
+#    levels=c(1.0,2.0),
+#    labels=c("MALE",
+#      "FEMALE"))
+# data$R0304600 <- factor(data$R0304600,
+#   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+#   labels=c("NEVER",
+#     "ONCE",
+#     "TWICE",
+#     "3-5 TIMES",
+#     "6-10 TIMES",
+#     "11-50 TIMES",
+#     "MORE THAN 50 TIMES"))
+# data$R0304900 <- factor(data$R0304900,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305000 <- factor(data$R0305000,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305100 <- factor(data$R0305100,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305200 <- factor(data$R0305200,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305300 <- factor(data$R0305300,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305400 <- factor(data$R0305400,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305500 <- factor(data$R0305500,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305600 <- factor(data$R0305600,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305900 <- factor(data$R0305900,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306000 <- factor(data$R0306000,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306100 <- factor(data$R0306100,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306200 <- factor(data$R0306200,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306300 <- factor(data$R0306300,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306400 <- factor(data$R0306400,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306500 <- factor(data$R0306500,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
   data$R0306700 <- factor(data$R0306700,
     levels=c(0.0,1.0),
     labels=c("NO",
@@ -1731,42 +1732,52 @@ remove(new_data)
 ```
 
 
+
 ```{r data_cleaning}
 
 # is average deliquency score; so that missing data doesn't deflate score
 df_crime_gen1 = 
-  df_crime_gen1%>%mutate(
+  df_crime_gen1 %>% mutate(
     SubjectTag=CASEID*100,
-DELIN_Mean = rowMeans(select(.,
-                             starts_with("DELIN_")
-                             ),
-                      na.rm=TRUE),
-DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
+    DELIN_Mean = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
+#DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
 )
 
 
+# creating smaller dataframe to only include variables of interest
+df_spsp_gen1=select(df_crime_gen1,
+                    SubjectTag,
+                    CASEID,
+                    RACE,
+                    SEX,
+                    DELIN_Mean)
 
-df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,RACE,SEX,DELIN_Mean) %>%
-  #minority is 1, 
-  #non-minority is 0
-  mutate(RACE = case_when(RACE == 3 ~ 0,
-                          RACE == 1 | RACE == 2 ~ 1),
-         # have female be 0 and male be 1
-         SEX = case_when(SEX == 2 ~ 0,
-                         TRUE ~ 1))
+# recoving Race and Sex ; todo, name race to minority
+
+df_spsp_gen1=mutate(df_spsp_gen1,
+                     # race is 0 for white; and 1 for non-white
+                    RACE = case_when(RACE == 3 ~ 0,
+                                     RACE == 1 | RACE == 2 ~ 1),
+                    # have female be 0 and male be 1
+                    SEX = case_when(SEX == 2 ~ 0,
+                         TRUE ~ 1)
+                    )
+
+
 
 df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
 df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
-df_spsp_gen1$CESD_20_1992=df_dep_gen1$CESD_SCORE_20_ITEM_1992
 
+# 
 cor(df_spsp_gen1,use="pairwise.complete")
-cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
 
+# convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)
-```
 
+```
+## everything above this line reproduces
 ###Double entered pairing
 
 ```{r Double entered pairing}
