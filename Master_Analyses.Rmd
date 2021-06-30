@@ -13,8 +13,10 @@ output:
     theme: journal
     highlight: monochrome
     code_folding: hide
+    
 ---
-```{r setup1, include=FALSE}
+
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 
 # set seed
@@ -25,8 +27,8 @@ set.seed(20200804)
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("devtools")) install.packages("devtools")
 if (!require("remotes")) install.packages("remotes")
-if (!require("NlsyLinks")) install.packages("NlsyLinks")
-if (!require("discord")) install.packages("discord")
+#if (!require("NlsyLinks")) install.packages("NlsyLinks")
+#if (!require("discord")) install.packages("discord")
 if (!require("janitor")) install.packages("janitor")
 if (!require("lm.beta")) install.packages("lm.beta")
 if (!require("matrixStats")) install.packages("matrixStats")
@@ -34,6 +36,11 @@ if (!require("tictoc")) install.packages("tictoc")
 if (!require("glue")) install.packages("glue")
 if (!require("psych")) install.packages("psych")
 if (!require("foreign")) install.packages("foreign")
+
+## Installs most recent dev version
+remotes::install_github(repo="nlsy-links/NlsyLinks")
+devtools::install_github('R-Computing-Lab/discord')
+
 if (!require("dplyr")) install.packages("dplyr")
 
 library(tidyverse)
@@ -50,174 +57,16 @@ library(psych)
 library(foreign)
 library(dplyr)
 
-
 ```
 
-```{r}
-
-## Installs most recent dev version
-remotes::install_github(repo="nlsy-links/NlsyLinks")
-devtools::install_github('R-Computing-Lab/discord')
-
-
-```
-
-
-```{r setup2, include=FALSE,errors=TRUE}
-
-#ended up keeping this chunck because if I don't, when I try to run the discord regression package it says "sep" does not exist.  
-
-discord_regression<- function(df,
-                       outcome,
-                       predictors,
-                       more_args=NULL,
-                       additional_formula=more_args,
-                       ...
-                       ) {
-  #grab variables
-  outcome_diff=paste0(outcome,"_diff")
-  outcome_mean=paste0(outcome,"_mean")
-  predictors_diff=paste0(predictors,"_diff")
-  predictors_mean=paste0(predictors,"_mean")
-  # create string of predictors to go on the right side of the formula
-  right_side=paste(c(outcome_mean, predictors_diff,predictors_mean,additional_formula),collapse= "+")
-
-  discord_formula= formula(paste0(outcome_diff," ~ ", right_side))
-
-  # returns lm with the actual equation, not just printing
-  #   "lm(formula = discord_formula, data = df)"
-  eval(bquote(lm( .(discord_formula),data=df)))
-  }
-discord_data<- function(
-  outcome,
-  predictors=NULL,
-  doubleentered=F,
-  sep="",
-  scale=T,
-  df=NULL,
-  id=NULL,
-  full=T,
-  ...){
-  arguments <- as.list(match.call())
-  y <- ysort <- NULL
-
-  IVlist <- list()
-  outcome1=subset(df, select=paste0(arguments$outcome,sep,"1"))[,1]
-  outcome2=subset(df, select=paste0(arguments$outcome,sep,"2"))[,1]
-
-  #create id if not supplied
-  if(is.null(id))
-  {
-    id<-rep(1:length(outcome1[,1]))}
-  #If no predictors selected, grab all variables not listed as outcome, and contain sep 1 or sep 2
-  if(is.null(predictors)){
-    predictors<-setdiff(unique(gsub(paste0(sep,"1|",sep,"2"),"",grep(paste0(sep,"1|",sep,"2"),names(df),value = TRUE))),paste0(arguments$outcome))
-    #unpaired.predictors=setdiff(grep(paste0(sep,"1|",sep,"2"),names(df),value = TRUE,invert=TRUE),paste0(arguments$id))
-  }
-
-
-  if(!doubleentered){
-    outcome2x<-outcome2
-    outcome2<-c(outcome2[,1],outcome1[,1])
-    outcome1<-c(outcome1[,1],outcome2x[,1])
-
-    if(scale&is.numeric(outcome1)){
-      outcome1<-scale(outcome1)
-    outcome2<-scale(outcome2)
-    }
-    DV<-data.frame(outcome1,outcome2)
-    DV$outcome_diff<- DV$outcome1-DV$outcome2
-    DV$outcome_mean<-(DV$outcome1+DV$outcome2)/2
-
-    remove(outcome1);remove(outcome2x);remove(outcome2)
-
-    for(i in 1:length(predictors)){
-
-      predictor1x= predictor1=subset(df, select=paste0(predictors[i],sep,"1"))[,1]
-      predictor2=subset(df, select=paste0(predictors[i],sep,"2"))[,1]
-      predictor1<-c(predictor1[,1],predictor2[,1])
-      predictor2<-c(predictor2[,1],predictor1x[,1])
-      if(scale&is.numeric(predictor1)){
-        predictor1<-scale(predictor1)
-        predictor2<-scale(predictor2)
-      }
-      remove(predictor1x)
-      IVi<-data.frame(predictor1,predictor2)
-      IVi$predictor_diff<-IVi$predictor1-IVi$predictor2
-      IVi$predictor_mean<-(IVi$predictor1+IVi$predictor2)/2
-      names(IVi)<-c(paste0(predictors[i],"_1"),paste0(predictors[i],"_2"),paste0(predictors[i],"_diff"),paste0(predictors[i],"_mean"))
-      IVlist[[i]] <- IVi
-
-      names(IVlist)[i]<-paste0("")
-    }
-  }else{
-
-    if(scale&is.numeric(outcome1))
-
-    {outcome1<-scale(outcome1)
-    outcome2<-scale(outcome2)
-    }
-    DV<-data.frame(outcome1,outcome2)
-
-    DV$outcome_diff<-DV$outcome1-DV$outcome2
-    DV$outcome_mean<-(DV$outcome1+DV$outcome2)/2
-
-    remove(outcome1);remove(outcome2)
-    for(i in 1:length(predictors)){
-      predictor1=subset(df, select=paste0(predictors[i],sep,"1"))[,1]
-      predictor2=subset(df, select=paste0(predictors[i],sep,"2"))[,1]
-      if(scale&is.numeric(predictor1))
-      {predictor1<-scale(predictor1)
-      predictor2<-scale(predictor2)
-      }
-      IVi<-data.frame(predictor1,predictor2)
-      IVi$predictor_diff<-IVi$predictor1-IVi$predictor2
-      IVi$predictor_mean<-(IVi$predictor1+IVi$predictor2)/2
-      names(IVi)<-c(paste0(predictors[i],"_1"),paste0(predictors[i],"_2"),paste0(predictors[i],"_diff"),paste0(predictors[i],"_mean"))
-      IVlist[[i]] <- IVi
-      names(IVlist)[i]<-paste0("")
-    }
-  }
-
-
-  DV$id<-id
-  DV$ysort<-0
-  DV$ysort[DV$outcome_diff>0&!is.na(DV$outcome_diff)]<-1
-
-  # randomly select for sorting on identical outcomes
-
-  if(length(unique(DV$id[DV$outcome_diff==0]))>0){
-    select<-sample(c(0,1), replace=TRUE, size=length(unique(DV$id[DV$outcome_diff==0&!is.na(DV$outcome_diff)])))
-    DV$ysort[DV$outcome_diff==0&!is.na(DV$outcome_diff)]<-c(select,abs(select-1))
-
-  }
-  DV$id<-NULL
-  names(DV)<-c(paste0(arguments$outcome,"_1"),paste0(arguments$outcome,"_2"),paste0(arguments$outcome,"_diff"),paste0(arguments$outcome,"_mean"),"ysort")
-
-  merged.data.frame =data.frame(id,DV,IVlist)
-
-  id<-ysort<-NULL #appeases R CMD check
-
-  merged.data.frame<-subset(merged.data.frame,ysort==1)
-  merged.data.frame$ysort<-NULL
-  merged.data.frame <- merged.data.frame[order(merged.data.frame$id),]
-  if(!full)
-  {varskeep<-c("id",paste0(arguments$outcome,"_diff"),paste0(arguments$outcome,"_mean"),paste0(predictors,"_diff"),paste0(predictors,"_mean"))
-
-  merged.data.frame<-merged.data.frame[varskeep]
-  }
-
-  return(merged.data.frame)
-}
-
-```
 
 # Prep data
 
-### Depression
+## Depression
 
 ```{r data_dep}
-new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv', col_types = cols())
+new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv', 
+                            col_types = cols())
 names(new_data) <- c('H0000300',
   'H0000400',
   'H0000500',
@@ -365,7 +214,6 @@ vallabels = function(data) {
       "Some/A little of the time/1-2 Days",
       "Occasionally/Moderate amount of the time/3-4 Days",
       "Most/All of the time/5-7 Days"))
-
   data$H0003900 <- factor(data$H0003900, 
     levels=c(0.0,1.0), 
     labels=c("NO",
@@ -945,14 +793,16 @@ qnames = function(data) {
 
 df_dep_gen1 <- qnames(vallabels(new_data))
 
+remove(new_data)
+
 #************************************************************************************************************
 ```
 
 ### Crime
 
-```{r prep-data}
-new_data2 <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv', col_types = cols())
-names(new_data2) <- c('R0000100',
+```{r data_crim}
+new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv', col_types = cols())
+names(new_data) <- c('R0000100',
   'R0173600',
   'R0214700',
   'R0214800',
@@ -1050,16 +900,16 @@ names(new_data2) <- c('R0000100',
 
 # Handle missing values
 
-  new_data2[new_data2 == -1] = NA  # Refused
-  new_data2[new_data2 == -2] = NA  # Dont know
-  new_data2[new_data2 == -3] = NA  # Invalid missing
-  new_data2[new_data2 == -4] = NA  # Valid missing
-  new_data2[new_data2 == -5] = NA  # Non-interview
+  new_data[new_data == -1] = NA  # Refused
+  new_data[new_data == -2] = NA  # Dont know
+  new_data[new_data == -3] = NA  # Invalid missing
+  new_data[new_data == -4] = NA  # Valid missing
+  new_data[new_data == -5] = NA  # Non-interview
 
 
 # If there are values not categorized they will be represented as NA
 
-vallabels_crime = function(data) {
+vallabels = function(data) {
   data$R0173600 <- factor(data$R0173600,
     levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0),
     labels=c("CROSS MALE WHITE",
@@ -1082,159 +932,159 @@ vallabels_crime = function(data) {
       "MIL FEMALE WHITE",
       "MIL FEMALE BLACK",
       "MIL FEMALE HISPANIC"))
-  data$R0214700 <- factor(data$R0214700,
-    levels=c(1.0,2.0,3.0),
-    labels=c("HISPANIC",
-      "BLACK",
-      "NON-BLACK, NON-HISPANIC"))
-  data$R0214800 <- factor(data$R0214800,
-    levels=c(1.0,2.0),
-    labels=c("MALE",
-      "FEMALE"))
-  data$R0304600 <- factor(data$R0304600,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0304900 <- factor(data$R0304900,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305000 <- factor(data$R0305000,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305100 <- factor(data$R0305100,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305200 <- factor(data$R0305200,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305300 <- factor(data$R0305300,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305400 <- factor(data$R0305400,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305500 <- factor(data$R0305500,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305600 <- factor(data$R0305600,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0305900 <- factor(data$R0305900,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306000 <- factor(data$R0306000,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306100 <- factor(data$R0306100,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306200 <- factor(data$R0306200,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306300 <- factor(data$R0306300,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306400 <- factor(data$R0306400,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
-  data$R0306500 <- factor(data$R0306500,
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-    labels=c("NEVER",
-      "ONCE",
-      "TWICE",
-      "3-5 TIMES",
-      "6-10 TIMES",
-      "11-50 TIMES",
-      "MORE THAN 50 TIMES"))
+#  data$R0214700 <- factor(data$R0214700,
+#    levels=c(1.0,2.0,3.0),
+#    labels=c("HISPANIC",
+#      "BLACK",
+#      "NON-BLACK, NON-HISPANIC"))
+#  data$R0214800 <- factor(data$R0214800,
+#    levels=c(1.0,2.0),
+#    labels=c("MALE",
+#      "FEMALE"))
+# data$R0304600 <- factor(data$R0304600,
+#   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+#   labels=c("NEVER",
+#     "ONCE",
+#     "TWICE",
+#     "3-5 TIMES",
+#     "6-10 TIMES",
+#     "11-50 TIMES",
+#     "MORE THAN 50 TIMES"))
+# data$R0304900 <- factor(data$R0304900,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305000 <- factor(data$R0305000,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305100 <- factor(data$R0305100,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305200 <- factor(data$R0305200,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305300 <- factor(data$R0305300,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305400 <- factor(data$R0305400,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305500 <- factor(data$R0305500,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305600 <- factor(data$R0305600,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0305900 <- factor(data$R0305900,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306000 <- factor(data$R0306000,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306100 <- factor(data$R0306100,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306200 <- factor(data$R0306200,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306300 <- factor(data$R0306300,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306400 <- factor(data$R0306400,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
+  # data$R0306500 <- factor(data$R0306500,
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
+  #   labels=c("NEVER",
+  #     "ONCE",
+  #     "TWICE",
+  #     "3-5 TIMES",
+  #     "6-10 TIMES",
+  #     "11-50 TIMES",
+  #     "MORE THAN 50 TIMES"))
   data$R0306700 <- factor(data$R0306700,
     levels=c(0.0,1.0),
     labels=c("NO",
@@ -1672,7 +1522,7 @@ vallabels_crime = function(data) {
   return(data)
 }
 
-varlabels_crime <- c("ID# (1-12686) 79",
+varlabels <- c("ID# (1-12686) 79",
   "SAMPLE ID  79 INT",
   "RACL/ETHNIC COHORT /SCRNR 79",
   "SEX OF R 79",
@@ -1771,7 +1621,7 @@ varlabels_crime <- c("ID# (1-12686) 79",
 
 # Use qnames rather than rnums
 
-qnames_crime = function(data) {
+qnames = function(data) {
   names(data) <- c("CASEID",
      "SAMPLE_ID",	#	  "SAMPLE ID  79 INT",
     "RACE",	#	  "RACL/ETHNIC COHORT /SCRNR 79",
@@ -1873,73 +1723,99 @@ qnames_crime = function(data) {
 
 #********************************************************************************************************
 
-df_crime_gen1 <- qnames_crime(new_data2) #qnames(vallabels(new_data))
+df_crime_gen1 <- qnames(vallabels(new_data))
 
 #************************************************************************************************************
+
+remove(new_data)
 
 ```
 
 
-```{r spsp-data}
 
-#i added a new_data2 because there were a couple of new_data files so I didn't want it to get wrong.
+```{r data_cleaning}
 
+# is average deliquency score; so that missing data doesn't deflate score
 df_crime_gen1 = 
-  df_crime_gen1%>%mutate(
+  df_crime_gen1 %>% mutate(
     SubjectTag=CASEID*100,
-DELIN_Mean = rowMeans(select(., starts_with("DELIN_")),na.rm=TRUE)
+    DELIN_MEAN = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
 #DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
 )
 
-#df_crime_gen1=vallabels_crime(df_crime_gen1)
 
-df_spsp_gen1=select(df_crime_gen1,SubjectTag,CASEID,RACE,SEX,DELIN_Mean) %>%
-  #minority is 1, 
-  #non-minority is 0
-  mutate(RACE = case_when(RACE == 3 ~ 0,
-                          RACE == 1 | RACE == 2 ~ 1),
-         # have female be 0 and male be 1
-         SEX = case_when(SEX == 2 ~ 0,
-                         TRUE ~ 1))
+# creating smaller dataframe to only include variables of interest
+df_spsp_gen1=select(df_crime_gen1,
+                    SubjectTag,
+                    CASEID,
+                    RACE,
+                    SEX,
+                    DELIN_MEAN)
+
+# recoving Race and Sex ; todo, name race to minority
+
+df_spsp_gen1=mutate(df_spsp_gen1,
+                     # race is 0 for white; and 1 for non-white
+                    RACE = case_when(RACE == 3 ~ 0,
+                                     RACE == 1 | RACE == 2 ~ 1),
+                    # have female be 0 and male be 1
+                    SEX = case_when(SEX == 2 ~ 0,
+                         TRUE ~ 1)
+                    )
+
+
 
 df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
 df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
-df_spsp_gen1$CESD_20_1992=df_dep_gen1$CESD_SCORE_20_ITEM_1992
 
+# 
 cor(df_spsp_gen1,use="pairwise.complete")
-cor(data.frame(df_dep_gen1$CESD_SCORE_7_ITEM_1992,df_crime_gen1),use="pairwise.complete")
 
+# convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)
-```
 
-###Double entered pairing
 
-```{r Double entered pairing}
 ### create links double entered
 
 dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-
-outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
-outcomeDataset = df_spsp_gen1,
-linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinking$RFull==.5,],
-outcomeNames=outcomeNames
-)
-
-data_DEP=discord_data(outcome="DELIN_Mean",
-                      doubleentered=T,
-                      id=dsDouble_G1$ExtendedID,
-                      df=dsDouble_G1,
-                      sep="_S",scale=F)
+                            outcomeDataset = df_spsp_gen1,
+                            linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
+                            outcomeNames = outcomeNames
+                            )
+```
 
 
-model_DEP_discord=discord_regression(outcome="DELIN_Mean",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
+
+```{r doubleentered}
+
+
+#mean and diff for ced 20 1992
+dsDouble_G1$CESD_20_1992_MEAN=.5*dsDouble_G1$CESD_20_1992_S1+.5*dsDouble_G1$CESD_20_1992_S2
+dsDouble_G1$CESD_20_1992_DIFF=dsDouble_G1$CESD_20_1992_S1-dsDouble_G1$CESD_20_1992_S2
+
+#mean and diff for ced 7 1992
+#dsDouble_G1$CESD_7_1992_MEAN=.5*dsDouble_G1$CESD_7_1992_S1+.5*dsDouble_G1$CESD_7_1992_S2
+#dsDouble_G1$CESD_7_1992_DIFF=dsDouble_G1$CESD_7_1992_S1-dsDouble_G1$CESD_7_1992_S2
+
+#mean and diff for ced 7 1994
+dsDouble_G1$CESD_7_1994_MEAN=.5*dsDouble_G1$CESD_7_1994_S1+.5*dsDouble_G1$CESD_7_1994_S2
+dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_S2
+
+#mean and diff for ced 7 1994
+dsDouble_G1$DELIN_MEAN_MEAN=.5*dsDouble_G1$DELIN_MEAN_S1+.5*dsDouble_G1$DELIN_MEAN_S2
+dsDouble_G1$DELIN_MEAN_DIFF=dsDouble_G1$DELIN_MEAN_S1-dsDouble_G1$DELIN_MEAN_S2
+
+## everything above this line reproduces
+
+model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
 
 
@@ -1951,14 +1827,14 @@ linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinki
 outcomeNames=outcomeNames
 )
 
-data_DEP=discord_data(outcome="DELIN_Mean",
+data_DEP=discord_data(outcome="DELIN_MEAN",
                       doubleentered=T,
                       id=dsDouble_G1$ExtendedID,
                       df=dsDouble_G1,
                       sep="_S",scale=F)
 
 
-model_DEP_discord=discord_regression(outcome="DELIN_Mean",predictors = c("CESD_7_1994"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
+model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_7_1994"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
 
 #took out v3 and v4 because nnot using measure anymore. 
@@ -1977,7 +1853,7 @@ summary(model_DEP_discord)
 # dsLinks$R <-dsLinks$RFull
 # dsLinking <- dsLinks
 # 
-# outcomeNames=c("SEX","CESD_20_1992","DELIN_Mean","CESD_7_1994")
+# outcomeNames=c("SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994")
 # #took out race
 # # create single entered data using Nlsylinks package
 # # clean the names and remove any NAs
@@ -2231,7 +2107,7 @@ describe(new_age_data$`FAM-1B_1979`)
 
 ## predict delin_mean from dep
 
-```{r predict delin_mean from dep}
+```{r predict_delin_mean_from_dep}
 
 set.seed(18)
 discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
