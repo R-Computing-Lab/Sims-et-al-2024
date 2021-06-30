@@ -1813,6 +1813,7 @@ dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_
 dsDouble_G1$DELIN_MEAN_MEAN=.5*dsDouble_G1$DELIN_MEAN_S1+.5*dsDouble_G1$DELIN_MEAN_S2
 dsDouble_G1$DELIN_MEAN_DIFF=dsDouble_G1$DELIN_MEAN_S1-dsDouble_G1$DELIN_MEAN_S2
 
+
 ## everything above this line reproduces
 
 model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
@@ -2108,37 +2109,37 @@ describe(new_age_data$`FAM-1B_1979`)
 ## predict delin_mean from dep
 
 ```{r predict_delin_mean_from_dep}
-
-set.seed(18)
-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
-
-set.seed(18)
-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994",abridged_output=FALSE)
-
-notBridge1992<-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
-
-# Base R
-summary(notBridge1992)
-
-# sweeping
-broom::tidy(notBridge1992) # should be same as abridge
-
-broom::glance(notBridge1992) # model fit such as r.squared and AIC
-
-broom::augment(notBridge1992)
-
-notBridge1994 <-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994",abridged_output=FALSE)
-
-# Base R
-summary(notBridge1994)
-
-# sweeping
-broom::tidy(notBridge1994) # should be same as abridge
-
-broom::glance(notBridge1994) # model fit such as r.squared and AIC
-
-broom::augment(notBridge1994)
-
+# 
+# set.seed(18)
+# discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
+# 
+# set.seed(18)
+# discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994",abridged_output=FALSE)
+# 
+# notBridge1992<-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_20_1992", abridged_output=FALSE)
+# 
+# # Base R
+# summary(notBridge1992)
+# 
+# # sweeping
+# broom::tidy(notBridge1992) # should be same as abridge
+# 
+# broom::glance(notBridge1992) # model fit such as r.squared and AIC
+# 
+# broom::augment(notBridge1992)
+# 
+# notBridge1994 <-discord::discord_regression(dsSingle, outcome = "delin_mean", predictors = "cesd_7_1994",abridged_output=FALSE)
+# 
+# # Base R
+# summary(notBridge1994)
+# 
+# # sweeping
+# broom::tidy(notBridge1994) # should be same as abridge
+# 
+# broom::glance(notBridge1994) # model fit such as r.squared and AIC
+# 
+# broom::augment(notBridge1994)
+# 
 
 ```
 
