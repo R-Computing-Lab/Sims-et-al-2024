@@ -1813,8 +1813,19 @@ dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_
 dsDouble_G1$DELIN_MEAN_MEAN=.5*dsDouble_G1$DELIN_MEAN_S1+.5*dsDouble_G1$DELIN_MEAN_S2
 dsDouble_G1$DELIN_MEAN_DIFF=dsDouble_G1$DELIN_MEAN_S1-dsDouble_G1$DELIN_MEAN_S2
 
+model <- lm(dsDouble_G1$CESD_20_1992_DIFF + dsDouble_G1$CESD_7_1994_DIFF ~ dsDouble_G1$CESD_20_1992_MEAN + dsDouble_G1$CESD_7_1994_MEAN + dsDouble_G1$DELIN_MEAN_MEAN + dsDouble_G1$DELIN_MEAN_DIFF, data= dsDouble_G1) 
+
+print(model)
+summary(model)
+
+model2 <- lm(dsDouble_G1$CESD_20_1992_DIFF + dsDouble_G1$CESD_7_1994_DIFF ~ dsDouble_G1$CESD_20_1992_MEAN + dsDouble_G1$CESD_7_1994_MEAN + dsDouble_G1$DELIN_MEAN_MEAN + dsDouble_G1$DELIN_MEAN_DIFF + as.factor(SEX_S1)+as.factor(RACE_S1), data= dsDouble_Gl) 
+
+print(model2)
+summary(model2)
 
 ## everything above this line reproduces
+
+
 
 model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
