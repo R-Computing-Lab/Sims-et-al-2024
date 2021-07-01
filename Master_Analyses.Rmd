@@ -1752,7 +1752,7 @@ df_spsp_gen1=select(df_crime_gen1,
                     SEX,
                     DELIN_MEAN)
 
-# recoving Race and Sex ; todo, name race to minority
+# recoding Race and Sex ; todo, name race to minority
 
 df_spsp_gen1=mutate(df_spsp_gen1,
                      # race is 0 for white; and 1 for non-white
@@ -1813,7 +1813,93 @@ dsDouble_G1$DELIN_MEAN_DIFF=dsDouble_G1$DELIN_MEAN_S1-dsDouble_G1$DELIN_MEAN_S2
 dsDouble_G1$CESD_7_1994_MEAN=.5*dsDouble_G1$CESD_7_1994_S1+.5*dsDouble_G1$CESD_7_1994_S2
 dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_S2
 
-model <- lm(dsDouble_G1$DELIN_MEAN_DIFF ~ dsDouble_G1$CESD_20_1992_MEAN + dsDouble_G1$CESD_7_1994_MEAN + dsDouble_G1$DELIN_MEAN_MEAN + dsDouble_G1$CESD_7_1994_DIFF +dsDouble_G1$CESD_20_1992_DIFF + as.factor(SEX_S1)+as.factor(RACE_S1), data= dsDouble_G1) 
+model <- lm(DELIN_MEAN_DIFF ~ 
+CESD_20_1992_MEAN +
+CESD_7_1994_MEAN + 
+DELIN_MEAN_MEAN + 
+CESD_7_1994_DIFF +
+CESD_20_1992_DIFF + 
+as.factor(SEX_S1)+ 
+as.factor(SEX_S2)+
+as.factor(RACE_S1), 
+data= dsDouble_G1)
+
+model2 <- lm(DELIN_MEAN_DIFF ~ 
+CESD_20_1992_MEAN +
+CESD_7_1994_MEAN + 
+DELIN_MEAN_MEAN + 
+as.factor(SEX_S1)+ 
+as.factor(SEX_S2)+
+as.factor(RACE_S1), 
+data= dsDouble_G1)
+
+model3 <- lm(DELIN_MEAN_DIFF ~ 
+CESD_7_1994_DIFF +
+CESD_20_1992_DIFF + 
+as.factor(SEX_S1)+ 
+as.factor(SEX_S2)+
+as.factor(RACE_S1), 
+data= dsDouble_G1)
+print(model)
+summary(model)
+
+dsLinks <- Links79PairExpanded
+dsLinks$R <-dsLinks$RFull
+dsLinking <- dsLinks
+
+outcomeNames=c("SEX","RACE", "CESD_20_1992","DELIN_MEAN","CESD_7_1994")
+#took out race
+# create single entered data using Nlsylinks package
+# clean the names and remove any NAs
+dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
+linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates" & dsLinking$RFull==.5,],
+outcomeNames = outcomeNames) %>%
+  janitor::clean_names() %>%
+  tidyr::drop_na()
+
+#mean and diff for ced 20 1992
+dsSingle$cesd_20_1992_mean=.5*dsSingle$cesd_20_1992_s1+.5*dsSingle$cesd_20_1992_s2
+dsSingle$cesd_20_1992_diff=dsSingle$cesd_20_1992_s1-dsSingle$cesd_20_1992_s2
+
+#mean and diff for ced 7 1992
+#dsSingle$cesd_7_1992_mean=.5*dsSingle$cesd_7_1992_s1+.5*dsSingle$cesd_7_1992_s2
+#dsSingle$cesd_7_1992_diff=dsSingle$cesd_7_1992_s1-dsSingle$cesd_7_1992_s2
+
+#mean and diff for ced 7 1994
+dsSingle$delin_mean_mean=.5*dsSingle$delin_mean_s1+.5*dsSingle$delin_mean_s2
+dsSingle$delin_mean_diff=dsSingle$delin_mean_s1-dsSingle$delin_mean_s2
+
+#mean and diff for ced 7 1994
+dsSingle$cesd_7_1994_mean=.5*dsSingle$cesd_7_1994_s1+.5*dsSingle$cesd_7_1994_s2
+dsSingle$cesd_7_1994_diff=dsSingle$cesd_7_1994_s1-dsSingle$cesd_7_1994_s2
+
+model4 <- lm(delin_mean_diff ~ 
+cesd_20_1992_mean +
+cesd_7_1994_mean + 
+delin_mean_mean + 
+cesd_7_1994_diff +
+cesd_20_1992_diff + 
+as.factor(sex_s1)+ 
+as.factor(sex_s2)+
+as.factor(race_s1), 
+data= dsSingle)
+
+model5 <- lm(delin_mean_diff ~ 
+cesd_20_1992_mean +
+cesd_7_1994_mean + 
+delin_mean_mean + 
+as.factor(sex_s1)+ 
+as.factor(sex_s2)+
+as.factor(race_s1), 
+data= dsSingle)
+
+model6 <- lm(delin_mean_diff ~ 
+cesd_7_1994_diff +
+cesd_20_1992_diff + 
+as.factor(sex_s1)+ 
+as.factor(sex_s2)+
+as.factor(race_s1), 
+data= dsSingle)
 
 print(model)
 summary(model)
@@ -1857,19 +1943,20 @@ summary(model)
 ```{r create-dataframe}
 
 
-# dsLinks <- Links79PairExpanded
-# dsLinks$R <-dsLinks$RFull
-# dsLinking <- dsLinks
-# 
-# outcomeNames=c("SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994")
-# #took out race
-# # create single entered data using Nlsylinks package
-# # clean the names and remove any NAs
-# dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
-# linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates" & dsLinking$RFull==.5,],
-# outcomeNames = outcomeNames) %>%
-#   janitor::clean_names() %>%
-#   tidyr::drop_na()
+dsLinks <- Links79PairExpanded
+dsLinks$R <-dsLinks$RFull
+dsLinking <- dsLinks
+
+outcomeNames=c("SEX","RACE", "CESD_20_1992","DELIN_MEAN","CESD_7_1994")
+#took out race
+# create single entered data using Nlsylinks package
+# clean the names and remove any NAs
+dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
+linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates" & dsLinking$RFull==.5,],
+outcomeNames = outcomeNames) %>%
+  janitor::clean_names() %>%
+  tidyr::drop_na()
+
 
 ```
 
