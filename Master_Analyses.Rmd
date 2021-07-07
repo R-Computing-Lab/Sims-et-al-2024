@@ -1776,6 +1776,11 @@ cor(df_spsp_gen1,use="pairwise.complete")
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)
 
+### CLASSIC REGRESSION GOES HERE
+
+
+
+
 
 ### create links double entered
 
@@ -1818,7 +1823,8 @@ dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_
 dsDouble_DELIN=dsDouble_G1[dsDouble_G1$DELIN_MEAN_DIFF>0,]
 
 
-
+# how many ties
+sum(dsDouble_G1$DELIN_MEAN_DIFF==0,na.rm=TRUE)
 
 model_delin <- lm(DELIN_MEAN_DIFF ~ 
 CESD_20_1992_MEAN +
@@ -1877,16 +1883,6 @@ summary(model_delin)
 ```
 
 
-### Create single entered pairing
-
-```{r create-dataframe}
-
-
-```
-
-```{r discord_regressionUpdated}
-#
-```
 
 
 ```{r}
