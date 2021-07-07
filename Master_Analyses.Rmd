@@ -1840,15 +1840,20 @@ as.factor(SEX_S1)+
 as.factor(SEX_S2)+
 as.factor(RACE_S1), 
 data= dsDouble_G1)
+
 print(model)
 summary(model)
+print(model2)
+summary(model2)
+print(model3)
+summary(model3)
 
 dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
 outcomeNames=c("SEX","RACE", "CESD_20_1992","DELIN_MEAN","CESD_7_1994")
-#took out race
+
 # create single entered data using Nlsylinks package
 # clean the names and remove any NAs
 dsSingle <- CreatePairLinksSingleEntered(outcomeDataset = df_spsp_gen1,
@@ -1903,8 +1908,32 @@ data= dsSingle)
 
 print(model)
 summary(model)
+print(model4)
+summary(model4)
+print(model5)
+summary(model5)
+print(model6)
+summary(model6)
 
 
+
+dsSingle$Absolute_cesd_20_1992_diff=abs(dsSingle$cesd_20_1992_diff)
+dsSingle$Absolute_cesd_7_1994_diff=abs(dsSingle$cesd_7_1994_diff)
+dsSingle$Absolute_delin_mean_diff=abs(dsSingle$delin_mean_diff)
+
+model7 <- lm(Absolute_delin_mean_diff ~ 
+cesd_20_1992_mean +
+cesd_7_1994_mean + 
+delin_mean_mean + 
+Absolute_cesd_7_1994_diff +
+Absolute_cesd_20_1992_diff + 
+as.factor(sex_s1)+ 
+as.factor(sex_s2)+
+as.factor(race_s1), 
+data= dsSingle)
+
+print(model7)
+summary(model7)
 ## everything above this line reproduces
 
 
