@@ -1788,7 +1788,7 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994")
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994", "CESD_7_1992")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
                             outcomeDataset = df_spsp_gen1,
@@ -1807,8 +1807,8 @@ dsDouble_G1$CESD_20_1992_MEAN=.5*dsDouble_G1$CESD_20_1992_S1+.5*dsDouble_G1$CESD
 dsDouble_G1$CESD_20_1992_DIFF=dsDouble_G1$CESD_20_1992_S1-dsDouble_G1$CESD_20_1992_S2
 
 #mean and diff for ced 7 1992
-#dsDouble_G1$CESD_7_1992_MEAN=.5*dsDouble_G1$CESD_7_1992_S1+.5*dsDouble_G1$CESD_7_1992_S2
-#dsDouble_G1$CESD_7_1992_DIFF=dsDouble_G1$CESD_7_1992_S1-dsDouble_G1$CESD_7_1992_S2
+dsDouble_G1$CESD_7_1992_MEAN=.5*dsDouble_G1$CESD_7_1992_S1+.5*dsDouble_G1$CESD_7_1992_S2
+dsDouble_G1$CESD_7_1992_DIFF=dsDouble_G1$CESD_7_1992_S1-dsDouble_G1$CESD_7_1992_S2
 
 #mean and diff for ced 7 1994
 dsDouble_G1$DELIN_MEAN_MEAN=.5*dsDouble_G1$DELIN_MEAN_S1+.5*dsDouble_G1$DELIN_MEAN_S2
@@ -1828,9 +1828,7 @@ sum(dsDouble_G1$DELIN_MEAN_DIFF==0,na.rm=TRUE)
 
 model_delin <- lm(DELIN_MEAN_DIFF ~ 
 CESD_20_1992_MEAN +
-CESD_7_1994_MEAN + 
 DELIN_MEAN_MEAN + 
-CESD_7_1994_DIFF +
 CESD_20_1992_DIFF + 
 as.factor(SEX_S1)+ 
 as.factor(SEX_S2)+
@@ -1839,9 +1837,27 @@ data= dsDouble_DELIN)
 
 summary(model_delin)
 
+model_delin2 <- lm(DELIN_MEAN_DIFF ~ 
+CESD_7_1994_MEAN + 
+DELIN_MEAN_MEAN + 
+CESD_7_1994_DIFF +
+as.factor(SEX_S1)+ 
+as.factor(SEX_S2)+
+as.factor(RACE_S1), 
+data= dsDouble_DELIN)
 
+summary(model_delin2)
 
+model_delin3 <- lm(DELIN_MEAN_DIFF ~ 
+CESD_7_1992_MEAN + 
+DELIN_MEAN_MEAN + 
+CESD_7_1992_DIFF +
+as.factor(SEX_S1)+ 
+as.factor(SEX_S2)+
+as.factor(RACE_S1), 
+data= dsDouble_DELIN)
 
+summary(model_delin3)
 
 
 
