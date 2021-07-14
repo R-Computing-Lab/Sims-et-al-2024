@@ -1787,17 +1787,10 @@ df_spsp_gen1$CESD_7_1992_MEAN=mean(df_spsp_gen1$CESD_7_1992, na.rm = TRUE)
 #mean for ced 7 1994
 df_spsp_gen1$CESD_7_1994_MEAN=mean(df_spsp_gen1$CESD_7_1994, na.rm = TRUE)
 
-#mean for delin
-df_spsp_gen1$DELIN_MEAN_MEAN=mean(df_spsp_gen1$DELIN_MEAN, na.rm = TRUE)
-
-#take out NAs? 
-complete.cases(df_spsp_gen1$DELIN_MEAN)
-
 #I don't know if I did these models right-I'm getting Nas in the result. so I tried taking out Nas and it didn't work. I'm not sure how to fix it. 
 
 modelO_delin <- lm(DELIN_MEAN ~ 
 CESD_20_1992_MEAN +
-DELIN_MEAN_MEAN + 
 as.factor(SEX)+ 
 as.factor(RACE), 
 data = df_spsp_gen1)
@@ -1806,7 +1799,6 @@ summary(modelO_delin)
 
 modelO_delin2 <- lm(DELIN_MEAN ~ 
 CESD_7_1994_MEAN + 
-DELIN_MEAN_MEAN + 
 as.factor(SEX)+ 
 as.factor(RACE), 
 data= df_spsp_gen1)
@@ -1815,12 +1807,21 @@ summary(modelO_delin2)
 
 modelO_delin3 <- lm(DELIN_MEAN ~ 
 CESD_7_1992_MEAN + 
-DELIN_MEAN_MEAN + 
 as.factor(SEX)+ 
 as.factor(RACE), 
 data= df_spsp_gen1)
 
 summary(modelO_delin3)
+
+#trying something
+modelO_delin4 <- lm(DELIN_MEAN ~ 
+CESD_7_1992 + 
+as.factor(SEX)+ 
+as.factor(RACE), 
+data= df_spsp_gen1)
+
+summary(modelO_delin4)
+
 
 ### create links double entered
 
