@@ -1775,54 +1775,42 @@ cor(df_spsp_gen1,use="pairwise.complete")
 # convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)
+```
 
+# CLASSIC REGRESSION 
+```{r regression}
 ### CLASSIC REGRESSION GOES HERE
 
-#mean for ced 20 1992
-df_spsp_gen1$CESD_20_1992_MEAN=mean(df_spsp_gen1$CESD_20_1992, na.rm = TRUE)
 
-#mean for ced 7 1992
-df_spsp_gen1$CESD_7_1992_MEAN=mean(df_spsp_gen1$CESD_7_1992, na.rm = TRUE)
+model_original_7_1992 <- lm(DELIN_MEAN ~ 
+                             CESD_7_1992 +
+                             as.factor(SEX) + 
+                             as.factor(RACE), 
+                           data = df_spsp_gen1)
 
-#mean for ced 7 1994
-df_spsp_gen1$CESD_7_1994_MEAN=mean(df_spsp_gen1$CESD_7_1994, na.rm = TRUE)
-
-#I don't know if I did these models right-I'm getting Nas in the result. so I tried taking out Nas and it didn't work. I'm not sure how to fix it. 
-
-modelO_delin <- lm(DELIN_MEAN ~ 
-CESD_20_1992_MEAN +
-as.factor(SEX)+ 
-as.factor(RACE), 
-data = df_spsp_gen1)
-
-summary(modelO_delin)
-
-modelO_delin2 <- lm(DELIN_MEAN ~ 
-CESD_7_1994_MEAN + 
-as.factor(SEX)+ 
-as.factor(RACE), 
-data= df_spsp_gen1)
-
-summary(modelO_delin2)
-
-modelO_delin3 <- lm(DELIN_MEAN ~ 
-CESD_7_1992_MEAN + 
-as.factor(SEX)+ 
-as.factor(RACE), 
-data= df_spsp_gen1)
-
-summary(modelO_delin3)
-
-#trying something
-modelO_delin4 <- lm(DELIN_MEAN ~ 
-CESD_7_1992 + 
-as.factor(SEX)+ 
-as.factor(RACE), 
-data= df_spsp_gen1)
-
-summary(modelO_delin4)
+summary(model_original_7_1992)
 
 
+model_original_20_1992 <- lm(DELIN_MEAN ~ 
+                             CESD_20_1992 +
+                             as.factor(SEX) + 
+                             as.factor(RACE), 
+                           data = df_spsp_gen1)
+
+summary(model_original_20_1992)
+
+model_original_7_1994 <- lm(DELIN_MEAN ~ 
+                             CESD_7_1994 +
+                             as.factor(SEX) + 
+                             as.factor(RACE), 
+                           data = df_spsp_gen1)
+
+summary(model_original_7_1994)
+```
+
+# discordant analyses
+
+```{r doubleentered_dataprep}
 ### create links double entered
 
 dsLinks <- Links79PairExpanded
@@ -1836,11 +1824,7 @@ dsDouble_G1 <- CreatePairLinksDoubleEntered(
                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
                             outcomeNames = outcomeNames
                             )
-```
 
-
-
-```{r doubleentered}
 
 
 #mean and diff for ced 20 1992
@@ -1867,7 +1851,11 @@ dsDouble_DELIN=dsDouble_G1[dsDouble_G1$DELIN_MEAN_DIFF>0,]
 # how many ties
 sum(dsDouble_G1$DELIN_MEAN_DIFF==0,na.rm=TRUE)
 
-model_delin <- lm(DELIN_MEAN_DIFF ~ 
+
+```
+```{r discordmodels_dataprep}
+
+model_discord_delin <- lm(DELIN_MEAN_DIFF ~ 
 CESD_20_1992_MEAN +
 DELIN_MEAN_MEAN + 
 CESD_20_1992_DIFF + 
@@ -1876,9 +1864,9 @@ as.factor(SEX_S2)+
 as.factor(RACE_S1), 
 data= dsDouble_DELIN)
 
-summary(model_delin)
+summary(model_discord_delin)
 
-model_delin2 <- lm(DELIN_MEAN_DIFF ~ 
+model_discord_delin2 <- lm(DELIN_MEAN_DIFF ~ 
 CESD_7_1994_MEAN + 
 DELIN_MEAN_MEAN + 
 CESD_7_1994_DIFF +
@@ -1887,9 +1875,9 @@ as.factor(SEX_S2)+
 as.factor(RACE_S1), 
 data= dsDouble_DELIN)
 
-summary(model_delin2)
+summary(model_discord_delin2)
 
-model_delin3 <- lm(DELIN_MEAN_DIFF ~ 
+model_discord_delin3 <- lm(DELIN_MEAN_DIFF ~ 
 CESD_7_1992_MEAN + 
 DELIN_MEAN_MEAN + 
 CESD_7_1992_DIFF +
@@ -1898,7 +1886,7 @@ as.factor(SEX_S2)+
 as.factor(RACE_S1), 
 data= dsDouble_DELIN)
 
-summary(model_delin3)
+summary(model_discord_delin3)
 
 
 

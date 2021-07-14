@@ -2075,124 +2075,283 @@ div.tocify {
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">### CLASSIC REGRESSION GOES HERE</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">### create links double entered</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>dsLinks <span class="ot">&lt;-</span> Links79PairExpanded</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>dsLinks<span class="sc">$</span>R <span class="ot">&lt;-</span>dsLinks<span class="sc">$</span>RFull</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>dsLinking <span class="ot">&lt;-</span> dsLinks</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>outcomeNames<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;RACE&quot;</span>,<span class="st">&quot;SEX&quot;</span>,<span class="st">&quot;CESD_20_1992&quot;</span>,<span class="st">&quot;DELIN_MEAN&quot;</span>,<span class="st">&quot;CESD_7_1994&quot;</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>dsDouble_G1 <span class="ot">&lt;-</span> <span class="fu">CreatePairLinksDoubleEntered</span>(</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                            <span class="at">outcomeDataset =</span> df_spsp_gen1,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                            <span class="at">linksPairDataset =</span> dsLinking[ dsLinking<span class="sc">$</span>RelationshipPath <span class="sc">==</span> <span class="st">&quot;Gen1Housemates&quot;</span> <span class="sc">&amp;</span> dsLinking<span class="sc">$</span>RFull<span class="sc">==</span>.<span class="dv">5</span>, ],</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                            <span class="at">outcomeNames =</span> outcomeNames</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                            )</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 20 1992</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_20_1992_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S2</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_20_1992_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S2</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 7 1992</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dsDouble_G1$CESD_7_1992_MEAN=.5*dsDouble_G1$CESD_7_1992_S1+.5*dsDouble_G1$CESD_7_1992_S2</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dsDouble_G1$CESD_7_1992_DIFF=dsDouble_G1$CESD_7_1992_S1-dsDouble_G1$CESD_7_1992_S2</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 7 1994</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S2</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S2</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 7 1994</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_7_1994_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S2</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_7_1994_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S2</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to only positive difference scores; MUST FIX TO INCLUDE TIES LATER</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>dsDouble_DELIN<span class="ot">=</span>dsDouble_G1[dsDouble_G1<span class="sc">$</span>DELIN_MEAN_DIFF<span class="sc">&gt;</span><span class="dv">0</span>,]</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># how many ties</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dsDouble_G1<span class="sc">$</span>DELIN_MEAN_DIFF<span class="sc">==</span><span class="dv">0</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 1132</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_delin <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN_DIFF <span class="sc">~</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>CESD_20_1992_MEAN <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>CESD_7_1994_MEAN <span class="sc">+</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>DELIN_MEAN_MEAN <span class="sc">+</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>CESD_7_1994_DIFF <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>CESD_20_1992_DIFF <span class="sc">+</span> </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S1)<span class="sc">+</span> </span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S2)<span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(RACE_S1), </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">data=</span> dsDouble_DELIN)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_delin)</span></code></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model_original_7_1992 <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN <span class="sc">~</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                             CESD_7_1992 <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.factor</span>(SEX) <span class="sc">+</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.factor</span>(RACE), </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> df_spsp_gen1)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_original_7_1992)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_MEAN_DIFF ~ CESD_20_1992_MEAN + CESD_7_1994_MEAN + 
-##     DELIN_MEAN_MEAN + CESD_7_1994_DIFF + CESD_20_1992_DIFF + 
-##     as.factor(SEX_S1) + as.factor(SEX_S2) + as.factor(RACE_S1), 
-##     data = dsDouble_DELIN)
+## lm(formula = DELIN_MEAN ~ CESD_7_1992 + as.factor(SEX) + as.factor(RACE), 
+##     data = df_spsp_gen1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -4.2067 -0.1159 -0.0063  0.1125  2.2123 
+## -0.6534 -0.2321 -0.1190  0.0879  4.6143 
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)          0.0736434  0.0178501   4.126 3.83e-05 ***
-## CESD_20_1992_MEAN    0.0004005  0.0011618   0.345    0.730    
-## CESD_7_1994_MEAN    -0.0034827  0.0025566  -1.362    0.173    
-## DELIN_MEAN_MEAN      0.9837220  0.0181865  54.091  &lt; 2e-16 ***
-## CESD_7_1994_DIFF    -0.0006767  0.0013831  -0.489    0.625    
-## CESD_20_1992_DIFF    0.0007816  0.0006115   1.278    0.201    
-## as.factor(SEX_S1)1   0.0574064  0.0143330   4.005 6.39e-05 ***
-## as.factor(SEX_S2)1  -0.0818956  0.0137173  -5.970 2.73e-09 ***
-## as.factor(RACE_S1)1  0.0044528  0.0136189   0.327    0.744    
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       0.147858   0.010009  14.773  &lt; 2e-16 ***
+## CESD_7_1992       0.012028   0.001243   9.674  &lt; 2e-16 ***
+## as.factor(SEX)1   0.252995   0.009953  25.420  &lt; 2e-16 ***
+## as.factor(RACE)1 -0.051265   0.009936  -5.160 2.53e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.3196 on 2326 degrees of freedom
-##   (1955 observations deleted due to missingness)
-## Multiple R-squared:  0.5812, Adjusted R-squared:  0.5798 
-## F-statistic: 403.5 on 8 and 2326 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## everything above this line reproduces</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dsLinks &lt;- Links79PairExpanded</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dsLinks$R &lt;-dsLinks$RFull</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dsLinking &lt;- dsLinks</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#outcomeNames=c(&quot;SEX&quot;,&quot;RACE&quot;, &quot;CESD_20_1992&quot;,&quot;DELIN_MEAN&quot;,&quot;CESD_7_1994&quot;)</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># model_DEP_discord=discord_regression(outcome=&quot;DELIN_MEAN&quot;,predictors = c(&quot;CESD_20_1992&quot;),df=data_DEP,additional_formula = &quot;+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)&quot;)</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model_DEP_discord)</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">### v2</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># dsDouble_G1 &lt;- CreatePairLinksDoubleEntered(</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># outcomeDataset = df_spsp_gen1,</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># linksPairDataset =dsLinking[dsLinking$RelationshipPath==&quot;Gen1Housemates&quot;&amp;dsLinking$RFull==.5,],</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># outcomeNames=outcomeNames</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># data_DEP=discord_data(outcome=&quot;DELIN_MEAN&quot;,</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#                       doubleentered=T,</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                       id=dsDouble_G1$ExtendedID,</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#                       df=dsDouble_G1,</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#                       sep=&quot;_S&quot;,scale=F)</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># model_DEP_discord=discord_regression(outcome=&quot;DELIN_MEAN&quot;,predictors = c(&quot;CESD_7_1994&quot;),df=data_DEP,additional_formula = &quot;+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)&quot;)</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model_DEP_discord)</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">#took out v3 and v4 because nnot using measure anymore. </span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model_DEP_discord)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How old is everyone? </span></span>
+## Residual standard error: 0.4545 on 8452 degrees of freedom
+##   (4230 observations deleted due to missingness)
+## Multiple R-squared:  0.07753,    Adjusted R-squared:  0.0772 
+## F-statistic: 236.8 on 3 and 8452 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_original_20_1992 <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN <span class="sc">~</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                             CESD_20_1992 <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.factor</span>(SEX) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.factor</span>(RACE), </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> df_spsp_gen1)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_original_20_1992)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_MEAN ~ CESD_20_1992 + as.factor(SEX) + as.factor(RACE), 
+##     data = df_spsp_gen1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.6379 -0.2327 -0.1190  0.0879  4.5423 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       0.1488953  0.0098678  15.089  &lt; 2e-16 ***
+## CESD_20_1992      0.0052613  0.0005413   9.720  &lt; 2e-16 ***
+## as.factor(SEX)1   0.2522008  0.0099239  25.414  &lt; 2e-16 ***
+## as.factor(RACE)1 -0.0538910  0.0099750  -5.403 6.75e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4554 on 8494 degrees of freedom
+##   (4188 observations deleted due to missingness)
+## Multiple R-squared:  0.07789,    Adjusted R-squared:  0.07757 
+## F-statistic: 239.2 on 3 and 8494 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_original_7_1994 <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN <span class="sc">~</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                             CESD_7_1994 <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.factor</span>(SEX) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.factor</span>(RACE), </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> df_spsp_gen1)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_original_7_1994)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_MEAN ~ CESD_7_1994 + as.factor(SEX) + as.factor(RACE), 
+##     data = df_spsp_gen1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5934 -0.2292 -0.1214  0.0909  5.2556 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       0.156971   0.010034  15.644  &lt; 2e-16 ***
+## CESD_7_1994       0.009419   0.001257   7.494 7.37e-14 ***
+## as.factor(SEX)1   0.257421   0.010157  25.345  &lt; 2e-16 ***
+## as.factor(RACE)1 -0.044982   0.010050  -4.476 7.72e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4591 on 8396 degrees of freedom
+##   (4286 observations deleted due to missingness)
+## Multiple R-squared:  0.07386,    Adjusted R-squared:  0.07352 
+## F-statistic: 223.2 on 3 and 8396 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="discordant-analyses" class="section level1">
+<h1>discordant analyses</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">### create links double entered</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>new_age_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;default/default.csv&#39;</span>)</span></code></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>dsLinks <span class="ot">&lt;-</span> Links79PairExpanded</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>dsLinks<span class="sc">$</span>R <span class="ot">&lt;-</span>dsLinks<span class="sc">$</span>RFull</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>dsLinking <span class="ot">&lt;-</span> dsLinks</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>outcomeNames<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;RACE&quot;</span>,<span class="st">&quot;SEX&quot;</span>,<span class="st">&quot;CESD_20_1992&quot;</span>,<span class="st">&quot;DELIN_MEAN&quot;</span>,<span class="st">&quot;CESD_7_1994&quot;</span>, <span class="st">&quot;CESD_7_1992&quot;</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>dsDouble_G1 <span class="ot">&lt;-</span> <span class="fu">CreatePairLinksDoubleEntered</span>(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">outcomeDataset =</span> df_spsp_gen1,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">linksPairDataset =</span> dsLinking[ dsLinking<span class="sc">$</span>RelationshipPath <span class="sc">==</span> <span class="st">&quot;Gen1Housemates&quot;</span> <span class="sc">&amp;</span> dsLinking<span class="sc">$</span>RFull<span class="sc">==</span>.<span class="dv">5</span>, ],</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                            <span class="at">outcomeNames =</span> outcomeNames</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                            )</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 20 1992</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_20_1992_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S2</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_20_1992_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>CESD_20_1992_S2</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 7 1992</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_7_1992_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_7_1992_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_7_1992_S2</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_7_1992_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>CESD_7_1992_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>CESD_7_1992_S2</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 7 1994</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S2</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>DELIN_MEAN_S2</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#mean and diff for ced 7 1994</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_7_1994_MEAN<span class="ot">=</span>.<span class="dv">5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S1<span class="fl">+.5</span><span class="sc">*</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S2</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>dsDouble_G1<span class="sc">$</span>CESD_7_1994_DIFF<span class="ot">=</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S1<span class="sc">-</span>dsDouble_G1<span class="sc">$</span>CESD_7_1994_S2</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to only positive difference scores; MUST FIX TO INCLUDE TIES LATER</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>dsDouble_DELIN<span class="ot">=</span>dsDouble_G1[dsDouble_G1<span class="sc">$</span>DELIN_MEAN_DIFF<span class="sc">&gt;</span><span class="dv">0</span>,]</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co"># how many ties</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dsDouble_G1<span class="sc">$</span>DELIN_MEAN_DIFF<span class="sc">==</span><span class="dv">0</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 1132</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model_discord_delin <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN_DIFF <span class="sc">~</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>CESD_20_1992_MEAN <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>DELIN_MEAN_MEAN <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>CESD_20_1992_DIFF <span class="sc">+</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S1)<span class="sc">+</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S2)<span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(RACE_S1), </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="at">data=</span> dsDouble_DELIN)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_discord_delin)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_MEAN_DIFF ~ CESD_20_1992_MEAN + DELIN_MEAN_MEAN + 
+##     CESD_20_1992_DIFF + as.factor(SEX_S1) + as.factor(SEX_S2) + 
+##     as.factor(RACE_S1), data = dsDouble_DELIN)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2780 -0.1129 -0.0054  0.1131  2.1877 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          0.0654158  0.0162883   4.016 6.09e-05 ***
+## CESD_20_1992_MEAN   -0.0005115  0.0009952  -0.514    0.607    
+## DELIN_MEAN_MEAN      0.9960116  0.0175562  56.733  &lt; 2e-16 ***
+## CESD_20_1992_DIFF    0.0007144  0.0005499   1.299    0.194    
+## as.factor(SEX_S1)1   0.0591972  0.0135921   4.355 1.38e-05 ***
+## as.factor(SEX_S2)1  -0.0817235  0.0130287  -6.273 4.17e-10 ***
+## as.factor(RACE_S1)1  0.0065219  0.0130965   0.498    0.619    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3185 on 2494 degrees of freedom
+##   (1789 observations deleted due to missingness)
+## Multiple R-squared:  0.5862, Adjusted R-squared:  0.5852 
+## F-statistic: 588.8 on 6 and 2494 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_discord_delin2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN_DIFF <span class="sc">~</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>CESD_7_1994_MEAN <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>DELIN_MEAN_MEAN <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>CESD_7_1994_DIFF <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S1)<span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S2)<span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(RACE_S1), </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="at">data=</span> dsDouble_DELIN)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_discord_delin2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_MEAN_DIFF ~ CESD_7_1994_MEAN + DELIN_MEAN_MEAN + 
+##     CESD_7_1994_DIFF + as.factor(SEX_S1) + as.factor(SEX_S2) + 
+##     as.factor(RACE_S1), data = dsDouble_DELIN)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2796 -0.1120 -0.0079  0.1117  2.1987 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          0.0789112  0.0167195   4.720 2.50e-06 ***
+## CESD_7_1994_MEAN    -0.0033000  0.0022458  -1.469    0.142    
+## DELIN_MEAN_MEAN      0.9960702  0.0177284  56.185  &lt; 2e-16 ***
+## CESD_7_1994_DIFF     0.0003385  0.0012682   0.267    0.790    
+## as.factor(SEX_S1)1   0.0544934  0.0139831   3.897 1.00e-04 ***
+## as.factor(SEX_S2)1  -0.0826517  0.0133614  -6.186 7.22e-10 ***
+## as.factor(RACE_S1)1  0.0013428  0.0130643   0.103    0.918    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3197 on 2445 degrees of freedom
+##   (1838 observations deleted due to missingness)
+## Multiple R-squared:  0.5845, Adjusted R-squared:  0.5835 
+## F-statistic: 573.2 on 6 and 2445 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model_discord_delin3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(DELIN_MEAN_DIFF <span class="sc">~</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>CESD_7_1992_MEAN <span class="sc">+</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>DELIN_MEAN_MEAN <span class="sc">+</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>CESD_7_1992_DIFF <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S1)<span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(SEX_S2)<span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(RACE_S1), </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="at">data=</span> dsDouble_DELIN)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_discord_delin3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_MEAN_DIFF ~ CESD_7_1992_MEAN + DELIN_MEAN_MEAN + 
+##     CESD_7_1992_DIFF + as.factor(SEX_S1) + as.factor(SEX_S2) + 
+##     as.factor(RACE_S1), data = dsDouble_DELIN)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2307 -0.1147 -0.0051  0.1120  2.1995 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          0.0664119  0.0166408   3.991 6.77e-05 ***
+## CESD_7_1992_MEAN    -0.0008695  0.0022870  -0.380   0.7038    
+## DELIN_MEAN_MEAN      0.9856856  0.0175720  56.094  &lt; 2e-16 ***
+## CESD_7_1992_DIFF     0.0027768  0.0012474   2.226   0.0261 *  
+## as.factor(SEX_S1)1   0.0597932  0.0136928   4.367 1.31e-05 ***
+## as.factor(SEX_S2)1  -0.0812448  0.0130569  -6.222 5.74e-10 ***
+## as.factor(RACE_S1)1  0.0048532  0.0130017   0.373   0.7090    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3172 on 2466 degrees of freedom
+##   (1817 observations deleted due to missingness)
+## Multiple R-squared:  0.5837, Adjusted R-squared:  0.5827 
+## F-statistic: 576.4 on 6 and 2466 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## everything above this line reproduces</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dsLinks &lt;- Links79PairExpanded</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dsLinks$R &lt;-dsLinks$RFull</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dsLinking &lt;- dsLinks</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#outcomeNames=c(&quot;SEX&quot;,&quot;RACE&quot;, &quot;CESD_20_1992&quot;,&quot;DELIN_MEAN&quot;,&quot;CESD_7_1994&quot;)</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># model_DEP_discord=discord_regression(outcome=&quot;DELIN_MEAN&quot;,predictors = c(&quot;CESD_20_1992&quot;),df=data_DEP,additional_formula = &quot;+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)&quot;)</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model_DEP_discord)</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="do">### v2</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># dsDouble_G1 &lt;- CreatePairLinksDoubleEntered(</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># outcomeDataset = df_spsp_gen1,</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># linksPairDataset =dsLinking[dsLinking$RelationshipPath==&quot;Gen1Housemates&quot;&amp;dsLinking$RFull==.5,],</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co"># outcomeNames=outcomeNames</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co"># data_DEP=discord_data(outcome=&quot;DELIN_MEAN&quot;,</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">#                       doubleentered=T,</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                       id=dsDouble_G1$ExtendedID,</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">#                       df=dsDouble_G1,</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">#                       sep=&quot;_S&quot;,scale=F)</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co"># model_DEP_discord=discord_regression(outcome=&quot;DELIN_MEAN&quot;,predictors = c(&quot;CESD_7_1994&quot;),df=data_DEP,additional_formula = &quot;+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)&quot;)</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model_DEP_discord)</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co">#took out v3 and v4 because nnot using measure anymore. </span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model_DEP_discord)</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How old is everyone? </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>new_age_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;default/default.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## 
 ## -- Column specification --------------------------------------------------------
 ## cols(
@@ -2204,164 +2363,164 @@ div.tocify {
 ##   SAMPLE_RACE = col_double(),
 ##   SAMPLE_SEX = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comment the one below out, it runs. Keep it in there is a warning, </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#new_age_data &lt;- read.table(&#39;default.dat&#39;, sep=&#39; &#39;)</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new_age_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;R0000100&#39;</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0000300&#39;</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0000500&#39;</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0000600&#39;</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0173600&#39;</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0214700&#39;</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0214800&#39;</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle missing values</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Refused </span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Dont know </span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">3</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Invalid missing </span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">4</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Valid missing </span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">5</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Non-interview </span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># If there are values not categorized they will be represented as NA</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>vallabels <span class="ot">=</span> <span class="cf">function</span>(data) {</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000300[<span class="fl">17.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000300 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000300 <span class="sc">&lt;=</span> <span class="fl">99999.0</span>] <span class="ot">&lt;-</span> <span class="fl">17.0</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000300 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0000300, </span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.0</span>,<span class="fl">4.0</span>,<span class="fl">5.0</span>,<span class="fl">6.0</span>,<span class="fl">7.0</span>,<span class="fl">8.0</span>,<span class="fl">9.0</span>,<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">12.0</span>,<span class="fl">13.0</span>,<span class="fl">14.0</span>,<span class="fl">15.0</span>,<span class="fl">16.0</span>,<span class="fl">17.0</span>), </span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;0: &lt; 1&quot;</span>,</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;1&quot;</span>,</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;2&quot;</span>,</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;3&quot;</span>,</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;4&quot;</span>,</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;5&quot;</span>,</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;6&quot;</span>,</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;7&quot;</span>,</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;8&quot;</span>,</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;9&quot;</span>,</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;10&quot;</span>,</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;11&quot;</span>,</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;12&quot;</span>,</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;13&quot;</span>,</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;14&quot;</span>,</span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;15&quot;</span>,</span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;16&quot;</span>,</span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;17 TO 99999: 17+&quot;</span>))</span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000500[<span class="fl">0.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000500 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000500 <span class="sc">&lt;=</span> <span class="fl">56.0</span>] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000500[<span class="fl">73.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000500 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000500 <span class="sc">&lt;=</span> <span class="fl">99999.0</span>] <span class="ot">&lt;-</span> <span class="fl">73.0</span></span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000500 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0000500, </span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">57.0</span>,<span class="fl">58.0</span>,<span class="fl">59.0</span>,<span class="fl">60.0</span>,<span class="fl">61.0</span>,<span class="fl">62.0</span>,<span class="fl">63.0</span>,<span class="fl">64.0</span>,<span class="fl">65.0</span>,<span class="fl">66.0</span>,<span class="fl">67.0</span>,<span class="fl">68.0</span>,<span class="fl">69.0</span>,<span class="fl">70.0</span>,<span class="fl">71.0</span>,<span class="fl">72.0</span>,<span class="fl">73.0</span>), </span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;0 TO 56: &lt; 57&quot;</span>,</span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;57&quot;</span>,</span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;58&quot;</span>,</span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;59&quot;</span>,</span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;60&quot;</span>,</span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;61&quot;</span>,</span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;62&quot;</span>,</span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;63&quot;</span>,</span>
-<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;64&quot;</span>,</span>
-<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;65&quot;</span>,</span>
-<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;66&quot;</span>,</span>
-<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;67&quot;</span>,</span>
-<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;68&quot;</span>,</span>
-<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;69&quot;</span>,</span>
-<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;70&quot;</span>,</span>
-<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;71&quot;</span>,</span>
-<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;72&quot;</span>,</span>
-<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;73 TO 99999: 73+&quot;</span>))</span>
-<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000600[<span class="fl">0.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000600 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000600 <span class="sc">&lt;=</span> <span class="fl">13.0</span>] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
-<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000600[<span class="fl">30.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000600 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000600 <span class="sc">&lt;=</span> <span class="fl">99999.0</span>] <span class="ot">&lt;-</span> <span class="fl">30.0</span></span>
-<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000600 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0000600, </span>
-<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">14.0</span>,<span class="fl">15.0</span>,<span class="fl">16.0</span>,<span class="fl">17.0</span>,<span class="fl">18.0</span>,<span class="fl">19.0</span>,<span class="fl">20.0</span>,<span class="fl">21.0</span>,<span class="fl">22.0</span>,<span class="fl">23.0</span>,<span class="fl">24.0</span>,<span class="fl">25.0</span>,<span class="fl">26.0</span>,<span class="fl">27.0</span>,<span class="fl">28.0</span>,<span class="fl">29.0</span>,<span class="fl">30.0</span>), </span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;0 TO 13: &lt; 14&quot;</span>,</span>
-<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;14&quot;</span>,</span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;15&quot;</span>,</span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;16&quot;</span>,</span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;17&quot;</span>,</span>
-<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;18&quot;</span>,</span>
-<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;19&quot;</span>,</span>
-<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;20&quot;</span>,</span>
-<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;21&quot;</span>,</span>
-<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;22&quot;</span>,</span>
-<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;23&quot;</span>,</span>
-<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;24&quot;</span>,</span>
-<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;25&quot;</span>,</span>
-<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;26&quot;</span>,</span>
-<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;27&quot;</span>,</span>
-<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;28&quot;</span>,</span>
-<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;29&quot;</span>,</span>
-<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;30 TO 99999: 30+&quot;</span>))</span>
-<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0173600 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0173600, </span>
-<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.0</span>,<span class="fl">4.0</span>,<span class="fl">5.0</span>,<span class="fl">6.0</span>,<span class="fl">7.0</span>,<span class="fl">8.0</span>,<span class="fl">9.0</span>,<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">12.0</span>,<span class="fl">13.0</span>,<span class="fl">14.0</span>,<span class="fl">15.0</span>,<span class="fl">16.0</span>,<span class="fl">17.0</span>,<span class="fl">18.0</span>,<span class="fl">19.0</span>,<span class="fl">20.0</span>), </span>
-<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;CROSS MALE WHITE&quot;</span>,</span>
-<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS MALE WH. POOR&quot;</span>,</span>
-<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS MALE BLACK&quot;</span>,</span>
-<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS MALE HISPANIC&quot;</span>,</span>
-<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE WHITE&quot;</span>,</span>
-<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE WH POOR&quot;</span>,</span>
-<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE BLACK&quot;</span>,</span>
-<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE HISPANIC&quot;</span>,</span>
-<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP MALE WH POOR&quot;</span>,</span>
-<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP MALE BLACK&quot;</span>,</span>
-<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP MALE HISPANIC&quot;</span>,</span>
-<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP FEM WH POOR&quot;</span>,</span>
-<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP FEMALE BLACK&quot;</span>,</span>
-<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP FEMALE HISPANIC&quot;</span>,</span>
-<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL MALE WHITE&quot;</span>,</span>
-<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL MALE BLACK&quot;</span>,</span>
-<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL MALE HISPANIC&quot;</span>,</span>
-<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL FEMALE WHITE&quot;</span>,</span>
-<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL FEMALE BLACK&quot;</span>,</span>
-<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL FEMALE HISPANIC&quot;</span>))</span>
-<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0214700 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0214700, </span>
-<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.0</span>), </span>
-<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;HISPANIC&quot;</span>,</span>
-<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;BLACK&quot;</span>,</span>
-<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;NON-BLACK, NON-HISPANIC&quot;</span>))</span>
-<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0214800 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0214800, </span>
-<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">2.0</span>), </span>
-<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;MALE&quot;</span>,</span>
-<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;FEMALE&quot;</span>))</span>
-<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
-<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a>varlabels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID# (1-12686) 79&quot;</span>,</span>
-<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;DATE OF BIRTH - MONTH 79&quot;</span>,</span>
-<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;DATE OF BIRTH - YR 79&quot;</span>,</span>
-<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AGE OF R 79&quot;</span>,</span>
-<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SAMPLE ID  79 INT&quot;</span>,</span>
-<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;RACL/ETHNIC COHORT /SCRNR 79&quot;</span>,</span>
-<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SEX OF R 79&quot;</span></span>
-<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Use qnames rather than rnums</span></span>
-<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a>qnames <span class="ot">=</span> <span class="cf">function</span>(data) {</span>
-<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CASEID_1979&quot;</span>,</span>
-<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Q1-3_A~M_1979&quot;</span>,</span>
-<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Q1-3_A~Y_1979&quot;</span>,</span>
-<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;FAM-1B_1979&quot;</span>,</span>
-<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SAMPLE_ID_1979&quot;</span>,</span>
-<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SAMPLE_RACE_78SCRN&quot;</span>,</span>
-<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SAMPLE_SEX_1979&quot;</span>)</span>
-<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
-<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a><span class="co">#********************************************************************************************************</span></span>
-<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the &#39;#&#39; before the following line to create a data file called &quot;categories&quot; with value labels. </span></span>
-<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">vallabels</span>(new_age_data)</span>
-<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the &#39;#&#39; before the following lines to rename variables using Qnames instead of Reference Numbers</span></span>
-<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a>new_age_data <span class="ot">&lt;-</span> <span class="fu">qnames</span>(new_age_data)</span>
-<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">qnames</span>(categories)</span>
-<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Produce summaries for the raw (uncategorized) data file</span></span>
-<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(new_age_data)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comment the one below out, it runs. Keep it in there is a warning, </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#new_age_data &lt;- read.table(&#39;default.dat&#39;, sep=&#39; &#39;)</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new_age_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;R0000100&#39;</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0000300&#39;</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0000500&#39;</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0000600&#39;</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0173600&#39;</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0214700&#39;</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;R0214800&#39;</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle missing values</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Refused </span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Dont know </span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">3</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Invalid missing </span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">4</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Valid missing </span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  new_age_data[new_age_data <span class="sc">==</span> <span class="sc">-</span><span class="dv">5</span>] <span class="ot">=</span> <span class="cn">NA</span>  <span class="co"># Non-interview </span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># If there are values not categorized they will be represented as NA</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>vallabels <span class="ot">=</span> <span class="cf">function</span>(data) {</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000300[<span class="fl">17.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000300 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000300 <span class="sc">&lt;=</span> <span class="fl">99999.0</span>] <span class="ot">&lt;-</span> <span class="fl">17.0</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000300 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0000300, </span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.0</span>,<span class="fl">4.0</span>,<span class="fl">5.0</span>,<span class="fl">6.0</span>,<span class="fl">7.0</span>,<span class="fl">8.0</span>,<span class="fl">9.0</span>,<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">12.0</span>,<span class="fl">13.0</span>,<span class="fl">14.0</span>,<span class="fl">15.0</span>,<span class="fl">16.0</span>,<span class="fl">17.0</span>), </span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;0: &lt; 1&quot;</span>,</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;2&quot;</span>,</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;3&quot;</span>,</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;4&quot;</span>,</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;5&quot;</span>,</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;6&quot;</span>,</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;7&quot;</span>,</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;8&quot;</span>,</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;9&quot;</span>,</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;10&quot;</span>,</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;11&quot;</span>,</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;12&quot;</span>,</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;13&quot;</span>,</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;14&quot;</span>,</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;15&quot;</span>,</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;16&quot;</span>,</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;17 TO 99999: 17+&quot;</span>))</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000500[<span class="fl">0.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000500 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000500 <span class="sc">&lt;=</span> <span class="fl">56.0</span>] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000500[<span class="fl">73.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000500 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000500 <span class="sc">&lt;=</span> <span class="fl">99999.0</span>] <span class="ot">&lt;-</span> <span class="fl">73.0</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000500 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0000500, </span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">57.0</span>,<span class="fl">58.0</span>,<span class="fl">59.0</span>,<span class="fl">60.0</span>,<span class="fl">61.0</span>,<span class="fl">62.0</span>,<span class="fl">63.0</span>,<span class="fl">64.0</span>,<span class="fl">65.0</span>,<span class="fl">66.0</span>,<span class="fl">67.0</span>,<span class="fl">68.0</span>,<span class="fl">69.0</span>,<span class="fl">70.0</span>,<span class="fl">71.0</span>,<span class="fl">72.0</span>,<span class="fl">73.0</span>), </span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;0 TO 56: &lt; 57&quot;</span>,</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;57&quot;</span>,</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;58&quot;</span>,</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;59&quot;</span>,</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;60&quot;</span>,</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;61&quot;</span>,</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;62&quot;</span>,</span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;63&quot;</span>,</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;64&quot;</span>,</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;65&quot;</span>,</span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;66&quot;</span>,</span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;67&quot;</span>,</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;68&quot;</span>,</span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;69&quot;</span>,</span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;70&quot;</span>,</span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;71&quot;</span>,</span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;72&quot;</span>,</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;73 TO 99999: 73+&quot;</span>))</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000600[<span class="fl">0.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000600 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000600 <span class="sc">&lt;=</span> <span class="fl">13.0</span>] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000600[<span class="fl">30.0</span> <span class="sc">&lt;=</span> data<span class="sc">$</span>R0000600 <span class="sc">&amp;</span> data<span class="sc">$</span>R0000600 <span class="sc">&lt;=</span> <span class="fl">99999.0</span>] <span class="ot">&lt;-</span> <span class="fl">30.0</span></span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0000600 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0000600, </span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">14.0</span>,<span class="fl">15.0</span>,<span class="fl">16.0</span>,<span class="fl">17.0</span>,<span class="fl">18.0</span>,<span class="fl">19.0</span>,<span class="fl">20.0</span>,<span class="fl">21.0</span>,<span class="fl">22.0</span>,<span class="fl">23.0</span>,<span class="fl">24.0</span>,<span class="fl">25.0</span>,<span class="fl">26.0</span>,<span class="fl">27.0</span>,<span class="fl">28.0</span>,<span class="fl">29.0</span>,<span class="fl">30.0</span>), </span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;0 TO 13: &lt; 14&quot;</span>,</span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;14&quot;</span>,</span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;15&quot;</span>,</span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;16&quot;</span>,</span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;17&quot;</span>,</span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;18&quot;</span>,</span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;19&quot;</span>,</span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;20&quot;</span>,</span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;21&quot;</span>,</span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;22&quot;</span>,</span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;23&quot;</span>,</span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;24&quot;</span>,</span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;25&quot;</span>,</span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;26&quot;</span>,</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;27&quot;</span>,</span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;28&quot;</span>,</span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;29&quot;</span>,</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;30 TO 99999: 30+&quot;</span>))</span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0173600 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0173600, </span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.0</span>,<span class="fl">4.0</span>,<span class="fl">5.0</span>,<span class="fl">6.0</span>,<span class="fl">7.0</span>,<span class="fl">8.0</span>,<span class="fl">9.0</span>,<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">12.0</span>,<span class="fl">13.0</span>,<span class="fl">14.0</span>,<span class="fl">15.0</span>,<span class="fl">16.0</span>,<span class="fl">17.0</span>,<span class="fl">18.0</span>,<span class="fl">19.0</span>,<span class="fl">20.0</span>), </span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;CROSS MALE WHITE&quot;</span>,</span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS MALE WH. POOR&quot;</span>,</span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS MALE BLACK&quot;</span>,</span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS MALE HISPANIC&quot;</span>,</span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE WHITE&quot;</span>,</span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE WH POOR&quot;</span>,</span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE BLACK&quot;</span>,</span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CROSS FEMALE HISPANIC&quot;</span>,</span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP MALE WH POOR&quot;</span>,</span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP MALE BLACK&quot;</span>,</span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP MALE HISPANIC&quot;</span>,</span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP FEM WH POOR&quot;</span>,</span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP FEMALE BLACK&quot;</span>,</span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;SUP FEMALE HISPANIC&quot;</span>,</span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL MALE WHITE&quot;</span>,</span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL MALE BLACK&quot;</span>,</span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL MALE HISPANIC&quot;</span>,</span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL FEMALE WHITE&quot;</span>,</span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL FEMALE BLACK&quot;</span>,</span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;MIL FEMALE HISPANIC&quot;</span>))</span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0214700 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0214700, </span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.0</span>), </span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;HISPANIC&quot;</span>,</span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;BLACK&quot;</span>,</span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;NON-BLACK, NON-HISPANIC&quot;</span>))</span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>R0214800 <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>R0214800, </span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="fu">c</span>(<span class="fl">1.0</span>,<span class="fl">2.0</span>), </span>
+<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;MALE&quot;</span>,</span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;FEMALE&quot;</span>))</span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>varlabels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID# (1-12686) 79&quot;</span>,</span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;DATE OF BIRTH - MONTH 79&quot;</span>,</span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;DATE OF BIRTH - YR 79&quot;</span>,</span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AGE OF R 79&quot;</span>,</span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SAMPLE ID  79 INT&quot;</span>,</span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;RACL/ETHNIC COHORT /SCRNR 79&quot;</span>,</span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SEX OF R 79&quot;</span></span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Use qnames rather than rnums</span></span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a>qnames <span class="ot">=</span> <span class="cf">function</span>(data) {</span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CASEID_1979&quot;</span>,</span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Q1-3_A~M_1979&quot;</span>,</span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Q1-3_A~Y_1979&quot;</span>,</span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;FAM-1B_1979&quot;</span>,</span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SAMPLE_ID_1979&quot;</span>,</span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SAMPLE_RACE_78SCRN&quot;</span>,</span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SAMPLE_SEX_1979&quot;</span>)</span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a><span class="co">#********************************************************************************************************</span></span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the &#39;#&#39; before the following line to create a data file called &quot;categories&quot; with value labels. </span></span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">vallabels</span>(new_age_data)</span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the &#39;#&#39; before the following lines to rename variables using Qnames instead of Reference Numbers</span></span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a>new_age_data <span class="ot">&lt;-</span> <span class="fu">qnames</span>(new_age_data)</span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">qnames</span>(categories)</span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Produce summaries for the raw (uncategorized) data file</span></span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(new_age_data)</span></code></pre></div>
 <pre><code>##   CASEID_1979    Q1-3_A~M_1979    Q1-3_A~Y_1979    FAM-1B_1979  
 ##  Min.   :    1   Min.   : 1.000   Min.   :57.00   Min.   :14.0  
 ##  1st Qu.: 3172   1st Qu.: 4.000   1st Qu.:58.00   1st Qu.:16.0  
@@ -2376,23 +2535,23 @@ div.tocify {
 ##  Mean   : 8.174   Mean   :2.434      Mean   :1.495  
 ##  3rd Qu.:12.000   3rd Qu.:3.000      3rd Qu.:2.000  
 ##  Max.   :20.000   Max.   :3.000      Max.   :2.000</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the &#39;#&#39; before the following lines to produce summaries for the &quot;categories&quot; data file.</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if uncomment, might be a warning here. DOn&#39;t know if need this summary. </span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#categories &lt;- vallabels(new_age_data)</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(categories)</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#************************************************************************************************************</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_age_data)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the &#39;#&#39; before the following lines to produce summaries for the &quot;categories&quot; data file.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if uncomment, might be a warning here. DOn&#39;t know if need this summary. </span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#categories &lt;- vallabels(new_age_data)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(categories)</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#************************************************************************************************************</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_age_data)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["CASEID_1979"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Q1-3_A~M_1979"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Q1-3_A~Y_1979"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["FAM-1B_1979"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SAMPLE_ID_1979"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["SAMPLE_RACE_78SCRN"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["SAMPLE_SEX_1979"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"9","3":"58","4":"20","5":"5","6":"3","7":"2"},{"1":"2","2":"1","3":"59","4":"20","5":"5","6":"3","7":"2"},{"1":"3","2":"8","3":"61","4":"17","5":"5","6":"3","7":"2"},{"1":"4","2":"8","3":"62","4":"16","5":"5","6":"3","7":"2"},{"1":"5","2":"7","3":"59","4":"19","5":"1","6":"3","7":"1"},{"1":"6","2":"10","3":"60","4":"18","5":"1","6":"3","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new_age_data)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new_age_data)</span></code></pre></div>
 <pre><code>## [1] &quot;CASEID_1979&quot;        &quot;Q1-3_A~M_1979&quot;      &quot;Q1-3_A~Y_1979&quot;     
 ## [4] &quot;FAM-1B_1979&quot;        &quot;SAMPLE_ID_1979&quot;     &quot;SAMPLE_RACE_78SCRN&quot;
 ## [7] &quot;SAMPLE_SEX_1979&quot;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(new_age_data) </span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(new_age_data) </span></code></pre></div>
 <pre><code>##   CASEID_1979    Q1-3_A~M_1979    Q1-3_A~Y_1979    FAM-1B_1979  
 ##  Min.   :    1   Min.   : 1.000   Min.   :57.00   Min.   :14.0  
 ##  1st Qu.: 3172   1st Qu.: 4.000   1st Qu.:58.00   1st Qu.:16.0  
@@ -2407,18 +2566,16 @@ div.tocify {
 ##  Mean   : 8.174   Mean   :2.434      Mean   :1.495  
 ##  3rd Qu.:12.000   3rd Qu.:3.000      3rd Qu.:2.000  
 ##  Max.   :20.000   Max.   :3.000      Max.   :2.000</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#freq table for item 1</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(new_age_data<span class="sc">$</span><span class="st">`</span><span class="at">FAM-1B_1979</span><span class="st">`</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#freq table for item 1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(new_age_data<span class="sc">$</span><span class="st">`</span><span class="at">FAM-1B_1979</span><span class="st">`</span>) </span></code></pre></div>
 <pre><code>## 
 ##   14   15   16   17   18   19   20   21   22 
 ##  950 1563 1561 1508 1634 1677 1666 1690  437</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(new_age_data<span class="sc">$</span><span class="st">`</span><span class="at">FAM-1B_1979</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(new_age_data<span class="sc">$</span><span class="st">`</span><span class="at">FAM-1B_1979</span><span class="st">`</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["vars"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["trimmed"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mad"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[13],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"12686","3":"17.89816","4":"2.305593","5":"18","6":"17.92325","7":"2.9652","8":"14","9":"22","10":"8","11":"-0.0500281","12":"-1.142072","13":"0.02047012","_rn_":"X1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
-</div>
-</div>
 </div>
 </div>
 
