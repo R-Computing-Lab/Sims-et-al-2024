@@ -1,7 +1,7 @@
 ---
 title: "Master_Analyses"
 author: "Emma Sims, Jonathan Trattner, and S. Mason Garrison"
-date: "6/24/2021"
+date: "`r Sys.Date()`"
 output: 
  html_document:
     df_print: paged
