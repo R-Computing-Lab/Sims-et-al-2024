@@ -1780,9 +1780,6 @@ summary(df_spsp_gen1)
 # CLASSIC REGRESSION 
 ```{r regression}
 ### CLASSIC REGRESSION GOES HERE
-install.packages(hmsic)
-library(Hmisc)
-rcorr(as.matrix(df_spsp_gen1))
 
 #link dyads
 
@@ -1847,11 +1844,11 @@ summary(model_original_7_1994)
 ```{r doubleentered_dataprep}
 ### create links double entered
 
-dsDouble_G1 <- CreatePairLinksDoubleEntered(
-                            outcomeDataset = df_spsp_gen1,
-                            linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
-                            outcomeNames = outcomeNames
-                            )
+# dsDouble_G1 <- CreatePairLinksDoubleEntered(
+#                             outcomeDataset = df_spsp_gen1,
+#                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
+#                             outcomeNames = outcomeNames
+#                             )
 
 
 # 
@@ -1924,7 +1921,7 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("SEX","RACE", "CESD_20_1992","DELIN_MEAN","CESD_7_1994", CESD_7_1992)
+outcomeNames=c("SEX","RACE", "CESD_20_1992","DELIN_MEAN","CESD_7_1994", "CESD_7_1992")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
 outcomeDataset = df_spsp_gen1,
@@ -1932,7 +1929,9 @@ linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinki
 outcomeNames=outcomeNames
 )
 
-data_DEP=discord_data(outcome="DELIN_MEAN",
+
+
+data_DEP=discord_data(data = dsDouble_G1, outcome="DELIN_MEAN", predictors = "CESD_7_1992", "CESD_20_1992", "CESD_7_1994",
                        doubleentered=T,
                       id=dsDouble_G1$ExtendedID,
                        df=dsDouble_G1,
@@ -1947,10 +1946,10 @@ summary(model_DEP_discord)
  model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_7_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
 summary(model_DEP_discord)
  
-``
+```
 
 
-```{r age}
+```{r people_age}
 
 #How old is everyone? 
 
@@ -2126,5 +2125,6 @@ summary(new_age_data)
 #freq table for item 1
 table(new_age_data$`FAM-1B_1979`) 
 describe(new_age_data$`FAM-1B_1979`)
+
 ```
 
