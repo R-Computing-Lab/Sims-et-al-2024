@@ -1780,50 +1780,64 @@ summary(df_spsp_gen1)
 # CLASSIC REGRESSION 
 ```{r regression}
 ### CLASSIC REGRESSION GOES HERE
-install.packages(Hmisc)
+install.packages(hmsic)
 library(Hmisc)
 rcorr(as.matrix(df_spsp_gen1))
 
+#link dyads
 
-#mean and diff for ced 20 1992
-dsDouble_G1$CESD_20_1992_MEAN=.5*dsDouble_G1$CESD_20_1992_S1+.5*dsDouble_G1$CESD_20_1992_S2
-dsDouble_G1$CESD_20_1992_DIFF=dsDouble_G1$CESD_20_1992_S1-dsDouble_G1$CESD_20_1992_S2
+dsLinks <- Links79PairExpanded
+dsLinks$R <-dsLinks$RFull
+dsLinking <- dsLinks
 
-#mean and diff for ced 7 1992
-dsDouble_G1$CESD_7_1992_MEAN=.5*dsDouble_G1$CESD_7_1992_S1+.5*dsDouble_G1$CESD_7_1992_S2
-dsDouble_G1$CESD_7_1992_DIFF=dsDouble_G1$CESD_7_1992_S1-dsDouble_G1$CESD_7_1992_S2
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994", "CESD_7_1992")
 
-#mean and diff for ced 7 1994
-dsDouble_G1$DELIN_MEAN_MEAN=.5*dsDouble_G1$DELIN_MEAN_S1+.5*dsDouble_G1$DELIN_MEAN_S2
-dsDouble_G1$DELIN_MEAN_DIFF=dsDouble_G1$DELIN_MEAN_S1-dsDouble_G1$DELIN_MEAN_S2
+dsSingle_G1 <- CreatePairLinksSingleEntered(
+                            outcomeDataset = df_spsp_gen1,
+                            linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
+                            outcomeNames = outcomeNames
+                            )
 
-#mean and diff for ced 7 1994
-dsDouble_G1$CESD_7_1994_MEAN=.5*dsDouble_G1$CESD_7_1994_S1+.5*dsDouble_G1$CESD_7_1994_S2
-dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_S2
+#mean for ced 20 1992
+dsSingle_G1$CESD_20_1992_MEAN=.5*dsSingle_G1$CESD_20_1992_S1+.5*dsSingle_G1$CESD_20_1992_S2
 
+#mean for ced 7 1992
+dsSingle_G1$CESD_7_1992_MEAN=.5*dsSingle_G1$CESD_7_1992_S1+.5*dsSingle_G1$CESD_7_1992_S2
 
-model_original_7_1992 <- lm(DELIN_MEAN ~ 
-                             CESD_7_1992 +
-                             as.factor(SEX) + 
-                             as.factor(RACE), 
-                           data = df_spsp_gen1)
+#mean for ced 7 1994
+dsSingle_G1$CESD_7_1994_MEAN=.5*dsSingle_G1$CESD_7_1994_S1+.5*dsSingle_G1$CESD_7_1994_S2
+
+#mean for delin_mean
+dsSingle_G1$DELIN_MEAN_MEAN=.5*dsSingle_G1$DELIN_MEAN_S1+.5*dsSingle_G1$DELIN_MEAN_S2
+
+model_original_7_1992 <- lm(DELIN_MEAN_MEAN ~ 
+                             CESD_7_1992_MEAN +
+                             as.factor(SEX_S1) + 
+                             as.factor(RACE_S1)+
+                            as.factor(SEX_S2) + 
+                             as.factor(RACE_S2), 
+                           data = dsSingle_G1)
 
 summary(model_original_7_1992)
 
 
-model_original_20_1992 <- lm(DELIN_MEAN ~ 
-                             CESD_20_1992 +
-                             as.factor(SEX) + 
-                             as.factor(RACE), 
-                           data = df_spsp_gen1)
+model_original_20_1992 <- lm(DELIN_MEAN_MEAN ~ 
+                             CESD_20_1992_MEAN +
+                             as.factor(SEX_S1) + 
+                             as.factor(RACE_S1)+
+                            as.factor(SEX_S2) + 
+                             as.factor(RACE_S2), 
+                           data = dsSingle_G1)
 
 summary(model_original_20_1992)
 
-model_original_7_1994 <- lm(DELIN_MEAN ~ 
-                             CESD_7_1994 +
-                             as.factor(SEX) + 
-                             as.factor(RACE), 
-                           data = df_spsp_gen1)
+model_original_7_1994 <- lm(DELIN_MEAN_MEAN ~ 
+                             CESD_7_1994_MEAN +
+                             as.factor(SEX_S1) + 
+                             as.factor(RACE_S1)+
+                            as.factor(SEX_S2) + 
+                             as.factor(RACE_S2), 
+                           data = dsSingle_G1)
 
 summary(model_original_7_1994)
 ```
@@ -1832,12 +1846,6 @@ summary(model_original_7_1994)
 
 ```{r doubleentered_dataprep}
 ### create links double entered
-
-dsLinks <- Links79PairExpanded
-dsLinks$R <-dsLinks$RFull
-dsLinking <- dsLinks
-
-outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994", "CESD_7_1992")
 
 dsDouble_G1 <- CreatePairLinksDoubleEntered(
                             outcomeDataset = df_spsp_gen1,
@@ -1942,7 +1950,7 @@ summary(model_DEP_discord)
 ``
 
 
-```{r}
+```{r age}
 
 #How old is everyone? 
 
