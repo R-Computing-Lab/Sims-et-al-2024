@@ -1739,7 +1739,7 @@ remove(new_data)
 df_crime_gen1 = 
   df_crime_gen1 %>% mutate(
     SubjectTag=CASEID*100,
-    DELIN_MEAN = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
+    DELIN_AVERAGE = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
 #DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
 )
 
@@ -1750,7 +1750,7 @@ df_spsp_gen1=select(df_crime_gen1,
                     CASEID,
                     RACE,
                     SEX,
-                    DELIN_MEAN)
+                    DELIN_AVERAGE)
 
 # recoding Race and Sex ; todo, name race to minority
 
@@ -1764,7 +1764,7 @@ df_spsp_gen1=mutate(df_spsp_gen1,
                     )
 
 
-
+#????
 df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
 df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
@@ -1775,11 +1775,11 @@ cor(df_spsp_gen1,use="pairwise.complete")
 # convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)
+
 ```
 
-# CLASSIC REGRESSION 
-```{r regression}
-### CLASSIC REGRESSION GOES HERE
+# Data Linking
+```{r kinship}
 
 #link dyads
 
@@ -1787,7 +1787,7 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_MEAN","CESD_7_1994", "CESD_7_1992")
+outcomeNames=c("RACE","SEX","CESD_20_1992","DELIN_AVERAGE","CESD_7_1994", "CESD_7_1992")
 
 dsSingle_G1 <- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
@@ -1804,85 +1804,56 @@ dsSingle_G1$CESD_7_1992_MEAN=.5*dsSingle_G1$CESD_7_1992_S1+.5*dsSingle_G1$CESD_7
 #mean for ced 7 1994
 dsSingle_G1$CESD_7_1994_MEAN=.5*dsSingle_G1$CESD_7_1994_S1+.5*dsSingle_G1$CESD_7_1994_S2
 
-#mean for delin_mean
-dsSingle_G1$DELIN_MEAN_MEAN=.5*dsSingle_G1$DELIN_MEAN_S1+.5*dsSingle_G1$DELIN_MEAN_S2
+#mean for DELIN_AVERAGE
+dsSingle_G1$DELIN_AVERAGE_MEAN=.5*dsSingle_G1$DELIN_AVERAGE_S1+.5*dsSingle_G1$DELIN_AVERAGE_S2
 
-model_original_7_1992 <- lm(DELIN_MEAN_MEAN ~ 
+
+
+```
+# CLASSIC REGRESSION 
+```{r regression}
+### CLASSIC REGRESSION GOES HERE
+
+#note: you only need s1 race because they're determined by the mother
+model_original_7_1992 <- lm(DELIN_AVERAGE_MEAN ~ 
                              CESD_7_1992_MEAN +
                              as.factor(SEX_S1) + 
                              as.factor(RACE_S1)+
-                            as.factor(SEX_S2) + 
-                             as.factor(RACE_S2), 
+                            as.factor(SEX_S2), 
                            data = dsSingle_G1)
 
-summary(model_original_7_1992)
 
 
-model_original_20_1992 <- lm(DELIN_MEAN_MEAN ~ 
+model_original_20_1992 <- lm(DELIN_AVERAGE_MEAN ~ 
                              CESD_20_1992_MEAN +
                              as.factor(SEX_S1) + 
                              as.factor(RACE_S1)+
-                            as.factor(SEX_S2) + 
-                             as.factor(RACE_S2), 
+                            as.factor(SEX_S2), 
                            data = dsSingle_G1)
 
-summary(model_original_20_1992)
 
-model_original_7_1994 <- lm(DELIN_MEAN_MEAN ~ 
+
+model_original_7_1994 <- lm(DELIN_AVERAGE_MEAN ~ 
                              CESD_7_1994_MEAN +
                              as.factor(SEX_S1) + 
                              as.factor(RACE_S1)+
-                            as.factor(SEX_S2) + 
-                             as.factor(RACE_S2), 
+                            as.factor(SEX_S2) , 
                            data = dsSingle_G1)
+# results
 
+summary(model_original_20_1992)
+summary(model_original_7_1992)
 summary(model_original_7_1994)
+
 ```
 
 # discordant analyses
 
-```{r doubleentered_dataprep}
-### create links double entered
-
-# dsDouble_G1 <- CreatePairLinksDoubleEntered(
-#                             outcomeDataset = df_spsp_gen1,
-#                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
-#                             outcomeNames = outcomeNames
-#                             )
-
-
+```{r discordmodels}
 # 
-# #mean and diff for ced 20 1992
-# dsDouble_G1$CESD_20_1992_MEAN=.5*dsDouble_G1$CESD_20_1992_S1+.5*dsDouble_G1$CESD_20_1992_S2
-# dsDouble_G1$CESD_20_1992_DIFF=dsDouble_G1$CESD_20_1992_S1-dsDouble_G1$CESD_20_1992_S2
-# 
-# #mean and diff for ced 7 1992
-# dsDouble_G1$CESD_7_1992_MEAN=.5*dsDouble_G1$CESD_7_1992_S1+.5*dsDouble_G1$CESD_7_1992_S2
-# dsDouble_G1$CESD_7_1992_DIFF=dsDouble_G1$CESD_7_1992_S1-dsDouble_G1$CESD_7_1992_S2
-# 
-# #mean and diff for ced 7 1994
-# dsDouble_G1$DELIN_MEAN_MEAN=.5*dsDouble_G1$DELIN_MEAN_S1+.5*dsDouble_G1$DELIN_MEAN_S2
-# dsDouble_G1$DELIN_MEAN_DIFF=dsDouble_G1$DELIN_MEAN_S1-dsDouble_G1$DELIN_MEAN_S2
-# 
-# #mean and diff for ced 7 1994
-# dsDouble_G1$CESD_7_1994_MEAN=.5*dsDouble_G1$CESD_7_1994_S1+.5*dsDouble_G1$CESD_7_1994_S2
-# dsDouble_G1$CESD_7_1994_DIFF=dsDouble_G1$CESD_7_1994_S1-dsDouble_G1$CESD_7_1994_S2
-
-
-# # subset to only positive difference scores; MUST FIX TO INCLUDE TIES LATER
-# dsDouble_DELIN=dsDouble_G1[dsDouble_G1$DELIN_MEAN_DIFF>0,]
-# 
-# 
-# # how many ties
-# sum(dsDouble_G1$DELIN_MEAN_DIFF==0,na.rm=TRUE)
-
-
-```
-```{r discordmodels_dataprep}
-# 
-# model_discord_delin <- lm(DELIN_MEAN_DIFF ~ 
+# model_discord_delin <- lm(DELIN_AVERAGE_DIFF ~ 
 # CESD_20_1992_MEAN +
-# DELIN_MEAN_MEAN + 
+# DELIN_AVERAGE_MEAN + 
 # CESD_20_1992_DIFF + 
 # as.factor(SEX_S1)+ 
 # as.factor(SEX_S2)+
@@ -1891,9 +1862,9 @@ summary(model_original_7_1994)
 # 
 # summary(model_discord_delin)
 # 
-# model_discord_delin2 <- lm(DELIN_MEAN_DIFF ~ 
+# model_discord_delin2 <- lm(DELIN_AVERAGE_DIFF ~ 
 # CESD_7_1994_MEAN + 
-# DELIN_MEAN_MEAN + 
+# DELIN_AVERAGE_MEAN + 
 # CESD_7_1994_DIFF +
 # as.factor(SEX_S1)+ 
 # as.factor(SEX_S2)+
@@ -1902,9 +1873,9 @@ summary(model_original_7_1994)
 # 
 # summary(model_discord_delin2)
 # 
-# model_discord_delin3 <- lm(DELIN_MEAN_DIFF ~ 
+# model_discord_delin3 <- lm(DELIN_AVERAGE_DIFF ~ 
 # CESD_7_1992_MEAN + 
-# DELIN_MEAN_MEAN + 
+# DELIN_AVERAGE_MEAN + 
 # CESD_7_1992_DIFF +
 # as.factor(SEX_S1)+ 
 # as.factor(SEX_S2)+
@@ -1916,35 +1887,40 @@ summary(model_original_7_1994)
 
 
 
-## everything above this line reproduces
-dsLinks <- Links79PairExpanded
-dsLinks$R <-dsLinks$RFull
-dsLinking <- dsLinks
-
-outcomeNames=c("SEX","RACE", "CESD_20_1992","DELIN_MEAN","CESD_7_1994", "CESD_7_1992")
-
-dsDouble_G1 <- CreatePairLinksDoubleEntered(
-outcomeDataset = df_spsp_gen1,
-linksPairDataset =dsLinking[dsLinking$RelationshipPath=="Gen1Housemates"&dsLinking$RFull==.5,],
-outcomeNames=outcomeNames
-)
 
 
+data_DEP=discord_data(data = dsSingle_G1,
+                      outcome="DELIN_AVERAGE",
+                      predictors =c("CESD_7_1992", "CESD_20_1992", "CESD_7_1994"),
+                     doubleentered=F,
+                     id=dsSingle_G1$ExtendedID,
+                     df=dsSingle_G1,
+                     sep="_S",
+                     scale=F)
 
-data_DEP=discord_data(data = dsDouble_G1, outcome="DELIN_MEAN", predictors = "CESD_7_1992", "CESD_20_1992", "CESD_7_1994",
-                       doubleentered=T,
-                      id=dsDouble_G1$ExtendedID,
-                       df=dsDouble_G1,
-                     sep="_S",scale=F)
+model_discord_CESD_20_1992=discord_regression(outcome="DELIN_AVERAGE",
+                                              predictors = c("CESD_20_1992"),
+                                              df=data_DEP,
+                                              additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)"
+                                              )
 
-model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_20_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
-summary(model_DEP_discord)
 
- model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_7_1994"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
- summary(model_DEP_discord)
+model_discord_CESD_7_1994=discord_regression(outcome="DELIN_AVERAGE",
+                                             predictors = c("CESD_7_1994"),
+                                             df=data_DEP,
+                                             additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)"
+                                             )
 
- model_DEP_discord=discord_regression(outcome="DELIN_MEAN",predictors = c("CESD_7_1992"),df=data_DEP,additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)")
-summary(model_DEP_discord)
+
+model_discord_CESD_7_1992=discord_regression(outcome="DELIN_AVERAGE",
+                                             predictors = c("CESD_7_1992"),
+                                             df=data_DEP,
+                                             additional_formula = "+ as.factor(SEX_1)+as.factor(SEX_2)+as.factor(RACE_1)"
+                                             )
+ 
+summary(model_discord_CESD_7_1992)
+summary(model_discord_CESD_7_1994)
+summary(model_discord_CESD_20_1992)
  
 ```
 
