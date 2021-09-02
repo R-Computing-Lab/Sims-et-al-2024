@@ -1,60 +1,13 @@
----
-title: "Master_Analyses"
-author: "Emma Sims, Jonathan Trattner, and S. Mason Garrison"
-date: "`r Sys.Date()`"
-output: rmarkdown::github_document
-    
----
-
-```{r setup,include =FALSE}
-knitr::opts_chunk$set(echo = TRUE,error=TRUE)
-
-# set seed
-set.seed(20200804)
-
-## Installs library if missing
-
-if (!require("tidyverse")) install.packages("tidyverse")
-if (!require("devtools")) install.packages("devtools")
-if (!require("remotes")) install.packages("remotes")
-#if (!require("NlsyLinks")) install.packages("NlsyLinks")
-#if (!require("discord")) install.packages("discord")
-if (!require("janitor")) install.packages("janitor")
-if (!require("lm.beta")) install.packages("lm.beta")
-if (!require("matrixStats")) install.packages("matrixStats")
-if (!require("tictoc")) install.packages("tictoc")
-if (!require("glue")) install.packages("glue")
-if (!require("psych")) install.packages("psych")
-if (!require("foreign")) install.packages("foreign")
-
-## Installs most recent dev version
-remotes::install_github(repo="nlsy-links/NlsyLinks")
-devtools::install_github('R-Computing-Lab/discord') 
-
-if (!require("dplyr")) install.packages("dplyr")
-
-library(tidyverse)
-library(devtools) 
-library(remotes)
-library(NlsyLinks)
-library(discord)
-library(janitor)
-library(lm.beta)
-library(matrixStats)
-library(tictoc)
-library(glue)
-library(psych)
-library(foreign)
-library(dplyr)
-
-```
-
+Master\_Analyses
+================
+Emma Sims, Jonathan Trattner, and S. Mason Garrison
+2021-09-02
 
 # Prep data
 
 ## Depression
 
-```{r data_dep}
+``` r
 new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv', 
                             col_types = cols())
 names(new_data) <- c('H0000300',
@@ -790,7 +743,7 @@ remove(new_data)
 
 ### Crime
 
-```{r data_crim}
+``` r
 new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv', col_types = cols())
 names(new_data) <- c('R0000100',
   'R0173600',
@@ -1613,99 +1566,99 @@ varlabels <- c("ID# (1-12686) 79",
 
 qnames = function(data) {
   names(data) <- c("CASEID",
-     "SAMPLE_ID",	#	  "SAMPLE ID  79 INT",
-    "RACE",	#	  "RACL/ETHNIC COHORT /SCRNR 79",
-    "SEX",	#	  "SEX OF R 79",
-    "DELIN_1_1980",	  #	  "ILL ACT RUN AWAY PAST YR (AGE <18) 80",
-    "DELIN_4_1980",	  #	  "ILL ACT INTENTION DAMAGED PROP PAST 80",
-    "DELIN_5_1980",	  #	  "ILL ACT FOUGHT @ SCHOOL/WRK PAST YR 80",
-    "DELIN_6_1980",	  #	  "ILL ACT SHOPLIFTED PAST YR 80",
-    "DELIN_7_1980",	  #	  "ILL ACT STEEL PAST YR (<$50) 80",
-    "DELIN_8_1980",	  #	  "ILL ACT STEEL PAST YR (>$50) 80",
-    "DELIN_9_1980",	  #	  "ILL ACT USED FORCE OBTAIN THINGS YR 80",
-    "DELIN_10_1980",	#	  "ILL ACT # SERIOUS THREAT HIT PAST 80",
-    "DELIN_11_1980",	#	  "ILL ACT ATTACK W/INTNT INJR/KILL PAST 80",
-    "DELIN_14_1980",	#	  "ILL ACT SOLD MARJ PAST YR 80",
-    "DELIN_15_1980",	#	  "ILL ACT SOLD HARD DRUGS PAST YR 80",
-    "DELIN_16_1980",	#	  "ILL ACT ATTEMPTED TO 80",
-    "DELIN_17_1980",	#	  "ILL ACT TAKE AUTO W/O PERM PAST YR 80",
-    "DELIN_18_1980",	#	  "ILL ACT BROKEN INTO A BUILDING PAST 80",
-    "DELIN_19_1980",	#	  "ILL ACT KNOW SOLD/HELD STOLEN PAST 80",
-    "DELIN_20_1980",	#	  "ILL ACT AID GAMBLING OPER PAST YR 80",
-    "POLICE_1_1980",	#	  "STOP BY POLICE O/THAN MIN TRAFIC OFF 80",
-    "POLICE_1A_1980",	#	  "TIMES STOP BY POLICE MINOR 80",
-    "POLICE_1B_1980",	#	  "TIMES STOP POLICE EXCLD MINOR PAST YR 80",
-    "POLICE_1C_1980",	#	  "AGE OF R 1ST TIME STOPPED BY POLICE 80",
-    "POLICE_2_1980",	#	  "EVER CHARGED W/ILGL ACT 80",
-    "POLICE_2A_1980",	#	  "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
-    "POLICE_2B_1980",	#	  "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
-    "POLICE_2C_M_1980",	#	  "MONTH M-RCNT ILGL ACT CHARGE 80",
-    "POLICE_2C_Y_1980",	#	  "YR M-RCNT ILGL ACT CHARGE 80",
-    "POLICE_2D_1980",	#	  "AGE @ TIME 1ST ILGL ACT CHARGE 80",
-    "POLICE_2E_1980",	#	  "EVER CHARGED ILGL ACT ADLT COURT 80",
-    "POLICE_3_1980",	#	  "EVER CONVICTED ON ILGL ACT CHARGES 80",
-    "POLICE_3A_1980",	#	  "TIMES CONVICTED ILGL ACT EXCLD MINOR 80",
-    "POLICE_3B_1980",	#	  "AGE @ TIME 1ST ILGL ACT CONVICTION 80",
-    "POLICE_3C_M_1980",	#	  "MONTH M-RCNT ILGL ACT CONVICTION 80",
-    "POLICE_3C_Y_1980",	#	  "YR M-RCNT ILGL ACT CONVICTION 80",
-    "POLICE_3D_01_1980",	#	  "ILL ACT ASSAULT 80",
-    "POLICE_3D_02_1980",	#	  "ILL ACT ROBBERY 80",
-    "POLICE_3D_03_1980",	#	  "ILL ACT THEFT 80",
-    "POLICE_3D_04_1980",	#	  "ILL ACT THEFT BY DECEPTION 80",
-    "POLICE_3D_05_1980",	#	  "ILL ACT STOLEN PROP 80",
-    "POLICE_3D_06_1980",	#	  "ILL ACT DESTRUCTION OF PROP 80",
-    "POLICE_3D_07_1980",	#	  "ILL ACT OTHER PROP OFFENSE 80",
-    "POLICE_3D_08_1980",	#	  "ILL ACT GAMBLING 80",
-    "POLICE_3D_09_1980",	#	  "ILL ACT COMMERCIAL VICE 80",
-    "POLICE_3D_10_1980",	#	  "ILL ACT POSSESSION OF MARJ/HASH 80",
-    "POLICE_3D_11_1980",	#	  "ILL ACT SELL MARJ/HASH 80",
-    "POLICE_3D_12_1980",	#	  "ILL ACT POSSESSION OTHER DRUGS 80",
-    "POLICE_3D_13_1980",	#	  "ILL ACT SALE/MANUF ILLICIT DRUGS 80",
-    "POLICE_3D_14_1980",	#	  "ILL ACT MAJOR TRAFIC OFFENSE 80",
-    "POLICE_3D_16_1980",	#	  "ILL ACT STATUS OFFENSE 80",
-    "POLICE_3D_17_1980",	#	  "ILL ACT OTHER 80",
-    "POLICE_3E_1980",   #	  "EVER CONVICTED ILGL ACT ADLT COURT 80",
-    "POLICE_4_1980",    #	  "EVER REFUSED COURT-RELATED COUNSELING 80",
-    "POLICE_4A_1980",   #	  "TIMES REFER COURT-RELATED COUNSELING 80",
-    "POLICE_4B_1980",   #	  "AGE @ TIME 1ST COURT-REL COUNSELING 80",
-    "POLICE_4C_M_1980",	#	  "MONTH M-RCNT COURT-REL COUNSELING END 80",
-    "POLICE_4C_Y_1980",	#	  "YR M-RCNT COURT-REL COUNSELING END 80",
-    "POLICE_6_1980",    #	  "EVER BEEN ON PROBATION 80",
-    "POLICE_6A_1980",	  #	  "TIMES ON PROBATION 80",
-    "POLICE_6B_M_1980",	#	  "DATE M-RCNT PROBATION PRD END 80",
-    "POLICE_6B_Y_1980",	#	  "YR M-RCNT PROBATION PRD END 80",
-    "POLICE_7_1980",    #	  "EVER SNTNCD ANY CORP INSTITUTN 80",
-    "POLICE_7A_1980",   #	  "TIMES SENT TO YTH CORP INSTITUTN 80",
-    "POLICE_7B_1980",   #	  "TIMES SENT TO ADLT CORP INSTITUTN 80",
-    "POLICE_7C_M_1980",	#	  "MONTH M-RCNT RLSE CORP INSTITUTN 80",
-    "POLICE_7C_Y_1980",	#	  "YR M-RCNT RLSE CORP INSTITUTN 80",
-    "RNI_1980",	        #	  "REASON FOR NONINT 80",
-    "RNI_1981",	        #	  "REASON FOR NONINT 81",
-    "RNI_1982",         #	  "REASON FOR NONINT 82",
-    "RNI_1983",         #	  "REASON FOR NONINT 83",
-    "RNI_1984",         #	  "REASON FOR NONINT 84",
-    "RNI_1985",         #	  "REASON FOR NONINT 85",
-    "RNI_1986",         #	  "REASON FOR NONINT 86",
-    "RNI_1987",         #	  "REASON FOR NONINT 87",
-    "RNI_1988",         #	  "REASON FOR NONINT 88",     
-    "RNI_1989",         #	  "REASON FOR NONINT 89",
-    "RNI_1990",         #	  "REASON FOR NONINT 90",
-    "RNI_1991",         #	  "REASON FOR NONINT 91",
-    "RNI_1992",         #	  "REASON FOR NONINT 92",
-    "RNI_1993",         #	  "REASONS FOR NON-INT 93",
-    "ARREST_7N_1994",   #	  "ARRESTED, IN POLICE TROUBLE 94",
-    "RNI_1994",         #	  "REASONS FOR NON-INT 94",
-    "RNI_1996",         #	  "REASONS FOR NON-INT 96",
-    "RNI_1998",         #	  "REASONS FOR NON-INT 1998",
-    "RNI_2000",         #	  "REASONS FOR NON-INT 2000",
-    "RNI_2002",         #	  "REASONS FOR NON-INT 2002",
-    "RNI_2004",         #	  "REASONS FOR NON-INT 2004",
-    "RNI_2006",         #	  "REASONS FOR NON-INT 2006",
-    "RNI_2008",         #	  "REASONS FOR NON-INT 2008",
-    "RNI_2010",         #	  "REASONS FOR NON-INT 2010",
-    "RNI_2012",         #	  "REASONS FOR NON-INT 2012",
-    "RNI_2014",         #	  "REASONS FOR NON-INT 2014",
-    "RNI_2016")         #	  "REASONS FOR NON-INT 2016"
+     "SAMPLE_ID",   #     "SAMPLE ID  79 INT",
+    "RACE", #     "RACL/ETHNIC COHORT /SCRNR 79",
+    "SEX",  #     "SEX OF R 79",
+    "DELIN_1_1980",   #   "ILL ACT RUN AWAY PAST YR (AGE <18) 80",
+    "DELIN_4_1980",   #   "ILL ACT INTENTION DAMAGED PROP PAST 80",
+    "DELIN_5_1980",   #   "ILL ACT FOUGHT @ SCHOOL/WRK PAST YR 80",
+    "DELIN_6_1980",   #   "ILL ACT SHOPLIFTED PAST YR 80",
+    "DELIN_7_1980",   #   "ILL ACT STEEL PAST YR (<$50) 80",
+    "DELIN_8_1980",   #   "ILL ACT STEEL PAST YR (>$50) 80",
+    "DELIN_9_1980",   #   "ILL ACT USED FORCE OBTAIN THINGS YR 80",
+    "DELIN_10_1980",    #     "ILL ACT # SERIOUS THREAT HIT PAST 80",
+    "DELIN_11_1980",    #     "ILL ACT ATTACK W/INTNT INJR/KILL PAST 80",
+    "DELIN_14_1980",    #     "ILL ACT SOLD MARJ PAST YR 80",
+    "DELIN_15_1980",    #     "ILL ACT SOLD HARD DRUGS PAST YR 80",
+    "DELIN_16_1980",    #     "ILL ACT ATTEMPTED TO 80",
+    "DELIN_17_1980",    #     "ILL ACT TAKE AUTO W/O PERM PAST YR 80",
+    "DELIN_18_1980",    #     "ILL ACT BROKEN INTO A BUILDING PAST 80",
+    "DELIN_19_1980",    #     "ILL ACT KNOW SOLD/HELD STOLEN PAST 80",
+    "DELIN_20_1980",    #     "ILL ACT AID GAMBLING OPER PAST YR 80",
+    "POLICE_1_1980",    #     "STOP BY POLICE O/THAN MIN TRAFIC OFF 80",
+    "POLICE_1A_1980",   #     "TIMES STOP BY POLICE MINOR 80",
+    "POLICE_1B_1980",   #     "TIMES STOP POLICE EXCLD MINOR PAST YR 80",
+    "POLICE_1C_1980",   #     "AGE OF R 1ST TIME STOPPED BY POLICE 80",
+    "POLICE_2_1980",    #     "EVER CHARGED W/ILGL ACT 80",
+    "POLICE_2A_1980",   #     "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
+    "POLICE_2B_1980",   #     "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
+    "POLICE_2C_M_1980", #     "MONTH M-RCNT ILGL ACT CHARGE 80",
+    "POLICE_2C_Y_1980", #     "YR M-RCNT ILGL ACT CHARGE 80",
+    "POLICE_2D_1980",   #     "AGE @ TIME 1ST ILGL ACT CHARGE 80",
+    "POLICE_2E_1980",   #     "EVER CHARGED ILGL ACT ADLT COURT 80",
+    "POLICE_3_1980",    #     "EVER CONVICTED ON ILGL ACT CHARGES 80",
+    "POLICE_3A_1980",   #     "TIMES CONVICTED ILGL ACT EXCLD MINOR 80",
+    "POLICE_3B_1980",   #     "AGE @ TIME 1ST ILGL ACT CONVICTION 80",
+    "POLICE_3C_M_1980", #     "MONTH M-RCNT ILGL ACT CONVICTION 80",
+    "POLICE_3C_Y_1980", #     "YR M-RCNT ILGL ACT CONVICTION 80",
+    "POLICE_3D_01_1980",    #     "ILL ACT ASSAULT 80",
+    "POLICE_3D_02_1980",    #     "ILL ACT ROBBERY 80",
+    "POLICE_3D_03_1980",    #     "ILL ACT THEFT 80",
+    "POLICE_3D_04_1980",    #     "ILL ACT THEFT BY DECEPTION 80",
+    "POLICE_3D_05_1980",    #     "ILL ACT STOLEN PROP 80",
+    "POLICE_3D_06_1980",    #     "ILL ACT DESTRUCTION OF PROP 80",
+    "POLICE_3D_07_1980",    #     "ILL ACT OTHER PROP OFFENSE 80",
+    "POLICE_3D_08_1980",    #     "ILL ACT GAMBLING 80",
+    "POLICE_3D_09_1980",    #     "ILL ACT COMMERCIAL VICE 80",
+    "POLICE_3D_10_1980",    #     "ILL ACT POSSESSION OF MARJ/HASH 80",
+    "POLICE_3D_11_1980",    #     "ILL ACT SELL MARJ/HASH 80",
+    "POLICE_3D_12_1980",    #     "ILL ACT POSSESSION OTHER DRUGS 80",
+    "POLICE_3D_13_1980",    #     "ILL ACT SALE/MANUF ILLICIT DRUGS 80",
+    "POLICE_3D_14_1980",    #     "ILL ACT MAJOR TRAFIC OFFENSE 80",
+    "POLICE_3D_16_1980",    #     "ILL ACT STATUS OFFENSE 80",
+    "POLICE_3D_17_1980",    #     "ILL ACT OTHER 80",
+    "POLICE_3E_1980",   #     "EVER CONVICTED ILGL ACT ADLT COURT 80",
+    "POLICE_4_1980",    #     "EVER REFUSED COURT-RELATED COUNSELING 80",
+    "POLICE_4A_1980",   #     "TIMES REFER COURT-RELATED COUNSELING 80",
+    "POLICE_4B_1980",   #     "AGE @ TIME 1ST COURT-REL COUNSELING 80",
+    "POLICE_4C_M_1980", #     "MONTH M-RCNT COURT-REL COUNSELING END 80",
+    "POLICE_4C_Y_1980", #     "YR M-RCNT COURT-REL COUNSELING END 80",
+    "POLICE_6_1980",    #     "EVER BEEN ON PROBATION 80",
+    "POLICE_6A_1980",     #   "TIMES ON PROBATION 80",
+    "POLICE_6B_M_1980", #     "DATE M-RCNT PROBATION PRD END 80",
+    "POLICE_6B_Y_1980", #     "YR M-RCNT PROBATION PRD END 80",
+    "POLICE_7_1980",    #     "EVER SNTNCD ANY CORP INSTITUTN 80",
+    "POLICE_7A_1980",   #     "TIMES SENT TO YTH CORP INSTITUTN 80",
+    "POLICE_7B_1980",   #     "TIMES SENT TO ADLT CORP INSTITUTN 80",
+    "POLICE_7C_M_1980", #     "MONTH M-RCNT RLSE CORP INSTITUTN 80",
+    "POLICE_7C_Y_1980", #     "YR M-RCNT RLSE CORP INSTITUTN 80",
+    "RNI_1980",         #     "REASON FOR NONINT 80",
+    "RNI_1981",         #     "REASON FOR NONINT 81",
+    "RNI_1982",         #     "REASON FOR NONINT 82",
+    "RNI_1983",         #     "REASON FOR NONINT 83",
+    "RNI_1984",         #     "REASON FOR NONINT 84",
+    "RNI_1985",         #     "REASON FOR NONINT 85",
+    "RNI_1986",         #     "REASON FOR NONINT 86",
+    "RNI_1987",         #     "REASON FOR NONINT 87",
+    "RNI_1988",         #     "REASON FOR NONINT 88",     
+    "RNI_1989",         #     "REASON FOR NONINT 89",
+    "RNI_1990",         #     "REASON FOR NONINT 90",
+    "RNI_1991",         #     "REASON FOR NONINT 91",
+    "RNI_1992",         #     "REASON FOR NONINT 92",
+    "RNI_1993",         #     "REASONS FOR NON-INT 93",
+    "ARREST_7N_1994",   #     "ARRESTED, IN POLICE TROUBLE 94",
+    "RNI_1994",         #     "REASONS FOR NON-INT 94",
+    "RNI_1996",         #     "REASONS FOR NON-INT 96",
+    "RNI_1998",         #     "REASONS FOR NON-INT 1998",
+    "RNI_2000",         #     "REASONS FOR NON-INT 2000",
+    "RNI_2002",         #     "REASONS FOR NON-INT 2002",
+    "RNI_2004",         #     "REASONS FOR NON-INT 2004",
+    "RNI_2006",         #     "REASONS FOR NON-INT 2006",
+    "RNI_2008",         #     "REASONS FOR NON-INT 2008",
+    "RNI_2010",         #     "REASONS FOR NON-INT 2010",
+    "RNI_2012",         #     "REASONS FOR NON-INT 2012",
+    "RNI_2014",         #     "REASONS FOR NON-INT 2014",
+    "RNI_2016")         #     "REASONS FOR NON-INT 2016"
 
   return(data)
 }
@@ -1718,13 +1671,9 @@ df_crime_gen1 <- qnames(vallabels(new_data))
 #************************************************************************************************************
 
 remove(new_data)
-
 ```
 
-
-
-```{r data_cleaning}
-
+``` r
 # is average deliquency score; so that missing data doesn't deflate score
 df_crime_gen1 = 
   df_crime_gen1 %>% mutate(
@@ -1761,16 +1710,53 @@ df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 
 # 
 cor(df_spsp_gen1,use="pairwise.complete")
+```
 
+    ##                SubjectTag      CASEID          RACE           SEX DELIN_AVERAGE
+    ## SubjectTag     1.00000000  1.00000000  0.2033318028  0.0386494994   -0.01886052
+    ## CASEID         1.00000000  1.00000000  0.2033318028  0.0386494994   -0.01886052
+    ## RACE           0.20333180  0.20333180  1.0000000000  0.0001666453   -0.03742342
+    ## SEX            0.03864950  0.03864950  0.0001666453  1.0000000000    0.25526995
+    ## DELIN_AVERAGE -0.01886052 -0.01886052 -0.0374234159  0.2552699546    1.00000000
+    ## CESD_7_1994    0.04253523  0.04253523  0.0814601930 -0.1635641661    0.03231583
+    ## CESD_20_1992   0.04534349  0.04534349  0.1344010296 -0.0938880066    0.07036204
+    ## CESD_7_1992    0.03244973  0.03244973  0.0970550584 -0.1161312642    0.06623573
+    ##               CESD_7_1994 CESD_20_1992 CESD_7_1992
+    ## SubjectTag     0.04253523   0.04534349  0.03244973
+    ## CASEID         0.04253523   0.04534349  0.03244973
+    ## RACE           0.08146019   0.13440103  0.09705506
+    ## SEX           -0.16356417  -0.09388801 -0.11613126
+    ## DELIN_AVERAGE  0.03231583   0.07036204  0.06623573
+    ## CESD_7_1994    1.00000000   0.42433473  0.42387813
+    ## CESD_20_1992   0.42433473   1.00000000  0.90160212
+    ## CESD_7_1992    0.42387813   0.90160212  1.00000000
+
+``` r
 # convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)
-
 ```
 
-# Data Linking
-```{r kinship}
+    ##    SubjectTag          CASEID           RACE       SEX      DELIN_AVERAGE   
+    ##  Min.   :    100   Min.   :    1   Min.   :0.000   0:6283   Min.   :0.0000  
+    ##  1st Qu.: 317225   1st Qu.: 3172   1st Qu.:0.000   1:6403   1st Qu.:0.0000  
+    ##  Median : 634350   Median : 6344   Median :0.000            Median :0.1333  
+    ##  Mean   : 634350   Mean   : 6344   Mean   :0.408            Mean   :0.2974  
+    ##  3rd Qu.: 951475   3rd Qu.: 9515   3rd Qu.:1.000            3rd Qu.:0.3750  
+    ##  Max.   :1268600   Max.   :12686   Max.   :1.000            Max.   :5.6250  
+    ##                                                             NA's   :861     
+    ##   CESD_7_1994     CESD_20_1992     CESD_7_1992    
+    ##  Min.   : 0.00   Min.   : 0.000   Min.   : 0.000  
+    ##  1st Qu.: 0.00   1st Qu.: 3.000   1st Qu.: 1.000  
+    ##  Median : 3.00   Median : 7.000   Median : 3.000  
+    ##  Mean   : 3.77   Mean   : 9.754   Mean   : 4.201  
+    ##  3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000  
+    ##  Max.   :21.00   Max.   :59.000   Max.   :21.000  
+    ##  NA's   :3811    NA's   :3708     NA's   :3755
 
+# Data Linking
+
+``` r
 #link dyads
 
 dsLinks <- Links79PairExpanded
@@ -1801,12 +1787,11 @@ dsSingle_G1$CESD_7_1994_MEAN=.5*dsSingle_G1$CESD_7_1994_S1+.5*dsSingle_G1$CESD_7
 
 #mean for DELIN_AVERAGE
 dsSingle_G1$DELIN_AVERAGE_MEAN=.5*dsSingle_G1$DELIN_AVERAGE_S1+.5*dsSingle_G1$DELIN_AVERAGE_S2
-
-
-
 ```
-# CLASSIC REGRESSION 
-```{r regression}
+
+# CLASSIC REGRESSION
+
+``` r
 ### CLASSIC REGRESSION GOES HERE
 
 #note: you only need s1 race because they're determined by the mother
@@ -1837,14 +1822,91 @@ model_original_7_1994 <- lm(DELIN_AVERAGE_MEAN ~
 # results
 
 summary(model_original_20_1992)
-summary(model_original_7_1992)
-summary(model_original_7_1994)
-
 ```
+
+    ## 
+    ## Call:
+    ## lm(formula = DELIN_AVERAGE_MEAN ~ CESD_20_1992_MEAN + as.factor(SEX_S1) + 
+    ##     as.factor(RACE_S1) + as.factor(SEX_S2), data = dsSingle_G1)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -0.6199 -0.2185 -0.0968  0.1133  4.0560 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)          0.163203   0.015686  10.405  < 2e-16 ***
+    ## CESD_20_1992_MEAN    0.007680   0.001009   7.609 3.70e-14 ***
+    ## as.factor(SEX_S1)1   0.115075   0.013060   8.811  < 2e-16 ***
+    ## as.factor(RACE_S1)1 -0.080361   0.013304  -6.041 1.73e-09 ***
+    ## as.factor(SEX_S2)1   0.109709   0.013066   8.397  < 2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.3543 on 2952 degrees of freedom
+    ##   (1313 observations deleted due to missingness)
+    ## Multiple R-squared:  0.06887,    Adjusted R-squared:  0.06761 
+    ## F-statistic: 54.58 on 4 and 2952 DF,  p-value: < 2.2e-16
+
+``` r
+summary(model_original_7_1992)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = DELIN_AVERAGE_MEAN ~ CESD_7_1992_MEAN + as.factor(SEX_S1) + 
+    ##     as.factor(RACE_S1) + as.factor(SEX_S2), data = dsSingle_G1)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -0.5521 -0.2207 -0.0944  0.1091  4.1084 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)          0.160594   0.016089   9.981  < 2e-16 ***
+    ## CESD_7_1992_MEAN     0.017732   0.002338   7.583 4.50e-14 ***
+    ## as.factor(SEX_S1)1   0.115824   0.013156   8.804  < 2e-16 ***
+    ## as.factor(RACE_S1)1 -0.077193   0.013284  -5.811 6.88e-09 ***
+    ## as.factor(SEX_S2)1   0.111406   0.013164   8.463  < 2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.3545 on 2918 degrees of freedom
+    ##   (1347 observations deleted due to missingness)
+    ## Multiple R-squared:  0.06871,    Adjusted R-squared:  0.06743 
+    ## F-statistic: 53.82 on 4 and 2918 DF,  p-value: < 2.2e-16
+
+``` r
+summary(model_original_7_1994)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = DELIN_AVERAGE_MEAN ~ CESD_7_1994_MEAN + as.factor(SEX_S1) + 
+    ##     as.factor(RACE_S1) + as.factor(SEX_S2), data = dsSingle_G1)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -0.5545 -0.2164 -0.0932  0.1098  4.0142 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)          0.167256   0.015960  10.480  < 2e-16 ***
+    ## CESD_7_1994_MEAN     0.016430   0.002283   7.198 7.78e-13 ***
+    ## as.factor(SEX_S1)1   0.124344   0.013317   9.337  < 2e-16 ***
+    ## as.factor(RACE_S1)1 -0.075589   0.013344  -5.665 1.62e-08 ***
+    ## as.factor(SEX_S2)1   0.115465   0.013350   8.649  < 2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.3557 on 2875 degrees of freedom
+    ##   (1390 observations deleted due to missingness)
+    ## Multiple R-squared:  0.07031,    Adjusted R-squared:  0.06902 
+    ## F-statistic: 54.36 on 4 and 2875 DF,  p-value: < 2.2e-16
 
 # discordant analyses
 
-```{r discordmodels}
+``` r
 # 
 # model_discord_delin <- lm(DELIN_AVERAGE_DIFF ~ 
 # CESD_20_1992_MEAN +
@@ -1896,7 +1958,13 @@ data_DEP = dsSingle_G1 %>%
                       pair_identifiers=c("_S1","_S2"),
                       demographics = "both"
                       )
+```
 
+    ## Warning: Specified id column does not contain unique values for each kin-pair.
+    ## Adding row-wise ID for restructuring data into paired format for analysis.
+    ## For more details, see <https://github.com/R-Computing-Lab/discord/issues/6>.
+
+``` r
 model_discord_CESD_7_1992= lm(data=data_DEP,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
@@ -1927,17 +1995,114 @@ model_discord_CESD_7_1994=  lm(data=data_DEP,
 
 
 summary(model_discord_CESD_7_1992)
-summary(model_discord_CESD_7_1994)
-summary(model_discord_CESD_20_1992)
- 
 ```
 
+    ## 
+    ## Call:
+    ## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD_7_1992_diff + 
+    ##     CESD_7_1992_mean + factor(SEX_1) + factor(SEX_2) + factor(RACE_1), 
+    ##     data = data_DEP)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -4.2957 -0.0977 -0.0100  0.0963  2.1864 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)         0.0415619  0.0137888   3.014   0.0026 ** 
+    ## DELIN_AVERAGE_mean  1.0020598  0.0155794  64.319  < 2e-16 ***
+    ## CESD_7_1992_diff    0.0023632  0.0010846   2.179   0.0294 *  
+    ## CESD_7_1992_mean   -0.0004149  0.0019785  -0.210   0.8339    
+    ## factor(SEX_1)1      0.0598843  0.0116406   5.144 2.86e-07 ***
+    ## factor(SEX_2)1     -0.0728653  0.0112694  -6.466 1.18e-10 ***
+    ## factor(RACE_1)1     0.0043468  0.0111817   0.389   0.6975    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.2968 on 2916 degrees of freedom
+    ##   (761 observations deleted due to missingness)
+    ## Multiple R-squared:  0.6133, Adjusted R-squared:  0.6125 
+    ## F-statistic: 770.7 on 6 and 2916 DF,  p-value: < 2.2e-16
 
-```{r people_age}
+``` r
+summary(model_discord_CESD_7_1994)
+```
 
+    ## 
+    ## Call:
+    ## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD_7_1994_diff + 
+    ##     CESD_7_1994_mean + factor(SEX_1) + factor(SEX_2) + factor(RACE_1), 
+    ##     data = data_DEP)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -4.3417 -0.0996 -0.0097  0.0989  2.1864 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)         0.0522319  0.0137908   3.787 0.000155 ***
+    ## DELIN_AVERAGE_mean  1.0111840  0.0157719  64.113  < 2e-16 ***
+    ## CESD_7_1994_diff    0.0002161  0.0011020   0.196 0.844554    
+    ## CESD_7_1994_mean   -0.0024121  0.0019406  -1.243 0.213980    
+    ## factor(SEX_1)1      0.0558992  0.0119359   4.683 2.95e-06 ***
+    ## factor(SEX_2)1     -0.0739959  0.0115649  -6.398 1.83e-10 ***
+    ## factor(RACE_1)1     0.0022518  0.0113023   0.199 0.842093    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.2996 on 2873 degrees of freedom
+    ##   (804 observations deleted due to missingness)
+    ## Multiple R-squared:  0.6132, Adjusted R-squared:  0.6124 
+    ## F-statistic: 759.2 on 6 and 2873 DF,  p-value: < 2.2e-16
+
+``` r
+summary(model_discord_CESD_20_1992)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD_20_1992_diff + 
+    ##     CESD_20_1992_mean + factor(SEX_1) + factor(SEX_2) + factor(RACE_1), 
+    ##     data = data_DEP)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -4.3402 -0.0989 -0.0088  0.0972  2.1739 
+    ## 
+    ## Coefficients:
+    ##                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)         0.0410209  0.0135044   3.038  0.00241 ** 
+    ## DELIN_AVERAGE_mean  1.0117765  0.0155494  65.069  < 2e-16 ***
+    ## CESD_20_1992_diff   0.0006481  0.0004754   1.363  0.17290    
+    ## CESD_20_1992_mean  -0.0003166  0.0008572  -0.369  0.71191    
+    ## factor(SEX_1)1      0.0594045  0.0115551   5.141 2.91e-07 ***
+    ## factor(SEX_2)1     -0.0731699  0.0112343  -6.513 8.62e-11 ***
+    ## factor(RACE_1)1     0.0057677  0.0112499   0.513  0.60821    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.2979 on 2950 degrees of freedom
+    ##   (727 observations deleted due to missingness)
+    ## Multiple R-squared:  0.6156, Adjusted R-squared:  0.6148 
+    ## F-statistic: 787.4 on 6 and 2950 DF,  p-value: < 2.2e-16
+
+``` r
 #How old is everyone? 
 
 data_age <- readr::read_csv('default/default.csv')
+```
+
+    ## Rows: 12686 Columns: 7
+
+    ## -- Column specification --------------------------------------------------------
+    ## Delimiter: ","
+    ## dbl (7): CASEID, Q1-3_A~M, Q1-3_A~Y, FAM-1B, SAMPLE_ID, SAMPLE_RACE, SAMPLE_SEX
+
+    ## 
+    ## i Use `spec()` to retrieve the full column specification for this data.
+    ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
 #Comment the one below out, it runs. Keep it in there is a warning, 
 
 #data_age <- read.table('default.dat', sep=' ')
@@ -2092,14 +2257,51 @@ qnames = function(data) {
 data_age <- qnames(data_age)
 
 summary(data_age)
-
-#************************************************************************************************************
-head(new_age_data)
-names(new_age_data)
-summary(new_age_data) 
-#freq table for item 1
-table(new_age_data$`FAM-1B_1979`) 
-describe(new_age_data$`FAM-1B_1979`)
-
 ```
 
+    ##   CASEID_1979    Q1-3_A~M_1979    Q1-3_A~Y_1979    FAM-1B_1979  
+    ##  Min.   :    1   Min.   : 1.000   Min.   :57.00   Min.   :14.0  
+    ##  1st Qu.: 3172   1st Qu.: 4.000   1st Qu.:58.00   1st Qu.:16.0  
+    ##  Median : 6344   Median : 7.000   Median :60.00   Median :18.0  
+    ##  Mean   : 6344   Mean   : 6.495   Mean   :60.34   Mean   :17.9  
+    ##  3rd Qu.: 9515   3rd Qu.: 9.000   3rd Qu.:62.00   3rd Qu.:20.0  
+    ##  Max.   :12686   Max.   :12.000   Max.   :64.00   Max.   :22.0  
+    ##  SAMPLE_ID_1979   SAMPLE_RACE_78SCRN SAMPLE_SEX_1979
+    ##  Min.   : 1.000   Min.   :1.000      Min.   :1.000  
+    ##  1st Qu.: 5.000   1st Qu.:2.000      1st Qu.:1.000  
+    ##  Median : 9.000   Median :3.000      Median :1.000  
+    ##  Mean   : 8.174   Mean   :2.434      Mean   :1.495  
+    ##  3rd Qu.:12.000   3rd Qu.:3.000      3rd Qu.:2.000  
+    ##  Max.   :20.000   Max.   :3.000      Max.   :2.000
+
+``` r
+#************************************************************************************************************
+head(new_age_data)
+```
+
+    ## Error in head(new_age_data): object 'new_age_data' not found
+
+``` r
+names(new_age_data)
+```
+
+    ## Error in eval(expr, envir, enclos): object 'new_age_data' not found
+
+``` r
+summary(new_age_data) 
+```
+
+    ## Error in summary(new_age_data): object 'new_age_data' not found
+
+``` r
+#freq table for item 1
+table(new_age_data$`FAM-1B_1979`) 
+```
+
+    ## Error in table(new_age_data$`FAM-1B_1979`): object 'new_age_data' not found
+
+``` r
+describe(new_age_data$`FAM-1B_1979`)
+```
+
+    ## Error in describe(new_age_data$`FAM-1B_1979`): object 'new_age_data' not found
