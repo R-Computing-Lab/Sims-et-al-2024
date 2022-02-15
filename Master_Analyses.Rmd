@@ -54,7 +54,7 @@ library(dplyr)
 
 ## Depression
 
-```{r data_dep}
+```{r df_dep}
 new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv', 
                             col_types = cols())
 names(new_data) <- c('H0000300',
@@ -387,7 +387,6 @@ vallabels = function(data) {
       "10: October",
       "11: November",
       "12: December"))
-
   data$H0021400 <- factor(data$H0021400, 
     levels=c(0.0,1.0), 
     labels=c("NO",
@@ -546,7 +545,6 @@ vallabels = function(data) {
       "SOME/A LITTLE OF THE TIME/1-2 DAYS",
       "OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS",
       "MOST/ALL OF THE TIME/5-7 DAYS"))
-
   data$R4978300 <- factor(data$R4978300, 
     levels=c(0.0,1.0,2.0,3.0), 
     labels=c("Rarely/None of the Time/1 Day",
@@ -1721,6 +1719,173 @@ remove(new_data)
 
 ```
 
+```{r people_age}
+
+#How old is everyone? 
+
+df_age <- readr::read_csv('default/default.csv')
+#Comment the one below out, it runs. Keep it in there is a warning, 
+
+#df_age <- read.table('default.dat', sep=' ')
+names(df_age) <- c('R0000100',
+  'R0000300',
+  'R0000500',
+  'R0000600',
+  'R0173600',
+  'R0214700',
+  'R0214800')
+
+
+# Handle missing values
+
+  df_age[df_age == -1] = NA  # Refused 
+  df_age[df_age == -2] = NA  # Dont know 
+  df_age[df_age == -3] = NA  # Invalid missing 
+  df_age[df_age == -4] = NA  # Valid missing 
+  df_age[df_age == -5] = NA  # Non-interview 
+
+
+# If there are values not categorized they will be represented as NA
+
+vallabels = function(data) {
+  # data$R0000300[17.0 <= data$R0000300 & data$R0000300 <= 99999.0] <- 17.0
+  # data$R0000300 <- factor(data$R0000300, 
+  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
+  #   labels=c("0: < 1",
+  #     "1",
+  #     "2",
+  #     "3",
+  #     "4",
+  #     "5",
+  #     "6",
+  #     "7",
+  #     "8",
+  #     "9",
+  #     "10",
+  #     "11",
+  #     "12",
+  #     "13",
+  #     "14",
+  #     "15",
+  #     "16",
+  #     "17 TO 99999: 17+"))
+  # data$R0000500[0.0 <= data$R0000500 & data$R0000500 <= 56.0] <- 0.0
+  # data$R0000500[73.0 <= data$R0000500 & data$R0000500 <= 99999.0] <- 73.0
+  # data$R0000500 <- factor(data$R0000500, 
+  #   levels=c(0.0,57.0,58.0,59.0,60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0), 
+  #   labels=c("0 TO 56: < 57",
+  #     "57",
+  #     "58",
+  #     "59",
+  #     "60",
+  #     "61",
+  #     "62",
+  #     "63",
+  #     "64",
+  #     "65",
+  #     "66",
+  #     "67",
+  #     "68",
+  #     "69",
+  #     "70",
+  #     "71",
+  #     "72",
+  #     "73 TO 99999: 73+"))
+  # data$R0000600[0.0 <= data$R0000600 & data$R0000600 <= 13.0] <- 0.0
+  # data$R0000600[30.0 <= data$R0000600 & data$R0000600 <= 99999.0] <- 30.0
+  # data$R0000600 <- factor(data$R0000600, 
+  #   levels=c(0.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,30.0), 
+  #   labels=c("0 TO 13: < 14",
+  #     "14",
+  #     "15",
+  #     "16",
+  #     "17",
+  #     "18",
+  #     "19",
+  #     "20",
+  #     "21",
+  #     "22",
+  #     "23",
+  #     "24",
+  #     "25",
+  #     "26",
+  #     "27",
+  #     "28",
+  #     "29",
+  #     "30 TO 99999: 30+"))
+  data$R0173600 <- factor(data$R0173600, 
+    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
+    labels=c("CROSS MALE WHITE",
+      "CROSS MALE WH. POOR",
+      "CROSS MALE BLACK",
+      "CROSS MALE HISPANIC",
+      "CROSS FEMALE WHITE",
+      "CROSS FEMALE WH POOR",
+      "CROSS FEMALE BLACK",
+      "CROSS FEMALE HISPANIC",
+      "SUP MALE WH POOR",
+      "SUP MALE BLACK",
+      "SUP MALE HISPANIC",
+      "SUP FEM WH POOR",
+      "SUP FEMALE BLACK",
+      "SUP FEMALE HISPANIC",
+      "MIL MALE WHITE",
+      "MIL MALE BLACK",
+      "MIL MALE HISPANIC",
+      "MIL FEMALE WHITE",
+      "MIL FEMALE BLACK",
+      "MIL FEMALE HISPANIC"))
+  data$R0214700 <- factor(data$R0214700, 
+    levels=c(1.0,2.0,3.0), 
+    labels=c("HISPANIC",
+      "BLACK",
+      "NON-BLACK, NON-HISPANIC"))
+  data$R0214800 <- factor(data$R0214800, 
+    levels=c(1.0,2.0), 
+    labels=c("MALE",
+      "FEMALE"))
+  return(data)
+}
+
+varlabels <- c("ID# (1-12686) 79",
+  "DATE OF BIRTH - MONTH 79",
+  "DATE OF BIRTH - YR 79",
+  "AGE OF R 79",
+  "SAMPLE ID  79 INT",
+  "RACL/ETHNIC COHORT /SCRNR 79",
+  "SEX OF R 79"
+)
+
+
+# Use qnames rather than rnums
+
+qnames = function(data) {
+  names(data) <- c("CASEID",
+    "M_1979",
+    "Y_1979",
+    "AGE_1979",
+    "SAMPLE_ID",
+    "RACE_78SCRN",
+    "SEX_1979")
+  return(data)
+}
+
+
+#********************************************************************************************************
+
+
+# Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
+df_age <- qnames(vallabels(df_age))
+
+summary(df_age)
+
+#************************************************************************************************************
+
+#freq table for item 1
+table(df_age$AGE_1979) 
+describe(df_age$AGE_1979)
+
+```
 
 
 ```{r data_cleaning}
@@ -1787,105 +1952,18 @@ outcomeNames=c("RACE",
 dsSingle_G1 <- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
-                            outcomeNames = outcomeNames
-                            )
-
-#mean for ced 20 1992
-dsSingle_G1$CESD_20_1992_MEAN=.5*dsSingle_G1$CESD_20_1992_S1+.5*dsSingle_G1$CESD_20_1992_S2
-
-#mean for ced 7 1992
-dsSingle_G1$CESD_7_1992_MEAN=.5*dsSingle_G1$CESD_7_1992_S1+.5*dsSingle_G1$CESD_7_1992_S2
-
-#mean for ced 7 1994
-dsSingle_G1$CESD_7_1994_MEAN=.5*dsSingle_G1$CESD_7_1994_S1+.5*dsSingle_G1$CESD_7_1994_S2
-
-#mean for DELIN_AVERAGE
-dsSingle_G1$DELIN_AVERAGE_MEAN=.5*dsSingle_G1$DELIN_AVERAGE_S1+.5*dsSingle_G1$DELIN_AVERAGE_S2
-
-
-
-```
-# CLASSIC REGRESSION 
-```{r regression}
-### CLASSIC REGRESSION GOES HERE
-
-#note: you only need s1 race because they're determined by the mother
-model_original_7_1992 <- lm(DELIN_AVERAGE_MEAN ~ 
-                             CESD_7_1992_MEAN +
-                             as.factor(SEX_S1) + 
-                             as.factor(RACE_S1)+
-                            as.factor(SEX_S2), 
-                           data = dsSingle_G1)
-
-
-
-model_original_20_1992 <- lm(DELIN_AVERAGE_MEAN ~ 
-                             CESD_20_1992_MEAN +
-                             as.factor(SEX_S1) + 
-                             as.factor(RACE_S1)+
-                            as.factor(SEX_S2), 
-                           data = dsSingle_G1)
-
-
-
-model_original_7_1994 <- lm(DELIN_AVERAGE_MEAN ~ 
-                             CESD_7_1994_MEAN +
-                             as.factor(SEX_S1) + 
-                             as.factor(RACE_S1)+
-                            as.factor(SEX_S2) , 
-                           data = dsSingle_G1)
-# results
-
-summary(model_original_20_1992)
-summary(model_original_7_1992)
-summary(model_original_7_1994)
-
-```
-
-# discordant analyses
-
-```{r discordmodels}
-# 
-# model_discord_delin <- lm(DELIN_AVERAGE_DIFF ~ 
-# CESD_20_1992_MEAN +
-# DELIN_AVERAGE_MEAN + 
-# CESD_20_1992_DIFF + 
-# as.factor(SEX_S1)+ 
-# as.factor(SEX_S2)+
-# as.factor(RACE_S1), 
-# data= dsDouble_DELIN)
-# 
-# summary(model_discord_delin)
-# 
-# model_discord_delin2 <- lm(DELIN_AVERAGE_DIFF ~ 
-# CESD_7_1994_MEAN + 
-# DELIN_AVERAGE_MEAN + 
-# CESD_7_1994_DIFF +
-# as.factor(SEX_S1)+ 
-# as.factor(SEX_S2)+
-# as.factor(RACE_S1), 
-# data= dsDouble_DELIN)
-# 
-# summary(model_discord_delin2)
-# 
-# model_discord_delin3 <- lm(DELIN_AVERAGE_DIFF ~ 
-# CESD_7_1992_MEAN + 
-# DELIN_AVERAGE_MEAN + 
-# CESD_7_1992_DIFF +
-# as.factor(SEX_S1)+ 
-# as.factor(SEX_S2)+
-# as.factor(RACE_S1), 
-# data= dsDouble_DELIN)
-# 
-# summary(model_discord_delin3)
-# 
+                            outcomeNames = outcomeNames, 
+                             subject1Qualifier = "_S1",
+                             subject2Qualifier = "_S2")
 
 
 
 
-data_DEP = dsSingle_G1 %>%
-  filter(!is.na(DELIN_AVERAGE_S1) & !is.na(DELIN_AVERAGE_S2)
-         ) %>%
+set.seed(18)
+
+
+dy_delinq = dsSingle_G1 %>%  
+  drop_na(contains("DELIN_AVERAGE")) %>%
   discord_data (outcome = "DELIN_AVERAGE",
                       predictors=c("CESD_7_1992",
                                    "CESD_20_1992",
@@ -1897,7 +1975,99 @@ data_DEP = dsSingle_G1 %>%
                       demographics = "both"
                       )
 
-model_discord_CESD_7_1992= lm(data=data_DEP,
+
+
+
+```
+
+# classic
+```{r classic}
+df_classic <- df_spsp_gen1
+
+lm_og_7_1992 <- lm(DELIN_AVERAGE ~ 
+                             CESD_7_1992+
+                             as.factor(SEX) + 
+                             as.factor(RACE) , 
+                           data = df_classic )
+summary(lm_og_7_1992)
+
+
+lm_og_20_1992 <- lm(DELIN_AVERAGE ~ 
+                             CESD_20_1992+
+                             as.factor(SEX) + 
+                             as.factor(RACE) , 
+                           data = df_classic )
+summary(lm_og_20_1992)
+
+
+lm_og_7_1994 <- lm(DELIN_AVERAGE ~ 
+                             CESD_7_1994 +
+                             as.factor(SEX) + 
+                             as.factor(RACE) , 
+                           data = df_classic )
+summary(lm_og_7_1994)
+
+
+```
+
+# between family
+
+```{r betweenfamily}
+### btwn REGRESSION GOES HERE
+#mean for ced 20 1992
+#dsSingle_G1$CESD_20_1992_mean=.5*dsSingle_G1$CESD_20_1992_S1+.5*dsSingle_G1$CESD_20_1992_S2
+
+#mean for ced 7 1992
+#dsSingle_G1$CESD_7_1992_mean=.5*dsSingle_G1$CESD_7_1992_S1+.5*dsSingle_G1$CESD_7_1992_S2
+
+#mean for ced 7 1994
+#dsSingle_G1$CESD_7_1994_mean=.5*dsSingle_G1$CESD_7_1994_S1+.5*dsSingle_G1$CESD_7_1994_S2
+
+#mean for DELIN_AVERAGE
+#dsSingle_G1$DELIN_AVERAGE_mean=.5*dsSingle_G1$DELIN_AVERAGE_S1+.5*dsSingle_G1$DELIN_AVERAGE_S2
+df_btwn=dy_delinq
+
+#note: you only need s1 race because they're determined by the mother
+lm_btwfam_7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+                             CESD_7_1992_mean +
+                            as.factor(RACE_1)+
+                            as.factor(SEX_1) + 
+                            as.factor(SEX_2) , 
+                           data = df_btwn)
+summary(lm_btwfam_7_1992)
+
+
+lm_btwfam_20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+                             CESD_20_1992_mean +
+                            as.factor(RACE_1)+
+                            as.factor(SEX_1) + 
+                            as.factor(SEX_2) , 
+                           data = df_btwn)
+summary(lm_btwfam_20_1992)
+
+
+lm_btwfam_7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+                            CESD_7_1994_mean +
+                            as.factor(RACE_1)+
+                            as.factor(SEX_1) + 
+                            as.factor(SEX_2) , 
+                           data = df_btwn)
+summary(lm_btwfam_7_1994)
+
+```
+
+# discordant analyses
+
+```{r discordmodels}
+# 
+
+
+
+
+
+
+
+lm_discord_CESD_7_1992= lm(data=dy_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD_7_1992_diff + 
@@ -1906,7 +2076,7 @@ model_discord_CESD_7_1992= lm(data=data_DEP,
                                 factor(SEX_2)+
                                 factor(RACE_1) )
 
-model_discord_CESD_20_1992=lm(data=data_DEP,
+lm_discord_CESD_20_1992=lm(data=dy_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD_20_1992_diff + 
@@ -1916,7 +2086,7 @@ model_discord_CESD_20_1992=lm(data=data_DEP,
                                 factor(RACE_1) )
 
 
-model_discord_CESD_7_1994=  lm(data=data_DEP,
+lm_discord_CESD_7_1994=  lm(data=dy_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD_7_1994_diff + 
@@ -1926,180 +2096,55 @@ model_discord_CESD_7_1994=  lm(data=data_DEP,
                                 factor(RACE_1) )
 
 
-summary(model_discord_CESD_7_1992)
-summary(model_discord_CESD_7_1994)
-summary(model_discord_CESD_20_1992)
+summary(lm_discord_CESD_7_1992)
+summary(lm_discord_CESD_20_1992)
+summary(lm_discord_CESD_7_1994)
+
  
 ```
 
 
-```{r people_age}
 
-#How old is everyone? 
+```{r run-AFI-regression}
 
-data_age <- readr::read_csv('default/default.csv')
-#Comment the one below out, it runs. Keep it in there is a warning, 
-
-#data_age <- read.table('default.dat', sep=' ')
-names(data_age) <- c('R0000100',
-  'R0000300',
-  'R0000500',
-  'R0000600',
-  'R0173600',
-  'R0214700',
-  'R0214800')
-
-
-# Handle missing values
-
-  data_age[data_age == -1] = NA  # Refused 
-  data_age[data_age == -2] = NA  # Dont know 
-  data_age[data_age == -3] = NA  # Invalid missing 
-  data_age[data_age == -4] = NA  # Valid missing 
-  data_age[data_age == -5] = NA  # Non-interview 
-
-
-# If there are values not categorized they will be represented as NA
-
-vallabels = function(data) {
-  data$R0000300[17.0 <= data$R0000300 & data$R0000300 <= 99999.0] <- 17.0
-  data$R0000300 <- factor(data$R0000300, 
-    levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
-    labels=c("0: < 1",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17 TO 99999: 17+"))
-  data$R0000500[0.0 <= data$R0000500 & data$R0000500 <= 56.0] <- 0.0
-  data$R0000500[73.0 <= data$R0000500 & data$R0000500 <= 99999.0] <- 73.0
-  data$R0000500 <- factor(data$R0000500, 
-    levels=c(0.0,57.0,58.0,59.0,60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0), 
-    labels=c("0 TO 56: < 57",
-      "57",
-      "58",
-      "59",
-      "60",
-      "61",
-      "62",
-      "63",
-      "64",
-      "65",
-      "66",
-      "67",
-      "68",
-      "69",
-      "70",
-      "71",
-      "72",
-      "73 TO 99999: 73+"))
-  data$R0000600[0.0 <= data$R0000600 & data$R0000600 <= 13.0] <- 0.0
-  data$R0000600[30.0 <= data$R0000600 & data$R0000600 <= 99999.0] <- 30.0
-  data$R0000600 <- factor(data$R0000600, 
-    levels=c(0.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,30.0), 
-    labels=c("0 TO 13: < 14",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23",
-      "24",
-      "25",
-      "26",
-      "27",
-      "28",
-      "29",
-      "30 TO 99999: 30+"))
-  data$R0173600 <- factor(data$R0173600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
-    labels=c("CROSS MALE WHITE",
-      "CROSS MALE WH. POOR",
-      "CROSS MALE BLACK",
-      "CROSS MALE HISPANIC",
-      "CROSS FEMALE WHITE",
-      "CROSS FEMALE WH POOR",
-      "CROSS FEMALE BLACK",
-      "CROSS FEMALE HISPANIC",
-      "SUP MALE WH POOR",
-      "SUP MALE BLACK",
-      "SUP MALE HISPANIC",
-      "SUP FEM WH POOR",
-      "SUP FEMALE BLACK",
-      "SUP FEMALE HISPANIC",
-      "MIL MALE WHITE",
-      "MIL MALE BLACK",
-      "MIL MALE HISPANIC",
-      "MIL FEMALE WHITE",
-      "MIL FEMALE BLACK",
-      "MIL FEMALE HISPANIC"))
-  data$R0214700 <- factor(data$R0214700, 
-    levels=c(1.0,2.0,3.0), 
-    labels=c("HISPANIC",
-      "BLACK",
-      "NON-BLACK, NON-HISPANIC"))
-  data$R0214800 <- factor(data$R0214800, 
-    levels=c(1.0,2.0), 
-    labels=c("MALE",
-      "FEMALE"))
-  return(data)
-}
-
-varlabels <- c("ID# (1-12686) 79",
-  "DATE OF BIRTH - MONTH 79",
-  "DATE OF BIRTH - YR 79",
-  "AGE OF R 79",
-  "SAMPLE ID  79 INT",
-  "RACL/ETHNIC COHORT /SCRNR 79",
-  "SEX OF R 79"
-)
-
-
-# Use qnames rather than rnums
-
-qnames = function(data) {
-  names(data) <- c("CASEID_1979",
-    "Q1-3_A~M_1979",
-    "Q1-3_A~Y_1979",
-    "FAM-1B_1979",
-    "SAMPLE_ID_1979",
-    "SAMPLE_RACE_78SCRN",
-    "SAMPLE_SEX_1979")
-  return(data)
-}
-
-
-#********************************************************************************************************
-
-
-# Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
-data_age <- qnames(data_age)
-
-summary(data_age)
-
-#************************************************************************************************************
-head(new_age_data)
-names(new_age_data)
-summary(new_age_data) 
-#freq table for item 1
-table(new_age_data$`FAM-1B_1979`) 
-describe(new_age_data$`FAM-1B_1979`)
 
 ```
 
+### Regression Results
+
+```{r summarizeregression}
+lm_discord_CESD_7_1992 %>%
+  broom::tidy() %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
+         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
+  rename("Standard Error" = std.error,
+         "T Statistic" = statistic) %>%
+  rename_with(~snakecase::to_title_case(.x)) %>%
+  kableExtra::kbl('html', align = "c") %>%
+  kableExtra::kable_styling() %>%
+  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+
+lm_discord_CESD_20_1992 %>%
+  broom::tidy() %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
+         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
+  rename("Standard Error" = std.error,
+         "T Statistic" = statistic) %>%
+  rename_with(~snakecase::to_title_case(.x)) %>%
+  kableExtra::kbl('html', align = "c") %>%
+  kableExtra::kable_styling() %>%
+  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+
+
+
+lm_discord_CESD_7_1994 %>%
+  broom::tidy() %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
+         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
+  rename("Standard Error" = std.error,
+         "T Statistic" = statistic) %>%
+  rename_with(~snakecase::to_title_case(.x)) %>%
+  kableExtra::kbl('html', align = "c") %>%
+  kableExtra::kable_styling() %>%
+  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+```
