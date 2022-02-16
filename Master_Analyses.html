@@ -177,1667 +177,12 @@ pre code {
 <h1>Prep data</h1>
 <div id="depression" class="section level2">
 <h2>Depression</h2>
-<pre class="r"><code>new_data &lt;- readr::read_csv(&#39;df_dep_gen1/df_dep_gen1.csv&#39;, 
-                            col_types = cols())
-names(new_data) &lt;- c(&#39;H0000300&#39;,
-  &#39;H0000400&#39;,
-  &#39;H0000500&#39;,
-  &#39;H0000600&#39;,
-  &#39;H0000700&#39;,
-  &#39;H0000800&#39;,
-  &#39;H0000900&#39;,
-  &#39;H0001000&#39;,
-  &#39;H0001100&#39;,
-  &#39;H0001101&#39;,
-  &#39;H0003900&#39;,
-  &#39;H0004000&#39;,
-  &#39;H0004500&#39;,
-  &#39;H0006900&#39;,
-  &#39;H0007000&#39;,
-  &#39;H0007001&#39;,
-  &#39;H0007100&#39;,
-  &#39;H0008600&#39;,
-  &#39;H0013301&#39;,
-  &#39;H0013400&#39;,
-  &#39;H0013401&#39;,
-  &#39;H0013402&#39;,
-  &#39;H0013403&#39;,
-  &#39;H0013404&#39;,
-  &#39;H0013405&#39;,
-  &#39;H0013406&#39;,
-  &#39;H0013407&#39;,
-  &#39;H0013408&#39;,
-  &#39;H0016400&#39;,
-  &#39;H0016500&#39;,
-  &#39;H0016700&#39;,
-  &#39;H0016800&#39;,
-  &#39;H0016900&#39;,
-  &#39;H0017000&#39;,
-  &#39;H0020800&#39;,
-  &#39;H0020900&#39;,
-  &#39;H0020901&#39;,
-  &#39;H0021000&#39;,
-  &#39;H0021100&#39;,
-  &#39;H0021200&#39;,
-  &#39;H0021300&#39;,
-  &#39;H0021301&#39;,
-  &#39;H0021400&#39;,
-  &#39;R0000100&#39;,
-  &#39;R0144600&#39;,
-  &#39;R0173600&#39;,
-  &#39;R3894900&#39;,
-  &#39;R3895000&#39;,
-  &#39;R3895100&#39;,
-  &#39;R3895200&#39;,
-  &#39;R3895300&#39;,
-  &#39;R3895400&#39;,
-  &#39;R3895500&#39;,
-  &#39;R3895600&#39;,
-  &#39;R3895700&#39;,
-  &#39;R3895800&#39;,
-  &#39;R3895900&#39;,
-  &#39;R3896000&#39;,
-  &#39;R3896100&#39;,
-  &#39;R3896200&#39;,
-  &#39;R3896300&#39;,
-  &#39;R3896400&#39;,
-  &#39;R3896500&#39;,
-  &#39;R3896600&#39;,
-  &#39;R3896700&#39;,
-  &#39;R3896800&#39;,
-  &#39;R3896810&#39;,
-  &#39;R3896811&#39;,
-  &#39;R3896820&#39;,
-  &#39;R4978300&#39;,
-  &#39;R4978400&#39;,
-  &#39;R4978500&#39;,
-  &#39;R4978600&#39;,
-  &#39;R4978700&#39;,
-  &#39;R4978800&#39;,
-  &#39;R4978900&#39;,
-  &#39;R4978910&#39;,
-  &#39;T5006600&#39;,
-  &#39;T5740700&#39;)
-
-
-# Handle missing values
-
-  new_data[new_data == -1] = NA  # Refused 
-  new_data[new_data == -2] = NA  # Dont know 
-  new_data[new_data == -3] = NA  # Invalid missing 
-  new_data[new_data == -4] = NA  # Valid missing 
-  new_data[new_data == -5] = NA  # Non-interview 
-
-
-# If there are values not categorized they will be represented as NA
-
-vallabels = function(data) {
-  data$H0000300 &lt;- factor(data$H0000300, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0000400 &lt;- factor(data$H0000400, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0000500 &lt;- factor(data$H0000500, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0000600 &lt;- factor(data$H0000600, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0000700 &lt;- factor(data$H0000700, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0000800 &lt;- factor(data$H0000800, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0000900 &lt;- factor(data$H0000900, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0001000 &lt;- factor(data$H0001000, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0001100 &lt;- factor(data$H0001100, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0003900 &lt;- factor(data$H0003900, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0004000 &lt;- factor(data$H0004000, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0004500 &lt;- factor(data$H0004500, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
-    labels=c(&quot;All the time&quot;,
-      &quot;Most of the time&quot;,
-      &quot;A good bit of the time&quot;,
-      &quot;Some of the time&quot;,
-      &quot;A little of the time&quot;,
-      &quot;None of the time&quot;))
-  data$H0006900 &lt;- factor(data$H0006900, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0007000 &lt;- factor(data$H0007000, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0), 
-    labels=c(&quot;1: January&quot;,
-      &quot;2: February&quot;,
-      &quot;3: March&quot;,
-      &quot;4: April&quot;,
-      &quot;5: May&quot;,
-      &quot;6: June&quot;,
-      &quot;7: July&quot;,
-      &quot;8: August&quot;,
-      &quot;9: September&quot;,
-      &quot;10: October&quot;,
-      &quot;11: November&quot;,
-      &quot;12: December&quot;))
-
-  data$H0007100 &lt;- factor(data$H0007100, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0008600 &lt;- factor(data$H0008600, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$H0013400 &lt;- factor(data$H0013400, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013401 &lt;- factor(data$H0013401, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013402 &lt;- factor(data$H0013402, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013403 &lt;- factor(data$H0013403, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013404 &lt;- factor(data$H0013404, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013405 &lt;- factor(data$H0013405, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013406 &lt;- factor(data$H0013406, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013407 &lt;- factor(data$H0013407, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0013408 &lt;- factor(data$H0013408, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the time/1 Day&quot;,
-      &quot;Some/A little of the time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate amount of the time/3-4 Days&quot;,
-      &quot;Most/All of the time/5-7 Days&quot;))
-  data$H0016400 &lt;- factor(data$H0016400, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0016500 &lt;- factor(data$H0016500, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0016700 &lt;- factor(data$H0016700, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
-    labels=c(&quot;All the time&quot;,
-      &quot;Most of the time&quot;,
-      &quot;A good bit of the time&quot;,
-      &quot;Some of the time&quot;,
-      &quot;A little of the time&quot;,
-      &quot;None of the time&quot;))
-  data$H0016800 &lt;- factor(data$H0016800, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
-    labels=c(&quot;All the time&quot;,
-      &quot;Most of the time&quot;,
-      &quot;A good bit of the time&quot;,
-      &quot;Some of the time&quot;,
-      &quot;A little of the time&quot;,
-      &quot;None of the time&quot;))
-  data$H0016900 &lt;- factor(data$H0016900, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
-    labels=c(&quot;All the time&quot;,
-      &quot;Most of the time&quot;,
-      &quot;A good bit of the time&quot;,
-      &quot;Some of the time&quot;,
-      &quot;A little of the time&quot;,
-      &quot;None of the time&quot;))
-  data$H0017000 &lt;- factor(data$H0017000, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0), 
-    labels=c(&quot;All the time&quot;,
-      &quot;Most of the time&quot;,
-      &quot;A good bit of the time&quot;,
-      &quot;Some of the time&quot;,
-      &quot;A little of the time&quot;,
-      &quot;None of the time&quot;))
-  data$H0020800 &lt;- factor(data$H0020800, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0020900 &lt;- factor(data$H0020900, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0), 
-    labels=c(&quot;1: January&quot;,
-      &quot;2: February&quot;,
-      &quot;3: March&quot;,
-      &quot;4: April&quot;,
-      &quot;5: May&quot;,
-      &quot;6: June&quot;,
-      &quot;7: July&quot;,
-      &quot;8: August&quot;,
-      &quot;9: September&quot;,
-      &quot;10: October&quot;,
-      &quot;11: November&quot;,
-      &quot;12: December&quot;))
-
-  data$H0021000 &lt;- factor(data$H0021000, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0021100 &lt;- factor(data$H0021100, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;0: 0  CONDITION DOES NOT APPLY&quot;,
-      &quot;1: 1  CONDITION APPLIES&quot;))
-  data$H0021200 &lt;- factor(data$H0021200, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$H0021300 &lt;- factor(data$H0021300, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0), 
-    labels=c(&quot;1: January&quot;,
-      &quot;2: February&quot;,
-      &quot;3: March&quot;,
-      &quot;4: April&quot;,
-      &quot;5: May&quot;,
-      &quot;6: June&quot;,
-      &quot;7: July&quot;,
-      &quot;8: August&quot;,
-      &quot;9: September&quot;,
-      &quot;10: October&quot;,
-      &quot;11: November&quot;,
-      &quot;12: December&quot;))
-  data$H0021400 &lt;- factor(data$H0021400, 
-    levels=c(0.0,1.0), 
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  ## maybe keep?
-  data$R0144600[10.0 &lt;= data$R0144600 &amp; data$R0144600 &lt;= 9999.0] &lt;- 10.0
-  data$R0144600[10010.0 &lt;= data$R0144600 &amp; data$R0144600 &lt;= 10829.0] &lt;- 10010.0
-  data$R0144600[11800.0 &lt;= data$R0144600 &amp; data$R0144600 &lt;= 11999.0] &lt;- 11800.0
-  data$R0144600[12800.0 &lt;= data$R0144600 &amp; data$R0144600 &lt;= 12997.0] &lt;- 12800.0
-  data$R0144600 &lt;- factor(data$R0144600, 
-    levels=c(0.0,10.0,10010.0,11800.0,12800.0), 
-    labels=c(&quot;0: 0 NO HEALTH LIMITATION&quot;,
-      &quot;10 TO 9999: 0010 THRU  9999 ICD-9 HEALTH CODE&quot;,
-      &quot;10010 TO 10829: 10010 THRU 10829 ICD-9 &#39;V&#39; CODE&quot;,
-      &quot;11800 TO 11999: 11800 THRU 11999 ICD-9 &#39;E&#39; CODE&quot;,
-      &quot;12800 TO 12997: 12800 THRU 12997 ICD-9 &#39;M&#39; CODE&quot;))
-  data$R0173600 &lt;- factor(data$R0173600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
-    labels=c(&quot;CROSS MALE WHITE&quot;,
-      &quot;CROSS MALE WH. POOR&quot;,
-      &quot;CROSS MALE BLACK&quot;,
-      &quot;CROSS MALE HISPANIC&quot;,
-      &quot;CROSS FEMALE WHITE&quot;,
-      &quot;CROSS FEMALE WH POOR&quot;,
-      &quot;CROSS FEMALE BLACK&quot;,
-      &quot;CROSS FEMALE HISPANIC&quot;,
-      &quot;SUP MALE WH POOR&quot;,
-      &quot;SUP MALE BLACK&quot;,
-      &quot;SUP MALE HISPANIC&quot;,
-      &quot;SUP FEM WH POOR&quot;,
-      &quot;SUP FEMALE BLACK&quot;,
-      &quot;SUP FEMALE HISPANIC&quot;,
-      &quot;MIL MALE WHITE&quot;,
-      &quot;MIL MALE BLACK&quot;,
-      &quot;MIL MALE HISPANIC&quot;,
-      &quot;MIL FEMALE WHITE&quot;,
-      &quot;MIL FEMALE BLACK&quot;,
-      &quot;MIL FEMALE HISPANIC&quot;))
-  data$R3894900 &lt;- factor(data$R3894900, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895000 &lt;- factor(data$R3895000, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895100 &lt;- factor(data$R3895100, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895200 &lt;- factor(data$R3895200, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895300 &lt;- factor(data$R3895300, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895400 &lt;- factor(data$R3895400, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895500 &lt;- factor(data$R3895500, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895600 &lt;- factor(data$R3895600, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895700 &lt;- factor(data$R3895700, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895800 &lt;- factor(data$R3895800, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3895900 &lt;- factor(data$R3895900, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896000 &lt;- factor(data$R3896000, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896100 &lt;- factor(data$R3896100, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896200 &lt;- factor(data$R3896200, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896300 &lt;- factor(data$R3896300, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896400 &lt;- factor(data$R3896400, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896500 &lt;- factor(data$R3896500, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896600 &lt;- factor(data$R3896600, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896700 &lt;- factor(data$R3896700, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R3896800 &lt;- factor(data$R3896800, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;RARELY/NONE OF THE TIME/1 DAY&quot;,
-      &quot;SOME/A LITTLE OF THE TIME/1-2 DAYS&quot;,
-      &quot;OCCASIONALLY/MODERATE AMT OF THE TIME/3-4 DAYS&quot;,
-      &quot;MOST/ALL OF THE TIME/5-7 DAYS&quot;))
-  data$R4978300 &lt;- factor(data$R4978300, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-  data$R4978400 &lt;- factor(data$R4978400, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-  data$R4978500 &lt;- factor(data$R4978500, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-  data$R4978600 &lt;- factor(data$R4978600, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-  data$R4978700 &lt;- factor(data$R4978700, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-  data$R4978800 &lt;- factor(data$R4978800, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-  data$R4978900 &lt;- factor(data$R4978900, 
-    levels=c(0.0,1.0,2.0,3.0), 
-    labels=c(&quot;Rarely/None of the Time/1 Day&quot;,
-      &quot;Some/A Little of the Time/1-2 Days&quot;,
-      &quot;Occasionally/Moderate Amount of the Time/3-4 Days&quot;,
-      &quot;Most/All of the Time/5-7 Days&quot;))
-
-  data$T5006600 &lt;- factor(data$T5006600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0), 
-    labels=c(&quot;1 (not at all satisfied)&quot;,
-      &quot;2&quot;,
-      &quot;3&quot;,
-      &quot;4&quot;,
-      &quot;5&quot;,
-      &quot;6&quot;,
-      &quot;7 (completely satisfied)&quot;))
-  data$T5740700 &lt;- factor(data$T5740700, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0), 
-    labels=c(&quot;1 (not at all satisfied)&quot;,
-      &quot;2&quot;,
-      &quot;3&quot;,
-      &quot;4&quot;,
-      &quot;5&quot;,
-      &quot;6&quot;,
-      &quot;7 (completely satisfied)&quot;))
-  return(data)
-}
-
-varlabels &lt;- c(&quot;CES-D - POOR APPETITE XRND&quot;,
-  &quot;CES-D - COULD NOT SHAKE BLUES XRND&quot;,
-  &quot;CES-D - TROUBL KEEPING MIND ON TASKS XRND&quot;,
-  &quot;CES-D - DEPRESSED XRND&quot;,
-  &quot;CES-D - EVERYTHING TOOK EXTRA EFFORT XRND&quot;,
-  &quot;CES-D - RESTLESS SLEEP XRND&quot;,
-  &quot;CES-D - FELT LONELY XRND&quot;,
-  &quot;CES-D - SAD XRND&quot;,
-  &quot;CES-D - COULD NOT GET GOING XRND&quot;,
-  &quot;H40 7-ITEM CES-D SCORE XRND&quot;,
-  &quot;SF-12 - EMOTIONAL PRBS LIMIT ACCMPLSHMT? XRND&quot;,
-  &quot;SF-12 - EMOTIONAL PRBS MADE LESS CARFUL? XRND&quot;,
-  &quot;SF-12 - HLTH PRBS HINDER SOC ACTIV? XRND&quot;,
-  &quot;CCR-DR DIAGNS EMTNL,NRVS,PSYC PRBS? XRND&quot;,
-  &quot;CCR-DATE DR DIAG EMTN,NRVS,PSYC PRB XRND&quot;,
-  &quot;CCR-DATE DR DIAG EMTN,NRVS,PSYC PRB XRND&quot;,
-  &quot;CCR-EMTN,NRVS,PSYC PROBS LST 12 MO? XRND&quot;,
-  &quot;CCR-DEPRESN,EXCESS WORRY,NERVS PRB XRND&quot;,
-  &quot;H50 7-ITEM CES-D SCORE XRND&quot;,
-  &quot;CESD -  POOR APPETITE XRND&quot;,
-  &quot;CESD - COULD NOT SHAKE BLUES XRND&quot;,
-  &quot;CESD - TROUBLE KEEPING MIND ON TASK XRND&quot;,
-  &quot;CESD - DEPRESSION XRND&quot;,
-  &quot;CESD - EVERYTHING TAKING EXTRA EFFORT XRND&quot;,
-  &quot;CESD - RESTLESS SLEEP XRND&quot;,
-  &quot;CESD - FEELING LONELY XRND&quot;,
-  &quot;CESD -  FEELING SAD XRND&quot;,
-  &quot;CESD - COULD NOT GET GOING XRND&quot;,
-  &quot;SF12 - EMOTIONAL PRBS LIMIT ACCMPLSHMT? XRND&quot;,
-  &quot;SF12 - EMOTIONAL PRBS MADE LESS CARFUL? XRND&quot;,
-  &quot;SF12 - CALM/PEACEFUL PAST 4 WKS? XRND&quot;,
-  &quot;SF12 - HAVE ENERGY PAST 4 WKS? XRND&quot;,
-  &quot;SF12 - DOWNHRTD OR BLUE PAST 4 WKS? XRND&quot;,
-  &quot;SF12 - HLTH PRBS HINDER SOC ACTIV? XRND&quot;,
-  &quot;DOCTOR EVER DIAGNOSED R SUFFERING FROM DEPRESSION XRND&quot;,
-  &quot;DATE RS DEPRESSION DIAGNOSED XRND&quot;,
-  &quot;DATE RS DEPRESSION DIAGNOSED XRND&quot;,
-  &quot;R SUFFERED FROM DEPRESSION IN LAST 12 MOS XRND&quot;,
-  &quot;PSYCHIATRIC DIAGNOSIS IN 40+ HEALTH MOD XRND&quot;,
-  &quot;DR EVER SAID R HAD EMO/NERV/PSYC PBLS OT THAN DEP XRND&quot;,
-  &quot;DATE R EMO/NERV/PSYC PBLS DIAGNOSED XRND&quot;,
-  &quot;DATE R EMO/NERV/PSYC PBLS DIAGNOSED XRND&quot;,
-  &quot;R HAD ANY EMO/NERV/PSYC PROBLEMS IN LAST 12 MOS XRND&quot;,
-  &quot;ID# (1-12686) 79&quot;,
-  &quot;HLTH CONSOLIDATION CODE 5-D 79&quot;,
-  &quot;SAMPLE ID  79 INT&quot;,
-  &quot;CES-D-BOTHERED BY THINGS 92&quot;,
-  &quot;CES-D-POOR APPETITE 92&quot;,
-  &quot;CES-D-UNABLE TO SHAKE BLUES 92&quot;,
-  &quot;CES-D-FELT GOOD AS OTHR PEOPLE 92&quot;,
-  &quot;CES-D-TRBLE KEEPING MIND ON TASKS 92&quot;,
-  &quot;CES-D-DEPRESSED 92&quot;,
-  &quot;CES-D-THINGS TOOK EXTRA EFFORT 92&quot;,
-  &quot;CES-D-HOPEFUL 92&quot;,
-  &quot;CES-D-A FAILURE 92&quot;,
-  &quot;CES-D-FEARFUL 92&quot;,
-  &quot;CES-D-RESTLESS SLEEP 92&quot;,
-  &quot;CES-D-HAPPY 92&quot;,
-  &quot;CES-D-LESS TALKATIVE THAN USUAL 92&quot;,
-  &quot;CES-D-LONELY 92&quot;,
-  &quot;CES-D-OTHERS WERE UNFRIENDLY 92&quot;,
-  &quot;CES-D-ENJOYED LIFE 92&quot;,
-  &quot;CES-D-CRYING SPELLS 92&quot;,
-  &quot;CES-D-SAD 92&quot;,
-  &quot;CES-D-DISLIKED BY OTHERS 92&quot;,
-  &quot;CES-D-COULD NOT GET GOING 92&quot;,
-  &quot;20-ITEM CES-D SCORE 92&quot;,
-  &quot;FLAG FOR 20-ITEM CES-D SCORE 92&quot;,
-  &quot;7-ITEM CES-D SCORE 92&quot;,
-  &quot;CES-D - POOR APPETITE 94&quot;,
-  &quot;CES-D-TRBLE KPNG MIND ON TASKS 94&quot;,
-  &quot;CES-D - DEPRESSED 94&quot;,
-  &quot;CES-D - TOOK EXTRA EFFORT 94&quot;,
-  &quot;CES-D - RESTLESS SLEEP 94&quot;,
-  &quot;CES-D - SAD 94&quot;,
-  &quot;CES-D - COULD NOT GET GOING 94&quot;,
-  &quot;7-ITEM CES-D SCORE 94&quot;,
-  &quot;R SATISFACTION WITH LIFE 2014&quot;,
-  &quot;R SATISFACTION WITH LIFE 2016&quot;
-)
-
-
-# Use qnames rather than rnums
-
-qnames = function(data) {
-  names(data) &lt;- c(&quot;H40_CESD_01&quot;,
-    &quot;H40_CESD_02&quot;,
-    &quot;H40_CESD_03&quot;,
-    &quot;H40_CESD_04&quot;,
-    &quot;H40_CESD_05&quot;,
-    &quot;H40_CESD_06&quot;,
-    &quot;H40_CESD_07&quot;,
-    &quot;H40_CESD_08&quot;,
-    &quot;H40_CESD_09&quot;,
-    &quot;H40_CESD_SCORE_7_ITEM&quot;,
-    &quot;H40_SF12_5&quot;,
-    &quot;H40_SF12_5B&quot;,
-    &quot;H40_SF12_8&quot;,
-    &quot;H40_CHRC_8&quot;,
-    &quot;H40_CHRC_8A_M&quot;,
-    &quot;H40_CHRC_8A_Y&quot;,
-    &quot;H40_CHRC_8B&quot;,
-    &quot;H40_CHRC_10K&quot;,
-    &quot;H50_CESD_SCORE_7_ITEM&quot;,
-    &quot;H50_CESD_01&quot;,
-    &quot;H50_CESD_02&quot;,
-    &quot;H50_CESD_03&quot;,
-    &quot;H50_CESD_04&quot;,
-    &quot;H50_CESD_05&quot;,
-    &quot;H50_CESD_06&quot;,
-    &quot;H50_CESD_07&quot;,
-    &quot;H50_CESD_08&quot;,
-    &quot;H50_CESD_09&quot;,
-    &quot;H50_SF12_5&quot;,
-    &quot;H50_SF12_5B&quot;,
-    &quot;H50_SF12_7&quot;,
-    &quot;H50_SF12_7B&quot;,
-    &quot;H50_SF12_7C&quot;,
-    &quot;H50_SF12_8&quot;,
-    &quot;H50_CHRC_7B&quot;,
-    &quot;H50_CHRC_7C_M&quot;,
-    &quot;H50_CHRC_7C_Y&quot;,
-    &quot;H50_CHRC_7D&quot;,
-    &quot;H50_CHRC_CHK6&quot;,
-    &quot;H50_CHRC_8&quot;,
-    &quot;H50_CHRC_8A_M&quot;,
-    &quot;H50_CHRC_8A_Y&quot;,
-    &quot;H50_CHRC_8B&quot;,
-    &quot;CASEID&quot;,
-    &quot;HEALTH_CODE_1979&quot;,
-    &quot;SAMPLE_ID&quot;,
-    &quot;CESD_00_1992&quot;,
-    &quot;CESD_01_1992&quot;,
-    &quot;CESD_02_1992&quot;,
-    &quot;CESD_02A_1992&quot;,
-    &quot;CESD_03_1992&quot;,
-    &quot;CESD_04_1992&quot;,
-    &quot;CESD_05_1992&quot;,
-    &quot;CESD_05A_1992&quot;,
-    &quot;CESD_05B_1992&quot;,
-    &quot;CESD_05C_1992&quot;,
-    &quot;CESD_06_1992&quot;,
-    &quot;CESD_06A_1992&quot;,
-    &quot;CESD_06B_1992&quot;,
-    &quot;CESD_07_1992&quot;,
-    &quot;CESD_07A_1992&quot;,
-    &quot;CESD_07B_1992&quot;,
-    &quot;CESD_07C_1992&quot;,
-    &quot;CESD_08_1992&quot;,
-    &quot;CESD_08A_1992&quot;,
-    &quot;CESD_09_1992&quot;,
-    &quot;CESD_SCORE_20_ITEM_1992&quot;,
-    &quot;CESD_FLAG_1992&quot;,
-    &quot;CESD_SCORE_7_ITEM_1992&quot;,
-    &quot;CESD_01_1994&quot;,
-    &quot;CESD_03_1994&quot;,
-    &quot;CESD_04_1994&quot;,
-    &quot;CESD_05_1994&quot;,
-    &quot;CESD_06_1994&quot;,
-    &quot;CESD_08_1994&quot;,
-    &quot;CESD_09_1994&quot;,
-    &quot;CESD_SCORE_7_ITEM_1994&quot;,
-    &quot;LIFE-SATISFACTION_2014&quot;,
-    &quot;LIFE-SATISFACTION_2016&quot;)
-  return(data)
-}
-
-
-#********************************************************************************************************
-
-df_dep_gen1 &lt;- qnames(vallabels(new_data))
-
-remove(new_data)
-
-#************************************************************************************************************</code></pre>
-<div id="crime" class="section level3">
-<h3>Crime</h3>
-<pre class="r"><code>new_data &lt;- readr::read_csv(&#39;df_crime_gen1/df_crime_gen1.csv&#39;, col_types = cols())
-names(new_data) &lt;- c(&#39;R0000100&#39;,
-  &#39;R0173600&#39;,
-  &#39;R0214700&#39;,
-  &#39;R0214800&#39;,
-  &#39;R0304600&#39;,
-  &#39;R0304900&#39;,
-  &#39;R0305000&#39;,
-  &#39;R0305100&#39;,
-  &#39;R0305200&#39;,
-  &#39;R0305300&#39;,
-  &#39;R0305400&#39;,
-  &#39;R0305500&#39;,
-  &#39;R0305600&#39;,
-  &#39;R0305900&#39;,
-  &#39;R0306000&#39;,
-  &#39;R0306100&#39;,
-  &#39;R0306200&#39;,
-  &#39;R0306300&#39;,
-  &#39;R0306400&#39;,
-  &#39;R0306500&#39;,
-  &#39;R0306700&#39;,
-  &#39;R0306800&#39;,
-  &#39;R0306900&#39;,
-  &#39;R0307000&#39;,
-  &#39;R0307100&#39;,
-  &#39;R0307200&#39;,
-  &#39;R0307300&#39;,
-  &#39;R0307400&#39;,
-  &#39;R0307500&#39;,
-  &#39;R0307600&#39;,
-  &#39;R0307700&#39;,
-  &#39;R0307800&#39;,
-  &#39;R0307900&#39;,
-  &#39;R0308000&#39;,
-  &#39;R0308100&#39;,
-  &#39;R0308200&#39;,
-  &#39;R0308300&#39;,
-  &#39;R0308400&#39;,
-  &#39;R0308500&#39;,
-  &#39;R0308600&#39;,
-  &#39;R0308700&#39;,
-  &#39;R0308800&#39;,
-  &#39;R0308900&#39;,
-  &#39;R0309000&#39;,
-  &#39;R0309100&#39;,
-  &#39;R0309200&#39;,
-  &#39;R0309300&#39;,
-  &#39;R0309400&#39;,
-  &#39;R0309500&#39;,
-  &#39;R0309600&#39;,
-  &#39;R0309800&#39;,
-  &#39;R0309900&#39;,
-  &#39;R0310000&#39;,
-  &#39;R0310100&#39;,
-  &#39;R0310200&#39;,
-  &#39;R0310300&#39;,
-  &#39;R0310400&#39;,
-  &#39;R0310410&#39;,
-  &#39;R0310600&#39;,
-  &#39;R0310700&#39;,
-  &#39;R0310800&#39;,
-  &#39;R0310810&#39;,
-  &#39;R0310900&#39;,
-  &#39;R0311000&#39;,
-  &#39;R0311100&#39;,
-  &#39;R0311200&#39;,
-  &#39;R0311210&#39;,
-  &#39;R0406310&#39;,
-  &#39;R0618810&#39;,
-  &#39;R0898510&#39;,
-  &#39;R1144710&#39;,
-  &#39;R1519910&#39;,
-  &#39;R1890300&#39;,
-  &#39;R2257400&#39;,
-  &#39;R2444600&#39;,
-  &#39;R2870100&#39;,
-  &#39;R3073900&#39;,
-  &#39;R3400500&#39;,
-  &#39;R3655900&#39;,
-  &#39;R4006400&#39;,
-  &#39;R4417500&#39;,
-  &#39;R4980800&#39;,
-  &#39;R5080500&#39;,
-  &#39;R5165800&#39;,
-  &#39;R6478500&#39;,
-  &#39;R7006300&#39;,
-  &#39;R7703500&#39;,
-  &#39;R8495900&#39;,
-  &#39;T0987500&#39;,
-  &#39;T2209800&#39;,
-  &#39;T3107600&#39;,
-  &#39;T4112100&#39;,
-  &#39;T5022300&#39;,
-  &#39;T5770600&#39;)
-
-
-# Handle missing values
-
-  new_data[new_data == -1] = NA  # Refused
-  new_data[new_data == -2] = NA  # Dont know
-  new_data[new_data == -3] = NA  # Invalid missing
-  new_data[new_data == -4] = NA  # Valid missing
-  new_data[new_data == -5] = NA  # Non-interview
-
-
-# If there are values not categorized they will be represented as NA
-
-vallabels = function(data) {
-  data$R0173600 &lt;- factor(data$R0173600,
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0),
-    labels=c(&quot;CROSS MALE WHITE&quot;,
-      &quot;CROSS MALE WH. POOR&quot;,
-      &quot;CROSS MALE BLACK&quot;,
-      &quot;CROSS MALE HISPANIC&quot;,
-      &quot;CROSS FEMALE WHITE&quot;,
-      &quot;CROSS FEMALE WH POOR&quot;,
-      &quot;CROSS FEMALE BLACK&quot;,
-      &quot;CROSS FEMALE HISPANIC&quot;,
-      &quot;SUP MALE WH POOR&quot;,
-      &quot;SUP MALE BLACK&quot;,
-      &quot;SUP MALE HISPANIC&quot;,
-      &quot;SUP FEM WH POOR&quot;,
-      &quot;SUP FEMALE BLACK&quot;,
-      &quot;SUP FEMALE HISPANIC&quot;,
-      &quot;MIL MALE WHITE&quot;,
-      &quot;MIL MALE BLACK&quot;,
-      &quot;MIL MALE HISPANIC&quot;,
-      &quot;MIL FEMALE WHITE&quot;,
-      &quot;MIL FEMALE BLACK&quot;,
-      &quot;MIL FEMALE HISPANIC&quot;))
-#  data$R0214700 &lt;- factor(data$R0214700,
-#    levels=c(1.0,2.0,3.0),
-#    labels=c(&quot;HISPANIC&quot;,
-#      &quot;BLACK&quot;,
-#      &quot;NON-BLACK, NON-HISPANIC&quot;))
-#  data$R0214800 &lt;- factor(data$R0214800,
-#    levels=c(1.0,2.0),
-#    labels=c(&quot;MALE&quot;,
-#      &quot;FEMALE&quot;))
-# data$R0304600 &lt;- factor(data$R0304600,
-#   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-#   labels=c(&quot;NEVER&quot;,
-#     &quot;ONCE&quot;,
-#     &quot;TWICE&quot;,
-#     &quot;3-5 TIMES&quot;,
-#     &quot;6-10 TIMES&quot;,
-#     &quot;11-50 TIMES&quot;,
-#     &quot;MORE THAN 50 TIMES&quot;))
-# data$R0304900 &lt;- factor(data$R0304900,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305000 &lt;- factor(data$R0305000,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305100 &lt;- factor(data$R0305100,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305200 &lt;- factor(data$R0305200,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305300 &lt;- factor(data$R0305300,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305400 &lt;- factor(data$R0305400,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305500 &lt;- factor(data$R0305500,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305600 &lt;- factor(data$R0305600,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0305900 &lt;- factor(data$R0305900,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0306000 &lt;- factor(data$R0306000,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0306100 &lt;- factor(data$R0306100,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0306200 &lt;- factor(data$R0306200,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0306300 &lt;- factor(data$R0306300,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0306400 &lt;- factor(data$R0306400,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  # data$R0306500 &lt;- factor(data$R0306500,
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0),
-  #   labels=c(&quot;NEVER&quot;,
-  #     &quot;ONCE&quot;,
-  #     &quot;TWICE&quot;,
-  #     &quot;3-5 TIMES&quot;,
-  #     &quot;6-10 TIMES&quot;,
-  #     &quot;11-50 TIMES&quot;,
-  #     &quot;MORE THAN 50 TIMES&quot;))
-  data$R0306700 &lt;- factor(data$R0306700,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$R0307100 &lt;- factor(data$R0307100,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$R0307700 &lt;- factor(data$R0307700,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$R0307800 &lt;- factor(data$R0307800,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$R0308300 &lt;- factor(data$R0308300,
-    levels=c(1.0),
-    labels=c(&quot;ASSAULT&quot;))
-  data$R0308400 &lt;- factor(data$R0308400,
-    levels=c(2.0),
-    labels=c(&quot;ROBBERY&quot;))
-  data$R0308500 &lt;- factor(data$R0308500,
-    levels=c(3.0),
-    labels=c(&quot;THEFT&quot;))
-  data$R0308600 &lt;- factor(data$R0308600,
-    levels=c(4.0),
-    labels=c(&quot;THEFT BY DECEPTION&quot;))
-  data$R0308700 &lt;- factor(data$R0308700,
-    levels=c(5.0),
-    labels=c(&quot;CONVICTED REGARDING STOLEN PROPERTY&quot;))
-  data$R0308800 &lt;- factor(data$R0308800,
-    levels=c(6.0),
-    labels=c(&quot;DESTRUCTION OF PROPERTY&quot;))
-  data$R0308900 &lt;- factor(data$R0308900,
-    levels=c(7.0),
-    labels=c(&quot;OTHER PROPERTY OFFENSE&quot;))
-  data$R0309000 &lt;- factor(data$R0309000,
-    levels=c(8.0),
-    labels=c(&quot;GAMBLING OFFENSE&quot;))
-  data$R0309100 &lt;- factor(data$R0309100,
-    levels=c(9.0),
-    labels=c(&quot;COMMERCIAL VICE&quot;))
-  data$R0309200 &lt;- factor(data$R0309200,
-    levels=c(10.0),
-    labels=c(&quot;POSSESSION OF MARIJUANA/HASHISH&quot;))
-  data$R0309300 &lt;- factor(data$R0309300,
-    levels=c(11.0),
-    labels=c(&quot;SELLING MARIJUANA/HASHISH&quot;))
-  data$R0309400 &lt;- factor(data$R0309400,
-    levels=c(12.0),
-    labels=c(&quot;POSSESSION OF OTHER ILLICIT DRUGS&quot;))
-  data$R0309500 &lt;- factor(data$R0309500,
-    levels=c(13.0),
-    labels=c(&quot;SALE/MANUFACTURE OF OTHER ILLICIT DRUGS&quot;))
-  data$R0309600 &lt;- factor(data$R0309600,
-    levels=c(14.0),
-    labels=c(&quot;MAJOR TRAFFIC OFFENSE&quot;))
-  data$R0309800 &lt;- factor(data$R0309800,
-    levels=c(16.0),
-    labels=c(&quot;STATUS OFFENSE&quot;))
-  data$R0309900 &lt;- factor(data$R0309900,
-    levels=c(17.0),
-    labels=c(&quot;OTHER OFFENSE&quot;))
-  data$R0310000 &lt;- factor(data$R0310000,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-  data$R0310100 &lt;- factor(data$R0310100,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$R0310600 &lt;- factor(data$R0310600,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$R0310900 &lt;- factor(data$R0310900,
-    levels=c(0.0,1.0),
-    labels=c(&quot;NO&quot;,
-      &quot;YES&quot;))
-
-  data$R0406310 &lt;- factor(data$R0406310,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT AND YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT AND YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;))
-  data$R0618810 &lt;- factor(data$R0618810,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT AND YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT AND YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;))
-  data$R0898510 &lt;- factor(data$R0898510,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;))
-  data$R1144710 &lt;- factor(data$R1144710,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;))
-  data$R1519910 &lt;- factor(data$R1519910,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;))
-  data$R1890300 &lt;- factor(data$R1890300,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;))
-  data$R2257400 &lt;- factor(data$R2257400,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;))
-  data$R2444600 &lt;- factor(data$R2444600,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;))
-  data$R2870100 &lt;- factor(data$R2870100,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;))
-  data$R3073900 &lt;- factor(data$R3073900,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;))
-  data$R3400500 &lt;- factor(data$R3400500,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;))
-  data$R3655900 &lt;- factor(data$R3655900,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;,
-      &quot;SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;))
-  data$R4006400 &lt;- factor(data$R4006400,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;,
-      &quot;SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;))
-  data$R4417500 &lt;- factor(data$R4417500,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
-    labels=c(&quot;PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;UNABLE TO LOCATE YOUTH&quot;,
-      &quot;DECEASED&quot;,
-      &quot;OTHER&quot;,
-      &quot;DO NOT REFIELD (VERY DIFFICULT CASES)&quot;,
-      &quot;MILITARY SAMPLE DROPPED&quot;,
-      &quot;SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;))
-  data$R4980800 &lt;- factor(data$R4980800,
-    levels=c(1.0,2.0,3.0,4.0,5.0),
-    labels=c(&quot;Happened 3 or more times in the past year&quot;,
-      &quot;Happened 2 times in the past year&quot;,
-      &quot;Happened 1 time in the past year&quot;,
-      &quot;Happened in lifetime other than in past year&quot;,
-      &quot;Never happened&quot;))
-  data$R5080500 &lt;- factor(data$R5080500,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;))
-  data$R5165800 &lt;- factor(data$R5165800,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
-    labels=c(&quot;60: PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: DECEASED&quot;,
-      &quot;66: OTHER&quot;,
-      &quot;67: DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;))
-  data$R6478500 &lt;- factor(data$R6478500,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;))
-  data$R7006300 &lt;- factor(data$R7006300,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0),
-    labels=c(&quot;60: PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: DECEASED&quot;,
-      &quot;66: OTHER&quot;,
-      &quot;67: DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: YOUTH REFUSAL - VERY DIFFICULT CASE&quot;))
-  data$R7703500 &lt;- factor(data$R7703500,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;))
-  data$R8495900 &lt;- factor(data$R8495900,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;))
-  data$T0987500 &lt;- factor(data$T0987500,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;))
-  data$T2209800 &lt;- factor(data$T2209800,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;))
-  data$T3107600 &lt;- factor(data$T3107600,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;))
-  data$T4112100 &lt;- factor(data$T4112100,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;))
-  data$T5022300 &lt;- factor(data$T5022300,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;))
-  data$T5770600 &lt;- factor(data$T5770600,
-    levels=c(60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0),
-    labels=c(&quot;60: 60  PARENT REFUSAL/BREAKOFF&quot;,
-      &quot;61: 61  YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;62: 62  PARENT &amp; YOUTH REFUSAL/BREAKOFF&quot;,
-      &quot;63: 63  UNABLE TO LOCATE FAMILY UNIT &amp; YOUTH&quot;,
-      &quot;64: 64  UNABLE TO LOCATE YOUTH&quot;,
-      &quot;65: 65  DECEASED&quot;,
-      &quot;66: 66  OTHER&quot;,
-      &quot;67: 67  DO NOT REFIELD (VERY DIFFICULT CASE)&quot;,
-      &quot;68: 68  MILITARY SAMPLE DROPPED&quot;,
-      &quot;69: 69  SUPPLEMENTAL MALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;70: 70  SUPPLEMENTAL FEMALE POOR WHITE SAMPLE DROPPED&quot;,
-      &quot;71: 71  YOUTH REFUSAL - VERY DIFFICULT CASE&quot;,
-      &quot;72: 72  NOT FIELDED IN CURRENT SURVEY YEAR - VERY DIFFICULT CASE&quot;,
-      &quot;73: 73  NOT INTERVIEWED - INCARCERATED&quot;,
-      &quot;74: 74  NOT INTERVIEWED - IN MILITARY&quot;,
-      &quot;75: 75 DECEASED - MEMBER OF DROPPED SPECIAL SAMPLE&quot;))
-  return(data)
-}
-
-varlabels &lt;- c(&quot;ID# (1-12686) 79&quot;,
-  &quot;SAMPLE ID  79 INT&quot;,
-  &quot;RACL/ETHNIC COHORT /SCRNR 79&quot;,
-  &quot;SEX OF R 79&quot;,
-  &quot;ILL ACT RUN AWAY PAST YR (AGE &lt;18) 80&quot;,
-  &quot;ILL ACT INTENTION DAMAGED PROP PAST 80&quot;,
-  &quot;ILL ACT FOUGHT @ SCHOOL/WRK PAST YR 80&quot;,
-  &quot;ILL ACT SHOPLIFTED PAST YR 80&quot;,
-  &quot;ILL ACT STEEL PAST YR (&lt;$50) 80&quot;,
-  &quot;ILL ACT STEEL PAST YR (&gt;$50) 80&quot;,
-  &quot;ILL ACT USED FORCE OBTAIN THINGS YR 80&quot;,
-  &quot;ILL ACT # SERIOUS THREAT HIT PAST 80&quot;,
-  &quot;ILL ACT ATTACK W/INTNT INJR/KILL PAST 80&quot;,
-  &quot;ILL ACT SOLD MARJ PAST YR 80&quot;,
-  &quot;ILL ACT SOLD HARD DRUGS PAST YR 80&quot;,
-  &quot;ILL ACT ATTEMPTED TO 80&quot;,
-  &quot;ILL ACT TAKE AUTO W/O PERM PAST YR 80&quot;,
-  &quot;ILL ACT BROKEN INTO A BUILDING PAST 80&quot;,
-  &quot;ILL ACT KNOW SOLD/HELD STOLEN PAST 80&quot;,
-  &quot;ILL ACT AID GAMBLING OPER PAST YR 80&quot;,
-  &quot;STOP BY POLICE O/THAN MIN TRAFIC OFF 80&quot;,
-  &quot;TIMES STOP BY POLICE MINOR 80&quot;,
-  &quot;TIMES STOP POLICE EXCLD MINOR PAST YR 80&quot;,
-  &quot;AGE OF R 1ST TIME STOPPED BY POLICE 80&quot;,
-  &quot;EVER CHARGED W/ILGL ACT 80&quot;,
-  &quot;TIMES CHARGE W/ILGL ACT EXCLD MINOR 80&quot;,
-  &quot;TIMES CHARGE W/ILGL ACT EXCLD MINOR 80&quot;,
-  &quot;MONTH M-RCNT ILGL ACT CHARGE 80&quot;,
-  &quot;YR M-RCNT ILGL ACT CHARGE 80&quot;,
-  &quot;AGE @ TIME 1ST ILGL ACT CHARGE 80&quot;,
-  &quot;EVER CHARGED ILGL ACT ADLT COURT 80&quot;,
-  &quot;EVER CONVICTED ON ILGL ACT CHARGES 80&quot;,
-  &quot;TIMES CONVICTED ILGL ACT EXCLD MINOR 80&quot;,
-  &quot;AGE @ TIME 1ST ILGL ACT CONVICTION 80&quot;,
-  &quot;MONTH M-RCNT ILGL ACT CONVICTION 80&quot;,
-  &quot;YR M-RCNT ILGL ACT CONVICTION 80&quot;,
-  &quot;ILL ACT ASSAULT 80&quot;,
-  &quot;ILL ACT ROBBERY 80&quot;,
-  &quot;ILL ACT THEFT 80&quot;,
-  &quot;ILL ACT THEFT BY DECEPTION 80&quot;,
-  &quot;ILL ACT STOLEN PROP 80&quot;,
-  &quot;ILL ACT DESTRUCTION OF PROP 80&quot;,
-  &quot;ILL ACT OTHER PROP OFFENSE 80&quot;,
-  &quot;ILL ACT GAMBLING 80&quot;,
-  &quot;ILL ACT COMMERCIAL VICE 80&quot;,
-  &quot;ILL ACT POSSESSION OF MARJ/HASH 80&quot;,
-  &quot;ILL ACT SELL MARJ/HASH 80&quot;,
-  &quot;ILL ACT POSSESSION OTHER DRUGS 80&quot;,
-  &quot;ILL ACT SALE/MANUF ILLICIT DRUGS 80&quot;,
-  &quot;ILL ACT MAJOR TRAFIC OFFENSE 80&quot;,
-  &quot;ILL ACT STATUS OFFENSE 80&quot;,
-  &quot;ILL ACT OTHER 80&quot;,
-  &quot;EVER CONVICTED ILGL ACT ADLT COURT 80&quot;,
-  &quot;EVER REFUSED COURT-RELATED COUNSELING 80&quot;,
-  &quot;TIMES REFER COURT-RELATED COUNSELING 80&quot;,
-  &quot;AGE @ TIME 1ST COURT-REL COUNSELING 80&quot;,
-  &quot;MONTH M-RCNT COURT-REL COUNSELING END 80&quot;,
-  &quot;YR M-RCNT COURT-REL COUNSELING END 80&quot;,
-  &quot;EVER BEEN ON PROBATION 80&quot;,
-  &quot;TIMES ON PROBATION 80&quot;,
-  &quot;DATE M-RCNT PROBATION PRD END 80&quot;,
-  &quot;YR M-RCNT PROBATION PRD END 80&quot;,
-  &quot;EVER SNTNCD ANY CORP INSTITUTN 80&quot;,
-  &quot;TIMES SENT TO YTH CORP INSTITUTN 80&quot;,
-  &quot;TIMES SENT TO ADLT CORP INSTITUTN 80&quot;,
-  &quot;MONTH M-RCNT RLSE CORP INSTITUTN 80&quot;,
-  &quot;YR M-RCNT RLSE CORP INSTITUTN 80&quot;,
-  &quot;REASON FOR NONINT 80&quot;,
-  &quot;REASON FOR NONINT 81&quot;,
-  &quot;REASON FOR NONINT 82&quot;,
-  &quot;REASON FOR NONINT 83&quot;,
-  &quot;REASON FOR NONINT 84&quot;,
-  &quot;REASON FOR NONINT 85&quot;,
-  &quot;REASON FOR NONINT 86&quot;,
-  &quot;REASON FOR NONINT 87&quot;,
-  &quot;REASON FOR NONINT 88&quot;,
-  &quot;REASON FOR NONINT 89&quot;,
-  &quot;REASON FOR NONINT 90&quot;,
-  &quot;REASON FOR NONINT 91&quot;,
-  &quot;REASON FOR NONINT 92&quot;,
-  &quot;REASONS FOR NON-INT 93&quot;,
-  &quot;ARRESTED, IN POLICE TROUBLE 94&quot;,
-  &quot;REASONS FOR NON-INT 94&quot;,
-  &quot;REASONS FOR NON-INT 96&quot;,
-  &quot;REASONS FOR NON-INT 1998&quot;,
-  &quot;REASONS FOR NON-INT 2000&quot;,
-  &quot;REASONS FOR NON-INT 2002&quot;,
-  &quot;REASONS FOR NON-INT 2004&quot;,
-  &quot;REASONS FOR NON-INT 2006&quot;,
-  &quot;REASONS FOR NON-INT 2008&quot;,
-  &quot;REASONS FOR NON-INT 2010&quot;,
-  &quot;REASONS FOR NON-INT 2012&quot;,
-  &quot;REASONS FOR NON-INT 2014&quot;,
-  &quot;REASONS FOR NON-INT 2016&quot;
-)
-
-
-# Use qnames rather than rnums
-
-qnames = function(data) {
-  names(data) &lt;- c(&quot;CASEID&quot;,
-     &quot;SAMPLE_ID&quot;,   #     &quot;SAMPLE ID  79 INT&quot;,
-    &quot;RACE&quot;, #     &quot;RACL/ETHNIC COHORT /SCRNR 79&quot;,
-    &quot;SEX&quot;,  #     &quot;SEX OF R 79&quot;,
-    &quot;DELIN_1_1980&quot;,   #   &quot;ILL ACT RUN AWAY PAST YR (AGE &lt;18) 80&quot;,
-    &quot;DELIN_4_1980&quot;,   #   &quot;ILL ACT INTENTION DAMAGED PROP PAST 80&quot;,
-    &quot;DELIN_5_1980&quot;,   #   &quot;ILL ACT FOUGHT @ SCHOOL/WRK PAST YR 80&quot;,
-    &quot;DELIN_6_1980&quot;,   #   &quot;ILL ACT SHOPLIFTED PAST YR 80&quot;,
-    &quot;DELIN_7_1980&quot;,   #   &quot;ILL ACT STEEL PAST YR (&lt;$50) 80&quot;,
-    &quot;DELIN_8_1980&quot;,   #   &quot;ILL ACT STEEL PAST YR (&gt;$50) 80&quot;,
-    &quot;DELIN_9_1980&quot;,   #   &quot;ILL ACT USED FORCE OBTAIN THINGS YR 80&quot;,
-    &quot;DELIN_10_1980&quot;,    #     &quot;ILL ACT # SERIOUS THREAT HIT PAST 80&quot;,
-    &quot;DELIN_11_1980&quot;,    #     &quot;ILL ACT ATTACK W/INTNT INJR/KILL PAST 80&quot;,
-    &quot;DELIN_14_1980&quot;,    #     &quot;ILL ACT SOLD MARJ PAST YR 80&quot;,
-    &quot;DELIN_15_1980&quot;,    #     &quot;ILL ACT SOLD HARD DRUGS PAST YR 80&quot;,
-    &quot;DELIN_16_1980&quot;,    #     &quot;ILL ACT ATTEMPTED TO 80&quot;,
-    &quot;DELIN_17_1980&quot;,    #     &quot;ILL ACT TAKE AUTO W/O PERM PAST YR 80&quot;,
-    &quot;DELIN_18_1980&quot;,    #     &quot;ILL ACT BROKEN INTO A BUILDING PAST 80&quot;,
-    &quot;DELIN_19_1980&quot;,    #     &quot;ILL ACT KNOW SOLD/HELD STOLEN PAST 80&quot;,
-    &quot;DELIN_20_1980&quot;,    #     &quot;ILL ACT AID GAMBLING OPER PAST YR 80&quot;,
-    &quot;POLICE_1_1980&quot;,    #     &quot;STOP BY POLICE O/THAN MIN TRAFIC OFF 80&quot;,
-    &quot;POLICE_1A_1980&quot;,   #     &quot;TIMES STOP BY POLICE MINOR 80&quot;,
-    &quot;POLICE_1B_1980&quot;,   #     &quot;TIMES STOP POLICE EXCLD MINOR PAST YR 80&quot;,
-    &quot;POLICE_1C_1980&quot;,   #     &quot;AGE OF R 1ST TIME STOPPED BY POLICE 80&quot;,
-    &quot;POLICE_2_1980&quot;,    #     &quot;EVER CHARGED W/ILGL ACT 80&quot;,
-    &quot;POLICE_2A_1980&quot;,   #     &quot;TIMES CHARGE W/ILGL ACT EXCLD MINOR 80&quot;,
-    &quot;POLICE_2B_1980&quot;,   #     &quot;TIMES CHARGE W/ILGL ACT EXCLD MINOR 80&quot;,
-    &quot;POLICE_2C_M_1980&quot;, #     &quot;MONTH M-RCNT ILGL ACT CHARGE 80&quot;,
-    &quot;POLICE_2C_Y_1980&quot;, #     &quot;YR M-RCNT ILGL ACT CHARGE 80&quot;,
-    &quot;POLICE_2D_1980&quot;,   #     &quot;AGE @ TIME 1ST ILGL ACT CHARGE 80&quot;,
-    &quot;POLICE_2E_1980&quot;,   #     &quot;EVER CHARGED ILGL ACT ADLT COURT 80&quot;,
-    &quot;POLICE_3_1980&quot;,    #     &quot;EVER CONVICTED ON ILGL ACT CHARGES 80&quot;,
-    &quot;POLICE_3A_1980&quot;,   #     &quot;TIMES CONVICTED ILGL ACT EXCLD MINOR 80&quot;,
-    &quot;POLICE_3B_1980&quot;,   #     &quot;AGE @ TIME 1ST ILGL ACT CONVICTION 80&quot;,
-    &quot;POLICE_3C_M_1980&quot;, #     &quot;MONTH M-RCNT ILGL ACT CONVICTION 80&quot;,
-    &quot;POLICE_3C_Y_1980&quot;, #     &quot;YR M-RCNT ILGL ACT CONVICTION 80&quot;,
-    &quot;POLICE_3D_01_1980&quot;,    #     &quot;ILL ACT ASSAULT 80&quot;,
-    &quot;POLICE_3D_02_1980&quot;,    #     &quot;ILL ACT ROBBERY 80&quot;,
-    &quot;POLICE_3D_03_1980&quot;,    #     &quot;ILL ACT THEFT 80&quot;,
-    &quot;POLICE_3D_04_1980&quot;,    #     &quot;ILL ACT THEFT BY DECEPTION 80&quot;,
-    &quot;POLICE_3D_05_1980&quot;,    #     &quot;ILL ACT STOLEN PROP 80&quot;,
-    &quot;POLICE_3D_06_1980&quot;,    #     &quot;ILL ACT DESTRUCTION OF PROP 80&quot;,
-    &quot;POLICE_3D_07_1980&quot;,    #     &quot;ILL ACT OTHER PROP OFFENSE 80&quot;,
-    &quot;POLICE_3D_08_1980&quot;,    #     &quot;ILL ACT GAMBLING 80&quot;,
-    &quot;POLICE_3D_09_1980&quot;,    #     &quot;ILL ACT COMMERCIAL VICE 80&quot;,
-    &quot;POLICE_3D_10_1980&quot;,    #     &quot;ILL ACT POSSESSION OF MARJ/HASH 80&quot;,
-    &quot;POLICE_3D_11_1980&quot;,    #     &quot;ILL ACT SELL MARJ/HASH 80&quot;,
-    &quot;POLICE_3D_12_1980&quot;,    #     &quot;ILL ACT POSSESSION OTHER DRUGS 80&quot;,
-    &quot;POLICE_3D_13_1980&quot;,    #     &quot;ILL ACT SALE/MANUF ILLICIT DRUGS 80&quot;,
-    &quot;POLICE_3D_14_1980&quot;,    #     &quot;ILL ACT MAJOR TRAFIC OFFENSE 80&quot;,
-    &quot;POLICE_3D_16_1980&quot;,    #     &quot;ILL ACT STATUS OFFENSE 80&quot;,
-    &quot;POLICE_3D_17_1980&quot;,    #     &quot;ILL ACT OTHER 80&quot;,
-    &quot;POLICE_3E_1980&quot;,   #     &quot;EVER CONVICTED ILGL ACT ADLT COURT 80&quot;,
-    &quot;POLICE_4_1980&quot;,    #     &quot;EVER REFUSED COURT-RELATED COUNSELING 80&quot;,
-    &quot;POLICE_4A_1980&quot;,   #     &quot;TIMES REFER COURT-RELATED COUNSELING 80&quot;,
-    &quot;POLICE_4B_1980&quot;,   #     &quot;AGE @ TIME 1ST COURT-REL COUNSELING 80&quot;,
-    &quot;POLICE_4C_M_1980&quot;, #     &quot;MONTH M-RCNT COURT-REL COUNSELING END 80&quot;,
-    &quot;POLICE_4C_Y_1980&quot;, #     &quot;YR M-RCNT COURT-REL COUNSELING END 80&quot;,
-    &quot;POLICE_6_1980&quot;,    #     &quot;EVER BEEN ON PROBATION 80&quot;,
-    &quot;POLICE_6A_1980&quot;,     #   &quot;TIMES ON PROBATION 80&quot;,
-    &quot;POLICE_6B_M_1980&quot;, #     &quot;DATE M-RCNT PROBATION PRD END 80&quot;,
-    &quot;POLICE_6B_Y_1980&quot;, #     &quot;YR M-RCNT PROBATION PRD END 80&quot;,
-    &quot;POLICE_7_1980&quot;,    #     &quot;EVER SNTNCD ANY CORP INSTITUTN 80&quot;,
-    &quot;POLICE_7A_1980&quot;,   #     &quot;TIMES SENT TO YTH CORP INSTITUTN 80&quot;,
-    &quot;POLICE_7B_1980&quot;,   #     &quot;TIMES SENT TO ADLT CORP INSTITUTN 80&quot;,
-    &quot;POLICE_7C_M_1980&quot;, #     &quot;MONTH M-RCNT RLSE CORP INSTITUTN 80&quot;,
-    &quot;POLICE_7C_Y_1980&quot;, #     &quot;YR M-RCNT RLSE CORP INSTITUTN 80&quot;,
-    &quot;RNI_1980&quot;,         #     &quot;REASON FOR NONINT 80&quot;,
-    &quot;RNI_1981&quot;,         #     &quot;REASON FOR NONINT 81&quot;,
-    &quot;RNI_1982&quot;,         #     &quot;REASON FOR NONINT 82&quot;,
-    &quot;RNI_1983&quot;,         #     &quot;REASON FOR NONINT 83&quot;,
-    &quot;RNI_1984&quot;,         #     &quot;REASON FOR NONINT 84&quot;,
-    &quot;RNI_1985&quot;,         #     &quot;REASON FOR NONINT 85&quot;,
-    &quot;RNI_1986&quot;,         #     &quot;REASON FOR NONINT 86&quot;,
-    &quot;RNI_1987&quot;,         #     &quot;REASON FOR NONINT 87&quot;,
-    &quot;RNI_1988&quot;,         #     &quot;REASON FOR NONINT 88&quot;,     
-    &quot;RNI_1989&quot;,         #     &quot;REASON FOR NONINT 89&quot;,
-    &quot;RNI_1990&quot;,         #     &quot;REASON FOR NONINT 90&quot;,
-    &quot;RNI_1991&quot;,         #     &quot;REASON FOR NONINT 91&quot;,
-    &quot;RNI_1992&quot;,         #     &quot;REASON FOR NONINT 92&quot;,
-    &quot;RNI_1993&quot;,         #     &quot;REASONS FOR NON-INT 93&quot;,
-    &quot;ARREST_7N_1994&quot;,   #     &quot;ARRESTED, IN POLICE TROUBLE 94&quot;,
-    &quot;RNI_1994&quot;,         #     &quot;REASONS FOR NON-INT 94&quot;,
-    &quot;RNI_1996&quot;,         #     &quot;REASONS FOR NON-INT 96&quot;,
-    &quot;RNI_1998&quot;,         #     &quot;REASONS FOR NON-INT 1998&quot;,
-    &quot;RNI_2000&quot;,         #     &quot;REASONS FOR NON-INT 2000&quot;,
-    &quot;RNI_2002&quot;,         #     &quot;REASONS FOR NON-INT 2002&quot;,
-    &quot;RNI_2004&quot;,         #     &quot;REASONS FOR NON-INT 2004&quot;,
-    &quot;RNI_2006&quot;,         #     &quot;REASONS FOR NON-INT 2006&quot;,
-    &quot;RNI_2008&quot;,         #     &quot;REASONS FOR NON-INT 2008&quot;,
-    &quot;RNI_2010&quot;,         #     &quot;REASONS FOR NON-INT 2010&quot;,
-    &quot;RNI_2012&quot;,         #     &quot;REASONS FOR NON-INT 2012&quot;,
-    &quot;RNI_2014&quot;,         #     &quot;REASONS FOR NON-INT 2014&quot;,
-    &quot;RNI_2016&quot;)         #     &quot;REASONS FOR NON-INT 2016&quot;
-
-  return(data)
-}
-
-
-#********************************************************************************************************
-
-df_crime_gen1 &lt;- qnames(vallabels(new_data))
-
-#************************************************************************************************************
-
-remove(new_data)</code></pre>
-<pre class="r"><code>#How old is everyone? 
-
-df_age &lt;- readr::read_csv(&#39;default/default.csv&#39;)</code></pre>
+</div>
+<div id="crime" class="section level2">
+<h2>Crime</h2>
+</div>
+<div id="age" class="section level2">
+<h2>age</h2>
 <pre><code>## Rows: 12686 Columns: 7
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: &quot;,&quot;
@@ -1845,186 +190,6 @@ df_age &lt;- readr::read_csv(&#39;default/default.csv&#39;)</code></pre>
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>#Comment the one below out, it runs. Keep it in there is a warning, 
-
-#df_age &lt;- read.table(&#39;default.dat&#39;, sep=&#39; &#39;)
-names(df_age) &lt;- c(&#39;R0000100&#39;,
-  &#39;R0000300&#39;,
-  &#39;R0000500&#39;,
-  &#39;R0000600&#39;,
-  &#39;R0173600&#39;,
-  &#39;R0214700&#39;,
-  &#39;R0214800&#39;)
-
-
-# Handle missing values
-
-  df_age[df_age == -1] = NA  # Refused 
-  df_age[df_age == -2] = NA  # Dont know 
-  df_age[df_age == -3] = NA  # Invalid missing 
-  df_age[df_age == -4] = NA  # Valid missing 
-  df_age[df_age == -5] = NA  # Non-interview 
-
-
-# If there are values not categorized they will be represented as NA
-
-vallabels = function(data) {
-  # data$R0000300[17.0 &lt;= data$R0000300 &amp; data$R0000300 &lt;= 99999.0] &lt;- 17.0
-  # data$R0000300 &lt;- factor(data$R0000300, 
-  #   levels=c(0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0), 
-  #   labels=c(&quot;0: &lt; 1&quot;,
-  #     &quot;1&quot;,
-  #     &quot;2&quot;,
-  #     &quot;3&quot;,
-  #     &quot;4&quot;,
-  #     &quot;5&quot;,
-  #     &quot;6&quot;,
-  #     &quot;7&quot;,
-  #     &quot;8&quot;,
-  #     &quot;9&quot;,
-  #     &quot;10&quot;,
-  #     &quot;11&quot;,
-  #     &quot;12&quot;,
-  #     &quot;13&quot;,
-  #     &quot;14&quot;,
-  #     &quot;15&quot;,
-  #     &quot;16&quot;,
-  #     &quot;17 TO 99999: 17+&quot;))
-  # data$R0000500[0.0 &lt;= data$R0000500 &amp; data$R0000500 &lt;= 56.0] &lt;- 0.0
-  # data$R0000500[73.0 &lt;= data$R0000500 &amp; data$R0000500 &lt;= 99999.0] &lt;- 73.0
-  # data$R0000500 &lt;- factor(data$R0000500, 
-  #   levels=c(0.0,57.0,58.0,59.0,60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0), 
-  #   labels=c(&quot;0 TO 56: &lt; 57&quot;,
-  #     &quot;57&quot;,
-  #     &quot;58&quot;,
-  #     &quot;59&quot;,
-  #     &quot;60&quot;,
-  #     &quot;61&quot;,
-  #     &quot;62&quot;,
-  #     &quot;63&quot;,
-  #     &quot;64&quot;,
-  #     &quot;65&quot;,
-  #     &quot;66&quot;,
-  #     &quot;67&quot;,
-  #     &quot;68&quot;,
-  #     &quot;69&quot;,
-  #     &quot;70&quot;,
-  #     &quot;71&quot;,
-  #     &quot;72&quot;,
-  #     &quot;73 TO 99999: 73+&quot;))
-  # data$R0000600[0.0 &lt;= data$R0000600 &amp; data$R0000600 &lt;= 13.0] &lt;- 0.0
-  # data$R0000600[30.0 &lt;= data$R0000600 &amp; data$R0000600 &lt;= 99999.0] &lt;- 30.0
-  # data$R0000600 &lt;- factor(data$R0000600, 
-  #   levels=c(0.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,30.0), 
-  #   labels=c(&quot;0 TO 13: &lt; 14&quot;,
-  #     &quot;14&quot;,
-  #     &quot;15&quot;,
-  #     &quot;16&quot;,
-  #     &quot;17&quot;,
-  #     &quot;18&quot;,
-  #     &quot;19&quot;,
-  #     &quot;20&quot;,
-  #     &quot;21&quot;,
-  #     &quot;22&quot;,
-  #     &quot;23&quot;,
-  #     &quot;24&quot;,
-  #     &quot;25&quot;,
-  #     &quot;26&quot;,
-  #     &quot;27&quot;,
-  #     &quot;28&quot;,
-  #     &quot;29&quot;,
-  #     &quot;30 TO 99999: 30+&quot;))
-  data$R0173600 &lt;- factor(data$R0173600, 
-    levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
-    labels=c(&quot;CROSS MALE WHITE&quot;,
-      &quot;CROSS MALE WH. POOR&quot;,
-      &quot;CROSS MALE BLACK&quot;,
-      &quot;CROSS MALE HISPANIC&quot;,
-      &quot;CROSS FEMALE WHITE&quot;,
-      &quot;CROSS FEMALE WH POOR&quot;,
-      &quot;CROSS FEMALE BLACK&quot;,
-      &quot;CROSS FEMALE HISPANIC&quot;,
-      &quot;SUP MALE WH POOR&quot;,
-      &quot;SUP MALE BLACK&quot;,
-      &quot;SUP MALE HISPANIC&quot;,
-      &quot;SUP FEM WH POOR&quot;,
-      &quot;SUP FEMALE BLACK&quot;,
-      &quot;SUP FEMALE HISPANIC&quot;,
-      &quot;MIL MALE WHITE&quot;,
-      &quot;MIL MALE BLACK&quot;,
-      &quot;MIL MALE HISPANIC&quot;,
-      &quot;MIL FEMALE WHITE&quot;,
-      &quot;MIL FEMALE BLACK&quot;,
-      &quot;MIL FEMALE HISPANIC&quot;))
-  data$R0214700 &lt;- factor(data$R0214700, 
-    levels=c(1.0,2.0,3.0), 
-    labels=c(&quot;HISPANIC&quot;,
-      &quot;BLACK&quot;,
-      &quot;NON-BLACK, NON-HISPANIC&quot;))
-  data$R0214800 &lt;- factor(data$R0214800, 
-    levels=c(1.0,2.0), 
-    labels=c(&quot;MALE&quot;,
-      &quot;FEMALE&quot;))
-  return(data)
-}
-
-varlabels &lt;- c(&quot;ID# (1-12686) 79&quot;,
-  &quot;DATE OF BIRTH - MONTH 79&quot;,
-  &quot;DATE OF BIRTH - YR 79&quot;,
-  &quot;AGE OF R 79&quot;,
-  &quot;SAMPLE ID  79 INT&quot;,
-  &quot;RACL/ETHNIC COHORT /SCRNR 79&quot;,
-  &quot;SEX OF R 79&quot;
-)
-
-
-# Use qnames rather than rnums
-
-qnames = function(data) {
-  names(data) &lt;- c(&quot;CASEID&quot;,
-    &quot;M_1979&quot;,
-    &quot;Y_1979&quot;,
-    &quot;AGE_1979&quot;,
-    &quot;SAMPLE_ID&quot;,
-    &quot;RACE_78SCRN&quot;,
-    &quot;SEX_1979&quot;)
-  return(data)
-}
-
-
-#********************************************************************************************************
-
-
-# Remove the &#39;#&#39; before the following lines to rename variables using Qnames instead of Reference Numbers
-df_age &lt;- qnames(vallabels(df_age))
-
-summary(df_age)</code></pre>
-<pre><code>##      CASEID          M_1979           Y_1979         AGE_1979   
-##  Min.   :    1   Min.   : 1.000   Min.   :57.00   Min.   :14.0  
-##  1st Qu.: 3172   1st Qu.: 4.000   1st Qu.:58.00   1st Qu.:16.0  
-##  Median : 6344   Median : 7.000   Median :60.00   Median :18.0  
-##  Mean   : 6344   Mean   : 6.495   Mean   :60.34   Mean   :17.9  
-##  3rd Qu.: 9515   3rd Qu.: 9.000   3rd Qu.:62.00   3rd Qu.:20.0  
-##  Max.   :12686   Max.   :12.000   Max.   :64.00   Max.   :22.0  
-##                                                                 
-##                SAMPLE_ID                     RACE_78SCRN     SEX_1979   
-##  CROSS FEMALE WHITE :2279   HISPANIC               :2002   MALE  :6403  
-##  CROSS MALE WHITE   :2236   BLACK                  :3174   FEMALE:6283  
-##  SUP MALE BLACK     :1105   NON-BLACK, NON-HISPANIC:7510                
-##  SUP FEMALE BLACK   :1067                                               
-##  SUP FEM WH POOR    : 901                                               
-##  SUP FEMALE HISPANIC: 751                                               
-##  (Other)            :4347</code></pre>
-<pre class="r"><code>#************************************************************************************************************
-
-#freq table for item 1
-table(df_age$AGE_1979) </code></pre>
-<pre><code>## 
-##   14   15   16   17   18   19   20   21   22 
-##  950 1563 1561 1508 1634 1677 1666 1690  437</code></pre>
-<pre class="r"><code>describe(df_age$AGE_1979)</code></pre>
-<pre><code>##    vars     n mean   sd median trimmed  mad min max range  skew kurtosis   se
-## X1    1 12686 17.9 2.31     18   17.92 2.97  14  22     8 -0.05    -1.14 0.02</code></pre>
 <pre class="r"><code># is average deliquency score; so that missing data doesn&#39;t deflate score
 df_crime_gen1 = 
   df_crime_gen1 %&gt;% mutate(
@@ -2055,10 +220,11 @@ df_spsp_gen1=mutate(df_spsp_gen1,
 
 
 # add to spsp df
-df_spsp_gen1$CESD_7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
-df_spsp_gen1$CESD_20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
-df_spsp_gen1$CESD_7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 
+df_spsp_gen1$CESD7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
+df_spsp_gen1$CESD20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
+df_spsp_gen1$CESD7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
+df_spsp_gen1$AGE_1979= df_age$AGE_1979
 # 
 cor(df_spsp_gen1,use=&quot;pairwise.complete&quot;)</code></pre>
 <pre><code>##                SubjectTag      CASEID          RACE           SEX DELIN_AVERAGE
@@ -2067,18 +233,20 @@ cor(df_spsp_gen1,use=&quot;pairwise.complete&quot;)</code></pre>
 ## RACE           0.20333180  0.20333180  1.0000000000  0.0001666453   -0.03742342
 ## SEX            0.03864950  0.03864950  0.0001666453  1.0000000000    0.25526995
 ## DELIN_AVERAGE -0.01886052 -0.01886052 -0.0374234159  0.2552699546    1.00000000
-## CESD_7_1994    0.04253523  0.04253523  0.0814601930 -0.1635641661    0.03231583
-## CESD_20_1992   0.04534349  0.04534349  0.1344010296 -0.0938880066    0.07036204
-## CESD_7_1992    0.03244973  0.03244973  0.0970550584 -0.1161312642    0.06623573
-##               CESD_7_1994 CESD_20_1992 CESD_7_1992
-## SubjectTag     0.04253523   0.04534349  0.03244973
-## CASEID         0.04253523   0.04534349  0.03244973
-## RACE           0.08146019   0.13440103  0.09705506
-## SEX           -0.16356417  -0.09388801 -0.11613126
-## DELIN_AVERAGE  0.03231583   0.07036204  0.06623573
-## CESD_7_1994    1.00000000   0.42433473  0.42387813
-## CESD_20_1992   0.42433473   1.00000000  0.90160212
-## CESD_7_1992    0.42387813   0.90160212  1.00000000</code></pre>
+## CESD7_1994     0.04253523  0.04253523  0.0814601930 -0.1635641661    0.03231583
+## CESD20_1992    0.04534349  0.04534349  0.1344010296 -0.0938880066    0.07036204
+## CESD7_1992     0.03244973  0.03244973  0.0970550584 -0.1161312642    0.06623573
+## AGE_1979       0.16768876  0.16768876 -0.0693502885 -0.0082669842   -0.10255538
+##                 CESD7_1994  CESD20_1992  CESD7_1992     AGE_1979
+## SubjectTag     0.042535235  0.045343491  0.03244973  0.167688760
+## CASEID         0.042535235  0.045343491  0.03244973  0.167688760
+## RACE           0.081460193  0.134401030  0.09705506 -0.069350288
+## SEX           -0.163564166 -0.093888007 -0.11613126 -0.008266984
+## DELIN_AVERAGE  0.032315828  0.070362038  0.06623573 -0.102555376
+## CESD7_1994     1.000000000  0.424334727  0.42387813  0.002552166
+## CESD20_1992    0.424334727  1.000000000  0.90160212 -0.009842645
+## CESD7_1992     0.423878134  0.901602117  1.00000000 -0.015353187
+## AGE_1979       0.002552166 -0.009842645 -0.01535319  1.000000000</code></pre>
 <pre class="r"><code># convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
 summary(df_spsp_gen1)</code></pre>
@@ -2090,15 +258,14 @@ summary(df_spsp_gen1)</code></pre>
 ##  3rd Qu.: 951475   3rd Qu.: 9515   3rd Qu.:1.000            3rd Qu.:0.3750  
 ##  Max.   :1268600   Max.   :12686   Max.   :1.000            Max.   :5.6250  
 ##                                                             NA&#39;s   :861     
-##   CESD_7_1994     CESD_20_1992     CESD_7_1992    
-##  Min.   : 0.00   Min.   : 0.000   Min.   : 0.000  
-##  1st Qu.: 0.00   1st Qu.: 3.000   1st Qu.: 1.000  
-##  Median : 3.00   Median : 7.000   Median : 3.000  
-##  Mean   : 3.77   Mean   : 9.754   Mean   : 4.201  
-##  3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000  
-##  Max.   :21.00   Max.   :59.000   Max.   :21.000  
+##    CESD7_1994     CESD20_1992       CESD7_1992        AGE_1979   
+##  Min.   : 0.00   Min.   : 0.000   Min.   : 0.000   Min.   :14.0  
+##  1st Qu.: 0.00   1st Qu.: 3.000   1st Qu.: 1.000   1st Qu.:16.0  
+##  Median : 3.00   Median : 7.000   Median : 3.000   Median :18.0  
+##  Mean   : 3.77   Mean   : 9.754   Mean   : 4.201   Mean   :17.9  
+##  3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000   3rd Qu.:20.0  
+##  Max.   :21.00   Max.   :59.000   Max.   :21.000   Max.   :22.0  
 ##  NA&#39;s   :3811    NA&#39;s   :3708     NA&#39;s   :3755</code></pre>
-</div>
 </div>
 </div>
 <div id="data-linking" class="section level1">
@@ -2111,10 +278,10 @@ dsLinking &lt;- dsLinks
 
 outcomeNames=c(&quot;RACE&quot;,
                &quot;SEX&quot;,
-               &quot;CESD_20_1992&quot;,
+               &quot;CESD20_1992&quot;,
                &quot;DELIN_AVERAGE&quot;,
-               &quot;CESD_7_1994&quot;, 
-               &quot;CESD_7_1992&quot;)
+               &quot;CESD7_1994&quot;, 
+               &quot;CESD7_1992&quot;)
 
 dsSingle_G1 &lt;- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
@@ -2129,12 +296,12 @@ dsSingle_G1 &lt;- CreatePairLinksSingleEntered(
 set.seed(18)
 
 
-dy_delinq = dsSingle_G1 %&gt;%  
+df_dyad_delinq = dsSingle_G1 %&gt;%  
   drop_na(contains(&quot;DELIN_AVERAGE&quot;)) %&gt;%
   discord_data (outcome = &quot;DELIN_AVERAGE&quot;,
-                      predictors=c(&quot;CESD_7_1992&quot;,
-                                   &quot;CESD_20_1992&quot;,
-                                   &quot;CESD_7_1994&quot;),
+                      predictors=c(&quot;CESD7_1992&quot;,
+                                   &quot;CESD20_1992&quot;,
+                                   &quot;CESD7_1994&quot;),
                       id = &quot;ExtendedID&quot;,
                       sex = &quot;SEX&quot;,
                       race = &quot;RACE&quot;,
@@ -2150,14 +317,14 @@ dy_delinq = dsSingle_G1 %&gt;%
 <pre class="r"><code>df_classic &lt;- df_spsp_gen1
 
 lm_og_7_1992 &lt;- lm(DELIN_AVERAGE ~ 
-                             CESD_7_1992+
+                             CESD7_1992+
                              as.factor(SEX) + 
                              as.factor(RACE) , 
                            data = df_classic )
 summary(lm_og_7_1992)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE ~ CESD_7_1992 + as.factor(SEX) + as.factor(RACE), 
+## lm(formula = DELIN_AVERAGE ~ CESD7_1992 + as.factor(SEX) + as.factor(RACE), 
 ##     data = df_classic)
 ## 
 ## Residuals:
@@ -2167,7 +334,7 @@ summary(lm_og_7_1992)</code></pre>
 ## Coefficients:
 ##                   Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)       0.147858   0.010009  14.773  &lt; 2e-16 ***
-## CESD_7_1992       0.012028   0.001243   9.674  &lt; 2e-16 ***
+## CESD7_1992        0.012028   0.001243   9.674  &lt; 2e-16 ***
 ## as.factor(SEX)1   0.252995   0.009953  25.420  &lt; 2e-16 ***
 ## as.factor(RACE)1 -0.051265   0.009936  -5.160 2.53e-07 ***
 ## ---
@@ -2178,15 +345,15 @@ summary(lm_og_7_1992)</code></pre>
 ## Multiple R-squared:  0.07753,    Adjusted R-squared:  0.0772 
 ## F-statistic: 236.8 on 3 and 8452 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>lm_og_20_1992 &lt;- lm(DELIN_AVERAGE ~ 
-                             CESD_20_1992+
+                             CESD20_1992+
                              as.factor(SEX) + 
                              as.factor(RACE) , 
                            data = df_classic )
 summary(lm_og_20_1992)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE ~ CESD_20_1992 + as.factor(SEX) + 
-##     as.factor(RACE), data = df_classic)
+## lm(formula = DELIN_AVERAGE ~ CESD20_1992 + as.factor(SEX) + as.factor(RACE), 
+##     data = df_classic)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -2195,7 +362,7 @@ summary(lm_og_20_1992)</code></pre>
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)       0.1488953  0.0098678  15.089  &lt; 2e-16 ***
-## CESD_20_1992      0.0052613  0.0005413   9.720  &lt; 2e-16 ***
+## CESD20_1992       0.0052613  0.0005413   9.720  &lt; 2e-16 ***
 ## as.factor(SEX)1   0.2522008  0.0099239  25.414  &lt; 2e-16 ***
 ## as.factor(RACE)1 -0.0538910  0.0099750  -5.403 6.75e-08 ***
 ## ---
@@ -2206,14 +373,14 @@ summary(lm_og_20_1992)</code></pre>
 ## Multiple R-squared:  0.07789,    Adjusted R-squared:  0.07757 
 ## F-statistic: 239.2 on 3 and 8494 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>lm_og_7_1994 &lt;- lm(DELIN_AVERAGE ~ 
-                             CESD_7_1994 +
+                             CESD7_1994 +
                              as.factor(SEX) + 
                              as.factor(RACE) , 
                            data = df_classic )
 summary(lm_og_7_1994)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE ~ CESD_7_1994 + as.factor(SEX) + as.factor(RACE), 
+## lm(formula = DELIN_AVERAGE ~ CESD7_1994 + as.factor(SEX) + as.factor(RACE), 
 ##     data = df_classic)
 ## 
 ## Residuals:
@@ -2223,7 +390,7 @@ summary(lm_og_7_1994)</code></pre>
 ## Coefficients:
 ##                   Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)       0.156971   0.010034  15.644  &lt; 2e-16 ***
-## CESD_7_1994       0.009419   0.001257   7.494 7.37e-14 ***
+## CESD7_1994        0.009419   0.001257   7.494 7.37e-14 ***
 ## as.factor(SEX)1   0.257421   0.010157  25.345  &lt; 2e-16 ***
 ## as.factor(RACE)1 -0.044982   0.010050  -4.476 7.72e-06 ***
 ## ---
@@ -2236,31 +403,19 @@ summary(lm_og_7_1994)</code></pre>
 </div>
 <div id="between-family" class="section level1">
 <h1>between family</h1>
-<pre class="r"><code>### btwn REGRESSION GOES HERE
-#mean for ced 20 1992
-#dsSingle_G1$CESD_20_1992_mean=.5*dsSingle_G1$CESD_20_1992_S1+.5*dsSingle_G1$CESD_20_1992_S2
-
-#mean for ced 7 1992
-#dsSingle_G1$CESD_7_1992_mean=.5*dsSingle_G1$CESD_7_1992_S1+.5*dsSingle_G1$CESD_7_1992_S2
-
-#mean for ced 7 1994
-#dsSingle_G1$CESD_7_1994_mean=.5*dsSingle_G1$CESD_7_1994_S1+.5*dsSingle_G1$CESD_7_1994_S2
-
-#mean for DELIN_AVERAGE
-#dsSingle_G1$DELIN_AVERAGE_mean=.5*dsSingle_G1$DELIN_AVERAGE_S1+.5*dsSingle_G1$DELIN_AVERAGE_S2
-df_btwn=dy_delinq
+<pre class="r"><code>df_btwn=df_dyad_delinq
 
 #note: you only need s1 race because they&#39;re determined by the mother
-lm_btwfam_7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                             CESD_7_1992_mean +
+lm_btwfam_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD7_1992_mean +
                             as.factor(RACE_1)+
                             as.factor(SEX_1) + 
                             as.factor(SEX_2) , 
                            data = df_btwn)
-summary(lm_btwfam_7_1992)</code></pre>
+summary(lm_btwfam_CESD7_1992)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD_7_1992_mean + as.factor(RACE_1) + 
+## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1992_mean + as.factor(RACE_1) + 
 ##     as.factor(SEX_1) + as.factor(SEX_2), data = df_btwn)
 ## 
 ## Residuals:
@@ -2270,7 +425,7 @@ summary(lm_btwfam_7_1992)</code></pre>
 ## Coefficients:
 ##                     Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)         0.150233   0.016165   9.294  &lt; 2e-16 ***
-## CESD_7_1992_mean    0.017936   0.002329   7.700 1.84e-14 ***
+## CESD7_1992_mean     0.017936   0.002329   7.700 1.84e-14 ***
 ## as.factor(RACE_1)1 -0.076393   0.013225  -5.776 8.43e-09 ***
 ## as.factor(SEX_1)1   0.161546   0.013422  12.036  &lt; 2e-16 ***
 ## as.factor(SEX_2)1   0.066606   0.013284   5.014 5.65e-07 ***
@@ -2281,16 +436,16 @@ summary(lm_btwfam_7_1992)</code></pre>
 ##   (761 observations deleted due to missingness)
 ## Multiple R-squared:  0.07619,    Adjusted R-squared:  0.07492 
 ## F-statistic: 60.16 on 4 and 2918 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>lm_btwfam_20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                             CESD_20_1992_mean +
+<pre class="r"><code>lm_btwfam_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD20_1992_mean +
                             as.factor(RACE_1)+
                             as.factor(SEX_1) + 
                             as.factor(SEX_2) , 
                            data = df_btwn)
-summary(lm_btwfam_20_1992)</code></pre>
+summary(lm_btwfam_CESD20_1992)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD_20_1992_mean + as.factor(RACE_1) + 
+## lm(formula = DELIN_AVERAGE_mean ~ CESD20_1992_mean + as.factor(RACE_1) + 
 ##     as.factor(SEX_1) + as.factor(SEX_2), data = df_btwn)
 ## 
 ## Residuals:
@@ -2300,7 +455,7 @@ summary(lm_btwfam_20_1992)</code></pre>
 ## Coefficients:
 ##                     Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)         0.153616   0.015742   9.759  &lt; 2e-16 ***
-## CESD_20_1992_mean   0.007678   0.001005   7.639 2.95e-14 ***
+## CESD20_1992_mean    0.007678   0.001005   7.639 2.95e-14 ***
 ## as.factor(RACE_1)1 -0.079396   0.013246  -5.994 2.30e-09 ***
 ## as.factor(SEX_1)1   0.160602   0.013307  12.069  &lt; 2e-16 ***
 ## as.factor(SEX_2)1   0.064898   0.013201   4.916 9.31e-07 ***
@@ -2311,16 +466,16 @@ summary(lm_btwfam_20_1992)</code></pre>
 ##   (727 observations deleted due to missingness)
 ## Multiple R-squared:  0.07647,    Adjusted R-squared:  0.07522 
 ## F-statistic: 61.11 on 4 and 2952 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>lm_btwfam_7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                            CESD_7_1994_mean +
+<pre class="r"><code>lm_btwfam_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                            CESD7_1994_mean +
                             as.factor(RACE_1)+
                             as.factor(SEX_1) + 
                             as.factor(SEX_2) , 
                            data = df_btwn)
-summary(lm_btwfam_7_1994)</code></pre>
+summary(lm_btwfam_CESD7_1994)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD_7_1994_mean + as.factor(RACE_1) + 
+## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1994_mean + as.factor(RACE_1) + 
 ##     as.factor(SEX_1) + as.factor(SEX_2), data = df_btwn)
 ## 
 ## Residuals:
@@ -2330,7 +485,7 @@ summary(lm_btwfam_7_1994)</code></pre>
 ## Coefficients:
 ##                     Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)         0.159037   0.016014   9.931  &lt; 2e-16 ***
-## CESD_7_1994_mean    0.016320   0.002275   7.173 9.30e-13 ***
+## CESD7_1994_mean     0.016320   0.002275   7.173 9.30e-13 ***
 ## as.factor(RACE_1)1 -0.074986   0.013298  -5.639 1.88e-08 ***
 ## as.factor(SEX_1)1   0.163771   0.013582  12.058  &lt; 2e-16 ***
 ## as.factor(SEX_2)1   0.076609   0.013493   5.677 1.50e-08 ***
@@ -2346,125 +501,36 @@ summary(lm_btwfam_7_1994)</code></pre>
 <h1>discordant analyses</h1>
 <pre class="r"><code># 
 
-
-
-
-
-
-
-lm_discord_CESD_7_1992= lm(data=dy_delinq,
+lm_discord_CESD7_1992= lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
-                                CESD_7_1992_diff + 
-                                CESD_7_1992_mean+
+                                CESD7_1992_diff + 
+                                CESD7_1992_mean+
                                 factor(SEX_1)+
                                 factor(SEX_2)+
                                 factor(RACE_1) )
 
-lm_discord_CESD_20_1992=lm(data=dy_delinq,
+lm_discord_CESD20_1992=lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
-                                CESD_20_1992_diff + 
-                                CESD_20_1992_mean+
+                                CESD20_1992_diff + 
+                                CESD20_1992_mean+
                                 factor(SEX_1)+
                                 factor(SEX_2)+
                                 factor(RACE_1) )
 
 
-lm_discord_CESD_7_1994=  lm(data=dy_delinq,
+lm_discord_CESD7_1994=  lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
-                                CESD_7_1994_diff + 
-                                CESD_7_1994_mean+
+                                CESD7_1994_diff + 
+                                CESD7_1994_mean+
                                 factor(SEX_1)+
                                 factor(SEX_2)+
-                                factor(RACE_1) )
-
-
-summary(lm_discord_CESD_7_1992)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD_7_1992_diff + 
-##     CESD_7_1992_mean + factor(SEX_1) + factor(SEX_2) + factor(RACE_1), 
-##     data = dy_delinq)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.2958 -0.0982 -0.0101  0.0964  2.1859 
-## 
-## Coefficients:
-##                      Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         0.0411944  0.0137816   2.989  0.00282 ** 
-## DELIN_AVERAGE_mean  1.0022401  0.0155650  64.391  &lt; 2e-16 ***
-## CESD_7_1992_diff    0.0023537  0.0010845   2.170  0.03007 *  
-## CESD_7_1992_mean   -0.0005618  0.0019775  -0.284  0.77634    
-## factor(SEX_1)1      0.0617498  0.0116309   5.309 1.18e-07 ***
-## factor(SEX_2)1     -0.0744239  0.0112593  -6.610 4.55e-11 ***
-## factor(RACE_1)1     0.0052615  0.0111752   0.471  0.63781    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.2967 on 2916 degrees of freedom
-##   (761 observations deleted due to missingness)
-## Multiple R-squared:  0.6137, Adjusted R-squared:  0.6129 
-## F-statistic: 772.1 on 6 and 2916 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>summary(lm_discord_CESD_20_1992)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD_20_1992_diff + 
-##     CESD_20_1992_mean + factor(SEX_1) + factor(SEX_2) + factor(RACE_1), 
-##     data = dy_delinq)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.3391 -0.0998 -0.0093  0.0969  2.1733 
-## 
-## Coefficients:
-##                      Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         0.0410643  0.0134921   3.044  0.00236 ** 
-## DELIN_AVERAGE_mean  1.0118411  0.0155366  65.126  &lt; 2e-16 ***
-## CESD_20_1992_diff   0.0006444  0.0004752   1.356  0.17514    
-## CESD_20_1992_mean  -0.0004008  0.0008567  -0.468  0.63991    
-## factor(SEX_1)1      0.0612092  0.0115383   5.305 1.21e-07 ***
-## factor(SEX_2)1     -0.0749002  0.0112255  -6.672 3.00e-11 ***
-## factor(RACE_1)1     0.0066902  0.0112434   0.595  0.55186    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.2977 on 2950 degrees of freedom
-##   (727 observations deleted due to missingness)
-## Multiple R-squared:  0.6161, Adjusted R-squared:  0.6153 
-## F-statistic: 788.9 on 6 and 2950 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>summary(lm_discord_CESD_7_1994)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD_7_1994_diff + 
-##     CESD_7_1994_mean + factor(SEX_1) + factor(SEX_2) + factor(RACE_1), 
-##     data = dy_delinq)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.3419 -0.0998 -0.0099  0.0993  2.1803 
-## 
-## Coefficients:
-##                      Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         0.0524279  0.0137659   3.809 0.000143 ***
-## DELIN_AVERAGE_mean  1.0115942  0.0157536  64.214  &lt; 2e-16 ***
-## CESD_7_1994_diff    0.0006234  0.0011010   0.566 0.571332    
-## CESD_7_1994_mean   -0.0026142  0.0019390  -1.348 0.177692    
-## factor(SEX_1)1      0.0583832  0.0119098   4.902  1.0e-06 ***
-## factor(SEX_2)1     -0.0766253  0.0115704  -6.623  4.2e-11 ***
-## factor(RACE_1)1     0.0021046  0.0112951   0.186 0.852201    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.2994 on 2873 degrees of freedom
-##   (804 observations deleted due to missingness)
-## Multiple R-squared:  0.6138, Adjusted R-squared:  0.613 
-## F-statistic: 760.9 on 6 and 2873 DF,  p-value: &lt; 2.2e-16</code></pre>
+                                factor(RACE_1) )</code></pre>
 <div id="regression-results" class="section level3">
 <h3>Regression Results</h3>
-<pre class="r"><code>lm_discord_CESD_7_1992 %&gt;%
+<pre class="r"><code>lm_discord_CESD7_1992 %&gt;%
   broom::tidy() %&gt;%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
          across(.cols = where(is.numeric), ~round(.x, 3))) %&gt;%
@@ -2531,7 +597,7 @@ p&lt;0.001
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-CESD_7_1992_diff
+CESD7_1992_diff
 </td>
 <td style="text-align:center;text-align: center;">
 0.002
@@ -2548,7 +614,7 @@ p=0.030
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-CESD_7_1992_mean
+CESD7_1992_mean
 </td>
 <td style="text-align:center;text-align: center;">
 -0.001
@@ -2616,7 +682,7 @@ p=0.638
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>lm_discord_CESD_20_1992 %&gt;%
+<pre class="r"><code>lm_discord_CESD20_1992 %&gt;%
   broom::tidy() %&gt;%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
          across(.cols = where(is.numeric), ~round(.x, 3))) %&gt;%
@@ -2683,7 +749,7 @@ p&lt;0.001
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-CESD_20_1992_diff
+CESD20_1992_diff
 </td>
 <td style="text-align:center;text-align: center;">
 0.001
@@ -2700,7 +766,7 @@ p=0.175
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-CESD_20_1992_mean
+CESD20_1992_mean
 </td>
 <td style="text-align:center;text-align: center;">
 0.000
@@ -2768,7 +834,7 @@ p=0.552
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>lm_discord_CESD_7_1994 %&gt;%
+<pre class="r"><code>lm_discord_CESD7_1994 %&gt;%
   broom::tidy() %&gt;%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
          across(.cols = where(is.numeric), ~round(.x, 3))) %&gt;%
@@ -2835,7 +901,7 @@ p&lt;0.001
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-CESD_7_1994_diff
+CESD7_1994_diff
 </td>
 <td style="text-align:center;text-align: center;">
 0.001
@@ -2852,7 +918,7 @@ p=0.571
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-CESD_7_1994_mean
+CESD7_1994_mean
 </td>
 <td style="text-align:center;text-align: center;">
 -0.003
