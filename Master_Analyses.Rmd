@@ -1911,8 +1911,8 @@ df_dyad_delinq = dsSingle_G1 %>%
 
 df_dyad_delinq=mutate(df_dyad_delinq,
                      # race is 0 for white; and 1 for non-white
-                    MINORITY = case_when(RACE == 3 ~ 0, # nonb
-                                     RACE == 1 | RACE == 2 ~ 1), #black or hisp
+                    SEX_SAME = case_when(SEX_1 == SEX_2 ~ 1, # same sex
+                                          SEX_1 != SEX_2 ~ 0), #opposite
                     # have female be 0 and male be 1
                     SEX = case_when(SEX == 2 ~ 0,
                          TRUE ~ 1)
