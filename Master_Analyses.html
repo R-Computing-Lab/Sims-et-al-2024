@@ -297,7 +297,7 @@ outcomeNames=c(&quot;MINORITY&quot;,
                &quot;CESD7_1994&quot;, 
                &quot;CESD7_1992&quot;)
 
-# onfull full sibs
+# only full full sibs
 dsSingle_G1 &lt;- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == &quot;Gen1Housemates&quot; &amp; dsLinking$RFull==.5, ],
@@ -326,6 +326,11 @@ df_dyad_delinq = dsSingle_G1 %&gt;%
 <pre><code>## Warning: Specified id column does not contain unique values for each kin-pair.
 ## Adding row-wise ID for restructuring data into paired format for analysis.
 ## For more details, see &lt;https://github.com/R-Computing-Lab/discord/issues/6&gt;.</code></pre>
+<pre class="r"><code>df_dyad_delinq=mutate(df_dyad_delinq,
+                     # race is 0 for white; and 1 for non-white
+                    SEX_SAME = case_when(SEX_1 == SEX_2 ~ 1, # same sex
+                                          SEX_1 != SEX_2 ~ 0), #opposite
+                    )</code></pre>
 </div>
 <div id="classic" class="section level1">
 <h1>classic</h1>

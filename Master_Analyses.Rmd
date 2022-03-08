@@ -1881,7 +1881,7 @@ outcomeNames=c("MINORITY",
                "CESD7_1994", 
                "CESD7_1992")
 
-# onfull full sibs
+# only full full sibs
 dsSingle_G1 <- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
@@ -1913,9 +1913,6 @@ df_dyad_delinq=mutate(df_dyad_delinq,
                      # race is 0 for white; and 1 for non-white
                     SEX_SAME = case_when(SEX_1 == SEX_2 ~ 1, # same sex
                                           SEX_1 != SEX_2 ~ 0), #opposite
-                    # have female be 0 and male be 1
-                    SEX = case_when(SEX == 2 ~ 0,
-                         TRUE ~ 1)
                     )
 
 
