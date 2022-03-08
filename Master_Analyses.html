@@ -208,8 +208,8 @@ df_spsp_gen1=select(df_crime_gen1,
 
 df_spsp_gen1=mutate(df_spsp_gen1,
                      # race is 0 for white; and 1 for non-white
-                    MINORITY = case_when(RACE == 3 ~ 0, # nonb
-                                     RACE == 1 | RACE == 2 ~ 1), #black or hisp
+                    MINORITY = case_when(RACE == 3 ~ &quot;nblacknhispanic&quot;, # nonb
+                                     RACE == 1 | RACE == 2 ~ &quot;blackorhispanic&quot;), #black or hisp
                     # have female be 0 and male be 1
                     SEX = case_when(SEX == 2 ~ 0,
                          TRUE ~ 1)
@@ -224,47 +224,28 @@ df_spsp_gen1$CESD7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 df_spsp_gen1$AGE_1979= df_age$AGE_1979
 # 
 cor(df_spsp_gen1,use=&quot;pairwise.complete&quot;)</code></pre>
-<pre><code>##                SubjectTag      CASEID         RACE           SEX DELIN_AVERAGE
-## SubjectTag     1.00000000  1.00000000 -0.197121251  0.0386494994   -0.01886052
-## CASEID         1.00000000  1.00000000 -0.197121251  0.0386494994   -0.01886052
-## RACE          -0.19712125 -0.19712125  1.000000000  0.0020937283    0.04286127
-## SEX            0.03864950  0.03864950  0.002093728  1.0000000000    0.25526995
-## DELIN_AVERAGE -0.01886052 -0.01886052  0.042861275  0.2552699546    1.00000000
-## MINORITY       0.20333180  0.20333180 -0.909719441  0.0001666453   -0.03742342
-## CESD7_1994     0.04253523  0.04253523 -0.071608607 -0.1635641661    0.03231583
-## CESD20_1992    0.04534349  0.04534349 -0.108264774 -0.0938880066    0.07036204
-## CESD7_1992     0.03244973  0.03244973 -0.072940842 -0.1161312642    0.06623573
-## AGE_1979       0.16768876  0.16768876  0.069001076 -0.0082669842   -0.10255538
-##                    MINORITY   CESD7_1994  CESD20_1992  CESD7_1992     AGE_1979
-## SubjectTag     0.2033318028  0.042535235  0.045343491  0.03244973  0.167688760
-## CASEID         0.2033318028  0.042535235  0.045343491  0.03244973  0.167688760
-## RACE          -0.9097194409 -0.071608607 -0.108264774 -0.07294084  0.069001076
-## SEX            0.0001666453 -0.163564166 -0.093888007 -0.11613126 -0.008266984
-## DELIN_AVERAGE -0.0374234159  0.032315828  0.070362038  0.06623573 -0.102555376
-## MINORITY       1.0000000000  0.081460193  0.134401030  0.09705506 -0.069350288
-## CESD7_1994     0.0814601930  1.000000000  0.424334727  0.42387813  0.002552166
-## CESD20_1992    0.1344010296  0.424334727  1.000000000  0.90160212 -0.009842645
-## CESD7_1992     0.0970550584  0.423878134  0.901602117  1.00000000 -0.015353187
-## AGE_1979      -0.0693502885  0.002552166 -0.009842645 -0.01535319  1.000000000</code></pre>
+<pre><code>## Error in cor(df_spsp_gen1, use = &quot;pairwise.complete&quot;): &#39;x&#39; must be numeric</code></pre>
 <pre class="r"><code># convert sex into factor
 df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
+df_spsp_gen1$RACE=as.factor(df_spsp_gen1$RACE)
+df_spsp_gen1$MINORITY=as.factor(df_spsp_gen1$MINORITY)
 summary(df_spsp_gen1)</code></pre>
-<pre><code>##    SubjectTag          CASEID           RACE       SEX      DELIN_AVERAGE   
-##  Min.   :    100   Min.   :    1   Min.   :1.000   0:6283   Min.   :0.0000  
-##  1st Qu.: 317225   1st Qu.: 3172   1st Qu.:2.000   1:6403   1st Qu.:0.0000  
-##  Median : 634350   Median : 6344   Median :3.000            Median :0.1333  
-##  Mean   : 634350   Mean   : 6344   Mean   :2.434            Mean   :0.2974  
-##  3rd Qu.: 951475   3rd Qu.: 9515   3rd Qu.:3.000            3rd Qu.:0.3750  
-##  Max.   :1268600   Max.   :12686   Max.   :3.000            Max.   :5.6250  
-##                                                             NA&#39;s   :861     
-##     MINORITY       CESD7_1994     CESD20_1992       CESD7_1992    
-##  Min.   :0.000   Min.   : 0.00   Min.   : 0.000   Min.   : 0.000  
-##  1st Qu.:0.000   1st Qu.: 0.00   1st Qu.: 3.000   1st Qu.: 1.000  
-##  Median :0.000   Median : 3.00   Median : 7.000   Median : 3.000  
-##  Mean   :0.408   Mean   : 3.77   Mean   : 9.754   Mean   : 4.201  
-##  3rd Qu.:1.000   3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000  
-##  Max.   :1.000   Max.   :21.00   Max.   :59.000   Max.   :21.000  
-##                  NA&#39;s   :3811    NA&#39;s   :3708     NA&#39;s   :3755    
+<pre><code>##    SubjectTag          CASEID      RACE     SEX      DELIN_AVERAGE   
+##  Min.   :    100   Min.   :    1   1:2002   0:6283   Min.   :0.0000  
+##  1st Qu.: 317225   1st Qu.: 3172   2:3174   1:6403   1st Qu.:0.0000  
+##  Median : 634350   Median : 6344   3:7510            Median :0.1333  
+##  Mean   : 634350   Mean   : 6344                     Mean   :0.2974  
+##  3rd Qu.: 951475   3rd Qu.: 9515                     3rd Qu.:0.3750  
+##  Max.   :1268600   Max.   :12686                     Max.   :5.6250  
+##                                                      NA&#39;s   :861     
+##             MINORITY      CESD7_1994     CESD20_1992       CESD7_1992    
+##  blackorhispanic:5176   Min.   : 0.00   Min.   : 0.000   Min.   : 0.000  
+##  nblacknhispanic:7510   1st Qu.: 0.00   1st Qu.: 3.000   1st Qu.: 1.000  
+##                         Median : 3.00   Median : 7.000   Median : 3.000  
+##                         Mean   : 3.77   Mean   : 9.754   Mean   : 4.201  
+##                         3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000  
+##                         Max.   :21.00   Max.   :59.000   Max.   :21.000  
+##                         NA&#39;s   :3811    NA&#39;s   :3708     NA&#39;s   :3755    
 ##     AGE_1979   
 ##  Min.   :14.0  
 ##  1st Qu.:16.0  
@@ -320,9 +301,15 @@ df_dyad_delinq = dsSingle_G1 %&gt;%
 ## Adding row-wise ID for restructuring data into paired format for analysis.
 ## For more details, see &lt;https://github.com/R-Computing-Lab/discord/issues/6&gt;.</code></pre>
 <pre class="r"><code>df_dyad_delinq=mutate(df_dyad_delinq,
-                     # race is 0 for white; and 1 for non-white
-                    SEX_SAME = case_when(SEX_1 == SEX_2 ~ 1, # same sex
-                                          SEX_1 != SEX_2 ~ 0), #opposite
+                     # sex is 0 for girl; and 1 for boy
+                    SEX_all4 = case_when(SEX_1 == 1 &amp; SEX_2==1 ~ &quot;BoyBoy&quot;, # boyboy
+                                         SEX_1 == 0 &amp; SEX_2==1 ~ &quot;GirlBoy&quot;, # girlboy
+                                        SEX_1 == 1 &amp; SEX_2==0 ~ &quot;BoyGirl&quot;, #opposite
+                                        SEX_1 == 0 &amp; SEX_2==0 ~ &quot;GirlGirl&quot;), #opposite
+                    SEX_all3 = case_when(SEX_1 == 1 &amp; SEX_2==1 ~ &quot;BoyBoy&quot;, # boyboy
+                                         SEX_1 == 0 &amp; SEX_2==1 ~ &quot;mixed&quot;, # girlboy
+                                        SEX_1 == 1 &amp; SEX_2==0 ~ &quot;mixed&quot;, #opposite
+                                        SEX_1 == 0 &amp; SEX_2==0 ~ &quot;GirlGirl&quot;), #opposite
                     )</code></pre>
 </div>
 <div id="classic" class="section level1">
@@ -345,11 +332,11 @@ summary(lm_og_7_1992)</code></pre>
 ## -0.6534 -0.2321 -0.1190  0.0879  4.6143 
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)           0.147858   0.010009  14.773  &lt; 2e-16 ***
-## CESD7_1992            0.012028   0.001243   9.674  &lt; 2e-16 ***
-## as.factor(SEX)1       0.252995   0.009953  25.420  &lt; 2e-16 ***
-## as.factor(MINORITY)1 -0.051265   0.009936  -5.160 2.53e-07 ***
+##                                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                        0.096593   0.010619   9.097  &lt; 2e-16 ***
+## CESD7_1992                         0.012028   0.001243   9.674  &lt; 2e-16 ***
+## as.factor(SEX)1                    0.252995   0.009953  25.420  &lt; 2e-16 ***
+## as.factor(MINORITY)nblacknhispanic 0.051265   0.009936   5.160 2.53e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -373,11 +360,11 @@ summary(lm_og_20_1992)</code></pre>
 ## -0.6379 -0.2327 -0.1190  0.0879  4.5423 
 ## 
 ## Coefficients:
-##                        Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)           0.1488953  0.0098678  15.089  &lt; 2e-16 ***
-## CESD20_1992           0.0052613  0.0005413   9.720  &lt; 2e-16 ***
-## as.factor(SEX)1       0.2522008  0.0099239  25.414  &lt; 2e-16 ***
-## as.factor(MINORITY)1 -0.0538910  0.0099750  -5.403 6.75e-08 ***
+##                                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                        0.0950043  0.0106825   8.893  &lt; 2e-16 ***
+## CESD20_1992                        0.0052613  0.0005413   9.720  &lt; 2e-16 ***
+## as.factor(SEX)1                    0.2522008  0.0099239  25.414  &lt; 2e-16 ***
+## as.factor(MINORITY)nblacknhispanic 0.0538910  0.0099750   5.403 6.75e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -401,11 +388,11 @@ summary(lm_og_7_1994)</code></pre>
 ## -0.5934 -0.2292 -0.1214  0.0909  5.2556 
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)           0.156971   0.010034  15.644  &lt; 2e-16 ***
-## CESD7_1994            0.009419   0.001257   7.494 7.37e-14 ***
-## as.factor(SEX)1       0.257421   0.010157  25.345  &lt; 2e-16 ***
-## as.factor(MINORITY)1 -0.044982   0.010050  -4.476 7.72e-06 ***
+##                                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                        0.111989   0.010491  10.675  &lt; 2e-16 ***
+## CESD7_1994                         0.009419   0.001257   7.494 7.37e-14 ***
+## as.factor(SEX)1                    0.257421   0.010157  25.345  &lt; 2e-16 ***
+## as.factor(MINORITY)nblacknhispanic 0.044982   0.010050   4.476 7.72e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -421,106 +408,106 @@ summary(lm_og_7_1994)</code></pre>
 #note: you only need s1 race because they&#39;re determined by the mother
 lm_btwfam_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
-                            as.factor(MINORITY_1)+
-                            as.factor(SEX_1) + 
-                            as.factor(SEX_2) , 
+                            SEX_all3+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
                            data = df_btwn)
 summary(lm_btwfam_CESD7_1992)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1992_mean + as.factor(MINORITY_1) + 
-##     as.factor(SEX_1) + as.factor(SEX_2), data = df_btwn)
+## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1992_mean + SEX_all3 + 
+##     as.factor(MINORITY_1), data = df_btwn)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -0.5467 -0.2168 -0.0923  0.1147  4.1167 
+## -0.5551 -0.2188 -0.0956  0.1077  4.1052 
 ## 
 ## Coefficients:
-##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)             0.150233   0.016165   9.294  &lt; 2e-16 ***
-## CESD7_1992_mean         0.017936   0.002329   7.700 1.84e-14 ***
-## as.factor(MINORITY_1)1 -0.076393   0.013225  -5.776 8.43e-09 ***
-## as.factor(SEX_1)1       0.161546   0.013422  12.036  &lt; 2e-16 ***
-## as.factor(SEX_2)1       0.066606   0.013284   5.014 5.65e-07 ***
+##                                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           0.313965   0.017107  18.353  &lt; 2e-16 ***
+## CESD7_1992_mean                       0.017707   0.002339   7.572 4.91e-14 ***
+## SEX_all3GirlGirl                     -0.226894   0.018321 -12.384  &lt; 2e-16 ***
+## SEX_all3mixed                        -0.120478   0.015751  -7.649 2.74e-14 ***
+## as.factor(MINORITY_1)nblacknhispanic  0.077153   0.013279   5.810 6.92e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.3531 on 2918 degrees of freedom
+## Residual standard error: 0.3545 on 2918 degrees of freedom
 ##   (761 observations deleted due to missingness)
-## Multiple R-squared:  0.07619,    Adjusted R-squared:  0.07492 
-## F-statistic: 60.16 on 4 and 2918 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.06878,    Adjusted R-squared:  0.0675 
+## F-statistic: 53.88 on 4 and 2918 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>lm_btwfam_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
-                            as.factor(MINORITY_1)+
-                            as.factor(SEX_1) + 
-                            as.factor(SEX_2) , 
+                            SEX_all3+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
                            data = df_btwn)
 summary(lm_btwfam_CESD20_1992)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD20_1992_mean + as.factor(MINORITY_1) + 
-##     as.factor(SEX_1) + as.factor(SEX_2), data = df_btwn)
+## lm(formula = DELIN_AVERAGE_mean ~ CESD20_1992_mean + SEX_all3 + 
+##     as.factor(MINORITY_1), data = df_btwn)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -0.6119 -0.2175 -0.0934  0.1154  4.0649 
+## -0.6227 -0.2181 -0.0951  0.1141  4.0530 
 ## 
 ## Coefficients:
-##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)             0.153616   0.015742   9.759  &lt; 2e-16 ***
-## CESD20_1992_mean        0.007678   0.001005   7.639 2.95e-14 ***
-## as.factor(MINORITY_1)1 -0.079396   0.013246  -5.994 2.30e-09 ***
-## as.factor(SEX_1)1       0.160602   0.013307  12.069  &lt; 2e-16 ***
-## as.factor(SEX_2)1       0.064898   0.013201   4.916 9.31e-07 ***
+##                                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           0.310762   0.017309  17.954  &lt; 2e-16 ***
+## CESD20_1992_mean                      0.007673   0.001009   7.601 3.91e-14 ***
+## SEX_all3GirlGirl                     -0.224499   0.018168 -12.357  &lt; 2e-16 ***
+## SEX_all3mixed                        -0.118907   0.015667  -7.590 4.27e-14 ***
+## as.factor(MINORITY_1)nblacknhispanic  0.080331   0.013301   6.039 1.74e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.3529 on 2952 degrees of freedom
+## Residual standard error: 0.3543 on 2952 degrees of freedom
 ##   (727 observations deleted due to missingness)
-## Multiple R-squared:  0.07647,    Adjusted R-squared:  0.07522 
-## F-statistic: 61.11 on 4 and 2952 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.06893,    Adjusted R-squared:  0.06766 
+## F-statistic: 54.63 on 4 and 2952 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>lm_btwfam_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
-                            as.factor(MINORITY_1)+
-                            as.factor(SEX_1) + 
-                            as.factor(SEX_2) , 
+                            SEX_all3+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
                            data = df_btwn)
 summary(lm_btwfam_CESD7_1994)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1994_mean + as.factor(MINORITY_1) + 
-##     as.factor(SEX_1) + as.factor(SEX_2), data = df_btwn)
+## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1994_mean + SEX_all3 + 
+##     as.factor(MINORITY_1), data = df_btwn)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -0.5594 -0.2162 -0.0913  0.1115  4.0230 
+## -0.5601 -0.2140 -0.0967  0.1090  4.0085 
 ## 
 ## Coefficients:
-##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)             0.159037   0.016014   9.931  &lt; 2e-16 ***
-## CESD7_1994_mean         0.016320   0.002275   7.173 9.30e-13 ***
-## as.factor(MINORITY_1)1 -0.074986   0.013298  -5.639 1.88e-08 ***
-## as.factor(SEX_1)1       0.163771   0.013582  12.058  &lt; 2e-16 ***
-## as.factor(SEX_2)1       0.076609   0.013493   5.677 1.50e-08 ***
+##                                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           0.336678   0.016120  20.886  &lt; 2e-16 ***
+## CESD7_1994_mean                       0.016482   0.002283   7.221 6.60e-13 ***
+## SEX_all3GirlGirl                     -0.239370   0.018655 -12.832  &lt; 2e-16 ***
+## SEX_all3mixed                        -0.131213   0.016000  -8.201 3.56e-16 ***
+## as.factor(MINORITY_1)nblacknhispanic  0.075493   0.013345   5.657 1.69e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.3545 on 2875 degrees of freedom
+## Residual standard error: 0.3556 on 2875 degrees of freedom
 ##   (804 observations deleted due to missingness)
-## Multiple R-squared:  0.07655,    Adjusted R-squared:  0.07527 
-## F-statistic: 59.58 on 4 and 2875 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.0705, Adjusted R-squared:  0.06921 
+## F-statistic: 54.52 on 4 and 2875 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="discordant-analyses" class="section level1">
 <h1>discordant analyses</h1>
 <pre class="r"><code># 
 
 lm_discord_CESD7_1992= lm(data=df_dyad_delinq,
-                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
                                 CESD7_1992_mean+
-                                factor(SEX_1)+
-                                factor(SEX_2)+
+                                SEX_all3+
+                              #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
 lm_discord_CESD20_1992=lm(data=df_dyad_delinq,
@@ -528,8 +515,8 @@ lm_discord_CESD20_1992=lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean+
                                 CESD20_1992_diff + 
                                 CESD20_1992_mean+
-                                factor(SEX_1)+
-                                factor(SEX_2)+
+                                SEX_all3+
+                              #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
 
@@ -538,8 +525,8 @@ lm_discord_CESD7_1994=  lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean+
                                 CESD7_1994_diff + 
                                 CESD7_1994_mean+
-                                factor(SEX_1)+
-                                factor(SEX_2)+
+                                SEX_all3+
+                              #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )</code></pre>
 <div id="regression-results" class="section level3">
 <h3>Regression Results</h3>
@@ -579,16 +566,16 @@ P Value
 (Intercept)
 </td>
 <td style="text-align:center;text-align: center;">
-0.041
-</td>
-<td style="text-align:center;text-align: center;">
 0.014
 </td>
 <td style="text-align:center;text-align: center;">
-2.989
+0.015
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.003
+0.928
+</td>
+<td style="text-align:center;text-align: center;">
+p=0.353
 </td>
 </tr>
 <tr>
@@ -596,13 +583,13 @@ p=0.003
 DELIN_AVERAGE_mean
 </td>
 <td style="text-align:center;text-align: center;">
-1.002
+1.015
 </td>
 <td style="text-align:center;text-align: center;">
 0.016
 </td>
 <td style="text-align:center;text-align: center;">
-64.391
+65.065
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -613,16 +600,16 @@ p&lt;0.001
 CESD7_1992_diff
 </td>
 <td style="text-align:center;text-align: center;">
-0.002
+0.001
 </td>
 <td style="text-align:center;text-align: center;">
 0.001
 </td>
 <td style="text-align:center;text-align: center;">
-2.170
+0.988
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.030
+p=0.323
 </td>
 </tr>
 <tr>
@@ -636,24 +623,41 @@ CESD7_1992_mean
 0.002
 </td>
 <td style="text-align:center;text-align: center;">
--0.284
+-0.415
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.776
+p=0.678
 </td>
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-factor(SEX_1)1
+SEX_all3GirlGirl
 </td>
 <td style="text-align:center;text-align: center;">
-0.062
+0.014
 </td>
 <td style="text-align:center;text-align: center;">
-0.012
+0.016
 </td>
 <td style="text-align:center;text-align: center;">
-5.309
+0.900
+</td>
+<td style="text-align:center;text-align: center;">
+p=0.368
+</td>
+</tr>
+<tr>
+<td style="text-align:center;text-align: center;">
+SEX_all3mixed
+</td>
+<td style="text-align:center;text-align: center;">
+0.065
+</td>
+<td style="text-align:center;text-align: center;">
+0.013
+</td>
+<td style="text-align:center;text-align: center;">
+4.849
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -661,36 +665,19 @@ p&lt;0.001
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-factor(SEX_2)1
+factor(MINORITY_1)nblacknhispanic
 </td>
 <td style="text-align:center;text-align: center;">
--0.074
-</td>
-<td style="text-align:center;text-align: center;">
-0.011
-</td>
-<td style="text-align:center;text-align: center;">
--6.610
-</td>
-<td style="text-align:center;text-align: center;">
-p&lt;0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:center;text-align: center;">
-factor(MINORITY_1)1
-</td>
-<td style="text-align:center;text-align: center;">
-0.005
+-0.004
 </td>
 <td style="text-align:center;text-align: center;">
 0.011
 </td>
 <td style="text-align:center;text-align: center;">
-0.471
+-0.345
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.638
+p=0.730
 </td>
 </tr>
 </tbody>
@@ -731,16 +718,16 @@ P Value
 (Intercept)
 </td>
 <td style="text-align:center;text-align: center;">
-0.041
-</td>
-<td style="text-align:center;text-align: center;">
 0.013
 </td>
 <td style="text-align:center;text-align: center;">
-3.044
+0.015
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.002
+0.836
+</td>
+<td style="text-align:center;text-align: center;">
+p=0.403
 </td>
 </tr>
 <tr>
@@ -748,13 +735,13 @@ p=0.002
 DELIN_AVERAGE_mean
 </td>
 <td style="text-align:center;text-align: center;">
-1.012
+1.025
 </td>
 <td style="text-align:center;text-align: center;">
 0.016
 </td>
 <td style="text-align:center;text-align: center;">
-65.126
+65.821
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -765,16 +752,16 @@ p&lt;0.001
 CESD20_1992_diff
 </td>
 <td style="text-align:center;text-align: center;">
-0.001
+0.000
 </td>
 <td style="text-align:center;text-align: center;">
 0.000
 </td>
 <td style="text-align:center;text-align: center;">
-1.356
+0.377
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.175
+p=0.706
 </td>
 </tr>
 <tr>
@@ -788,24 +775,41 @@ CESD20_1992_mean
 0.001
 </td>
 <td style="text-align:center;text-align: center;">
--0.468
+-0.498
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.640
+p=0.619
 </td>
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-factor(SEX_1)1
+SEX_all3GirlGirl
 </td>
 <td style="text-align:center;text-align: center;">
-0.061
+0.015
 </td>
 <td style="text-align:center;text-align: center;">
-0.012
+0.016
 </td>
 <td style="text-align:center;text-align: center;">
-5.305
+0.942
+</td>
+<td style="text-align:center;text-align: center;">
+p=0.346
+</td>
+</tr>
+<tr>
+<td style="text-align:center;text-align: center;">
+SEX_all3mixed
+</td>
+<td style="text-align:center;text-align: center;">
+0.067
+</td>
+<td style="text-align:center;text-align: center;">
+0.013
+</td>
+<td style="text-align:center;text-align: center;">
+5.029
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -813,36 +817,19 @@ p&lt;0.001
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-factor(SEX_2)1
+factor(MINORITY_1)nblacknhispanic
 </td>
 <td style="text-align:center;text-align: center;">
--0.075
-</td>
-<td style="text-align:center;text-align: center;">
-0.011
-</td>
-<td style="text-align:center;text-align: center;">
--6.672
-</td>
-<td style="text-align:center;text-align: center;">
-p&lt;0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:center;text-align: center;">
-factor(MINORITY_1)1
-</td>
-<td style="text-align:center;text-align: center;">
-0.007
+-0.005
 </td>
 <td style="text-align:center;text-align: center;">
 0.011
 </td>
 <td style="text-align:center;text-align: center;">
-0.595
+-0.457
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.552
+p=0.647
 </td>
 </tr>
 </tbody>
@@ -883,16 +870,16 @@ P Value
 (Intercept)
 </td>
 <td style="text-align:center;text-align: center;">
-0.052
-</td>
-<td style="text-align:center;text-align: center;">
 0.014
 </td>
 <td style="text-align:center;text-align: center;">
-3.809
+0.015
 </td>
 <td style="text-align:center;text-align: center;">
-p&lt;0.001
+0.979
+</td>
+<td style="text-align:center;text-align: center;">
+p=0.328
 </td>
 </tr>
 <tr>
@@ -900,13 +887,13 @@ p&lt;0.001
 DELIN_AVERAGE_mean
 </td>
 <td style="text-align:center;text-align: center;">
-1.012
+1.023
 </td>
 <td style="text-align:center;text-align: center;">
 0.016
 </td>
 <td style="text-align:center;text-align: center;">
-64.214
+64.779
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -917,16 +904,16 @@ p&lt;0.001
 CESD7_1994_diff
 </td>
 <td style="text-align:center;text-align: center;">
-0.001
+-0.001
 </td>
 <td style="text-align:center;text-align: center;">
 0.001
 </td>
 <td style="text-align:center;text-align: center;">
-0.566
+-0.765
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.571
+p=0.444
 </td>
 </tr>
 <tr>
@@ -940,24 +927,41 @@ CESD7_1994_mean
 0.002
 </td>
 <td style="text-align:center;text-align: center;">
--1.348
+-1.415
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.178
+p=0.157
 </td>
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-factor(SEX_1)1
+SEX_all3GirlGirl
 </td>
 <td style="text-align:center;text-align: center;">
-0.058
+0.020
 </td>
 <td style="text-align:center;text-align: center;">
-0.012
+0.016
 </td>
 <td style="text-align:center;text-align: center;">
-4.902
+1.213
+</td>
+<td style="text-align:center;text-align: center;">
+p=0.225
+</td>
+</tr>
+<tr>
+<td style="text-align:center;text-align: center;">
+SEX_all3mixed
+</td>
+<td style="text-align:center;text-align: center;">
+0.071
+</td>
+<td style="text-align:center;text-align: center;">
+0.014
+</td>
+<td style="text-align:center;text-align: center;">
+5.206
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -965,36 +969,19 @@ p&lt;0.001
 </tr>
 <tr>
 <td style="text-align:center;text-align: center;">
-factor(SEX_2)1
+factor(MINORITY_1)nblacknhispanic
 </td>
 <td style="text-align:center;text-align: center;">
--0.077
-</td>
-<td style="text-align:center;text-align: center;">
-0.012
-</td>
-<td style="text-align:center;text-align: center;">
--6.623
-</td>
-<td style="text-align:center;text-align: center;">
-p&lt;0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:center;text-align: center;">
-factor(MINORITY_1)1
-</td>
-<td style="text-align:center;text-align: center;">
-0.002
+0.000
 </td>
 <td style="text-align:center;text-align: center;">
 0.011
 </td>
 <td style="text-align:center;text-align: center;">
-0.186
+-0.016
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.852
+p=0.988
 </td>
 </tr>
 </tbody>
