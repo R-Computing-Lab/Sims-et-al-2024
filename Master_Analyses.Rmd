@@ -396,17 +396,17 @@ vallabels = function(data) {
     labels=c("NO",
       "YES"))
   ## maybe keep?
-  data$R0144600[10.0 <= data$R0144600 & data$R0144600 <= 9999.0] <- 10.0
-  data$R0144600[10010.0 <= data$R0144600 & data$R0144600 <= 10829.0] <- 10010.0
-  data$R0144600[11800.0 <= data$R0144600 & data$R0144600 <= 11999.0] <- 11800.0
-  data$R0144600[12800.0 <= data$R0144600 & data$R0144600 <= 12997.0] <- 12800.0
-  data$R0144600 <- factor(data$R0144600, 
-    levels=c(0.0,10.0,10010.0,11800.0,12800.0), 
-    labels=c("0: 0 NO HEALTH LIMITATION",
-      "10 TO 9999: 0010 THRU  9999 ICD-9 HEALTH CODE",
-      "10010 TO 10829: 10010 THRU 10829 ICD-9 'V' CODE",
-      "11800 TO 11999: 11800 THRU 11999 ICD-9 'E' CODE",
-      "12800 TO 12997: 12800 THRU 12997 ICD-9 'M' CODE"))
+#  data$R0144600[10.0 <= data$R0144600 & data$R0144600 <= 9999.0] <- 10.0
+#  data$R0144600[10010.0 <= data$R0144600 & data$R0144600 <= 10829.0] <- 10010.0
+#  data$R0144600[11800.0 <= data$R0144600 & data$R0144600 <= 11999.0] <- 11800.0
+#  data$R0144600[12800.0 <= data$R0144600 & data$R0144600 <= 12997.0] <- 12800.0
+# data$R0144600 <- factor(data$R0144600, 
+#   levels=c(0.0,10.0,10010.0,11800.0,12800.0), 
+#   labels=c("0: 0 NO HEALTH LIMITATION",
+#     "10 TO 9999: 0010 THRU  9999 ICD-9 HEALTH CODE",
+#     "10010 TO 10829: 10010 THRU 10829 ICD-9 'V' CODE",
+#     "11800 TO 11999: 11800 THRU 11999 ICD-9 'E' CODE",
+#      "12800 TO 12997: 12800 THRU 12997 ICD-9 'M' CODE"))
   data$R0173600 <- factor(data$R0173600, 
     levels=c(1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0), 
     labels=c("CROSS MALE WHITE",
@@ -1821,7 +1821,7 @@ df_age <- qnames(vallabels(df_age))
 
 ```{r data_cleaning}
 
-# is average deliquency score; so that missing data doesn't deflate score
+# is average delinquency score; so that missing data doesn't deflate score
 df_crime_gen1 = 
   df_crime_gen1 %>% mutate(
     SubjectTag=CASEID*100,
@@ -1842,8 +1842,8 @@ df_spsp_gen1=select(df_crime_gen1,
 
 df_spsp_gen1=mutate(df_spsp_gen1,
                      # race is 0 for white; and 1 for non-white
-                    RACE = case_when(RACE == 3 ~ 0,
-                                     RACE == 1 | RACE == 2 ~ 1),
+                    MINORITY = case_when(RACE == 3 ~ 0, # nonb
+                                     RACE == 1 | RACE == 2 ~ 1), #black or hisp
                     # have female be 0 and male be 1
                     SEX = case_when(SEX == 2 ~ 0,
                          TRUE ~ 1)
@@ -1874,13 +1874,14 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("RACE",
+outcomeNames=c("MINORITY",
                "SEX",
                "CESD20_1992",
                "DELIN_AVERAGE",
                "CESD7_1994", 
                "CESD7_1992")
 
+# onfull full sibs
 dsSingle_G1 <- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
                             linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
@@ -1902,12 +1903,20 @@ df_dyad_delinq = dsSingle_G1 %>%
                                    "CESD7_1994"),
                       id = "ExtendedID",
                       sex = "SEX",
-                      race = "RACE",
+                      race = "MINORITY",
                       pair_identifiers=c("_S1","_S2"),
                       demographics = "both"
                       )
 
 
+df_dyad_delinq=mutate(df_dyad_delinq,
+                     # race is 0 for white; and 1 for non-white
+                    MINORITY = case_when(RACE == 3 ~ 0, # nonb
+                                     RACE == 1 | RACE == 2 ~ 1), #black or hisp
+                    # have female be 0 and male be 1
+                    SEX = case_when(SEX == 2 ~ 0,
+                         TRUE ~ 1)
+                    )
 
 
 ```
@@ -1919,7 +1928,7 @@ df_classic <- df_spsp_gen1
 lm_og_7_1992 <- lm(DELIN_AVERAGE ~ 
                              CESD7_1992+
                              as.factor(SEX) + 
-                             as.factor(RACE) , 
+                             as.factor(MINORITY) , 
                            data = df_classic )
 summary(lm_og_7_1992)
 
@@ -1927,7 +1936,7 @@ summary(lm_og_7_1992)
 lm_og_20_1992 <- lm(DELIN_AVERAGE ~ 
                              CESD20_1992+
                              as.factor(SEX) + 
-                             as.factor(RACE) , 
+                             as.factor(MINORITY) , 
                            data = df_classic )
 summary(lm_og_20_1992)
 
@@ -1935,7 +1944,7 @@ summary(lm_og_20_1992)
 lm_og_7_1994 <- lm(DELIN_AVERAGE ~ 
                              CESD7_1994 +
                              as.factor(SEX) + 
-                             as.factor(RACE) , 
+                             as.factor(MINORITY) , 
                            data = df_classic )
 summary(lm_og_7_1994)
 
@@ -1951,7 +1960,7 @@ df_btwn=df_dyad_delinq
 #note: you only need s1 race because they're determined by the mother
 lm_btwfam_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
-                            as.factor(RACE_1)+
+                            as.factor(MINORITY_1)+
                             as.factor(SEX_1) + 
                             as.factor(SEX_2) , 
                            data = df_btwn)
@@ -1960,7 +1969,7 @@ summary(lm_btwfam_CESD7_1992)
 
 lm_btwfam_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
-                            as.factor(RACE_1)+
+                            as.factor(MINORITY_1)+
                             as.factor(SEX_1) + 
                             as.factor(SEX_2) , 
                            data = df_btwn)
@@ -1969,7 +1978,7 @@ summary(lm_btwfam_CESD20_1992)
 
 lm_btwfam_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
-                            as.factor(RACE_1)+
+                            as.factor(MINORITY_1)+
                             as.factor(SEX_1) + 
                             as.factor(SEX_2) , 
                            data = df_btwn)
@@ -1989,7 +1998,7 @@ lm_discord_CESD7_1992= lm(data=df_dyad_delinq,
                                 CESD7_1992_mean+
                                 factor(SEX_1)+
                                 factor(SEX_2)+
-                                factor(RACE_1) )
+                                factor(MINORITY_1) )
 
 lm_discord_CESD20_1992=lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
@@ -1998,7 +2007,7 @@ lm_discord_CESD20_1992=lm(data=df_dyad_delinq,
                                 CESD20_1992_mean+
                                 factor(SEX_1)+
                                 factor(SEX_2)+
-                                factor(RACE_1) )
+                                factor(MINORITY_1) )
 
 
 lm_discord_CESD7_1994=  lm(data=df_dyad_delinq,
@@ -2008,7 +2017,7 @@ lm_discord_CESD7_1994=  lm(data=df_dyad_delinq,
                                 CESD7_1994_mean+
                                 factor(SEX_1)+
                                 factor(SEX_2)+
-                                factor(RACE_1) )
+                                factor(MINORITY_1) )
 ```
 
 
