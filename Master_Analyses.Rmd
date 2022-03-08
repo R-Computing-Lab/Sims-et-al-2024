@@ -1727,7 +1727,7 @@ remove(new_data)
 
 #How old is everyone? 
 
-df_age <- readr::read_csv('default/default.csv')
+df_age <- readr::read_csv('default/default.csv',show_col_types = FALSE)
 
 names(df_age) <- c('R0000100',
   'R0000300',

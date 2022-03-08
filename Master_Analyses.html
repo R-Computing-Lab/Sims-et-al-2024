@@ -187,13 +187,6 @@ pre code {
 </div>
 <div id="age" class="section level2">
 <h2>age</h2>
-<pre><code>## Rows: 12686 Columns: 7
-## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## dbl (7): CASEID, Q1-3_A~M, Q1-3_A~Y, FAM-1B, SAMPLE_ID, SAMPLE_RACE, SAMPLE_SEX
-## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code># is average delinquency score; so that missing data doesn&#39;t deflate score
 df_crime_gen1 = 
   df_crime_gen1 %&gt;% mutate(
