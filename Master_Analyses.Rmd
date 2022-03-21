@@ -1,5 +1,5 @@
 ---
-title: "Master_Analyses"
+title: "Results"
 author: "Emma Sims, Jonathan Trattner, and S. Mason Garrison"
 date: "`r format(Sys.time(), '%B %d %Y')`"
 output:
@@ -2110,3 +2110,19 @@ CESD_7_1994
 
 
 The CESD_7_1994 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_7_1994 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2875) = 7.198 , p = 7.78e-13. A one unit increase in the average depression CESD_7_1994 predicted a .016 increase in average criminal behavior difference, controlling for all other variables in the model. The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2875) =  9.337, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2875) = -5.665, p = 1.62e-08. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 8.649, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.9% f(4, 2875) = 54.36, p = < 2.2e-16. 
+
+### Kinship model regression analysis
+
+CESD_7_1992
+
+ The CESD_7_1992 difference was significant t(2916)= 2.179, p=0.0294. A one unit increase in the average depression CESD_7_1992 predicted a .002 increase in average criminal behavior difference, controlling for all other variables in the model. The CESD_7 depression score did predict criminal behavior. This means that the difference was meaningful above or beyond the other sources of variance. Our hypothesis was supported. The variance in criminal behavior explained by the regression model is 61.25% f(6, 2916) = 770.7, p = < 2.2e-16. The Sex Sibling 1 was significant t(2916) = 5.144, p= 2.86e-07. Sex Sibling 2 was signifcant t(2916) = -6.466, p = 1.18e-10. 
+ 
+ CESD_20_1992
+ 
+ The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. 
+The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = < 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11. 
+
+CESD_7_1994
+
+The CESD_7 depression difference was not significant.. The CESD_7 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. 
+The variance in criminal behavior explained by the regression model is 61.24% f(6, 2873) = 759.2, p = < 2.2e-16. The Sex Sibling 1 was significant t(2873) =4.683 , p=2.95e-06. Sex Sibling 2 was signifcant t(2873) =-6.398, p =1.83e-10. 
