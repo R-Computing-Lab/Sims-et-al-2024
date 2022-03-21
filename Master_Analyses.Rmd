@@ -54,9 +54,10 @@ library(dplyr)
 ```
 
 
-# Prep data
+# Data
 
-## Depression
+## Import
+### Depression
 
 ```{r df_dep, echo=FALSE}
 new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv', 
@@ -790,10 +791,11 @@ remove(new_data)
 #************************************************************************************************************
 ```
 
-## Crime
+### Crime
 
 ```{r data_crim, echo=FALSE}
-new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv', col_types = cols())
+new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv',
+                            col_types = cols())
 names(new_data) <- c('R0000100',
   'R0173600',
   'R0214700',
@@ -1722,7 +1724,9 @@ df_crime_gen1 <- qnames(vallabels(new_data))
 remove(new_data)
 
 ```
-## age
+
+### age
+
 ```{r people_age, echo=FALSE}
 
 #How old is everyone? 
@@ -1818,6 +1822,7 @@ df_age <- qnames(vallabels(df_age))
 
 ```
 
+## Clean
 
 ```{r data_cleaning}
 
@@ -1868,6 +1873,7 @@ summary(df_spsp_gen1)
 ```
 
 # Data Linking
+
 ```{r kinship}
 
 #link dyads
@@ -1930,7 +1936,9 @@ df_dyad_delinq=mutate(df_dyad_delinq,
 
 ```
 
-# classic
+
+# classic regression
+
 ```{r classic}
 df_classic <- df_spsp_gen1
 
@@ -1960,7 +1968,7 @@ summary(lm_og_7_1994)
 
 ```
 
-# between family
+# between-family
 
 ```{r betweenfamily}
 
@@ -1995,7 +2003,8 @@ summary(lm_btwfam_CESD7_1994)
 
 ```
 
-# discordant analyses
+
+# within-family analyses
 
 ```{r discordmodels}
 # 
@@ -2030,7 +2039,7 @@ lm_discord_CESD7_1994=  lm(data=df_dyad_delinq,
 ```
 
 
-### Regression Results
+## Results
 
 ```{r summarizeregression}
 lm_discord_CESD7_1992 %>%
