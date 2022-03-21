@@ -2068,3 +2068,45 @@ lm_discord_CESD7_1994 %>%
   kableExtra::kable_styling() %>%
   kableExtra::column_spec(1:5, extra_css = "text-align: center;")
 ```
+
+
+
+
+## Results
+
+	We examined the relationship between depression and crime by separating sources of variance. We also examined if women were more likely to be depressed than men. We hypothesized increased depression will lead to more crime in adolescents. We examined the correlations between the two variables. We also used classic regression analysis to examine the relationship. We used the discordant kin model to predict criminal behavior from depression using a within family analysis which includes within-family variance in the sibling differences.
+
+### Correlations
+
+Correlation Table
+Variables
+Race
+Sex
+CESD_7_1994
+CESD_20_1994
+CESD_7_1992
+Delinquency Average
+
+
+
+
+Results of the correlation indicate there is no association between race and sex r = 0.00017. Results of the correlation indicate there is almost no association between race and delinquency r = -0.03742342. Results of the correlation indicate there is a small association between race and delinquency r = 0.25526995. Results of the correlation indicate there is little to no association between race and CESD_7_1994 r = 0.0814601930. Results of the correlation indicate there is a small negative association between sex and CESD_7_1994 r =-0.1635641661. Results of the correlation indicate there is little to no association between delinquency and CESD_7_1994 r = 0.03231583. Results of the correlation indicate there is a small association between race and CESD_20_1994 r=0.1344010296. Results of the correlation indicate there is almost no association between sex and CESD_20_1994 r= -0.0938880066. Results of the correlation indicate there is almost no association between delinquency average and CESD_20_1994 r= 0.07036204. Results of the correlation indicate there is almost no association between race and CESD_7_1992 r= 0.0970550584. Results of the correlation indicate there is a small negative association between sex and CESD_7_1992 r = -0.1161312642. Results of the correlation indicate there is little to no association between delinquency and CESD_7_1992 r =0.06623573.
+
+
+
+### Classic Regression
+
+
+CESD_20_1992
+
+
+The CESD_20 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_20 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2952) = 7.609, p = 3.70e-14. A one unit increase in the average depression CESD_20 predicted a .007 increase in average criminal behavior difference, controlling for all other variables in the model. The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2952) = 8.811, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2952) = -6.041, p = 1.73e-09. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2952) =8.397, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.76% f(4, 2952) = 54.58, p = < 2.2e-16. 
+
+CESD_7_1992
+
+The CESD_7_1992 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_7_1992 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 7.583, p = 4.50e-14.A one unit increase in the average depression CESD_7_1992 predicted a .017 increase in average criminal behavior difference, controlling for all other variables in the model.  The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) =  8.804, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = -5.811, p = 6.88e-09. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 8.463, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.74% f(4, 2918) = 53.82, p = < 2e-16. 
+
+CESD_7_1994
+
+
+The CESD_7_1994 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_7_1994 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2875) = 7.198 , p = 7.78e-13. A one unit increase in the average depression CESD_7_1994 predicted a .016 increase in average criminal behavior difference, controlling for all other variables in the model. The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2875) =  9.337, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2875) = -5.665, p = 1.62e-08. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 8.649, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.9% f(4, 2875) = 54.36, p = < 2.2e-16. 
