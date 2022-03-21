@@ -10,7 +10,8 @@ editor_options:
     
 ---
 
-```{r setup,include =FALSE}
+```{r setup,include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 
 # set seed
@@ -794,6 +795,7 @@ remove(new_data)
 ### Crime
 
 ```{r data_crim, echo=FALSE}
+
 new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv',
                             col_types = cols())
 names(new_data) <- c('R0000100',
