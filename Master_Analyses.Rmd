@@ -1864,12 +1864,20 @@ df_spsp_gen1$CESD20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
 df_spsp_gen1$CESD7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
 df_spsp_gen1$AGE_1979= df_age$AGE_1979
 # 
-cor(df_spsp_gen1,use="pairwise.complete")
+
+df_spsp_gen1 %>%
+  select(-c(SEX,
+            MINORITY,
+            RACE, 
+            SubjectTag,
+            CASEID)) %>%
+cor(use="pairwise.complete")
 
 # convert sex into factor
-df_spsp_gen1$SEX=as.factor(df_spsp_gen1$SEX)
-df_spsp_gen1$RACE=as.factor(df_spsp_gen1$RACE)
-df_spsp_gen1$MINORITY=as.factor(df_spsp_gen1$MINORITY)
+df_spsp_gen1$SEX <- as.factor(df_spsp_gen1$SEX)
+df_spsp_gen1$RACE <- as.factor(df_spsp_gen1$RACE)
+df_spsp_gen1$MINORITY <- as.factor(df_spsp_gen1$MINORITY)
+
 summary(df_spsp_gen1)
 
 ```
@@ -1884,7 +1892,7 @@ dsLinks <- Links79PairExpanded
 dsLinks$R <-dsLinks$RFull
 dsLinking <- dsLinks
 
-outcomeNames=c("MINORITY",
+outcomeNames <- c("MINORITY",
                "SEX",
                "CESD20_1992",
                "DELIN_AVERAGE",
@@ -1894,7 +1902,7 @@ outcomeNames=c("MINORITY",
 # only full full sibs
 dsSingle_G1 <- CreatePairLinksSingleEntered(
                             outcomeDataset = df_spsp_gen1,
-                            linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull==.5, ],
+                            linksPairDataset = dsLinking[ dsLinking$RelationshipPath == "Gen1Housemates" & dsLinking$RFull == .5, ],
                             outcomeNames = outcomeNames, 
                              subject1Qualifier = "_S1",
                              subject2Qualifier = "_S2")
@@ -1905,7 +1913,7 @@ dsSingle_G1 <- CreatePairLinksSingleEntered(
 set.seed(18)
 
 
-df_dyad_delinq = dsSingle_G1 %>%  
+df_dyad_delinq <- dsSingle_G1 %>%  
   drop_na(contains("DELIN_AVERAGE")) %>%
   discord_data (outcome = "DELIN_AVERAGE",
                       predictors=c("CESD7_1992",
@@ -1927,7 +1935,7 @@ df_dyad_delinq = dsSingle_G1 %>%
 df_dyad_delinq=mutate(df_dyad_delinq,
                      # sex is 0 for girl; and 1 for boy
                     SEX_all4 = case_when(SEX_1 == 1 & SEX_2==1 ~ "BoyBoy", # boyboy
-                                         SEX_1 == 0 & SEX_2==1 ~ "GirlBoy", # girlboy
+                                         SEX_1 == 0 & SEX_2 == 1 ~ "GirlBoy", # girlboy
                                         SEX_1 == 1 & SEX_2==0 ~ "BoyGirl", #opposite
                                         SEX_1 == 0 & SEX_2==0 ~ "GirlGirl"), #opposite
                     SEX_all3 = case_when(SEX_1 == 1 & SEX_2==1 ~ "BoyBoy", # boyboy
@@ -1953,9 +1961,9 @@ summary(lm_og_7_1992)
 
 
 lm_og_20_1992 <- lm(DELIN_AVERAGE ~ 
-                             CESD20_1992+
+                             CESD20_1992 +
                              as.factor(SEX) + 
-                             as.factor(MINORITY) , 
+                             as.factor(MINORITY), 
                            data = df_classic )
 summary(lm_og_20_1992)
 
@@ -1974,12 +1982,12 @@ summary(lm_og_7_1994)
 
 ```{r betweenfamily}
 
-df_btwn=df_dyad_delinq
+df_btwn <- df_dyad_delinq
 
 #note: you only need s1 race because they're determined by the mother
 lm_btwfam_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
-                            SEX_all3+
+                            SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
@@ -1992,6 +2000,7 @@ lm_btwfam_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
+
 summary(lm_btwfam_CESD20_1992)
 
 
@@ -2011,7 +2020,7 @@ summary(lm_btwfam_CESD7_1994)
 ```{r discordmodels}
 # 
 
-lm_discord_CESD7_1992= lm(data=df_dyad_delinq,
+lm_discord_CESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
@@ -2020,22 +2029,22 @@ lm_discord_CESD7_1992= lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_CESD20_1992=lm(data=df_dyad_delinq,
+lm_discord_CESD20_1992 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean+
+                                DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
-                                CESD20_1992_mean+
-                                SEX_all3+
+                                CESD20_1992_mean +
+                                SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
 
-lm_discord_CESD7_1994=  lm(data=df_dyad_delinq,
+lm_discord_CESD7_1994 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean+
+                                DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
-                                CESD7_1994_mean+
-                                SEX_all3+
+                                CESD7_1994_mean +
+                                SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 ```
@@ -2086,6 +2095,11 @@ lm_discord_CESD7_1994 %>%
 ## Results
 
 	We examined the relationship between depression and crime by separating sources of variance. We also examined if women were more likely to be depressed than men. We hypothesized increased depression will lead to more crime in adolescents. We examined the correlations between the two variables. We also used classic regression analysis to examine the relationship. We used the discordant kin model to predict criminal behavior from depression using a within family analysis which includes within-family variance in the sibling differences.
+
+### Descriptive Statistics
+
+
+
 
 ### Correlations
 
