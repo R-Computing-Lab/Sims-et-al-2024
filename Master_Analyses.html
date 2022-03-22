@@ -589,7 +589,7 @@ pre code {
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason
 Garrison</h4>
-<h4 class="date">March 21 2022</h4>
+<h4 class="date">March 22 2022</h4>
 
 </div>
 
@@ -620,40 +620,43 @@ df_crime_gen1 =
 
 
 # creating smaller dataframe to only include variables of interest
-df_spsp_gen1=select(df_crime_gen1,
-                    SubjectTag,
-                    CASEID,
-                    RACE,
-                    SEX,
-                    DELIN_AVERAGE)
-
 # recoding Race and Sex ; todo, name race to minority
 
-df_spsp_gen1=mutate(df_spsp_gen1,
-                     # race is 0 for white; and 1 for non-white
-                    MINORITY = case_when(RACE == 3 ~ &quot;nonblackhispanic&quot;, # nonb
-                                     RACE == 1 | RACE == 2 ~ &quot;blackorhispanic&quot;), #black or hisp
-                    # have female be 0 and male be 1
-                    SEX = case_when(SEX == 2 ~ 0,
-                         TRUE ~ 1)
-                    )
+df_spsp_gen1 &lt;- df_crime_gen1 %&gt;%
+  select(SubjectTag,
+         CASEID,
+         RACE,
+         SEX,
+         DELIN_AVERAGE) %&gt;%
+ mutate(
+    MINORITY = case_when(
+      # race is 0 for white; and 1 for non-white
+      RACE == 3 ~ &quot;nonblackhispanic&quot;,
+      #black or hisp
+      RACE == 1 |
+        RACE == 2 ~ &quot;blackorhispanic&quot;
+    ),
+    # have female be 0 and male be 1
+    SEX = case_when(SEX == 2 ~ 0,
+                    TRUE ~ 1)
+    )
 
 
 # add to spsp df
 
-df_spsp_gen1$CESD7_1994=df_dep_gen1$CESD_SCORE_7_ITEM_1994
-df_spsp_gen1$CESD20_1992=as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
-df_spsp_gen1$CESD7_1992=df_dep_gen1$CESD_SCORE_7_ITEM_1992
-df_spsp_gen1$AGE_1979= df_age$AGE_1979
+df_spsp_gen1$CESD7_1994 &lt;- df_dep_gen1$CESD_SCORE_7_ITEM_1994
+df_spsp_gen1$CESD20_1992 &lt;- as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992)
+df_spsp_gen1$CESD7_1992 &lt;- df_dep_gen1$CESD_SCORE_7_ITEM_1992
+df_spsp_gen1$AGE_1979 &lt;- df_age$AGE_1979
 # 
 
 df_spsp_gen1 %&gt;%
   select(-c(SEX,
             MINORITY,
-            RACE, 
+            RACE,
             SubjectTag,
             CASEID)) %&gt;%
-cor(use=&quot;pairwise.complete&quot;)</code></pre>
+  cor(use = &quot;pairwise.complete&quot;)</code></pre>
 <pre><code>##               DELIN_AVERAGE  CESD7_1994  CESD20_1992  CESD7_1992     AGE_1979
 ## DELIN_AVERAGE    1.00000000 0.032315828  0.070362038  0.06623573 -0.102555376
 ## CESD7_1994       0.03231583 1.000000000  0.424334727  0.42387813  0.002552166
@@ -697,23 +700,25 @@ summary(df_spsp_gen1)</code></pre>
 <pre class="r"><code>#link dyads
 
 dsLinks &lt;- Links79PairExpanded
-dsLinks$R &lt;-dsLinks$RFull
+dsLinks$R &lt;- dsLinks$RFull
 dsLinking &lt;- dsLinks
 
 outcomeNames &lt;- c(&quot;MINORITY&quot;,
-               &quot;SEX&quot;,
-               &quot;CESD20_1992&quot;,
-               &quot;DELIN_AVERAGE&quot;,
-               &quot;CESD7_1994&quot;, 
-               &quot;CESD7_1992&quot;)
+                  &quot;SEX&quot;,
+                  &quot;CESD20_1992&quot;,
+                  &quot;DELIN_AVERAGE&quot;,
+                  &quot;CESD7_1994&quot;,
+                  &quot;CESD7_1992&quot;)
 
 # only full full sibs
 dsSingle_G1 &lt;- CreatePairLinksSingleEntered(
-                            outcomeDataset = df_spsp_gen1,
-                            linksPairDataset = dsLinking[ dsLinking$RelationshipPath == &quot;Gen1Housemates&quot; &amp; dsLinking$RFull == .5, ],
-                            outcomeNames = outcomeNames, 
-                             subject1Qualifier = &quot;_S1&quot;,
-                             subject2Qualifier = &quot;_S2&quot;)
+  outcomeDataset = df_spsp_gen1,
+  linksPairDataset = dsLinking[dsLinking$RelationshipPath == &quot;Gen1Housemates&quot; &amp;
+                                 dsLinking$RFull == .5,],
+  outcomeNames = outcomeNames,
+  subject1Qualifier = &quot;_S1&quot;,
+  subject2Qualifier = &quot;_S2&quot;
+)
 
 
 
@@ -721,42 +726,75 @@ dsSingle_G1 &lt;- CreatePairLinksSingleEntered(
 set.seed(18)
 
 
-df_dyad_delinq &lt;- dsSingle_G1 %&gt;%  
+
+df_dyad_delinq &lt;- dsSingle_G1 %&gt;%
   drop_na(contains(&quot;DELIN_AVERAGE&quot;)) %&gt;%
-  discord_data (outcome = &quot;DELIN_AVERAGE&quot;,
-                      predictors=c(&quot;CESD7_1992&quot;,
-                                   &quot;CESD20_1992&quot;,
-                                   &quot;CESD7_1994&quot;),
-                      id = &quot;ExtendedID&quot;,
-                      sex = &quot;SEX&quot;,
-                      race = &quot;MINORITY&quot;,
-                      pair_identifiers=c(&quot;_S1&quot;,&quot;_S2&quot;),
-                      demographics = &quot;both&quot;
-                      )</code></pre>
-<pre><code>## Warning: Specified id column does not contain unique values for each kin-pair.
-## Adding row-wise ID for restructuring data into paired format for analysis.
-## For more details, see &lt;https://github.com/R-Computing-Lab/discord/issues/6&gt;.</code></pre>
-<pre class="r"><code>df_dyad_delinq=mutate(df_dyad_delinq,
-                     # sex is 0 for girl; and 1 for boy
-                    SEX_all4 = case_when(SEX_1 == 1 &amp; SEX_2==1 ~ &quot;BoyBoy&quot;, # boyboy
-                                         SEX_1 == 0 &amp; SEX_2 == 1 ~ &quot;GirlBoy&quot;, # girlboy
-                                        SEX_1 == 1 &amp; SEX_2==0 ~ &quot;BoyGirl&quot;, #opposite
-                                        SEX_1 == 0 &amp; SEX_2==0 ~ &quot;GirlGirl&quot;), #opposite
-                    SEX_all3 = case_when(SEX_1 == 1 &amp; SEX_2==1 ~ &quot;BoyBoy&quot;, # boyboy
-                                         SEX_1 == 0 &amp; SEX_2==1 ~ &quot;mixed&quot;, # girlboy
-                                        SEX_1 == 1 &amp; SEX_2==0 ~ &quot;mixed&quot;, #opposite
-                                        SEX_1 == 0 &amp; SEX_2==0 ~ &quot;GirlGirl&quot;), #opposite
-                    )</code></pre>
+  discord_data(
+    outcome = &quot;DELIN_AVERAGE&quot;,
+    predictors = c(&quot;CESD7_1992&quot;,
+                   &quot;CESD20_1992&quot;,
+                   &quot;CESD7_1994&quot;),
+    id = &quot;ExtendedID&quot;,
+    sex = &quot;SEX&quot;,
+    race = &quot;MINORITY&quot;,
+    pair_identifiers = c(&quot;_S1&quot;, &quot;_S2&quot;),
+    demographics = &quot;both&quot;
+  ) %&gt;%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &amp;
+        SEX_2 == 1 ~ &quot;BoyBoy&quot;,
+      # girlboy
+      SEX_1 == 0 &amp;
+        SEX_2 == 1 ~ &quot;GirlBoy&quot;,
+      #opposite
+      SEX_1 == 1 &amp;
+        SEX_2 == 0 ~ &quot;BoyGirl&quot;,
+      #girgirl
+      SEX_1 == 0 &amp;
+        SEX_2 == 0 ~ &quot;GirlGirl&quot;
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 &amp; SEX_2 == 1 ~ &quot;BoyBoy&quot;,
+      # boyboy
+      SEX_1 == 0 &amp;
+        SEX_2 == 1 ~ &quot;mixed&quot;,
+      # girlboy
+      SEX_1 == 1 &amp;
+        SEX_2 == 0 ~ &quot;mixed&quot;,
+      #opposite
+      SEX_1 == 0 &amp;
+        SEX_2 == 0 ~ &quot;GirlGirl&quot;
+    )
+  )</code></pre>
 </div>
 <div id="classic-regression" class="section level1">
 <h1>classic regression</h1>
 <pre class="r"><code>df_classic &lt;- df_spsp_gen1
 
-lm_og_7_1992 &lt;- lm(DELIN_AVERAGE ~ 
-                             CESD7_1992+
-                             as.factor(SEX) + 
-                             as.factor(MINORITY) , 
-                           data = df_classic )
+lm_og_7_1992 &lt;- lm(DELIN_AVERAGE ~
+                     CESD7_1992 +
+                     as.factor(SEX) +
+                     as.factor(MINORITY) ,
+                   data = df_classic)
+
+lm_og_20_1992 &lt;- lm(DELIN_AVERAGE ~
+                      CESD20_1992 +
+                      as.factor(SEX) +
+                      as.factor(MINORITY),
+                    data = df_classic)
+
+
+lm_og_7_1994 &lt;- lm(DELIN_AVERAGE ~
+                     CESD7_1994 +
+                     as.factor(SEX) +
+                     as.factor(MINORITY) ,
+                   data = df_classic)
+
+
 summary(lm_og_7_1992)</code></pre>
 <pre><code>## 
 ## Call:
@@ -780,12 +818,7 @@ summary(lm_og_7_1992)</code></pre>
 ##   (4230 observations deleted due to missingness)
 ## Multiple R-squared:  0.07753,    Adjusted R-squared:  0.0772 
 ## F-statistic: 236.8 on 3 and 8452 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>lm_og_20_1992 &lt;- lm(DELIN_AVERAGE ~ 
-                             CESD20_1992 +
-                             as.factor(SEX) + 
-                             as.factor(MINORITY), 
-                           data = df_classic )
-summary(lm_og_20_1992)</code></pre>
+<pre class="r"><code>summary(lm_og_20_1992)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = DELIN_AVERAGE ~ CESD20_1992 + as.factor(SEX) + as.factor(MINORITY), 
@@ -808,12 +841,7 @@ summary(lm_og_20_1992)</code></pre>
 ##   (4188 observations deleted due to missingness)
 ## Multiple R-squared:  0.07789,    Adjusted R-squared:  0.07757 
 ## F-statistic: 239.2 on 3 and 8494 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>lm_og_7_1994 &lt;- lm(DELIN_AVERAGE ~ 
-                             CESD7_1994 +
-                             as.factor(SEX) + 
-                             as.factor(MINORITY) , 
-                           data = df_classic )
-summary(lm_og_7_1994)</code></pre>
+<pre class="r"><code>summary(lm_og_7_1994)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = DELIN_AVERAGE ~ CESD7_1994 + as.factor(SEX) + as.factor(MINORITY), 
@@ -848,67 +876,24 @@ lm_btwfam_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
-summary(lm_btwfam_CESD7_1992)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1992_mean + SEX_all3 + 
-##     as.factor(MINORITY_1), data = df_btwn)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.5551 -0.2188 -0.0956  0.1077  4.1052 
-## 
-## Coefficients:
-##                                        Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                            0.313965   0.017107  18.353  &lt; 2e-16 ***
-## CESD7_1992_mean                        0.017707   0.002339   7.572 4.91e-14 ***
-## SEX_all3GirlGirl                      -0.226894   0.018321 -12.384  &lt; 2e-16 ***
-## SEX_all3mixed                         -0.120478   0.015751  -7.649 2.74e-14 ***
-## as.factor(MINORITY_1)nonblackhispanic  0.077153   0.013279   5.810 6.92e-09 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.3545 on 2918 degrees of freedom
-##   (761 observations deleted due to missingness)
-## Multiple R-squared:  0.06878,    Adjusted R-squared:  0.0675 
-## F-statistic: 53.88 on 4 and 2918 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>lm_btwfam_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+
+
+
+
+lm_btwfam_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all3+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
-summary(lm_btwfam_CESD20_1992)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = DELIN_AVERAGE_mean ~ CESD20_1992_mean + SEX_all3 + 
-##     as.factor(MINORITY_1), data = df_btwn)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.6227 -0.2181 -0.0951  0.1141  4.0530 
-## 
-## Coefficients:
-##                                        Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                            0.310762   0.017309  17.954  &lt; 2e-16 ***
-## CESD20_1992_mean                       0.007673   0.001009   7.601 3.91e-14 ***
-## SEX_all3GirlGirl                      -0.224499   0.018168 -12.357  &lt; 2e-16 ***
-## SEX_all3mixed                         -0.118907   0.015667  -7.590 4.27e-14 ***
-## as.factor(MINORITY_1)nonblackhispanic  0.080331   0.013301   6.039 1.74e-09 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.3543 on 2952 degrees of freedom
-##   (727 observations deleted due to missingness)
-## Multiple R-squared:  0.06893,    Adjusted R-squared:  0.06766 
-## F-statistic: 54.63 on 4 and 2952 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>lm_btwfam_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all3+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
+
 summary(lm_btwfam_CESD7_1994)</code></pre>
 <pre><code>## 
 ## Call:
@@ -933,6 +918,54 @@ summary(lm_btwfam_CESD7_1994)</code></pre>
 ##   (804 observations deleted due to missingness)
 ## Multiple R-squared:  0.0705, Adjusted R-squared:  0.06921 
 ## F-statistic: 54.52 on 4 and 2875 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>summary(lm_btwfam_CESD7_1992)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE_mean ~ CESD7_1992_mean + SEX_all3 + 
+##     as.factor(MINORITY_1), data = df_btwn)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5551 -0.2188 -0.0956  0.1077  4.1052 
+## 
+## Coefficients:
+##                                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                            0.313965   0.017107  18.353  &lt; 2e-16 ***
+## CESD7_1992_mean                        0.017707   0.002339   7.572 4.91e-14 ***
+## SEX_all3GirlGirl                      -0.226894   0.018321 -12.384  &lt; 2e-16 ***
+## SEX_all3mixed                         -0.120478   0.015751  -7.649 2.74e-14 ***
+## as.factor(MINORITY_1)nonblackhispanic  0.077153   0.013279   5.810 6.92e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3545 on 2918 degrees of freedom
+##   (761 observations deleted due to missingness)
+## Multiple R-squared:  0.06878,    Adjusted R-squared:  0.0675 
+## F-statistic: 53.88 on 4 and 2918 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>summary(lm_btwfam_CESD20_1992)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE_mean ~ CESD20_1992_mean + SEX_all3 + 
+##     as.factor(MINORITY_1), data = df_btwn)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.6227 -0.2181 -0.0951  0.1141  4.0530 
+## 
+## Coefficients:
+##                                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                            0.310762   0.017309  17.954  &lt; 2e-16 ***
+## CESD20_1992_mean                       0.007673   0.001009   7.601 3.91e-14 ***
+## SEX_all3GirlGirl                      -0.224499   0.018168 -12.357  &lt; 2e-16 ***
+## SEX_all3mixed                         -0.118907   0.015667  -7.590 4.27e-14 ***
+## as.factor(MINORITY_1)nonblackhispanic  0.080331   0.013301   6.039 1.74e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3543 on 2952 degrees of freedom
+##   (727 observations deleted due to missingness)
+## Multiple R-squared:  0.06893,    Adjusted R-squared:  0.06766 
+## F-statistic: 54.63 on 4 and 2952 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="within-family-analyses" class="section level1">
 <h1>within-family analyses</h1>
@@ -967,6 +1000,8 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
                                 factor(MINORITY_1) )</code></pre>
 <div id="results" class="section level2">
 <h2>Results</h2>
+<div id="discordant" class="section level3">
+<h3>Discordant</h3>
 <pre class="r"><code>lm_discord_CESD7_1992 %&gt;%
   broom::tidy() %&gt;%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
@@ -1423,6 +1458,7 @@ p=0.988
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
