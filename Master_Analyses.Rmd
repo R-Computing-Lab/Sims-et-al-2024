@@ -1728,6 +1728,8 @@ remove(new_data)
 
 ```
 
+
+
 ### age
 
 ```{r people_age, echo=FALSE}
@@ -1825,9 +1827,10 @@ df_age <- qnames(vallabels(df_age))
 
 ```
 
+
 ## Clean
 
-```{r data_cleaning}
+```{r data_cleaning, echo=FALSE}
 
 # is average delinquency score; so that missing data doesn't deflate score
 df_crime_gen1 = 
@@ -1885,6 +1888,11 @@ df_spsp_gen1$MINORITY <- as.factor(df_spsp_gen1$MINORITY)
 summary(df_spsp_gen1)
 
 ```
+
+
+## Summarize
+
+
 
 # Data Linking
 
