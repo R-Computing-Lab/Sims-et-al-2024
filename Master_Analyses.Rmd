@@ -42,6 +42,7 @@ library(tidyverse)
 library(devtools) 
 library(remotes)
 library(NlsyLinks)
+library(gtsummary)
 library(discord)
 library(janitor)
 library(lm.beta)
@@ -1833,8 +1834,9 @@ df_age <- qnames(vallabels(df_age))
 ```{r data_cleaning, echo=FALSE}
 
 # is average delinquency score; so that missing data doesn't deflate score
-df_crime_gen1 = 
-  df_crime_gen1 %>% mutate(
+df_crime_gen1 <- 
+  df_crime_gen1 %>% 
+  mutate(
     SubjectTag=CASEID*100,
     DELIN_AVERAGE = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
 #DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
@@ -2014,7 +2016,14 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
 df_btwn <- df_dyad_delinq
 
 #note: you only need s1 race because they're determined by the mother
-lm_btwfam_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+                             CESD7_1992_mean +
+                            SEX_all4 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+
+lm_btwfam_sex3_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
                             SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
@@ -2022,22 +2031,32 @@ lm_btwfam_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~
                            data = df_btwn)
 
 
-
-
-lm_btwfam_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex3_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
-                            SEX_all3+
+                            SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
-lm_btwfam_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+                             CESD20_1992_mean +
+                            SEX_all4 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
+
+lm_btwfam_sex4_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
-                            SEX_all3+
+                            SEX_all4 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
-
+lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+                            CESD7_1994_mean +
+                            SEX_all3 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
 
 ```
 
@@ -2047,16 +2066,25 @@ lm_btwfam_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~
 ```{r discordmodels}
 # 
 
-lm_discord_CESD7_1992 <- lm(data=df_dyad_delinq,
+lm_discord_sex4_CESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
                                 CESD7_1992_mean+
-                                SEX_all3+
+                                SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_CESD20_1992 <- lm(data=df_dyad_delinq,
+lm_discord_sex3_CESD7_1992 <- lm(data=df_dyad_delinq,
+                                DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                CESD7_1992_diff + 
+                                CESD7_1992_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex3_CESD20_1992 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
@@ -2065,13 +2093,31 @@ lm_discord_CESD20_1992 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
+lm_discord_sex4_CESD20_1992 <- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD20_1992_diff + 
+                                CESD20_1992_mean +
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
 
-lm_discord_CESD7_1994 <- lm(data=df_dyad_delinq,
+
+lm_discord_sex3_CESD7_1994 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
                                 CESD7_1994_mean +
                                 SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex4_CESD7_1994 <- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD7_1994_diff + 
+                                CESD7_1994_mean +
+                                SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 ```
@@ -2085,38 +2131,40 @@ lm_discord_CESD7_1994 <- lm(data=df_dyad_delinq,
 
 
 lm_og_CESD7_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 
 lm_og_CESD20_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
-
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 
 lm_og_CESD7_1994 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 
 ### Btween
@@ -2124,42 +2172,45 @@ lm_og_CESD7_1994 %>%
 ```{r}
 
 
-lm_btwfam_CESD7_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_btwfam_sex4_CESD7_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 
 ```
 ```{r}
-lm_btwfam_CESD20_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_btwfam_sex4_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 ```{r}
 
-lm_btwfam_CESD7_1994 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_btwfam_sex4_CESD7_1994 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 
 
@@ -2187,16 +2238,17 @@ The CESD_7_1994 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant
  The CESD_7_1992 difference was significant t(2916)= 2.179, p=0.0294. A one unit increase in the average depression CESD_7_1992 predicted a .002 increase in average criminal behavior difference, controlling for all other variables in the model. The CESD_7 depression score did predict criminal behavior. This means that the difference was meaningful above or beyond the other sources of variance. Our hypothesis was supported. The variance in criminal behavior explained by the regression model is 61.25% f(6, 2916) = 770.7, p = < 2.2e-16. The Sex Sibling 1 was significant t(2916) = 5.144, p= 2.86e-07. Sex Sibling 2 was signifcant t(2916) = -6.466, p = 1.18e-10. 
 
 ```{r}
-lm_discord_CESD7_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_discord_sex4_CESD7_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 
 
@@ -2207,16 +2259,17 @@ The variance in criminal behavior explained by the regression model is 61.48% f(
 
 
 ```{r}
-lm_discord_CESD20_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_discord_sex4_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 
 # CESD_7_1994
@@ -2226,16 +2279,17 @@ The variance in criminal behavior explained by the regression model is 61.24% f(
 
 
 ```{r}
-lm_discord_CESD7_1994 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_discord_sex4_CESD7_1994%>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 
 
