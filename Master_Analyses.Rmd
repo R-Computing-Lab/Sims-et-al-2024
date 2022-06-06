@@ -2015,6 +2015,9 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
 
 df_btwn <- df_dyad_delinq
 
+data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%>%
+  summary()
+
 #note: you only need s1 race because they're determined by the mother
 lm_btwfam_sex4_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
