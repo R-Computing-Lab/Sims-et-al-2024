@@ -330,26 +330,44 @@ lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
 <pre class="r"><code>df_btwn &lt;- df_dyad_delinq
 
 #note: you only need s1 race because they&#39;re determined by the mother
-lm_btwfam_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
                             SEX_all4 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
 
+lm_btwfam_sex3_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD7_1992_mean +
+                            SEX_all3 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
 
 
+lm_btwfam_sex3_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD20_1992_mean +
+                            SEX_all3 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
 
-lm_btwfam_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
-lm_btwfam_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all4 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+lm_btwfam_sex3_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                            CESD7_1994_mean +
+                            SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)</code></pre>
@@ -358,7 +376,7 @@ lm_btwfam_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~
 <h1>within-family analyses</h1>
 <pre class="r"><code># 
 
-lm_discord_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
+lm_discord_sex4_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
@@ -367,7 +385,25 @@ lm_discord_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
+lm_discord_sex3_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
+                                DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                CESD7_1992_diff + 
+                                CESD7_1992_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex3_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD20_1992_diff + 
+                                CESD20_1992_mean +
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex4_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
@@ -377,7 +413,16 @@ lm_discord_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
                                 factor(MINORITY_1) )
 
 
-lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
+lm_discord_sex3_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD7_1994_diff + 
+                                CESD7_1994_mean +
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex4_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
@@ -1889,7 +1934,7 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
 </div>
 <div id="btween" class="section level3">
 <h3>Btween</h3>
-<pre class="r"><code>lm_btwfam_CESD7_1992 %&gt;%
+<pre class="r"><code>lm_btwfam_sex4_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -2398,7 +2443,7 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_btwfam_CESD20_1992 %&gt;%
+<pre class="r"><code>lm_btwfam_sex4_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -2907,7 +2952,7 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_btwfam_CESD7_1994 %&gt;%
+<pre class="r"><code>lm_btwfam_sex4_CESD7_1994 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -3428,7 +3473,7 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
 <div id="cesd_7_1992" class="section level4">
 <h4>CESD_7_1992</h4>
 <p>The CESD_7_1992 difference was significant t(2916)= 2.179, p=0.0294. A one unit increase in the average depression CESD_7_1992 predicted a .002 increase in average criminal behavior difference, controlling for all other variables in the model. The CESD_7 depression score did predict criminal behavior. This means that the difference was meaningful above or beyond the other sources of variance. Our hypothesis was supported. The variance in criminal behavior explained by the regression model is 61.25% f(6, 2916) = 770.7, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2916) = 5.144, p= 2.86e-07. Sex Sibling 2 was signifcant t(2916) = -6.466, p = 1.18e-10.</p>
-<pre class="r"><code>lm_discord_CESD7_1992 %&gt;%
+<pre class="r"><code>lm_discord_sex4_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -3954,7 +3999,7 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
 <div id="cesd_20_1992" class="section level1">
 <h1>CESD_20_1992</h1>
 <p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
-<pre class="r"><code>lm_discord_CESD20_1992 %&gt;%
+<pre class="r"><code>lm_discord_sex4_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4477,7 +4522,7 @@ lm_discord_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
 <div id="cesd_7_1994" class="section level1">
 <h1>CESD_7_1994</h1>
 <p>The CESD_7 depression difference was not significant.. The CESD_7 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.24% f(6, 2873) = 759.2, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2873) =4.683 , p=2.95e-06. Sex Sibling 2 was signifcant t(2873) =-6.398, p =1.83e-10.</p>
-<pre class="r"><code>lm_discord_CESD7_1994%&gt;%
+<pre class="r"><code>lm_discord_sex4_CESD7_1994%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
