@@ -329,7 +329,14 @@ lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
 <h1>between-family</h1>
 <pre class="r"><code>df_btwn &lt;- df_dyad_delinq
 
-#note: you only need s1 race because they&#39;re determined by the mother
+data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%&gt;%
+  summary()</code></pre>
+<pre><code>##  as.factor.df_btwn.SEX_all4. as.factor.df_btwn.SEX_all3.
+##  BoyBoy  :1022               BoyBoy  :1022              
+##  BoyGirl :1215               GirlGirl: 898              
+##  GirlBoy : 549               mixed   :1764              
+##  GirlGirl: 898</code></pre>
+<pre class="r"><code>#note: you only need s1 race because they&#39;re determined by the mother
 lm_btwfam_sex4_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
                             SEX_all4 +
