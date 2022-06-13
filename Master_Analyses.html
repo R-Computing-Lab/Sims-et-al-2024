@@ -3663,71 +3663,11 @@ lm_discord_sex4_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
   </tfoot>
 </table>
 </div>
-<p>CESD_20_1992</p>
-<p>The CESD_20 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all
-significant in the classic regression. The association between CESD_20
-mean and criminal behavior, controlling for all other predictors in the
-equation was significant t(2952) = 7.609, p = 3.70e-14. A one unit
-increase in the average depression CESD_20 predicted a .007 increase in
-average criminal behavior difference, controlling for all other
-variables in the model. The association between Sex Sibling 1 and
-criminal behavior, controlling for all other predictors in the equation
-was significant t(2952) = 8.811, p = &lt; 2e-16. The association between
-Race and criminal behavior, controlling for all other predictors in the
-equation was significant t(2952) = -6.041, p = 1.73e-09. The association
-between Sex Sibling 2 and criminal behavior, controlling for all other
-predictors in the equation was significant t(2952) =8.397, p = &lt;
-2e-16. The variance in criminal behavior explained by the regression
-model is 6.76% f(4, 2952) = 54.58, p = &lt; 2.2e-16.</p>
-<p>CESD_7_1992</p>
-<p>The CESD_7_1992 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all
-significant in the classic regression. The association between
-CESD_7_1992 mean and criminal behavior, controlling for all other
-predictors in the equation was significant t(2918) = 7.583, p =
-4.50e-14.A one unit increase in the average depression CESD_7_1992
-predicted a .017 increase in average criminal behavior difference,
-controlling for all other variables in the model. The association
-between Sex Sibling 1 and criminal behavior, controlling for all other
-predictors in the equation was significant t(2918) = 8.804, p = &lt;
-2e-16. The association between Race and criminal behavior, controlling
-for all other predictors in the equation was significant t(2918) =
--5.811, p = 6.88e-09. The association between Sex Sibling 2 and criminal
-behavior, controlling for all other predictors in the equation was
-significant t(2918) = 8.463, p = &lt; 2e-16. The variance in criminal
-behavior explained by the regression model is 6.74% f(4, 2918) = 53.82,
-p = &lt; 2e-16.</p>
-<p>CESD_7_1994</p>
-<p>The CESD_7_1994 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all
-significant in the classic regression. The association between
-CESD_7_1994 mean and criminal behavior, controlling for all other
-predictors in the equation was significant t(2875) = 7.198 , p =
-7.78e-13. A one unit increase in the average depression CESD_7_1994
-predicted a .016 increase in average criminal behavior difference,
-controlling for all other variables in the model. The association
-between Sex Sibling 1 and criminal behavior, controlling for all other
-predictors in the equation was significant t(2875) = 9.337, p = &lt;
-2e-16. The association between Race and criminal behavior, controlling
-for all other predictors in the equation was significant t(2875) =
--5.665, p = 1.62e-08. The association between Sex Sibling 2 and criminal
-behavior, controlling for all other predictors in the equation was
-significant t(2918) = 8.649, p = &lt; 2e-16. The variance in criminal
-behavior explained by the regression model is 6.9% f(4, 2875) = 54.36, p
-= &lt; 2.2e-16.</p>
 </div>
 <div id="discordant" class="section level3">
 <h3>Discordant</h3>
 <div id="cesd_7_1992" class="section level4">
 <h4>CESD_7_1992</h4>
-<p>The CESD_7_1992 difference was significant t(2916)= 2.179, p=0.0294.
-A one unit increase in the average depression CESD_7_1992 predicted a
-.002 increase in average criminal behavior difference, controlling for
-all other variables in the model. The CESD_7 depression score did
-predict criminal behavior. This means that the difference was meaningful
-above or beyond the other sources of variance. Our hypothesis was
-supported. The variance in criminal behavior explained by the regression
-model is 61.25% f(6, 2916) = 770.7, p = &lt; 2.2e-16. The Sex Sibling 1
-was significant t(2916) = 5.144, p= 2.86e-07. Sex Sibling 2 was
-signifcant t(2916) = -6.466, p = 1.18e-10.</p>
 <pre class="r"><code>lm_discord_sex4_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
@@ -4780,17 +4720,6 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   </tfoot>
 </table>
 </div>
-</div>
-<div id="cesd_7_1994" class="section level1">
-<h1>CESD_7_1994</h1>
-<p>The CESD_7 depression difference was not significant.. The CESD_7
-depression score did not predict criminal behavior. This means that the
-difference was not meaningful above or beyond the other sources of
-variance. Our hypothesis was not supported. Increased depression did not
-lead to more crime in adolescents. The variance in criminal behavior
-explained by the regression model is 61.24% f(6, 2873) = 759.2, p = &lt;
-2.2e-16. The Sex Sibling 1 was significant t(2873) =4.683 , p=2.95e-06.
-Sex Sibling 2 was signifcant t(2873) =-6.398, p =1.83e-10.</p>
 <pre class="r"><code>lm_discord_sex4_CESD7_1994%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
@@ -5310,37 +5239,22 @@ Sex Sibling 2 was signifcant t(2873) =-6.398, p =1.83e-10.</p>
   </tfoot>
 </table>
 </div>
-<p>CESD_7_1992</p>
-<div id="results-1" class="section level2">
-<h2>Results</h2>
-<pre><code>We examined the relationship between depression and crime by separating sources of variance. We also examined if women were more likely to be depressed than men. We hypothesized increased depression will lead to more crime in adolescents. We examined the correlations between the two variables. We also used classic regression analysis to examine the relationship. We used the discordant kin model to predict criminal behavior from depression using a within family analysis which includes within-family variance in the sibling differences.</code></pre>
-<div id="descriptive-statistics" class="section level3">
-<h3>Descriptive Statistics</h3>
 </div>
+<div id="results-1" class="section level1">
+<h1>Results</h1>
+<p>We examined the relationship between depression and crime in three
+distinct stages. We looked at the overall relations (using correlation
+and regression), then we looked at the between-family relationships, and
+lastly we looked at the within-family relationships. Thought this
+process we also examined whether gender and race impacted these
+dynamics.</p>
+<div id="descriptive-statistics" class="section level2">
+<h2>Descriptive Statistics</h2>
+<p>Between Within</p>
 <div id="correlations" class="section level3">
 <h3>Correlations</h3>
 <p>Correlation Table Variables Race Sex CESD_7_1994 CESD_20_1994
 CESD_7_1992 Delinquency Average</p>
-<p>Results of the correlation indicate there is no association between
-race and sex r = 0.00017. Results of the correlation indicate there is
-almost no association between race and delinquency r = -0.03742342.
-Results of the correlation indicate there is a small association between
-race and delinquency r = 0.25526995. Results of the correlation indicate
-there is little to no association between race and CESD_7_1994 r =
-0.0814601930. Results of the correlation indicate there is a small
-negative association between sex and CESD_7_1994 r =-0.1635641661.
-Results of the correlation indicate there is little to no association
-between delinquency and CESD_7_1994 r = 0.03231583. Results of the
-correlation indicate there is a small association between race and
-CESD_20_1994 r=0.1344010296. Results of the correlation indicate there
-is almost no association between sex and CESD_20_1994 r= -0.0938880066.
-Results of the correlation indicate there is almost no association
-between delinquency average and CESD_20_1994 r= 0.07036204. Results of
-the correlation indicate there is almost no association between race and
-CESD_7_1992 r= 0.0970550584. Results of the correlation indicate there
-is a small negative association between sex and CESD_7_1992 r =
--0.1161312642. Results of the correlation indicate there is little to no
-association between delinquency and CESD_7_1992 r =0.06623573.</p>
 </div>
 <div id="classic-regression-1" class="section level3">
 <h3>Classic Regression</h3>
