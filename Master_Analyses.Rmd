@@ -7,7 +7,6 @@ output:
 editor_options: 
   markdown: 
     wrap: sentence
-    
 ---
 
 ```{r setup,include=FALSE}
@@ -55,10 +54,10 @@ library(dplyr)
 
 ```
 
-
 # Data
 
 ## Import
+
 ### Depression
 
 ```{r df_dep, echo=FALSE}
@@ -1729,8 +1728,6 @@ remove(new_data)
 
 ```
 
-
-
 ### age
 
 ```{r people_age, echo=FALSE}
@@ -1828,7 +1825,6 @@ df_age <- qnames(vallabels(df_age))
 
 ```
 
-
 ## Clean
 
 ```{r data_cleaning, echo=FALSE}
@@ -1891,10 +1887,7 @@ summary(df_spsp_gen1)
 
 ```
 
-
 ## Summarize
-
-
 
 # Data Linking
 
@@ -1976,7 +1969,6 @@ df_dyad_delinq <- dsSingle_G1 %>%
 
 
 ```
-
 
 # classic regression
 
@@ -2063,7 +2055,6 @@ lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~
 
 ```
 
-
 # within-family analyses
 
 ```{r discordmodels}
@@ -2124,7 +2115,6 @@ lm_discord_sex4_CESD7_1994 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 ```
-
 
 ## Results
 
@@ -2188,6 +2178,7 @@ lm_btwfam_sex4_CESD7_1992 %>%
       )
 
 ```
+
 ```{r}
 lm_btwfam_sex4_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
@@ -2201,6 +2192,7 @@ lm_btwfam_sex4_CESD20_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 ```
+
 ```{r}
 
 lm_btwfam_sex4_CESD7_1994 %>%
@@ -2218,10 +2210,7 @@ lm_btwfam_sex4_CESD7_1994 %>%
 
 ### Discordant
 
-
-
-#### CESD_7_1992 
-
+#### CESD_7\_1992
 
 ```{r}
 lm_discord_sex4_CESD7_1992 %>%
@@ -2237,12 +2226,16 @@ lm_discord_sex4_CESD7_1992 %>%
       )
 ```
 
-
 # CESD_20_1992
- 
-The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. 
-The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = < 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11. 
 
+The CESD_20 depression difference was not significant..
+The CESD_20 depression score did not predict criminal behavior.
+This means that the difference was not meaningful above or beyond the other sources of variance.
+Our hypothesis was not supported.
+Increased depression did not lead to more crime in adolescents.
+The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = \< 2.2e-16.
+The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07.
+Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.
 
 ```{r}
 lm_discord_sex4_CESD20_1992 %>%
@@ -2258,9 +2251,6 @@ lm_discord_sex4_CESD20_1992 %>%
       )
 ```
 
-
-
-
 ```{r}
 lm_discord_sex4_CESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
@@ -2275,47 +2265,25 @@ lm_discord_sex4_CESD7_1994%>%
       )
 ```
 
-
-
-
 # Results
 
-We examined the relationship between depression and crime in three distinct stages. We looked at the overall relations (using correlation and regression), then we looked at the between-family relationships, and lastly we looked at the within-family relationships. Thought this process we also examined whether gender and race impacted these dynamics.
-
+We examined the relationship between depression and crime in three distinct stages.
+First, we looked at the overall relationship without accounting for family structure. Second, we looked at the between-family relationships, and lastly we looked at the within-family relationships. Throughout, this process we also examined whether gender and race impacted these dynamics. 
 
 ## Descriptive Statistics
 
+Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. Of note, 
 ```{r}
 
 
 ```
 
-Between
-Within
-
+Between Within
 
 ### Correlations
 
-Correlation Table
-Variables
-Race
-Sex
-CESD_7_1994
-CESD_20_1994
-CESD_7_1992
-Delinquency Average
-
-
-
-
-
-
-
+Correlation Table Variables Race Sex CESD_7\_1994 CESD_20_1994 CESD_7\_1992 Delinquency Average
 
 ### Classic Regression
 
-
-
-
 ### Kinship model regression analysis
-
