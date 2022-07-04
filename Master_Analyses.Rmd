@@ -2272,7 +2272,7 @@ First, we looked at the overall relationship without accounting for family struc
 
 ## Descriptive Statistics
 
-Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. Of note, 
+Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note, 
 ```{r}
 
 
