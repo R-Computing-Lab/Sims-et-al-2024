@@ -7,7 +7,6 @@ output:
 editor_options: 
   markdown: 
     wrap: sentence
-    
 ---
 
 ```{r setup,include=FALSE}
@@ -42,6 +41,7 @@ library(tidyverse)
 library(devtools) 
 library(remotes)
 library(NlsyLinks)
+library(gtsummary)
 library(discord)
 library(janitor)
 library(lm.beta)
@@ -54,10 +54,10 @@ library(dplyr)
 
 ```
 
-
 # Data
 
 ## Import
+
 ### Depression
 
 ```{r df_dep, echo=FALSE}
@@ -1827,11 +1827,12 @@ df_age <- qnames(vallabels(df_age))
 
 ## Clean
 
-```{r data_cleaning}
+```{r data_cleaning, echo=FALSE}
 
 # is average delinquency score; so that missing data doesn't deflate score
-df_crime_gen1 = 
-  df_crime_gen1 %>% mutate(
+df_crime_gen1 <- 
+  df_crime_gen1 %>% 
+  mutate(
     SubjectTag=CASEID*100,
     DELIN_AVERAGE = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
 #DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
@@ -1885,6 +1886,8 @@ df_spsp_gen1$MINORITY <- as.factor(df_spsp_gen1$MINORITY)
 summary(df_spsp_gen1)
 
 ```
+
+## Summarize
 
 # Data Linking
 
@@ -1965,8 +1968,141 @@ df_dyad_delinq <- dsSingle_G1 %>%
   )
 
 
-```
 
+df_dyad_CESD20_1992 <- dsSingle_G1 %>%
+  drop_na(contains("CESD20_1992")) %>%
+  discord_data(
+    outcome = "CESD20_1992",
+    predictors = c("CESD7_1992",
+                   "DELIN_AVERAGE",
+                   "CESD7_1994"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+df_dyad_CESD7_1992 <- dsSingle_G1 %>%
+  drop_na(contains("CESD7_1992")) %>%
+  discord_data(
+    outcome = "CESD7_1992",
+    predictors = c("CESD20_1992",
+                   "DELIN_AVERAGE",
+                   "CESD7_1994"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+
+df_dyad_CESD7_1994 <- dsSingle_G1 %>%
+  drop_na(contains("CESD7_1994")) %>%
+  discord_data(
+    outcome = "CESD7_1994",
+    predictors = c("CESD20_1992",
+                   "DELIN_AVERAGE",
+                   "CESD7_1992"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+```
 
 # classic regression
 
@@ -1974,30 +2110,46 @@ df_dyad_delinq <- dsSingle_G1 %>%
 
 df_classic <- df_spsp_gen1
 
-lm_og_7_1992 <- lm(DELIN_AVERAGE ~
+lm_og_CESD7_1992 <- lm(DELIN_AVERAGE ~
                      CESD7_1992 +
                      as.factor(SEX) +
                      as.factor(MINORITY) ,
                    data = df_classic)
 
-lm_og_20_1992 <- lm(DELIN_AVERAGE ~
+lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
                       CESD20_1992 +
                       as.factor(SEX) +
                       as.factor(MINORITY),
                     data = df_classic)
 
 
-lm_og_7_1994 <- lm(DELIN_AVERAGE ~
+lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
                      CESD7_1994 +
                      as.factor(SEX) +
                      as.factor(MINORITY) ,
                    data = df_classic)
 
 
-summary(lm_og_7_1992)
-summary(lm_og_20_1992)
-summary(lm_og_7_1994)
 
+(lm_predog_CESD7_1992 <- lm(CESD7_1992 ~
+                     DELIN_AVERAGE +
+                     as.factor(SEX) +
+                     as.factor(MINORITY) ,
+                   data = df_classic))
+
+(lm_predog_CESD20_1992 <- lm(CESD20_1992 ~
+                     DELIN_AVERAGE +
+                      as.factor(SEX) +
+                      as.factor(MINORITY),
+                    data = df_classic))
+
+
+(lm_predog_CESD7_1994 <- lm(CESD7_1994 ~
+                      DELIN_AVERAGE+
+                     as.factor(SEX) +
+                     as.factor(MINORITY) ,
+                   data = df_classic)
+)
 
 ```
 
@@ -2007,8 +2159,18 @@ summary(lm_og_7_1994)
 
 df_btwn <- df_dyad_delinq
 
+data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%>%
+  summary()
+
 #note: you only need s1 race because they're determined by the mother
-lm_btwfam_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+                             CESD7_1992_mean +
+                            SEX_all4 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+
+lm_btwfam_sex3_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
                             SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
@@ -2016,43 +2178,59 @@ lm_btwfam_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~
                            data = df_btwn)
 
 
-
-
-lm_btwfam_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex3_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
-                            SEX_all3+
+                            SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
-lm_btwfam_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+                             CESD20_1992_mean +
+                            SEX_all4 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
+
+lm_btwfam_sex4_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
-                            SEX_all3+
+                            SEX_all4 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+                            CESD7_1994_mean +
+                            SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
 
-summary(lm_btwfam_CESD7_1994)
-summary(lm_btwfam_CESD7_1992)
-summary(lm_btwfam_CESD20_1992)
 ```
-
 
 # within-family analyses
 
 ```{r discordmodels}
 # 
 
-lm_discord_CESD7_1992 <- lm(data=df_dyad_delinq,
+lm_discord_sex4_CESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
                                 CESD7_1992_mean+
-                                SEX_all3+
+                                SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_CESD20_1992 <- lm(data=df_dyad_delinq,
+lm_discord_sex3_CESD7_1992 <- lm(data=df_dyad_delinq,
+                                DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                CESD7_1992_diff + 
+                                CESD7_1992_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex3_CESD20_1992 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
@@ -2061,8 +2239,17 @@ lm_discord_CESD20_1992 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
+lm_discord_sex4_CESD20_1992 <- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD20_1992_diff + 
+                                CESD20_1992_mean +
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
 
-lm_discord_CESD7_1994 <- lm(data=df_dyad_delinq,
+
+lm_discord_sex3_CESD7_1994 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
@@ -2070,112 +2257,258 @@ lm_discord_CESD7_1994 <- lm(data=df_dyad_delinq,
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
-```
 
+lm_discord_sex4_CESD7_1994 <- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD7_1994_diff + 
+                                CESD7_1994_mean +
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+
+
+df_dyad<-df_dyad_CESD7_1992
+
+lm_discord_dep_sex4_CESD7_1992 <- lm(data=df_dyad,
+                                CESD7_1992_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1992_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_dep_sex3_CESD7_1992 <- lm(data=df_dyad,
+                                CESD7_1992_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1992_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+df_dyad<-df_dyad_CESD20_1992
+lm_discord_dep_sex3_CESD20_1992 <- lm(data=df_dyad,
+                              CESD20_1992_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD20_1992_mean +
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_dep_sex4_CESD20_1992 <- lm(data=df_dyad,
+                              CESD20_1992_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD20_1992_mean +
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+df_dyad<-df_dyad_CESD7_1994
+
+lm_discord_dep_sex3_CESD7_1994 <- lm(data=df_dyad,
+                              CESD7_1994_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1994_mean +
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
+                              CESD7_1994_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1994_mean +
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+```
 
 ## Results
 
+### raw
 
+```{r raw}
+
+
+lm_og_CESD7_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+lm_og_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+lm_og_CESD7_1994 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+```
+
+### Btween
+
+```{r}
+
+
+lm_btwfam_sex4_CESD7_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+```
+
+```{r}
+lm_btwfam_sex4_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+```
+
+```{r}
+
+lm_btwfam_sex4_CESD7_1994 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+```
 
 ### Discordant
-```{r summarizeregression}
+
+#### CESD_7\_1992
+
+```{r}
+lm_discord_sex4_CESD7_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 
 
-
-lm_discord_CESD7_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
-
-lm_discord_CESD20_1992 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
-
-
-lm_discord_CESD7_1994 %>%
-  broom::tidy() %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
-  rename("Standard Error" = std.error,
-         "T Statistic" = statistic) %>%
-  rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl('html', align = "c") %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
+lm_discord_dep_sex4_CESD7_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
 ```
 
+# CESD_20_1992
+
+The CESD_20 depression difference was not significant..
+The CESD_20 depression score did not predict criminal behavior.
+This means that the difference was not meaningful above or beyond the other sources of variance.
+Our hypothesis was not supported.
+Increased depression did not lead to more crime in adolescents.
+The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = \< 2.2e-16.
+The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07.
+Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.
+
+```{r}
+lm_discord_sex4_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+```
+
+```{r}
+lm_discord_sex4_CESD7_1994%>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+```
+
+# Results
+
+We examined the relationship between depression and crime in three distinct stages.
+First, we looked at the overall relationship without accounting for family structure. Second, we looked at the between-family relationships, and lastly we looked at the within-family relationships. Throughout, this process we also examined whether gender and race impacted these dynamics. 
+
+## Descriptive Statistics
+
+Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note, 
+
+```{r}
 
 
+```
 
-## Results
-
-	We examined the relationship between depression and crime by separating sources of variance. We also examined if women were more likely to be depressed than men. We hypothesized increased depression will lead to more crime in adolescents. We examined the correlations between the two variables. We also used classic regression analysis to examine the relationship. We used the discordant kin model to predict criminal behavior from depression using a within family analysis which includes within-family variance in the sibling differences.
-
-### Descriptive Statistics
-
-
-
+Between Within
 
 ### Correlations
 
-Correlation Table
-Variables
-Race
-Sex
-CESD_7_1994
-CESD_20_1994
-CESD_7_1992
-Delinquency Average
-
-
-
-
-Results of the correlation indicate there is no association between race and sex r = 0.00017. Results of the correlation indicate there is almost no association between race and delinquency r = -0.03742342. Results of the correlation indicate there is a small association between race and delinquency r = 0.25526995. Results of the correlation indicate there is little to no association between race and CESD_7_1994 r = 0.0814601930. Results of the correlation indicate there is a small negative association between sex and CESD_7_1994 r =-0.1635641661. Results of the correlation indicate there is little to no association between delinquency and CESD_7_1994 r = 0.03231583. Results of the correlation indicate there is a small association between race and CESD_20_1994 r=0.1344010296. Results of the correlation indicate there is almost no association between sex and CESD_20_1994 r= -0.0938880066. Results of the correlation indicate there is almost no association between delinquency average and CESD_20_1994 r= 0.07036204. Results of the correlation indicate there is almost no association between race and CESD_7_1992 r= 0.0970550584. Results of the correlation indicate there is a small negative association between sex and CESD_7_1992 r = -0.1161312642. Results of the correlation indicate there is little to no association between delinquency and CESD_7_1992 r =0.06623573.
-
-
+Correlation Table Variables Race Sex CESD_7\_1994 CESD_20_1994 CESD_7\_1992 Delinquency Average
 
 ### Classic Regression
 
-
-CESD_20_1992
-
-
-The CESD_20 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_20 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2952) = 7.609, p = 3.70e-14. A one unit increase in the average depression CESD_20 predicted a .007 increase in average criminal behavior difference, controlling for all other variables in the model. The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2952) = 8.811, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2952) = -6.041, p = 1.73e-09. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2952) =8.397, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.76% f(4, 2952) = 54.58, p = < 2.2e-16. 
-
-CESD_7_1992
-
-The CESD_7_1992 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_7_1992 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 7.583, p = 4.50e-14.A one unit increase in the average depression CESD_7_1992 predicted a .017 increase in average criminal behavior difference, controlling for all other variables in the model.  The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) =  8.804, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = -5.811, p = 6.88e-09. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 8.463, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.74% f(4, 2918) = 53.82, p = < 2e-16. 
-
-CESD_7_1994
-
-
-The CESD_7_1994 mean, Sex Sibling 1, Race, and Sex Sibling 2 are all significant in the classic regression. The association between CESD_7_1994 mean and criminal behavior, controlling for all other predictors in the equation was significant t(2875) = 7.198 , p = 7.78e-13. A one unit increase in the average depression CESD_7_1994 predicted a .016 increase in average criminal behavior difference, controlling for all other variables in the model. The association between Sex Sibling 1 and criminal behavior, controlling for all other predictors in the equation was significant t(2875) =  9.337, p = < 2e-16. The association between Race and criminal behavior, controlling for all other predictors in the equation was significant t(2875) = -5.665, p = 1.62e-08. The association between Sex Sibling 2 and criminal behavior, controlling for all other predictors in the equation was significant t(2918) = 8.649, p = < 2e-16. The variance in criminal behavior explained by the regression model is 6.9% f(4, 2875) = 54.36, p = < 2.2e-16. 
-
 ### Kinship model regression analysis
-
-CESD_7_1992
-
- The CESD_7_1992 difference was significant t(2916)= 2.179, p=0.0294. A one unit increase in the average depression CESD_7_1992 predicted a .002 increase in average criminal behavior difference, controlling for all other variables in the model. The CESD_7 depression score did predict criminal behavior. This means that the difference was meaningful above or beyond the other sources of variance. Our hypothesis was supported. The variance in criminal behavior explained by the regression model is 61.25% f(6, 2916) = 770.7, p = < 2.2e-16. The Sex Sibling 1 was significant t(2916) = 5.144, p= 2.86e-07. Sex Sibling 2 was signifcant t(2916) = -6.466, p = 1.18e-10. 
- 
- CESD_20_1992
- 
- The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. 
-The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = < 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11. 
-
-CESD_7_1994
-
-The CESD_7 depression difference was not significant.. The CESD_7 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. 
-The variance in criminal behavior explained by the regression model is 61.24% f(6, 2873) = 759.2, p = < 2.2e-16. The Sex Sibling 1 was significant t(2873) =4.683 , p=2.95e-06. Sex Sibling 2 was signifcant t(2873) =-6.398, p =1.83e-10. 
