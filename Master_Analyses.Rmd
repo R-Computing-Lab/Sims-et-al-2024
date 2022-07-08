@@ -1893,7 +1893,8 @@ df_spsp_gen1 <- group_by(df_spsp_gen1, SEX) %>%
   mutate(DELIN_AVERAGE = as.numeric(scale(DELIN_AVERAGE)),
          CESD7_1992 = as.numeric(scale(CESD7_1992)),
          CESD20_1992 = as.numeric(scale(CESD20_1992)),
-         CESD7_1994 = as.numeric(scale(CESD7_1994)),
+         CESD7_1994 = as.numeric(scale(CESD7_1994))) %>%
+ungroup()
 
 summary(df_spsp_gen1)
 }

@@ -365,7 +365,7 @@ pre code {
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason
 Garrison</h4>
-<h4 class="date">July 04 2022</h4>
+<h4 class="date">July 08 2022</h4>
 
 </div>
 
@@ -408,6 +408,30 @@ Garrison</h4>
 ##                          3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000  
 ##                          Max.   :21.00   Max.   :59.000   Max.   :21.000  
 ##                          NA&#39;s   :3811    NA&#39;s   :3708     NA&#39;s   :3755    
+##     AGE_1979   
+##  Min.   :14.0  
+##  1st Qu.:16.0  
+##  Median :18.0  
+##  Mean   :17.9  
+##  3rd Qu.:20.0  
+##  Max.   :22.0  
+## </code></pre>
+<pre><code>##    SubjectTag          CASEID      RACE     SEX      DELIN_AVERAGE    
+##  Min.   :    100   Min.   :    1   1:2002   0:6283   Min.   :-0.7099  
+##  1st Qu.: 317225   1st Qu.: 3172   2:3174   1:6403   1st Qu.:-0.5911  
+##  Median : 634350   Median : 6344   3:7510            Median :-0.3644  
+##  Mean   : 634350   Mean   : 6344                     Mean   : 0.0000  
+##  3rd Qu.: 951475   3rd Qu.: 9515                     3rd Qu.: 0.2386  
+##  Max.   :1268600   Max.   :12686                     Max.   :11.4236  
+##                                                      NA&#39;s   :861      
+##              MINORITY      CESD7_1994      CESD20_1992       CESD7_1992    
+##  blackorhispanic :5176   Min.   :-1.000   Min.   :-1.078   Min.   :-1.088  
+##  nonblackhispanic:7510   1st Qu.:-0.869   1st Qu.:-0.683   1st Qu.:-0.736  
+##                          Median :-0.308   Median :-0.266   Median :-0.196  
+##                          Mean   : 0.000   Mean   : 0.000   Mean   : 0.000  
+##                          3rd Qu.: 0.534   3rd Qu.: 0.445   3rd Qu.: 0.544  
+##                          Max.   : 5.022   Max.   : 5.480   Max.   : 4.660  
+##                          NA&#39;s   :3811     NA&#39;s   :3708     NA&#39;s   :3755    
 ##     AGE_1979   
 ##  Min.   :14.0  
 ##  1st Qu.:16.0  
@@ -669,9 +693,9 @@ lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
 ## 
 ## Coefficients:
 ##                         (Intercept)                        DELIN_AVERAGE  
-##                              4.9083                               0.9105  
+##                            0.101316                             0.111968  
 ##                     as.factor(SEX)1  as.factor(MINORITY)nonblackhispanic  
-##                             -1.1421                              -0.8297</code></pre>
+##                            0.005628                            -0.210599</code></pre>
 <pre class="r"><code>(lm_predog_CESD20_1992 &lt;- lm(CESD20_1992 ~
                      DELIN_AVERAGE +
                       as.factor(SEX) +
@@ -684,9 +708,9 @@ lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
 ## 
 ## Coefficients:
 ##                         (Intercept)                        DELIN_AVERAGE  
-##                              11.501                                2.091  
+##                            0.136299                             0.108899  
 ##                     as.factor(SEX)1  as.factor(MINORITY)nonblackhispanic  
-##                              -2.215                               -2.613</code></pre>
+##                            0.004938                            -0.286076</code></pre>
 <pre class="r"><code>(lm_predog_CESD7_1994 &lt;- lm(CESD7_1994 ~
                       DELIN_AVERAGE+
                      as.factor(SEX) +
@@ -700,9 +724,9 @@ lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
 ## 
 ## Coefficients:
 ##                         (Intercept)                        DELIN_AVERAGE  
-##                              4.6049                               0.7054  
+##                            0.075835                             0.086166  
 ##                     as.factor(SEX)1  as.factor(MINORITY)nonblackhispanic  
-##                             -1.4940                              -0.6562</code></pre>
+##                            0.002549                            -0.166888</code></pre>
 </div>
 <div id="between-family" class="section level1">
 <h1>between-family</h1>
@@ -712,8 +736,8 @@ data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%&gt;%
   summary()</code></pre>
 <pre><code>##  as.factor.df_btwn.SEX_all4. as.factor.df_btwn.SEX_all3.
 ##  BoyBoy  :1022               BoyBoy  :1022              
-##  BoyGirl :1215               GirlGirl: 898              
-##  GirlBoy : 549               mixed   :1764              
+##  BoyGirl : 765               GirlGirl: 898              
+##  GirlBoy : 999               mixed   :1764              
 ##  GirlGirl: 898</code></pre>
 <pre class="r"><code>#note: you only need s1 race because they&#39;re determined by the mother
 lm_btwfam_sex4_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
@@ -901,12 +925,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="xorqybhtsx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qewnniiznq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xorqybhtsx .gt_table {
+#qewnniiznq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -931,7 +955,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_heading {
+#qewnniiznq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -943,7 +967,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_title {
+#qewnniiznq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -955,7 +979,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#xorqybhtsx .gt_subtitle {
+#qewnniiznq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -967,13 +991,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#xorqybhtsx .gt_bottom_border {
+#qewnniiznq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_col_headings {
+#qewnniiznq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -988,7 +1012,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_col_heading {
+#qewnniiznq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1008,7 +1032,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#xorqybhtsx .gt_column_spanner_outer {
+#qewnniiznq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1020,15 +1044,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#xorqybhtsx .gt_column_spanner_outer:first-child {
+#qewnniiznq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xorqybhtsx .gt_column_spanner_outer:last-child {
+#qewnniiznq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xorqybhtsx .gt_column_spanner {
+#qewnniiznq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1040,7 +1064,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#xorqybhtsx .gt_group_heading {
+#qewnniiznq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1065,7 +1089,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#xorqybhtsx .gt_empty_group_heading {
+#qewnniiznq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1080,15 +1104,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#xorqybhtsx .gt_from_md > :first-child {
+#qewnniiznq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xorqybhtsx .gt_from_md > :last-child {
+#qewnniiznq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xorqybhtsx .gt_row {
+#qewnniiznq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1107,7 +1131,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#xorqybhtsx .gt_stub {
+#qewnniiznq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1120,7 +1144,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#xorqybhtsx .gt_stub_row_group {
+#qewnniiznq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1134,11 +1158,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#xorqybhtsx .gt_row_group_first td {
+#qewnniiznq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xorqybhtsx .gt_summary_row {
+#qewnniiznq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1148,16 +1172,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#xorqybhtsx .gt_first_summary_row {
+#qewnniiznq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_first_summary_row.thick {
+#qewnniiznq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xorqybhtsx .gt_last_summary_row {
+#qewnniiznq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1167,7 +1191,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_grand_summary_row {
+#qewnniiznq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1177,7 +1201,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#xorqybhtsx .gt_first_grand_summary_row {
+#qewnniiznq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1187,11 +1211,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_striped {
+#qewnniiznq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xorqybhtsx .gt_table_body {
+#qewnniiznq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1200,7 +1224,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_footnotes {
+#qewnniiznq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1214,7 +1238,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_footnote {
+#qewnniiznq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1223,7 +1247,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#xorqybhtsx .gt_sourcenotes {
+#qewnniiznq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1237,7 +1261,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#xorqybhtsx .gt_sourcenote {
+#qewnniiznq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1245,36 +1269,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#xorqybhtsx .gt_left {
+#qewnniiznq .gt_left {
   text-align: left;
 }
 
-#xorqybhtsx .gt_center {
+#qewnniiznq .gt_center {
   text-align: center;
 }
 
-#xorqybhtsx .gt_right {
+#qewnniiznq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xorqybhtsx .gt_font_normal {
+#qewnniiznq .gt_font_normal {
   font-weight: normal;
 }
 
-#xorqybhtsx .gt_font_bold {
+#qewnniiznq .gt_font_bold {
   font-weight: bold;
 }
 
-#xorqybhtsx .gt_font_italic {
+#qewnniiznq .gt_font_italic {
   font-style: italic;
 }
 
-#xorqybhtsx .gt_super {
+#qewnniiznq .gt_super {
   font-size: 65%;
 }
 
-#xorqybhtsx .gt_two_val_uncert {
+#qewnniiznq .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -1283,31 +1307,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#xorqybhtsx .gt_footnote_marks {
+#qewnniiznq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#xorqybhtsx .gt_asterisk {
+#qewnniiznq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xorqybhtsx .gt_slash_mark {
+#qewnniiznq .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#xorqybhtsx .gt_fraction_numerator {
+#qewnniiznq .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#xorqybhtsx .gt_fraction_denominator {
+#qewnniiznq .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1326,14 +1350,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.10</td>
-<td class="gt_row gt_center">9.10</td>
-<td class="gt_row gt_center">0.08, 0.12</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.03</td>
+<td class="gt_row gt_center">-1.82</td>
+<td class="gt_row gt_center">-0.07, 0.00</td>
+<td class="gt_row gt_center">0.068</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">9.67</td>
-<td class="gt_row gt_center">0.01, 0.01</td>
+<td class="gt_row gt_center">0.11</td>
+<td class="gt_row gt_center">10.3</td>
+<td class="gt_row gt_center">0.09, 0.13</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(SEX)</td>
 <td class="gt_row gt_center"></td>
@@ -1346,10 +1370,10 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-<td class="gt_row gt_center">0.25</td>
-<td class="gt_row gt_center">25.4</td>
-<td class="gt_row gt_center">0.23, 0.27</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.02</td>
+<td class="gt_row gt_center">-0.806</td>
+<td class="gt_row gt_center">-0.06, 0.02</td>
+<td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -1361,14 +1385,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.05</td>
-<td class="gt_row gt_center">5.16</td>
-<td class="gt_row gt_center">0.03, 0.07</td>
+<td class="gt_row gt_center">0.10</td>
+<td class="gt_row gt_center">4.60</td>
+<td class="gt_row gt_center">0.06, 0.14</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.078; F-Statistic = 237; DF1 = 3; DF2 = 8,452; p-value = &lt;0.001; No. Obs. = 8,456</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.014; F-Statistic = 40.1; DF1 = 3; DF2 = 8,452; p-value = &lt;0.001; No. Obs. = 8,456</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -1400,12 +1424,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="nxylbztrkq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="eowscxuuwu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#nxylbztrkq .gt_table {
+#eowscxuuwu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1430,7 +1454,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_heading {
+#eowscxuuwu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1442,7 +1466,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_title {
+#eowscxuuwu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1454,7 +1478,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#nxylbztrkq .gt_subtitle {
+#eowscxuuwu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1466,13 +1490,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#nxylbztrkq .gt_bottom_border {
+#eowscxuuwu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_col_headings {
+#eowscxuuwu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1487,7 +1511,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_col_heading {
+#eowscxuuwu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1507,7 +1531,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#nxylbztrkq .gt_column_spanner_outer {
+#eowscxuuwu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1519,15 +1543,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#nxylbztrkq .gt_column_spanner_outer:first-child {
+#eowscxuuwu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nxylbztrkq .gt_column_spanner_outer:last-child {
+#eowscxuuwu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nxylbztrkq .gt_column_spanner {
+#eowscxuuwu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1539,7 +1563,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#nxylbztrkq .gt_group_heading {
+#eowscxuuwu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1564,7 +1588,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#nxylbztrkq .gt_empty_group_heading {
+#eowscxuuwu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1579,15 +1603,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#nxylbztrkq .gt_from_md > :first-child {
+#eowscxuuwu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nxylbztrkq .gt_from_md > :last-child {
+#eowscxuuwu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nxylbztrkq .gt_row {
+#eowscxuuwu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1606,7 +1630,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#nxylbztrkq .gt_stub {
+#eowscxuuwu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1619,7 +1643,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#nxylbztrkq .gt_stub_row_group {
+#eowscxuuwu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1633,11 +1657,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#nxylbztrkq .gt_row_group_first td {
+#eowscxuuwu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nxylbztrkq .gt_summary_row {
+#eowscxuuwu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1647,16 +1671,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#nxylbztrkq .gt_first_summary_row {
+#eowscxuuwu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_first_summary_row.thick {
+#eowscxuuwu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nxylbztrkq .gt_last_summary_row {
+#eowscxuuwu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1666,7 +1690,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_grand_summary_row {
+#eowscxuuwu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1676,7 +1700,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#nxylbztrkq .gt_first_grand_summary_row {
+#eowscxuuwu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1686,11 +1710,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_striped {
+#eowscxuuwu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nxylbztrkq .gt_table_body {
+#eowscxuuwu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1699,7 +1723,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_footnotes {
+#eowscxuuwu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1713,7 +1737,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_footnote {
+#eowscxuuwu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1722,7 +1746,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#nxylbztrkq .gt_sourcenotes {
+#eowscxuuwu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1736,7 +1760,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#nxylbztrkq .gt_sourcenote {
+#eowscxuuwu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1744,36 +1768,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#nxylbztrkq .gt_left {
+#eowscxuuwu .gt_left {
   text-align: left;
 }
 
-#nxylbztrkq .gt_center {
+#eowscxuuwu .gt_center {
   text-align: center;
 }
 
-#nxylbztrkq .gt_right {
+#eowscxuuwu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nxylbztrkq .gt_font_normal {
+#eowscxuuwu .gt_font_normal {
   font-weight: normal;
 }
 
-#nxylbztrkq .gt_font_bold {
+#eowscxuuwu .gt_font_bold {
   font-weight: bold;
 }
 
-#nxylbztrkq .gt_font_italic {
+#eowscxuuwu .gt_font_italic {
   font-style: italic;
 }
 
-#nxylbztrkq .gt_super {
+#eowscxuuwu .gt_super {
   font-size: 65%;
 }
 
-#nxylbztrkq .gt_two_val_uncert {
+#eowscxuuwu .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -1782,31 +1806,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#nxylbztrkq .gt_footnote_marks {
+#eowscxuuwu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#nxylbztrkq .gt_asterisk {
+#eowscxuuwu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nxylbztrkq .gt_slash_mark {
+#eowscxuuwu .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#nxylbztrkq .gt_fraction_numerator {
+#eowscxuuwu .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#nxylbztrkq .gt_fraction_denominator {
+#eowscxuuwu .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1825,14 +1849,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.10</td>
-<td class="gt_row gt_center">8.89</td>
-<td class="gt_row gt_center">0.07, 0.12</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.04</td>
+<td class="gt_row gt_center">-2.11</td>
+<td class="gt_row gt_center">-0.08, 0.00</td>
+<td class="gt_row gt_center">0.035</td></tr>
     <tr><td class="gt_row gt_left">CESD20_1992</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">9.72</td>
-<td class="gt_row gt_center">0.00, 0.01</td>
+<td class="gt_row gt_center">0.11</td>
+<td class="gt_row gt_center">10.1</td>
+<td class="gt_row gt_center">0.09, 0.13</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(SEX)</td>
 <td class="gt_row gt_center"></td>
@@ -1845,10 +1869,10 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-<td class="gt_row gt_center">0.25</td>
-<td class="gt_row gt_center">25.4</td>
-<td class="gt_row gt_center">0.23, 0.27</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.644</td>
+<td class="gt_row gt_center">-0.06, 0.03</td>
+<td class="gt_row gt_center">0.5</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -1860,14 +1884,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.05</td>
-<td class="gt_row gt_center">5.40</td>
-<td class="gt_row gt_center">0.03, 0.07</td>
+<td class="gt_row gt_center">0.11</td>
+<td class="gt_row gt_center">4.88</td>
+<td class="gt_row gt_center">0.06, 0.15</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.078; F-Statistic = 239; DF1 = 3; DF2 = 8,494; p-value = &lt;0.001; No. Obs. = 8,498</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.013; F-Statistic = 38.4; DF1 = 3; DF2 = 8,494; p-value = &lt;0.001; No. Obs. = 8,498</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -1899,12 +1923,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="sexsdgiqpv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="immcqjuzkj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#sexsdgiqpv .gt_table {
+#immcqjuzkj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1929,7 +1953,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_heading {
+#immcqjuzkj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1941,7 +1965,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_title {
+#immcqjuzkj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1953,7 +1977,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#sexsdgiqpv .gt_subtitle {
+#immcqjuzkj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1965,13 +1989,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#sexsdgiqpv .gt_bottom_border {
+#immcqjuzkj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_col_headings {
+#immcqjuzkj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1986,7 +2010,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_col_heading {
+#immcqjuzkj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2006,7 +2030,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#sexsdgiqpv .gt_column_spanner_outer {
+#immcqjuzkj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2018,15 +2042,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#sexsdgiqpv .gt_column_spanner_outer:first-child {
+#immcqjuzkj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sexsdgiqpv .gt_column_spanner_outer:last-child {
+#immcqjuzkj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sexsdgiqpv .gt_column_spanner {
+#immcqjuzkj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2038,7 +2062,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#sexsdgiqpv .gt_group_heading {
+#immcqjuzkj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2063,7 +2087,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#sexsdgiqpv .gt_empty_group_heading {
+#immcqjuzkj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2078,15 +2102,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#sexsdgiqpv .gt_from_md > :first-child {
+#immcqjuzkj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sexsdgiqpv .gt_from_md > :last-child {
+#immcqjuzkj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sexsdgiqpv .gt_row {
+#immcqjuzkj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2105,7 +2129,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#sexsdgiqpv .gt_stub {
+#immcqjuzkj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2118,7 +2142,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sexsdgiqpv .gt_stub_row_group {
+#immcqjuzkj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2132,11 +2156,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#sexsdgiqpv .gt_row_group_first td {
+#immcqjuzkj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sexsdgiqpv .gt_summary_row {
+#immcqjuzkj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2146,16 +2170,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sexsdgiqpv .gt_first_summary_row {
+#immcqjuzkj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_first_summary_row.thick {
+#immcqjuzkj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sexsdgiqpv .gt_last_summary_row {
+#immcqjuzkj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2165,7 +2189,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_grand_summary_row {
+#immcqjuzkj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2175,7 +2199,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sexsdgiqpv .gt_first_grand_summary_row {
+#immcqjuzkj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2185,11 +2209,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_striped {
+#immcqjuzkj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sexsdgiqpv .gt_table_body {
+#immcqjuzkj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2198,7 +2222,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_footnotes {
+#immcqjuzkj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2212,7 +2236,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_footnote {
+#immcqjuzkj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2221,7 +2245,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sexsdgiqpv .gt_sourcenotes {
+#immcqjuzkj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2235,7 +2259,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sexsdgiqpv .gt_sourcenote {
+#immcqjuzkj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2243,36 +2267,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sexsdgiqpv .gt_left {
+#immcqjuzkj .gt_left {
   text-align: left;
 }
 
-#sexsdgiqpv .gt_center {
+#immcqjuzkj .gt_center {
   text-align: center;
 }
 
-#sexsdgiqpv .gt_right {
+#immcqjuzkj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sexsdgiqpv .gt_font_normal {
+#immcqjuzkj .gt_font_normal {
   font-weight: normal;
 }
 
-#sexsdgiqpv .gt_font_bold {
+#immcqjuzkj .gt_font_bold {
   font-weight: bold;
 }
 
-#sexsdgiqpv .gt_font_italic {
+#immcqjuzkj .gt_font_italic {
   font-style: italic;
 }
 
-#sexsdgiqpv .gt_super {
+#immcqjuzkj .gt_super {
   font-size: 65%;
 }
 
-#sexsdgiqpv .gt_two_val_uncert {
+#immcqjuzkj .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -2281,31 +2305,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#sexsdgiqpv .gt_footnote_marks {
+#immcqjuzkj .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#sexsdgiqpv .gt_asterisk {
+#immcqjuzkj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sexsdgiqpv .gt_slash_mark {
+#immcqjuzkj .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#sexsdgiqpv .gt_fraction_numerator {
+#immcqjuzkj .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#sexsdgiqpv .gt_fraction_denominator {
+#immcqjuzkj .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2324,14 +2348,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.11</td>
-<td class="gt_row gt_center">10.7</td>
-<td class="gt_row gt_center">0.09, 0.13</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.03</td>
+<td class="gt_row gt_center">-1.83</td>
+<td class="gt_row gt_center">-0.07, 0.00</td>
+<td class="gt_row gt_center">0.068</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1994</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">7.49</td>
-<td class="gt_row gt_center">0.01, 0.01</td>
+<td class="gt_row gt_center">0.09</td>
+<td class="gt_row gt_center">7.95</td>
+<td class="gt_row gt_center">0.07, 0.11</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(SEX)</td>
 <td class="gt_row gt_center"></td>
@@ -2344,10 +2368,10 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-<td class="gt_row gt_center">0.26</td>
-<td class="gt_row gt_center">25.3</td>
-<td class="gt_row gt_center">0.24, 0.28</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.355</td>
+<td class="gt_row gt_center">-0.05, 0.03</td>
+<td class="gt_row gt_center">0.7</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -2359,14 +2383,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.04</td>
-<td class="gt_row gt_center">4.48</td>
-<td class="gt_row gt_center">0.03, 0.06</td>
+<td class="gt_row gt_center">0.08</td>
+<td class="gt_row gt_center">3.88</td>
+<td class="gt_row gt_center">0.04, 0.13</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.074; F-Statistic = 223; DF1 = 3; DF2 = 8,396; p-value = &lt;0.001; No. Obs. = 8,400</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.009; F-Statistic = 24.6; DF1 = 3; DF2 = 8,396; p-value = &lt;0.001; No. Obs. = 8,400</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -2401,12 +2425,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="sfofriwmwy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="dbkdhgtfpx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#sfofriwmwy .gt_table {
+#dbkdhgtfpx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2431,7 +2455,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_heading {
+#dbkdhgtfpx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2443,7 +2467,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_title {
+#dbkdhgtfpx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2455,7 +2479,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#sfofriwmwy .gt_subtitle {
+#dbkdhgtfpx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2467,13 +2491,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#sfofriwmwy .gt_bottom_border {
+#dbkdhgtfpx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_col_headings {
+#dbkdhgtfpx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2488,7 +2512,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_col_heading {
+#dbkdhgtfpx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2508,7 +2532,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#sfofriwmwy .gt_column_spanner_outer {
+#dbkdhgtfpx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2520,15 +2544,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#sfofriwmwy .gt_column_spanner_outer:first-child {
+#dbkdhgtfpx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sfofriwmwy .gt_column_spanner_outer:last-child {
+#dbkdhgtfpx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sfofriwmwy .gt_column_spanner {
+#dbkdhgtfpx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2540,7 +2564,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#sfofriwmwy .gt_group_heading {
+#dbkdhgtfpx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2565,7 +2589,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#sfofriwmwy .gt_empty_group_heading {
+#dbkdhgtfpx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2580,15 +2604,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#sfofriwmwy .gt_from_md > :first-child {
+#dbkdhgtfpx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sfofriwmwy .gt_from_md > :last-child {
+#dbkdhgtfpx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sfofriwmwy .gt_row {
+#dbkdhgtfpx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2607,7 +2631,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#sfofriwmwy .gt_stub {
+#dbkdhgtfpx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2620,7 +2644,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sfofriwmwy .gt_stub_row_group {
+#dbkdhgtfpx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2634,11 +2658,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#sfofriwmwy .gt_row_group_first td {
+#dbkdhgtfpx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sfofriwmwy .gt_summary_row {
+#dbkdhgtfpx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2648,16 +2672,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sfofriwmwy .gt_first_summary_row {
+#dbkdhgtfpx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_first_summary_row.thick {
+#dbkdhgtfpx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sfofriwmwy .gt_last_summary_row {
+#dbkdhgtfpx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2667,7 +2691,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_grand_summary_row {
+#dbkdhgtfpx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2677,7 +2701,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sfofriwmwy .gt_first_grand_summary_row {
+#dbkdhgtfpx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2687,11 +2711,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_striped {
+#dbkdhgtfpx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sfofriwmwy .gt_table_body {
+#dbkdhgtfpx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2700,7 +2724,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_footnotes {
+#dbkdhgtfpx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2714,7 +2738,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_footnote {
+#dbkdhgtfpx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2723,7 +2747,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sfofriwmwy .gt_sourcenotes {
+#dbkdhgtfpx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2737,7 +2761,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#sfofriwmwy .gt_sourcenote {
+#dbkdhgtfpx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2745,36 +2769,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#sfofriwmwy .gt_left {
+#dbkdhgtfpx .gt_left {
   text-align: left;
 }
 
-#sfofriwmwy .gt_center {
+#dbkdhgtfpx .gt_center {
   text-align: center;
 }
 
-#sfofriwmwy .gt_right {
+#dbkdhgtfpx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sfofriwmwy .gt_font_normal {
+#dbkdhgtfpx .gt_font_normal {
   font-weight: normal;
 }
 
-#sfofriwmwy .gt_font_bold {
+#dbkdhgtfpx .gt_font_bold {
   font-weight: bold;
 }
 
-#sfofriwmwy .gt_font_italic {
+#dbkdhgtfpx .gt_font_italic {
   font-style: italic;
 }
 
-#sfofriwmwy .gt_super {
+#dbkdhgtfpx .gt_super {
   font-size: 65%;
 }
 
-#sfofriwmwy .gt_two_val_uncert {
+#dbkdhgtfpx .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -2783,31 +2807,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#sfofriwmwy .gt_footnote_marks {
+#dbkdhgtfpx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#sfofriwmwy .gt_asterisk {
+#dbkdhgtfpx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sfofriwmwy .gt_slash_mark {
+#dbkdhgtfpx .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#sfofriwmwy .gt_fraction_numerator {
+#dbkdhgtfpx .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#sfofriwmwy .gt_fraction_denominator {
+#dbkdhgtfpx .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2826,14 +2850,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.31</td>
-<td class="gt_row gt_center">18.4</td>
-<td class="gt_row gt_center">0.28, 0.35</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.08</td>
+<td class="gt_row gt_center">-2.50</td>
+<td class="gt_row gt_center">-0.14, -0.02</td>
+<td class="gt_row gt_center">0.012</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">7.68</td>
-<td class="gt_row gt_center">0.01, 0.02</td>
+<td class="gt_row gt_center">0.16</td>
+<td class="gt_row gt_center">7.85</td>
+<td class="gt_row gt_center">0.12, 0.20</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
@@ -2846,20 +2870,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">-0.09</td>
-<td class="gt_row gt_center">-5.17</td>
-<td class="gt_row gt_center">-0.12, -0.05</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.13</td>
+<td class="gt_row gt_center">3.19</td>
+<td class="gt_row gt_center">0.05, 0.22</td>
+<td class="gt_row gt_center">0.001</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">-0.19</td>
-<td class="gt_row gt_center">-9.22</td>
-<td class="gt_row gt_center">-0.24, -0.15</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.05</td>
+<td class="gt_row gt_center">-1.34</td>
+<td class="gt_row gt_center">-0.13, 0.02</td>
+<td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.23</td>
-<td class="gt_row gt_center">-12.4</td>
-<td class="gt_row gt_center">-0.26, -0.19</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.12</td>
+<td class="gt_row gt_center">2.94</td>
+<td class="gt_row gt_center">0.04, 0.20</td>
+<td class="gt_row gt_center">0.003</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -2871,14 +2895,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.08</td>
-<td class="gt_row gt_center">5.73</td>
-<td class="gt_row gt_center">0.05, 0.10</td>
+<td class="gt_row gt_center">0.15</td>
+<td class="gt_row gt_center">5.02</td>
+<td class="gt_row gt_center">0.09, 0.20</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.077; F-Statistic = 49.0; DF1 = 5; DF2 = 2,917; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.036; F-Statistic = 21.6; DF1 = 5; DF2 = 2,917; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -2910,12 +2934,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="yloovgljbv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bwkefuahox" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#yloovgljbv .gt_table {
+#bwkefuahox .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2940,7 +2964,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_heading {
+#bwkefuahox .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2952,7 +2976,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_title {
+#bwkefuahox .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2964,7 +2988,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#yloovgljbv .gt_subtitle {
+#bwkefuahox .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2976,13 +3000,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#yloovgljbv .gt_bottom_border {
+#bwkefuahox .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_col_headings {
+#bwkefuahox .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2997,7 +3021,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_col_heading {
+#bwkefuahox .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3017,7 +3041,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#yloovgljbv .gt_column_spanner_outer {
+#bwkefuahox .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3029,15 +3053,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#yloovgljbv .gt_column_spanner_outer:first-child {
+#bwkefuahox .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yloovgljbv .gt_column_spanner_outer:last-child {
+#bwkefuahox .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yloovgljbv .gt_column_spanner {
+#bwkefuahox .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3049,7 +3073,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#yloovgljbv .gt_group_heading {
+#bwkefuahox .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3074,7 +3098,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#yloovgljbv .gt_empty_group_heading {
+#bwkefuahox .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3089,15 +3113,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#yloovgljbv .gt_from_md > :first-child {
+#bwkefuahox .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yloovgljbv .gt_from_md > :last-child {
+#bwkefuahox .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yloovgljbv .gt_row {
+#bwkefuahox .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3116,7 +3140,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#yloovgljbv .gt_stub {
+#bwkefuahox .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3129,7 +3153,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#yloovgljbv .gt_stub_row_group {
+#bwkefuahox .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3143,11 +3167,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#yloovgljbv .gt_row_group_first td {
+#bwkefuahox .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yloovgljbv .gt_summary_row {
+#bwkefuahox .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3157,16 +3181,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#yloovgljbv .gt_first_summary_row {
+#bwkefuahox .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_first_summary_row.thick {
+#bwkefuahox .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yloovgljbv .gt_last_summary_row {
+#bwkefuahox .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3176,7 +3200,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_grand_summary_row {
+#bwkefuahox .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3186,7 +3210,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#yloovgljbv .gt_first_grand_summary_row {
+#bwkefuahox .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3196,11 +3220,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_striped {
+#bwkefuahox .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yloovgljbv .gt_table_body {
+#bwkefuahox .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3209,7 +3233,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_footnotes {
+#bwkefuahox .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3223,7 +3247,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_footnote {
+#bwkefuahox .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -3232,7 +3256,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#yloovgljbv .gt_sourcenotes {
+#bwkefuahox .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3246,7 +3270,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#yloovgljbv .gt_sourcenote {
+#bwkefuahox .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3254,36 +3278,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#yloovgljbv .gt_left {
+#bwkefuahox .gt_left {
   text-align: left;
 }
 
-#yloovgljbv .gt_center {
+#bwkefuahox .gt_center {
   text-align: center;
 }
 
-#yloovgljbv .gt_right {
+#bwkefuahox .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yloovgljbv .gt_font_normal {
+#bwkefuahox .gt_font_normal {
   font-weight: normal;
 }
 
-#yloovgljbv .gt_font_bold {
+#bwkefuahox .gt_font_bold {
   font-weight: bold;
 }
 
-#yloovgljbv .gt_font_italic {
+#bwkefuahox .gt_font_italic {
   font-style: italic;
 }
 
-#yloovgljbv .gt_super {
+#bwkefuahox .gt_super {
   font-size: 65%;
 }
 
-#yloovgljbv .gt_two_val_uncert {
+#bwkefuahox .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -3292,31 +3316,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#yloovgljbv .gt_footnote_marks {
+#bwkefuahox .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#yloovgljbv .gt_asterisk {
+#bwkefuahox .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yloovgljbv .gt_slash_mark {
+#bwkefuahox .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#yloovgljbv .gt_fraction_numerator {
+#bwkefuahox .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#yloovgljbv .gt_fraction_denominator {
+#bwkefuahox .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -3335,14 +3359,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.31</td>
-<td class="gt_row gt_center">18.1</td>
-<td class="gt_row gt_center">0.28, 0.35</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.08</td>
+<td class="gt_row gt_center">-2.59</td>
+<td class="gt_row gt_center">-0.14, -0.02</td>
+<td class="gt_row gt_center">0.010</td></tr>
     <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">7.62</td>
-<td class="gt_row gt_center">0.01, 0.01</td>
+<td class="gt_row gt_center">0.16</td>
+<td class="gt_row gt_center">7.65</td>
+<td class="gt_row gt_center">0.12, 0.20</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
@@ -3355,20 +3379,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">-0.09</td>
-<td class="gt_row gt_center">-5.09</td>
-<td class="gt_row gt_center">-0.12, -0.05</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.13</td>
+<td class="gt_row gt_center">3.14</td>
+<td class="gt_row gt_center">0.05, 0.21</td>
+<td class="gt_row gt_center">0.002</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">-0.19</td>
-<td class="gt_row gt_center">-9.22</td>
-<td class="gt_row gt_center">-0.23, -0.15</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.05</td>
+<td class="gt_row gt_center">-1.40</td>
+<td class="gt_row gt_center">-0.13, 0.02</td>
+<td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.22</td>
-<td class="gt_row gt_center">-12.4</td>
-<td class="gt_row gt_center">-0.26, -0.19</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.11</td>
+<td class="gt_row gt_center">2.85</td>
+<td class="gt_row gt_center">0.04, 0.19</td>
+<td class="gt_row gt_center">0.004</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -3380,14 +3404,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.08</td>
-<td class="gt_row gt_center">5.95</td>
-<td class="gt_row gt_center">0.05, 0.10</td>
+<td class="gt_row gt_center">0.15</td>
+<td class="gt_row gt_center">5.26</td>
+<td class="gt_row gt_center">0.10, 0.21</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.078; F-Statistic = 49.7; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.034; F-Statistic = 20.9; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -3419,12 +3443,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="zwlhfapbtl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="tyrvdvrcdq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#zwlhfapbtl .gt_table {
+#tyrvdvrcdq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3449,7 +3473,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_heading {
+#tyrvdvrcdq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3461,7 +3485,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_title {
+#tyrvdvrcdq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3473,7 +3497,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#zwlhfapbtl .gt_subtitle {
+#tyrvdvrcdq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3485,13 +3509,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#zwlhfapbtl .gt_bottom_border {
+#tyrvdvrcdq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_col_headings {
+#tyrvdvrcdq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3506,7 +3530,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_col_heading {
+#tyrvdvrcdq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3526,7 +3550,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#zwlhfapbtl .gt_column_spanner_outer {
+#tyrvdvrcdq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3538,15 +3562,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#zwlhfapbtl .gt_column_spanner_outer:first-child {
+#tyrvdvrcdq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zwlhfapbtl .gt_column_spanner_outer:last-child {
+#tyrvdvrcdq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zwlhfapbtl .gt_column_spanner {
+#tyrvdvrcdq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3558,7 +3582,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#zwlhfapbtl .gt_group_heading {
+#tyrvdvrcdq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3583,7 +3607,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#zwlhfapbtl .gt_empty_group_heading {
+#tyrvdvrcdq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3598,15 +3622,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#zwlhfapbtl .gt_from_md > :first-child {
+#tyrvdvrcdq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zwlhfapbtl .gt_from_md > :last-child {
+#tyrvdvrcdq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zwlhfapbtl .gt_row {
+#tyrvdvrcdq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3625,7 +3649,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#zwlhfapbtl .gt_stub {
+#tyrvdvrcdq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3638,7 +3662,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#zwlhfapbtl .gt_stub_row_group {
+#tyrvdvrcdq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3652,11 +3676,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#zwlhfapbtl .gt_row_group_first td {
+#tyrvdvrcdq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zwlhfapbtl .gt_summary_row {
+#tyrvdvrcdq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3666,16 +3690,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#zwlhfapbtl .gt_first_summary_row {
+#tyrvdvrcdq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_first_summary_row.thick {
+#tyrvdvrcdq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zwlhfapbtl .gt_last_summary_row {
+#tyrvdvrcdq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3685,7 +3709,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_grand_summary_row {
+#tyrvdvrcdq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3695,7 +3719,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#zwlhfapbtl .gt_first_grand_summary_row {
+#tyrvdvrcdq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3705,11 +3729,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_striped {
+#tyrvdvrcdq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zwlhfapbtl .gt_table_body {
+#tyrvdvrcdq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3718,7 +3742,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_footnotes {
+#tyrvdvrcdq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3732,7 +3756,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_footnote {
+#tyrvdvrcdq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -3741,7 +3765,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#zwlhfapbtl .gt_sourcenotes {
+#tyrvdvrcdq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3755,7 +3779,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#zwlhfapbtl .gt_sourcenote {
+#tyrvdvrcdq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3763,36 +3787,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#zwlhfapbtl .gt_left {
+#tyrvdvrcdq .gt_left {
   text-align: left;
 }
 
-#zwlhfapbtl .gt_center {
+#tyrvdvrcdq .gt_center {
   text-align: center;
 }
 
-#zwlhfapbtl .gt_right {
+#tyrvdvrcdq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zwlhfapbtl .gt_font_normal {
+#tyrvdvrcdq .gt_font_normal {
   font-weight: normal;
 }
 
-#zwlhfapbtl .gt_font_bold {
+#tyrvdvrcdq .gt_font_bold {
   font-weight: bold;
 }
 
-#zwlhfapbtl .gt_font_italic {
+#tyrvdvrcdq .gt_font_italic {
   font-style: italic;
 }
 
-#zwlhfapbtl .gt_super {
+#tyrvdvrcdq .gt_super {
   font-size: 65%;
 }
 
-#zwlhfapbtl .gt_two_val_uncert {
+#tyrvdvrcdq .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -3801,31 +3825,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#zwlhfapbtl .gt_footnote_marks {
+#tyrvdvrcdq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#zwlhfapbtl .gt_asterisk {
+#tyrvdvrcdq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zwlhfapbtl .gt_slash_mark {
+#tyrvdvrcdq .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#zwlhfapbtl .gt_fraction_numerator {
+#tyrvdvrcdq .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#zwlhfapbtl .gt_fraction_denominator {
+#tyrvdvrcdq .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -3844,14 +3868,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.34</td>
-<td class="gt_row gt_center">21.0</td>
-<td class="gt_row gt_center">0.31, 0.37</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.06</td>
+<td class="gt_row gt_center">-1.92</td>
+<td class="gt_row gt_center">-0.12, 0.00</td>
+<td class="gt_row gt_center">0.055</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">7.20</td>
-<td class="gt_row gt_center">0.01, 0.02</td>
+<td class="gt_row gt_center">0.15</td>
+<td class="gt_row gt_center">7.40</td>
+<td class="gt_row gt_center">0.11, 0.19</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
@@ -3864,20 +3888,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">-0.10</td>
-<td class="gt_row gt_center">-5.83</td>
-<td class="gt_row gt_center">-0.13, -0.07</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.11</td>
+<td class="gt_row gt_center">2.63</td>
+<td class="gt_row gt_center">0.03, 0.19</td>
+<td class="gt_row gt_center">0.009</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">-0.20</td>
-<td class="gt_row gt_center">-9.39</td>
-<td class="gt_row gt_center">-0.24, -0.16</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.07</td>
+<td class="gt_row gt_center">-1.66</td>
+<td class="gt_row gt_center">-0.14, 0.01</td>
+<td class="gt_row gt_center">0.10</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.24</td>
-<td class="gt_row gt_center">-12.9</td>
-<td class="gt_row gt_center">-0.28, -0.20</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.10</td>
+<td class="gt_row gt_center">2.50</td>
+<td class="gt_row gt_center">0.02, 0.18</td>
+<td class="gt_row gt_center">0.013</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -3889,14 +3913,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.07</td>
-<td class="gt_row gt_center">5.57</td>
-<td class="gt_row gt_center">0.05, 0.10</td>
+<td class="gt_row gt_center">0.14</td>
+<td class="gt_row gt_center">4.74</td>
+<td class="gt_row gt_center">0.08, 0.20</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.078; F-Statistic = 48.7; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.033; F-Statistic = 19.6; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -3933,12 +3957,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="fqdnnnbanz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="govheybffi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#fqdnnnbanz .gt_table {
+#govheybffi .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3963,7 +3987,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_heading {
+#govheybffi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3975,7 +3999,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_title {
+#govheybffi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3987,7 +4011,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#fqdnnnbanz .gt_subtitle {
+#govheybffi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3999,13 +4023,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#fqdnnnbanz .gt_bottom_border {
+#govheybffi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_col_headings {
+#govheybffi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4020,7 +4044,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_col_heading {
+#govheybffi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4040,7 +4064,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#fqdnnnbanz .gt_column_spanner_outer {
+#govheybffi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4052,15 +4076,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#fqdnnnbanz .gt_column_spanner_outer:first-child {
+#govheybffi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fqdnnnbanz .gt_column_spanner_outer:last-child {
+#govheybffi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fqdnnnbanz .gt_column_spanner {
+#govheybffi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4072,7 +4096,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#fqdnnnbanz .gt_group_heading {
+#govheybffi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4097,7 +4121,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#fqdnnnbanz .gt_empty_group_heading {
+#govheybffi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4112,15 +4136,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#fqdnnnbanz .gt_from_md > :first-child {
+#govheybffi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fqdnnnbanz .gt_from_md > :last-child {
+#govheybffi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fqdnnnbanz .gt_row {
+#govheybffi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4139,7 +4163,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#fqdnnnbanz .gt_stub {
+#govheybffi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4152,7 +4176,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#fqdnnnbanz .gt_stub_row_group {
+#govheybffi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4166,11 +4190,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#fqdnnnbanz .gt_row_group_first td {
+#govheybffi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fqdnnnbanz .gt_summary_row {
+#govheybffi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4180,16 +4204,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#fqdnnnbanz .gt_first_summary_row {
+#govheybffi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_first_summary_row.thick {
+#govheybffi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fqdnnnbanz .gt_last_summary_row {
+#govheybffi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4199,7 +4223,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_grand_summary_row {
+#govheybffi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4209,7 +4233,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#fqdnnnbanz .gt_first_grand_summary_row {
+#govheybffi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4219,11 +4243,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_striped {
+#govheybffi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fqdnnnbanz .gt_table_body {
+#govheybffi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4232,7 +4256,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_footnotes {
+#govheybffi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4246,7 +4270,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_footnote {
+#govheybffi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -4255,7 +4279,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#fqdnnnbanz .gt_sourcenotes {
+#govheybffi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4269,7 +4293,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#fqdnnnbanz .gt_sourcenote {
+#govheybffi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4277,36 +4301,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#fqdnnnbanz .gt_left {
+#govheybffi .gt_left {
   text-align: left;
 }
 
-#fqdnnnbanz .gt_center {
+#govheybffi .gt_center {
   text-align: center;
 }
 
-#fqdnnnbanz .gt_right {
+#govheybffi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fqdnnnbanz .gt_font_normal {
+#govheybffi .gt_font_normal {
   font-weight: normal;
 }
 
-#fqdnnnbanz .gt_font_bold {
+#govheybffi .gt_font_bold {
   font-weight: bold;
 }
 
-#fqdnnnbanz .gt_font_italic {
+#govheybffi .gt_font_italic {
   font-style: italic;
 }
 
-#fqdnnnbanz .gt_super {
+#govheybffi .gt_super {
   font-size: 65%;
 }
 
-#fqdnnnbanz .gt_two_val_uncert {
+#govheybffi .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -4315,31 +4339,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#fqdnnnbanz .gt_footnote_marks {
+#govheybffi .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#fqdnnnbanz .gt_asterisk {
+#govheybffi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fqdnnnbanz .gt_slash_mark {
+#govheybffi .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#fqdnnnbanz .gt_fraction_numerator {
+#govheybffi .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#fqdnnnbanz .gt_fraction_denominator {
+#govheybffi .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -4358,24 +4382,24 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">1.18</td>
-<td class="gt_row gt_center">-0.01, 0.05</td>
-<td class="gt_row gt_center">0.2</td></tr>
+<td class="gt_row gt_center">0.73</td>
+<td class="gt_row gt_center">27.5</td>
+<td class="gt_row gt_center">0.68, 0.78</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">64.6</td>
-<td class="gt_row gt_center">1.0, 1.0</td>
+<td class="gt_row gt_center">0.90</td>
+<td class="gt_row gt_center">57.1</td>
+<td class="gt_row gt_center">0.87, 0.93</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">2.04</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.042</td></tr>
+<td class="gt_row gt_center">0.03</td>
+<td class="gt_row gt_center">3.24</td>
+<td class="gt_row gt_center">0.01, 0.05</td>
+<td class="gt_row gt_center">0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.258</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.298</td>
+<td class="gt_row gt_center">-0.04, 0.03</td>
 <td class="gt_row gt_center">0.8</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
@@ -4388,20 +4412,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">0.10</td>
-<td class="gt_row gt_center">7.09</td>
-<td class="gt_row gt_center">0.07, 0.13</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.184</td>
+<td class="gt_row gt_center">-0.08, 0.06</td>
+<td class="gt_row gt_center">0.9</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">-0.02</td>
-<td class="gt_row gt_center">-1.10</td>
-<td class="gt_row gt_center">-0.06, 0.02</td>
-<td class="gt_row gt_center">0.3</td></tr>
+<td class="gt_row gt_center">0.03</td>
+<td class="gt_row gt_center">0.818</td>
+<td class="gt_row gt_center">-0.04, 0.09</td>
+<td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.736</td>
-<td class="gt_row gt_center">-0.02, 0.04</td>
-<td class="gt_row gt_center">0.5</td></tr>
+<td class="gt_row gt_center">-0.05</td>
+<td class="gt_row gt_center">-1.35</td>
+<td class="gt_row gt_center">-0.11, 0.02</td>
+<td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -4413,14 +4437,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.409</td>
-<td class="gt_row gt_center">-0.03, 0.02</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.337</td>
+<td class="gt_row gt_center">-0.04, 0.06</td>
 <td class="gt_row gt_center">0.7</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.615; F-Statistic = 665; DF1 = 7; DF2 = 2,915; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.538; F-Statistic = 485; DF1 = 7; DF2 = 2,915; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4452,12 +4476,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="dvtuuqbbcq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="smviysbjyo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dvtuuqbbcq .gt_table {
+#smviysbjyo .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -4482,7 +4506,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-left-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_heading {
+#smviysbjyo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4494,7 +4518,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_title {
+#smviysbjyo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4506,7 +4530,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-width: 0;
 }
 
-#dvtuuqbbcq .gt_subtitle {
+#smviysbjyo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4518,13 +4542,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-width: 0;
 }
 
-#dvtuuqbbcq .gt_bottom_border {
+#smviysbjyo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_col_headings {
+#smviysbjyo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4539,7 +4563,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_col_heading {
+#smviysbjyo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4559,7 +4583,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#dvtuuqbbcq .gt_column_spanner_outer {
+#smviysbjyo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4571,15 +4595,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 4px;
 }
 
-#dvtuuqbbcq .gt_column_spanner_outer:first-child {
+#smviysbjyo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dvtuuqbbcq .gt_column_spanner_outer:last-child {
+#smviysbjyo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dvtuuqbbcq .gt_column_spanner {
+#smviysbjyo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4591,7 +4615,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   width: 100%;
 }
 
-#dvtuuqbbcq .gt_group_heading {
+#smviysbjyo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4616,7 +4640,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#dvtuuqbbcq .gt_empty_group_heading {
+#smviysbjyo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4631,15 +4655,15 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: middle;
 }
 
-#dvtuuqbbcq .gt_from_md > :first-child {
+#smviysbjyo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dvtuuqbbcq .gt_from_md > :last-child {
+#smviysbjyo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dvtuuqbbcq .gt_row {
+#smviysbjyo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4658,7 +4682,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   overflow-x: hidden;
 }
 
-#dvtuuqbbcq .gt_stub {
+#smviysbjyo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4671,7 +4695,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#dvtuuqbbcq .gt_stub_row_group {
+#smviysbjyo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4685,11 +4709,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: top;
 }
 
-#dvtuuqbbcq .gt_row_group_first td {
+#smviysbjyo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dvtuuqbbcq .gt_summary_row {
+#smviysbjyo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4699,16 +4723,16 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#dvtuuqbbcq .gt_first_summary_row {
+#smviysbjyo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_first_summary_row.thick {
+#smviysbjyo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dvtuuqbbcq .gt_last_summary_row {
+#smviysbjyo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4718,7 +4742,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_grand_summary_row {
+#smviysbjyo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4728,7 +4752,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#dvtuuqbbcq .gt_first_grand_summary_row {
+#smviysbjyo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4738,11 +4762,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-top-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_striped {
+#smviysbjyo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dvtuuqbbcq .gt_table_body {
+#smviysbjyo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4751,7 +4775,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-bottom-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_footnotes {
+#smviysbjyo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4765,7 +4789,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_footnote {
+#smviysbjyo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -4774,7 +4798,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#dvtuuqbbcq .gt_sourcenotes {
+#smviysbjyo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4788,7 +4812,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   border-right-color: #D3D3D3;
 }
 
-#dvtuuqbbcq .gt_sourcenote {
+#smviysbjyo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4796,36 +4820,36 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   padding-right: 5px;
 }
 
-#dvtuuqbbcq .gt_left {
+#smviysbjyo .gt_left {
   text-align: left;
 }
 
-#dvtuuqbbcq .gt_center {
+#smviysbjyo .gt_center {
   text-align: center;
 }
 
-#dvtuuqbbcq .gt_right {
+#smviysbjyo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dvtuuqbbcq .gt_font_normal {
+#smviysbjyo .gt_font_normal {
   font-weight: normal;
 }
 
-#dvtuuqbbcq .gt_font_bold {
+#smviysbjyo .gt_font_bold {
   font-weight: bold;
 }
 
-#dvtuuqbbcq .gt_font_italic {
+#smviysbjyo .gt_font_italic {
   font-style: italic;
 }
 
-#dvtuuqbbcq .gt_super {
+#smviysbjyo .gt_super {
   font-size: 65%;
 }
 
-#dvtuuqbbcq .gt_two_val_uncert {
+#smviysbjyo .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -4834,31 +4858,31 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   margin-left: 0.1em;
 }
 
-#dvtuuqbbcq .gt_footnote_marks {
+#smviysbjyo .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#dvtuuqbbcq .gt_asterisk {
+#smviysbjyo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dvtuuqbbcq .gt_slash_mark {
+#smviysbjyo .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#dvtuuqbbcq .gt_fraction_numerator {
+#smviysbjyo .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#dvtuuqbbcq .gt_fraction_denominator {
+#smviysbjyo .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -4877,24 +4901,24 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.87</td>
-<td class="gt_row gt_center">5.98</td>
-<td class="gt_row gt_center">0.58, 1.2</td>
+<td class="gt_row gt_center">0.92</td>
+<td class="gt_row gt_center">33.0</td>
+<td class="gt_row gt_center">0.87, 1.0</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.061</td>
-<td class="gt_row gt_center">-0.28, 0.30</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.227</td>
+<td class="gt_row gt_center">-0.04, 0.03</td>
+<td class="gt_row gt_center">0.8</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
-<td class="gt_row gt_center">0.24</td>
-<td class="gt_row gt_center">2.58</td>
-<td class="gt_row gt_center">0.06, 0.42</td>
-<td class="gt_row gt_center">0.010</td></tr>
+<td class="gt_row gt_center">0.04</td>
+<td class="gt_row gt_center">3.39</td>
+<td class="gt_row gt_center">0.02, 0.06</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.68</td>
-<td class="gt_row gt_center">36.1</td>
-<td class="gt_row gt_center">0.65, 0.72</td>
+<td class="gt_row gt_center">0.67</td>
+<td class="gt_row gt_center">36.0</td>
+<td class="gt_row gt_center">0.64, 0.71</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
@@ -4907,20 +4931,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">-0.46</td>
-<td class="gt_row gt_center">-2.91</td>
-<td class="gt_row gt_center">-0.76, -0.15</td>
-<td class="gt_row gt_center">0.004</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.295</td>
+<td class="gt_row gt_center">-0.06, 0.08</td>
+<td class="gt_row gt_center">0.8</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">0.40</td>
-<td class="gt_row gt_center">2.78</td>
-<td class="gt_row gt_center">0.12, 0.69</td>
-<td class="gt_row gt_center">0.006</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.229</td>
+<td class="gt_row gt_center">-0.06, 0.08</td>
+<td class="gt_row gt_center">0.8</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.02</td>
-<td class="gt_row gt_center">-0.111</td>
-<td class="gt_row gt_center">-0.31, 0.28</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.354</td>
+<td class="gt_row gt_center">-0.06, 0.08</td>
+<td class="gt_row gt_center">0.7</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -4932,14 +4956,14 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.26</td>
-<td class="gt_row gt_center">2.45</td>
-<td class="gt_row gt_center">0.05, 0.47</td>
-<td class="gt_row gt_center">0.014</td></tr>
+<td class="gt_row gt_center">0.07</td>
+<td class="gt_row gt_center">2.56</td>
+<td class="gt_row gt_center">0.02, 0.12</td>
+<td class="gt_row gt_center">0.011</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.323; F-Statistic = 199; DF1 = 7; DF2 = 2,915; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.316; F-Statistic = 193; DF1 = 7; DF2 = 2,915; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4985,12 +5009,12 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="xugjiyoamv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="eiwfpmkmpg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xugjiyoamv .gt_table {
+#eiwfpmkmpg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -5015,7 +5039,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-left-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_heading {
+#eiwfpmkmpg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -5027,7 +5051,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_title {
+#eiwfpmkmpg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5039,7 +5063,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-bottom-width: 0;
 }
 
-#xugjiyoamv .gt_subtitle {
+#eiwfpmkmpg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5051,13 +5075,13 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-top-width: 0;
 }
 
-#xugjiyoamv .gt_bottom_border {
+#eiwfpmkmpg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_col_headings {
+#eiwfpmkmpg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5072,7 +5096,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_col_heading {
+#eiwfpmkmpg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5092,7 +5116,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   overflow-x: hidden;
 }
 
-#xugjiyoamv .gt_column_spanner_outer {
+#eiwfpmkmpg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5104,15 +5128,15 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 4px;
 }
 
-#xugjiyoamv .gt_column_spanner_outer:first-child {
+#eiwfpmkmpg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xugjiyoamv .gt_column_spanner_outer:last-child {
+#eiwfpmkmpg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xugjiyoamv .gt_column_spanner {
+#eiwfpmkmpg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5124,7 +5148,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   width: 100%;
 }
 
-#xugjiyoamv .gt_group_heading {
+#eiwfpmkmpg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5149,7 +5173,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   vertical-align: middle;
 }
 
-#xugjiyoamv .gt_empty_group_heading {
+#eiwfpmkmpg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5164,15 +5188,15 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   vertical-align: middle;
 }
 
-#xugjiyoamv .gt_from_md > :first-child {
+#eiwfpmkmpg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xugjiyoamv .gt_from_md > :last-child {
+#eiwfpmkmpg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xugjiyoamv .gt_row {
+#eiwfpmkmpg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5191,7 +5215,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   overflow-x: hidden;
 }
 
-#xugjiyoamv .gt_stub {
+#eiwfpmkmpg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5204,7 +5228,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xugjiyoamv .gt_stub_row_group {
+#eiwfpmkmpg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5218,11 +5242,11 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   vertical-align: top;
 }
 
-#xugjiyoamv .gt_row_group_first td {
+#eiwfpmkmpg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xugjiyoamv .gt_summary_row {
+#eiwfpmkmpg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5232,16 +5256,16 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xugjiyoamv .gt_first_summary_row {
+#eiwfpmkmpg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_first_summary_row.thick {
+#eiwfpmkmpg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xugjiyoamv .gt_last_summary_row {
+#eiwfpmkmpg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5251,7 +5275,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_grand_summary_row {
+#eiwfpmkmpg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5261,7 +5285,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xugjiyoamv .gt_first_grand_summary_row {
+#eiwfpmkmpg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5271,11 +5295,11 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-top-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_striped {
+#eiwfpmkmpg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xugjiyoamv .gt_table_body {
+#eiwfpmkmpg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5284,7 +5308,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_footnotes {
+#eiwfpmkmpg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5298,7 +5322,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_footnote {
+#eiwfpmkmpg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -5307,7 +5331,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xugjiyoamv .gt_sourcenotes {
+#eiwfpmkmpg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5321,7 +5345,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xugjiyoamv .gt_sourcenote {
+#eiwfpmkmpg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5329,36 +5353,36 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xugjiyoamv .gt_left {
+#eiwfpmkmpg .gt_left {
   text-align: left;
 }
 
-#xugjiyoamv .gt_center {
+#eiwfpmkmpg .gt_center {
   text-align: center;
 }
 
-#xugjiyoamv .gt_right {
+#eiwfpmkmpg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xugjiyoamv .gt_font_normal {
+#eiwfpmkmpg .gt_font_normal {
   font-weight: normal;
 }
 
-#xugjiyoamv .gt_font_bold {
+#eiwfpmkmpg .gt_font_bold {
   font-weight: bold;
 }
 
-#xugjiyoamv .gt_font_italic {
+#eiwfpmkmpg .gt_font_italic {
   font-style: italic;
 }
 
-#xugjiyoamv .gt_super {
+#eiwfpmkmpg .gt_super {
   font-size: 65%;
 }
 
-#xugjiyoamv .gt_two_val_uncert {
+#eiwfpmkmpg .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -5367,31 +5391,31 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   margin-left: 0.1em;
 }
 
-#xugjiyoamv .gt_footnote_marks {
+#eiwfpmkmpg .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#xugjiyoamv .gt_asterisk {
+#eiwfpmkmpg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xugjiyoamv .gt_slash_mark {
+#eiwfpmkmpg .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#xugjiyoamv .gt_fraction_numerator {
+#eiwfpmkmpg .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#xugjiyoamv .gt_fraction_denominator {
+#eiwfpmkmpg .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -5410,25 +5434,25 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">1.12</td>
-<td class="gt_row gt_center">-0.01, 0.05</td>
-<td class="gt_row gt_center">0.3</td></tr>
+<td class="gt_row gt_center">0.73</td>
+<td class="gt_row gt_center">27.7</td>
+<td class="gt_row gt_center">0.68, 0.79</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">65.3</td>
-<td class="gt_row gt_center">1.0, 1.0</td>
+<td class="gt_row gt_center">0.91</td>
+<td class="gt_row gt_center">57.7</td>
+<td class="gt_row gt_center">0.88, 0.94</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD20_1992_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">1.24</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.2</td></tr>
+<td class="gt_row gt_center">0.02</td>
+<td class="gt_row gt_center">2.36</td>
+<td class="gt_row gt_center">0.00, 0.04</td>
+<td class="gt_row gt_center">0.018</td></tr>
     <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.451</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.7</td></tr>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.642</td>
+<td class="gt_row gt_center">-0.05, 0.02</td>
+<td class="gt_row gt_center">0.5</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5440,20 +5464,20 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">0.10</td>
-<td class="gt_row gt_center">7.26</td>
-<td class="gt_row gt_center">0.08, 0.13</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.044</td>
+<td class="gt_row gt_center">-0.07, 0.07</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">-0.02</td>
-<td class="gt_row gt_center">-0.934</td>
-<td class="gt_row gt_center">-0.05, 0.02</td>
+<td class="gt_row gt_center">0.03</td>
+<td class="gt_row gt_center">0.835</td>
+<td class="gt_row gt_center">-0.04, 0.09</td>
 <td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.808</td>
-<td class="gt_row gt_center">-0.02, 0.04</td>
-<td class="gt_row gt_center">0.4</td></tr>
+<td class="gt_row gt_center">-0.05</td>
+<td class="gt_row gt_center">-1.45</td>
+<td class="gt_row gt_center">-0.12, 0.02</td>
+<td class="gt_row gt_center">0.15</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5465,14 +5489,14 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-0.531</td>
-<td class="gt_row gt_center">-0.03, 0.02</td>
-<td class="gt_row gt_center">0.6</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.189</td>
+<td class="gt_row gt_center">-0.04, 0.05</td>
+<td class="gt_row gt_center">0.9</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.617; F-Statistic = 680; DF1 = 7; DF2 = 2,949; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.539; F-Statistic = 493; DF1 = 7; DF2 = 2,949; p-value = &lt;0.001; No. Obs. = 2,957</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -5504,12 +5528,12 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
 
 ## Warning: The `fmt_missing()` function is deprecated and will soon be removed
 ## * Use the `sub_missing()` function instead</code></pre>
-<div id="xvlqgpjttv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="evhnuamqcx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xvlqgpjttv .gt_table {
+#evhnuamqcx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -5534,7 +5558,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-left-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_heading {
+#evhnuamqcx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -5546,7 +5570,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_title {
+#evhnuamqcx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5558,7 +5582,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-bottom-width: 0;
 }
 
-#xvlqgpjttv .gt_subtitle {
+#evhnuamqcx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5570,13 +5594,13 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-top-width: 0;
 }
 
-#xvlqgpjttv .gt_bottom_border {
+#evhnuamqcx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_col_headings {
+#evhnuamqcx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5591,7 +5615,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_col_heading {
+#evhnuamqcx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5611,7 +5635,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   overflow-x: hidden;
 }
 
-#xvlqgpjttv .gt_column_spanner_outer {
+#evhnuamqcx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5623,15 +5647,15 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 4px;
 }
 
-#xvlqgpjttv .gt_column_spanner_outer:first-child {
+#evhnuamqcx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xvlqgpjttv .gt_column_spanner_outer:last-child {
+#evhnuamqcx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xvlqgpjttv .gt_column_spanner {
+#evhnuamqcx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5643,7 +5667,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   width: 100%;
 }
 
-#xvlqgpjttv .gt_group_heading {
+#evhnuamqcx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5668,7 +5692,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   vertical-align: middle;
 }
 
-#xvlqgpjttv .gt_empty_group_heading {
+#evhnuamqcx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5683,15 +5707,15 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   vertical-align: middle;
 }
 
-#xvlqgpjttv .gt_from_md > :first-child {
+#evhnuamqcx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xvlqgpjttv .gt_from_md > :last-child {
+#evhnuamqcx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xvlqgpjttv .gt_row {
+#evhnuamqcx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5710,7 +5734,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   overflow-x: hidden;
 }
 
-#xvlqgpjttv .gt_stub {
+#evhnuamqcx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5723,7 +5747,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xvlqgpjttv .gt_stub_row_group {
+#evhnuamqcx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5737,11 +5761,11 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   vertical-align: top;
 }
 
-#xvlqgpjttv .gt_row_group_first td {
+#evhnuamqcx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xvlqgpjttv .gt_summary_row {
+#evhnuamqcx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5751,16 +5775,16 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xvlqgpjttv .gt_first_summary_row {
+#evhnuamqcx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_first_summary_row.thick {
+#evhnuamqcx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xvlqgpjttv .gt_last_summary_row {
+#evhnuamqcx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5770,7 +5794,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_grand_summary_row {
+#evhnuamqcx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5780,7 +5804,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xvlqgpjttv .gt_first_grand_summary_row {
+#evhnuamqcx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5790,11 +5814,11 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-top-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_striped {
+#evhnuamqcx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xvlqgpjttv .gt_table_body {
+#evhnuamqcx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5803,7 +5827,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_footnotes {
+#evhnuamqcx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5817,7 +5841,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_footnote {
+#evhnuamqcx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -5826,7 +5850,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xvlqgpjttv .gt_sourcenotes {
+#evhnuamqcx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5840,7 +5864,7 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   border-right-color: #D3D3D3;
 }
 
-#xvlqgpjttv .gt_sourcenote {
+#evhnuamqcx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5848,36 +5872,36 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   padding-right: 5px;
 }
 
-#xvlqgpjttv .gt_left {
+#evhnuamqcx .gt_left {
   text-align: left;
 }
 
-#xvlqgpjttv .gt_center {
+#evhnuamqcx .gt_center {
   text-align: center;
 }
 
-#xvlqgpjttv .gt_right {
+#evhnuamqcx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xvlqgpjttv .gt_font_normal {
+#evhnuamqcx .gt_font_normal {
   font-weight: normal;
 }
 
-#xvlqgpjttv .gt_font_bold {
+#evhnuamqcx .gt_font_bold {
   font-weight: bold;
 }
 
-#xvlqgpjttv .gt_font_italic {
+#evhnuamqcx .gt_font_italic {
   font-style: italic;
 }
 
-#xvlqgpjttv .gt_super {
+#evhnuamqcx .gt_super {
   font-size: 65%;
 }
 
-#xvlqgpjttv .gt_two_val_uncert {
+#evhnuamqcx .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -5886,31 +5910,31 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   margin-left: 0.1em;
 }
 
-#xvlqgpjttv .gt_footnote_marks {
+#evhnuamqcx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#xvlqgpjttv .gt_asterisk {
+#evhnuamqcx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xvlqgpjttv .gt_slash_mark {
+#evhnuamqcx .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#xvlqgpjttv .gt_fraction_numerator {
+#evhnuamqcx .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#xvlqgpjttv .gt_fraction_denominator {
+#evhnuamqcx .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -5929,25 +5953,25 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">1.25</td>
-<td class="gt_row gt_center">-0.01, 0.05</td>
-<td class="gt_row gt_center">0.2</td></tr>
+<td class="gt_row gt_center">0.73</td>
+<td class="gt_row gt_center">27.1</td>
+<td class="gt_row gt_center">0.68, 0.78</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">64.4</td>
-<td class="gt_row gt_center">1.0, 1.0</td>
+<td class="gt_row gt_center">0.91</td>
+<td class="gt_row gt_center">57.1</td>
+<td class="gt_row gt_center">0.88, 0.95</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1994_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">0.554</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.6</td></tr>
+<td class="gt_row gt_center">0.02</td>
+<td class="gt_row gt_center">1.60</td>
+<td class="gt_row gt_center">0.00, 0.04</td>
+<td class="gt_row gt_center">0.11</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-1.41</td>
-<td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.2</td></tr>
+<td class="gt_row gt_center">-0.04</td>
+<td class="gt_row gt_center">-2.45</td>
+<td class="gt_row gt_center">-0.08, -0.01</td>
+<td class="gt_row gt_center">0.014</td></tr>
     <tr><td class="gt_row gt_left">SEX_all4</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5959,20 +5983,20 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyGirl</td>
-<td class="gt_row gt_center">0.11</td>
-<td class="gt_row gt_center">7.34</td>
-<td class="gt_row gt_center">0.08, 0.14</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.320</td>
+<td class="gt_row gt_center">-0.06, 0.08</td>
+<td class="gt_row gt_center">0.7</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlBoy</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-0.575</td>
-<td class="gt_row gt_center">-0.05, 0.03</td>
-<td class="gt_row gt_center">0.6</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">1.07</td>
-<td class="gt_row gt_center">-0.01, 0.05</td>
+<td class="gt_row gt_center">0.04</td>
+<td class="gt_row gt_center">1.06</td>
+<td class="gt_row gt_center">-0.03, 0.10</td>
 <td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
+<td class="gt_row gt_center">-0.05</td>
+<td class="gt_row gt_center">-1.37</td>
+<td class="gt_row gt_center">-0.12, 0.02</td>
+<td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5984,14 +6008,14 @@ Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.088</td>
-<td class="gt_row gt_center">-0.02, 0.02</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.267</td>
+<td class="gt_row gt_center">-0.04, 0.06</td>
+<td class="gt_row gt_center">0.8</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.615; F-Statistic = 656; DF1 = 7; DF2 = 2,872; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.538; F-Statistic = 477; DF1 = 7; DF2 = 2,872; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
