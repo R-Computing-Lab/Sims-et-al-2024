@@ -2230,6 +2230,7 @@ lm_btwfam_sex4_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~
 lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all3 +
+                            AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
