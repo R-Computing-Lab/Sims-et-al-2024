@@ -1886,7 +1886,7 @@ df_spsp_gen1$MINORITY <- as.factor(df_spsp_gen1$MINORITY)
 summary(df_spsp_gen1)
 
 
-stardadized_by_gender=TRUE
+stardadized_by_gender=FALSE
 # standardize by gender
 if(stardadized_by_gender){
 df_spsp_gen1 <- group_by(df_spsp_gen1, SEX) %>% 
@@ -1917,7 +1917,8 @@ outcomeNames <- c("MINORITY",
                   "CESD20_1992",
                   "DELIN_AVERAGE",
                   "CESD7_1994",
-                  "CESD7_1992")
+                  "CESD7_1992",
+                  "AGE_1979")
 
 # only full full sibs
 dsSingle_G1 <- CreatePairLinksSingleEntered(
@@ -1942,7 +1943,8 @@ df_dyad_delinq <- dsSingle_G1 %>%
     outcome = "DELIN_AVERAGE",
     predictors = c("CESD7_1992",
                    "CESD20_1992",
-                   "CESD7_1994"),
+                   "CESD7_1994",
+                   "AGE_1979"),
     id = "ExtendedID",
     sex = "SEX",
     race = "MINORITY",
@@ -1988,7 +1990,8 @@ df_dyad_CESD20_1992 <- dsSingle_G1 %>%
     outcome = "CESD20_1992",
     predictors = c("CESD7_1992",
                    "DELIN_AVERAGE",
-                   "CESD7_1994"),
+                   "CESD7_1994",
+                   "AGE_1979"),
     id = "ExtendedID",
     sex = "SEX",
     race = "MINORITY",
@@ -2032,7 +2035,8 @@ df_dyad_CESD7_1992 <- dsSingle_G1 %>%
     outcome = "CESD7_1992",
     predictors = c("CESD20_1992",
                    "DELIN_AVERAGE",
-                   "CESD7_1994"),
+                   "CESD7_1994",
+                   "AGE_1979"),
     id = "ExtendedID",
     sex = "SEX",
     race = "MINORITY",
@@ -2077,7 +2081,8 @@ df_dyad_CESD7_1994 <- dsSingle_G1 %>%
     outcome = "CESD7_1994",
     predictors = c("CESD20_1992",
                    "DELIN_AVERAGE",
-                   "CESD7_1992"),
+                   "CESD7_1992",
+                   "AGE_1979"),
     id = "ExtendedID",
     sex = "SEX",
     race = "MINORITY",
@@ -2126,12 +2131,14 @@ df_classic <- df_spsp_gen1
 lm_og_CESD7_1992 <- lm(DELIN_AVERAGE ~
                      CESD7_1992 +
                      as.factor(SEX) +
+                     AGE_1979+
                      as.factor(MINORITY) ,
                    data = df_classic)
 
 lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
                       CESD20_1992 +
                       as.factor(SEX) +
+                        AGE_1979+
                       as.factor(MINORITY),
                     data = df_classic)
 
@@ -2139,6 +2146,7 @@ lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
 lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
                      CESD7_1994 +
                      as.factor(SEX) +
+                       AGE_1979+
                      as.factor(MINORITY) ,
                    data = df_classic)
 
@@ -2147,12 +2155,14 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
 (lm_predog_CESD7_1992 <- lm(CESD7_1992 ~
                      DELIN_AVERAGE +
                      as.factor(SEX) +
+                       AGE_1979+
                      as.factor(MINORITY) ,
                    data = df_classic))
 
 (lm_predog_CESD20_1992 <- lm(CESD20_1992 ~
                      DELIN_AVERAGE +
                       as.factor(SEX) +
+                       AGE_1979+
                       as.factor(MINORITY),
                     data = df_classic))
 
@@ -2160,6 +2170,7 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
 (lm_predog_CESD7_1994 <- lm(CESD7_1994 ~
                       DELIN_AVERAGE+
                      as.factor(SEX) +
+                       AGE_1979+
                      as.factor(MINORITY) ,
                    data = df_classic)
 )
@@ -2179,6 +2190,7 @@ data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%>%
 lm_btwfam_sex4_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
                             SEX_all4 +
+                              AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
@@ -2187,6 +2199,7 @@ lm_btwfam_sex3_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~
                              CESD7_1992_mean +
                             SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
+                             AGE_1979_mean+
                             as.factor(MINORITY_1),
                            data = df_btwn)
 
@@ -2194,6 +2207,7 @@ lm_btwfam_sex3_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~
 lm_btwfam_sex3_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all3 +
+                              AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
@@ -2201,6 +2215,7 @@ lm_btwfam_sex3_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~
 lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
+                              AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
@@ -2208,6 +2223,7 @@ lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~
 lm_btwfam_sex4_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all4 +
+                              AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
@@ -2230,6 +2246,8 @@ lm_discord_sex4_CESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
                                 CESD7_1992_mean+
+                                  AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2239,6 +2257,8 @@ lm_discord_sex3_CESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
                                 CESD7_1992_mean+
+                                     AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2248,6 +2268,8 @@ lm_discord_sex3_CESD20_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
                                 CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2257,6 +2279,8 @@ lm_discord_sex4_CESD20_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
                                 CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2267,6 +2291,8 @@ lm_discord_sex3_CESD7_1994 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
                                 CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2276,6 +2302,8 @@ lm_discord_sex4_CESD7_1994 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
                                 CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2289,6 +2317,8 @@ lm_discord_dep_sex4_CESD7_1992 <- lm(data=df_dyad,
                                 DELIN_AVERAGE_mean+
                                 DELIN_AVERAGE_diff + 
                                 CESD7_1992_mean+
+                                     AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2298,6 +2328,8 @@ lm_discord_dep_sex3_CESD7_1992 <- lm(data=df_dyad,
                                 DELIN_AVERAGE_mean+
                                 DELIN_AVERAGE_diff + 
                                 CESD7_1992_mean+
+                                     AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2307,6 +2339,8 @@ lm_discord_dep_sex3_CESD20_1992 <- lm(data=df_dyad,
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
                                 CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2316,6 +2350,8 @@ lm_discord_dep_sex4_CESD20_1992 <- lm(data=df_dyad,
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
                                 CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2326,6 +2362,8 @@ lm_discord_dep_sex3_CESD7_1994 <- lm(data=df_dyad,
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
                                 CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all3 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
@@ -2335,6 +2373,8 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
                                 CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
                                 SEX_all4 +
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
