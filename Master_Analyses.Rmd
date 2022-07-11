@@ -2429,7 +2429,7 @@ lm_og_CESD7_1994 %>%
 ```{r}
 
 
-lm_btwfam_sex4_CESD7_1992 %>%
+lm_btwfam_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2444,7 +2444,7 @@ lm_btwfam_sex4_CESD7_1992 %>%
 ```
 
 ```{r}
-lm_btwfam_sex4_CESD20_1992 %>%
+lm_btwfam_sex3_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2459,7 +2459,7 @@ lm_btwfam_sex4_CESD20_1992 %>%
 
 ```{r}
 
-lm_btwfam_sex4_CESD7_1994 %>%
+lm_btwfam_sex3_CESD7_1994 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2477,7 +2477,7 @@ lm_btwfam_sex4_CESD7_1994 %>%
 #### CESD_7\_1992
 
 ```{r}
-lm_discord_sex4_CESD7_1992 %>%
+lm_discord_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2490,7 +2490,7 @@ lm_discord_sex4_CESD7_1992 %>%
       )
 
 
-lm_discord_dep_sex4_CESD7_1992 %>%
+lm_discord_dep_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2515,7 +2515,7 @@ The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07.
 Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.
 
 ```{r}
-lm_discord_sex4_CESD20_1992 %>%
+lm_discord_sex3_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2529,7 +2529,7 @@ lm_discord_sex4_CESD20_1992 %>%
 ```
 
 ```{r}
-lm_discord_sex4_CESD7_1994%>%
+lm_discord_sex3_CESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
