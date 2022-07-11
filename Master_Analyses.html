@@ -776,6 +776,7 @@ lm_btwfam_sex4_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~
 lm_btwfam_sex3_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all3 +
+                            AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)</code></pre>
@@ -3905,13 +3906,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.34</td>
-<td class="gt_row gt_center">20.9</td>
-<td class="gt_row gt_center">0.31, 0.37</td>
+<td class="gt_row gt_center">0.78</td>
+<td class="gt_row gt_center">10.1</td>
+<td class="gt_row gt_center">0.63, 0.93</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
 <td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">7.22</td>
+<td class="gt_row gt_center">7.23</td>
 <td class="gt_row gt_center">0.01, 0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
@@ -3927,12 +3928,17 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
 <td class="gt_row gt_center">-0.24</td>
 <td class="gt_row gt_center">-12.8</td>
-<td class="gt_row gt_center">-0.28, -0.20</td>
+<td class="gt_row gt_center">-0.27, -0.20</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
 <td class="gt_row gt_center">-0.13</td>
-<td class="gt_row gt_center">-8.20</td>
+<td class="gt_row gt_center">-8.16</td>
 <td class="gt_row gt_center">-0.16, -0.10</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">-0.03</td>
+<td class="gt_row gt_center">-5.85</td>
+<td class="gt_row gt_center">-0.03, -0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
@@ -3946,13 +3952,13 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
 <td class="gt_row gt_center">0.08</td>
-<td class="gt_row gt_center">5.66</td>
+<td class="gt_row gt_center">5.83</td>
 <td class="gt_row gt_center">0.05, 0.10</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.071; F-Statistic = 54.5; DF1 = 4; DF2 = 2,875; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.081; F-Statistic = 51.0; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
