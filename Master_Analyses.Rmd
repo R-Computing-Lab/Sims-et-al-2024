@@ -2546,7 +2546,29 @@ lm_discord_sex3_CESD7_1994%>%
 # Results
 
 We examined the relationship between depression and crime in three distinct stages.
-First, we looked at the overall relationship without accounting for family structure. Second, we looked at the between-family relationships, and lastly we looked at the within-family relationships. Throughout, this process we also examined whether gender and race impacted these dynamics. 
+First, we looked at the overall relationship without accounting for family structure. Second, we looked at the between-family relationships. between-family analyses report the relationships between the within-family average AFI and various measures of ability. Lastly we looked at the within-family relationships. Throughout, this process we also examined whether gender, race, and age impacted these dynamics.
+
+## Unadjusted
+
+## Between-Family
+
+We examined the between-family results. We tested whether the sibling average for delinquency was associated with sibling averages in depression. We examined this relationship in both directions, in other words we examined whether delinquency predicted depression or whether depression predicted delinquency. Results, as expected, were similar. Accordingly we report results looking at <direction of interest>, and direct interested readers to the appendix. Similarly, we focused on the CES-D 20 as our measure of depression, but include results for the other two varients in the appendix. We discuss the variants of these models, when the results differ.
+
+### Depression predicting deliquency
+```{r}
+library(lm.beta)
+lm_result <- lm.beta(lm_btwfam_sex3_CESD7_1992)
+print(lm_result)
+summary(lm_result)
+result_coef <- coef(lm_result)
+writeup_btw<-summary(lm_result)
+result_r2<-round(writeup_btw$adj.r.squared,4)
+result_n <-length(writeup_btw$residuals)
+result_beta1 <- round(result_coef['CESD7_1992_mean'],4)
+```
+
+
+Sibling averages of PREDICTOR were used to predict sibling averages of OUTCOME. Table X presents the regression results (n =`r result_n`). A one-unit increase in the average PREDICTOR predicted a statistically significant increase of $.013$ standard deviations in average OUTCOME. When we transform the coefficient into a standardized beta weight (`r result_beta1`), a standard-deviation increase in the PREDICTOR predicts a `r result_beta1` standard-deviation increase in the average of the siblings' OUTCOME. The adjusted R$^{2}$ was `r result_r2`.
 
 ## Descriptive Statistics
 
