@@ -2557,9 +2557,12 @@ First, we looked at the overall relationship without accounting for family struc
 
 ## Unadjusted
 
+Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note, 
+
+
 ## Between-Family
 
-We examined the between-family results. We tested whether the sibling average for delinquency was associated with sibling averages in depression. We examined this relationship in both directions, in other words we examined whether delinquency predicted depression or whether depression predicted delinquency. Results, as expected, were similar. Accordingly we report results looking at <direction of interest>, and direct interested readers to the appendix. Similarly, we focused on the CES-D 20 as our measure of depression, but include results for the other two varients in the appendix. We discuss the variants of these models, when the results differ.
+We examined the between-family results. We tested whether the sibling average for delinquency was associated with sibling averages in depression. We examined this relationship in both directions, in other words we examined whether delinquency predicted depression or whether depression predicted delinquency. Results, as expected, were similar. Accordingly we report results looking at <direction of interest>, and direct interested readers to the appendix. Similarly, we focused on the CES-D 20 as our measure of depression, but include results for the other two variants in the appendix. We discuss the variants of these models, when the results differ.
 
 ### Depression predicting deliquency
 ```{r}
@@ -2582,7 +2585,7 @@ result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
 
-Sibling averages of PREDICTOR were used to predict sibling averages of OUTCOME. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_beta1` standard deviations in the average of the siblings' OUTCOME. As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Similarly, older sibling pairs were predictive of lower levels of OUTCOME (`r result_age`). Relatives to the reference group (), had `r result_minority` standard deviations in the average of the siblings' OUTCOME.
+Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_beta1` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Similarly, older sibling pairs were predictive of lower levels of OUTCOME (`r result_age`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviationsfor average of the siblings' delinquency measure.
 
 ### Deliquency predicting depression
 ```{r}
@@ -2604,23 +2607,11 @@ result_bg <- round(result_coef['SEX_all3mixed'],4)
 result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
-Sibling averages of PREDICTOR were used to predict sibling averages of OUTCOME. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_beta1` standard deviations in the average of the siblings' OUTCOME. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Relatives to the reference group (), had `r result_minority` standard deviations in the average of the siblings' OUTCOME.
+Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_beta1` standard deviations in the average of the siblings' OUTCOME. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had higher averages in depression. Relative to the reference group (), non-Black non-Hispanic families had higher family levels of depression (b = `r result_minority`).
 
-## Descriptive Statistics
-
-Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note, 
 
 ```{r}
 
 
 ```
 
-Between Within
-
-### Correlations
-
-Correlation Table Variables Race Sex CESD_7\_1994 CESD_20_1994 CESD_7\_1992 Delinquency Average
-
-### Classic Regression
-
-### Kinship model regression analysis
