@@ -2212,6 +2212,13 @@ lm_btwfam_sex3_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
+lm_btwfam_dep_sex3_CESD20_1992 <- lm(CESD20_1992_mean ~ 
+                             DELIN_AVERAGE_mean +
+                            SEX_all3 +
+                              AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
 lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
@@ -2557,18 +2564,47 @@ We examined the between-family results. We tested whether the sibling average fo
 ### Depression predicting deliquency
 ```{r}
 library(lm.beta)
-lm_result <- lm.beta(lm_btwfam_sex3_CESD7_1992)
+lm_result <- lm.beta(lm_btwfam_sex3_CESD20_1992)
 print(lm_result)
 summary(lm_result)
 result_coef <- coef(lm_result)
 writeup_btw<-summary(lm_result)
 result_r2<-round(writeup_btw$adj.r.squared,4)
+result_f<-round(writeup_btw$fstatistic['value'],4)
+result_ndf<-round(writeup_btw$fstatistic['numdf'],0)
+result_ddf<-round(writeup_btw$fstatistic['dendf'],0)
 result_n <-length(writeup_btw$residuals)
 result_beta1 <- round(result_coef['CESD7_1992_mean'],4)
+result_age <- round(result_coef['AGE_1979_mean'],4)
+result_gg <- round(result_coef['SEX_all3GirlGirl'],4)
+result_bg <- round(result_coef['SEX_all3mixed'],4)
+result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
 
-Sibling averages of PREDICTOR were used to predict sibling averages of OUTCOME. Table X presents the regression results (n =`r result_n`). A one-unit increase in the average PREDICTOR predicted a statistically significant increase of $.013$ standard deviations in average OUTCOME. When we transform the coefficient into a standardized beta weight (`r result_beta1`), a standard-deviation increase in the PREDICTOR predicts a `r result_beta1` standard-deviation increase in the average of the siblings' OUTCOME. The adjusted R$^{2}$ was `r result_r2`.
+Sibling averages of PREDICTOR were used to predict sibling averages of OUTCOME. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_beta1` standard deviations in the average of the siblings' OUTCOME. As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Similarly, older sibling pairs were predictive of lower levels of OUTCOME (`r result_age`). Relatives to the reference group (), had `r result_minority` standard deviations in the average of the siblings' OUTCOME.
+
+### Deliquency predicting depression
+```{r}
+library(lm.beta)
+lm_result <- lm.beta(lm_btwfam_dep_sex3_CESD20_1992)
+print(lm_result)
+summary(lm_result)
+result_coef <- coef(lm_result)
+writeup_btw<-summary(lm_result)
+result_r2<-round(writeup_btw$adj.r.squared,4)
+result_f<-round(writeup_btw$fstatistic['value'],4)
+result_ndf<-round(writeup_btw$fstatistic['numdf'],0)
+result_ddf<-round(writeup_btw$fstatistic['dendf'],0)
+result_n <-length(writeup_btw$residuals)
+result_beta1 <- round(result_coef['CESD7_1992_mean'],4)
+result_age <- round(result_coef['AGE_1979_mean'],4)
+result_gg <- round(result_coef['SEX_all3GirlGirl'],4)
+result_bg <- round(result_coef['SEX_all3mixed'],4)
+result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
+```
+
+Sibling averages of PREDICTOR were used to predict sibling averages of OUTCOME. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_beta1` standard deviations in the average of the siblings' OUTCOME. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Relatives to the reference group (), had `r result_minority` standard deviations in the average of the siblings' OUTCOME.
 
 ## Descriptive Statistics
 
