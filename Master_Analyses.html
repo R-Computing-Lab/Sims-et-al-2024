@@ -365,7 +365,7 @@ pre code {
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason
 Garrison</h4>
-<h4 class="date">August 01 2022</h4>
+<h4 class="date">August 03 2022</h4>
 
 </div>
 
@@ -6064,8 +6064,8 @@ result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
 result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
 result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;-length(writeup_btw$residuals)
-result_beta1 &lt;- round(result_coef[&#39;CESD7_1992_mean&#39;],4)
-result_age &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;CESD7_1992_mean&#39;],4)
+result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
 result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
@@ -6140,8 +6140,8 @@ result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
 result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
 result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;-length(writeup_btw$residuals)
-result_beta1 &lt;- round(result_coef[&#39;CESD7_1992_mean&#39;],4)
-result_age &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;CESD7_1992_mean&#39;],4)
+result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
 result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
@@ -6155,8 +6155,121 @@ average of the siblings’ OUTCOME. As expected, gender composition and
 minority status were also predictive, whereas age was not. Relative to
 the reference group of brothers, families with one (0.0583) or two
 (0.1137) sisters had higher averages in depression. Relative to the
-reference group (), non-Black non-Hispanic families had higher family
+reference group, non-Black non-Hispanic families had higher family
 levels of depression (b = -0.2074).</p>
+</div>
+</div>
+<div id="sibling-difference-score" class="section level2">
+<h2>Sibling Difference Score</h2>
+<p>We then implemented within-family versions of the between-family
+results we presented in the previous subsection. Specifically, we
+modeled the relationship of sibling differences in depression and
+differences in delinquency. We modeled them in both directions, while
+controlling for the means of outcomes and predictors. Just as we did in
+the between-family analyses, we applied these models to the other
+measures of depression. They are available in the appendix, but we make
+note of any meaningful differences.</p>
+<div id="deliquency-predicting-depression-1" class="section level3">
+<h3>Deliquency predicting depression</h3>
+<pre class="r"><code>library(lm.beta)
+lm_result &lt;- lm.beta(lm_discord_dep_sex3_CESD20_1992)
+print(lm_result)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CESD20_1992_diff ~ DELIN_AVERAGE_mean + DELIN_AVERAGE_diff + 
+##     CESD20_1992_mean + AGE_1979_diff + AGE_1979_mean + SEX_all3 + 
+##     factor(MINORITY_1), data = df_dyad)
+## 
+## Standardized Coefficients::
+##                        (Intercept)                 DELIN_AVERAGE_mean 
+##                                 NA                      -0.0025636378 
+##                 DELIN_AVERAGE_diff                   CESD20_1992_mean 
+##                       0.0085205027                       0.6217410984 
+##                      AGE_1979_diff                      AGE_1979_mean 
+##                      -0.0367004727                       0.0036912070 
+##                   SEX_all3GirlGirl                      SEX_all3mixed 
+##                      -0.0009515551                       0.0065340279 
+## factor(MINORITY_1)nonblackhispanic 
+##                       0.0600961472</code></pre>
+<pre class="r"><code>summary(lm_result)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CESD20_1992_diff ~ DELIN_AVERAGE_mean + DELIN_AVERAGE_diff + 
+##     CESD20_1992_mean + AGE_1979_diff + AGE_1979_mean + SEX_all3 + 
+##     factor(MINORITY_1), data = df_dyad)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -33.074  -3.440  -0.577   3.037  27.264 
+## 
+## Coefficients:
+##                                      Estimate Standardized Std. Error t value
+## (Intercept)                         0.5351347           NA  1.4017666   0.382
+## DELIN_AVERAGE_mean                 -0.0559165   -0.0025636  0.3327354  -0.168
+## DELIN_AVERAGE_diff                  0.1139549    0.0085205  0.1964112   0.580
+## CESD20_1992_mean                    0.7543906    0.6217411  0.0182126  41.421
+## AGE_1979_diff                      -0.1021855   -0.0367005  0.0406924  -2.511
+## AGE_1979_mean                       0.0198212    0.0036912  0.0786655   0.252
+## SEX_all3GirlGirl                   -0.0176352   -0.0009516  0.3330957  -0.053
+## SEX_all3mixed                       0.1046431    0.0065340  0.2827305   0.370
+## factor(MINORITY_1)nonblackhispanic  0.9621949    0.0600961  0.2394040   4.019
+##                                    Pr(&gt;|t|)    
+## (Intercept)                          0.7027    
+## DELIN_AVERAGE_mean                   0.8666    
+## DELIN_AVERAGE_diff                   0.5618    
+## CESD20_1992_mean                    &lt; 2e-16 ***
+## AGE_1979_diff                        0.0121 *  
+## AGE_1979_mean                        0.8011    
+## SEX_all3GirlGirl                     0.9578    
+## SEX_all3mixed                        0.7113    
+## factor(MINORITY_1)nonblackhispanic 5.99e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.331 on 2948 degrees of freedom
+##   (230 observations deleted due to missingness)
+## Multiple R-squared:  0.376,  Adjusted R-squared:  0.3743 
+## F-statistic: 222.1 on 8 and 2948 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>result_coef &lt;- coef(lm_result)
+writeup_wth&lt;-summary(lm_result)
+result_r2&lt;-round(writeup_wth$adj.r.squared,4)
+result_f&lt;-round(writeup_wth$fstatistic[&#39;value&#39;],4)
+result_ndf&lt;-round(writeup_wth$fstatistic[&#39;numdf&#39;],0)
+result_ddf&lt;-round(writeup_wth$fstatistic[&#39;dendf&#39;],0)
+result_n &lt;-length(writeup_wth$residuals)
+result_outcome_mean &lt;- round(result_coef[&#39;CESD20_1992_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;DELIN_AVERAGE_mean&#39;],4)
+result_predictor_diff &lt;- round(result_coef[&#39;DELIN_AVERAGE_diff&#39;],4)
+result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
+result_age_diff &lt;- round(result_coef[&#39;AGE_1979_diff&#39;],4)
+result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
+result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
+result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
+</div>
+<div id="section" class="section level3">
+<h3></h3>
+<p>Sibling differences in PREDICTOR were used to predict differences in
+OUTCOME, controlling for family level gender composition, family
+minority status, and sibling averages of both OUTCOME and PREDICTOR.
+Table X displays the results of MODEL. The CESD20 model reports the
+averages and differences where depression is measured using CESD20 (n
+=2957). The CESD7.92 model reports the averages and differences where
+depression is measured using CESD7 in 1992 (n =2957). The CESD7.94
+reports the averages and differences where depression is measured using
+CESD7 in 1992 (n =2957).</p>
+<p>All three models reveal similar results. Averages of OUTCOME were
+significant predictors of differences in OUTCOME (p <span class="math inline">\(&lt; .01\)</span>), across all three linking
+methods. A one standard deviation increase in the sibling average of
+OUTCOME predicted a 0.6217 increase in average OUTCOME difference,
+controlling for all over variables in the model. (We don’t encourage
+people to interpret these coefficients deeply).</p>
+<p>In the CESD20 model, the sibling average of standardized AFQT scores
+was a significant predictor of differences in Gen2 AFI (p <span class="math inline">\(&lt; .01\)</span>). A one unit increase in the
+average standardized intelligence of the children’s mothers predicted
+<span class="math inline">\(\approx .0083\)</span> decrease in the AFI
+difference between siblings. All other variables were not significant,
+including all kin difference variables. The adjusted R<span class="math inline">\(^{2}\)</span> varied slightly by Gen2 linking
+(Mixed <span class="math inline">\(= .066\)</span>, Daughters <span class="math inline">\(= .072\)</span>, Sons <span class="math inline">\(= .106\)</span>).</p>
 </div>
 </div>
 </div>
