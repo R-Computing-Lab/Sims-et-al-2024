@@ -2590,6 +2590,7 @@ Sibling averages of CESD-20 were used to predict sibling averages of delinquency
 ### Deliquency predicting depression
 ```{r}
 library(lm.beta)
+
 lm_result <- lm.beta(lm_btwfam_dep_sex3_CESD20_1992)
 print(lm_result)
 summary(lm_result)
