@@ -2,7 +2,8 @@
 title: "Results"
 author: "Emma Sims, Jonathan Trattner, and S. Mason Garrison"
 date: "`r format(Sys.time(), '%B %d %Y')`"
-output: html_document
+output:
+  html_document: default
 editor_options: 
   markdown: 
     wrap: sentence
@@ -29,7 +30,7 @@ if (!require("tictoc")) install.packages("tictoc")
 if (!require("glue")) install.packages("glue")
 if (!require("psych")) install.packages("psych")
 if (!require("foreign")) install.packages("foreign")
-if (!require("renv")) install.packages("renv")
+if(!require("ggplot2")) install.packages("ggplot2")
 
 ## Installs most recent dev version
 remotes::install_github(repo="nlsy-links/NlsyLinks")
@@ -51,7 +52,7 @@ library(glue)
 library(psych)
 library(foreign)
 library(dplyr)
-library(renv)
+library(ggplot2)
 
 ```
 
@@ -1900,6 +1901,37 @@ ungroup()
 summary(df_spsp_gen1)
 }
 ```
+```{r} 
+#Data visualization
+
+ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) + 
+  geom_bar(fill = "cornflowerblue", 
+           color="black") +
+  labs(x = "Race", 
+       y = "Frequency", 
+       title = "Participants by Race") +
+   theme_minimal()
+
+ggplot(df_spsp_gen1, aes(x =AGE_1979)) + 
+  geom_bar(fill = "Light Blue", 
+           color="black") +
+  labs(x = "Age", 
+       y = "Participant Amount", 
+       title = "Participant Age") +
+  scale_x_continuous(breaks = seq(14, 23)) +
+   theme_minimal()
+
+#have female be 0 and male be 1
+   ggplot(df_spsp_gen1, aes(x = df_spsp_gen1$SEX))+
+       geom_bar(fill = "cornflowerblue", 
+           color="black") +
+  labs(x = "Gender", 
+       y = "Frequency", 
+       title = "Participants by Gender",
+       subtitle = "0=female, 1=male")
+    
+
+```
 
 ## Summarize
 
@@ -2136,13 +2168,7 @@ lm_og_CESD7_1992 <- lm(DELIN_AVERAGE ~
                      as.factor(MINORITY) ,
                    data = df_classic)
 
-lm_og_CESD7_1992 %>%
- tbl_regression() %>%
-    add_glance_source_note() %>%
-    modify_header(
-      statistic ~ "**t-statistic**", 
-      p.value ~ "**p-value**"
-      )
+
 
 lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
                       CESD20_1992 +
@@ -2151,13 +2177,7 @@ lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
                       as.factor(MINORITY),
                     data = df_classic)
 
-lm_og_CESD20_1992 %>%
- tbl_regression() %>%
-    add_glance_source_note() %>%
-    modify_header(
-      statistic ~ "**t-statistic**", 
-      p.value ~ "**p-value**"
-      )
+
 
 lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
                      CESD7_1994 +
@@ -2237,6 +2257,7 @@ lm_btwfam_dep_sex3_CESD20_1992 <- lm(CESD20_1992_mean ~
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
                            data = df_btwn)
+
 lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
@@ -2252,6 +2273,7 @@ lm_btwfam_sex4_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
                            data = df_btwn)
+
 lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all3 +
@@ -2360,6 +2382,7 @@ lm_discord_dep_sex3_CESD7_1992 <- lm(data=df_dyad,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 df_dyad<-df_dyad_CESD20_1992
+
 lm_discord_dep_sex3_CESD20_1992 <- lm(data=df_dyad,
                               CESD20_1992_diff ~ 
                                 DELIN_AVERAGE_mean +
@@ -2412,7 +2435,7 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 
 ```{r raw}
 
-
+#classical regression
 lm_og_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
@@ -2454,6 +2477,7 @@ lm_og_CESD7_1994 %>%
 
 ```{r}
 
+#between family 
 
 lm_btwfam_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
@@ -2470,6 +2494,8 @@ lm_btwfam_sex3_CESD7_1992 %>%
 ```
 
 ```{r}
+#between family
+
 lm_btwfam_sex3_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
@@ -2527,6 +2553,72 @@ lm_discord_dep_sex3_CESD7_1992 %>%
     gtsummary::modify_header(
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
+```
+
+Discord
+CESD20-1992
+
+```{r}
+lm_discord_sex3_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+lm_discord_sex3_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+lm_discord_dep_sex3_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+lm_discord_sex3_CESD7_1994%>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+lm_discord_dep_sex3_CESD7_1994%>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
 ```
 
 # CESD_20_1992
