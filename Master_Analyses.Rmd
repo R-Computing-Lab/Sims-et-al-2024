@@ -2,8 +2,7 @@
 title: "Results"
 author: "Emma Sims, Jonathan Trattner, and S. Mason Garrison"
 date: "`r format(Sys.time(), '%B %d %Y')`"
-output:
-  html_document: default
+output: html_document
 editor_options: 
   markdown: 
     wrap: sentence
@@ -30,6 +29,7 @@ if (!require("tictoc")) install.packages("tictoc")
 if (!require("glue")) install.packages("glue")
 if (!require("psych")) install.packages("psych")
 if (!require("foreign")) install.packages("foreign")
+if (!require("renv")) install.packages("renv")
 
 ## Installs most recent dev version
 remotes::install_github(repo="nlsy-links/NlsyLinks")
@@ -51,6 +51,7 @@ library(glue)
 library(psych)
 library(foreign)
 library(dplyr)
+library(renv)
 
 ```
 
@@ -2135,6 +2136,14 @@ lm_og_CESD7_1992 <- lm(DELIN_AVERAGE ~
                      as.factor(MINORITY) ,
                    data = df_classic)
 
+lm_og_CESD7_1992 %>%
+ tbl_regression() %>%
+    add_glance_source_note() %>%
+    modify_header(
+      statistic ~ "**t-statistic**", 
+      p.value ~ "**p-value**"
+      )
+
 lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
                       CESD20_1992 +
                       as.factor(SEX) +
@@ -2142,6 +2151,13 @@ lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
                       as.factor(MINORITY),
                     data = df_classic)
 
+lm_og_CESD20_1992 %>%
+ tbl_regression() %>%
+    add_glance_source_note() %>%
+    modify_header(
+      statistic ~ "**t-statistic**", 
+      p.value ~ "**p-value**"
+      )
 
 lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
                      CESD7_1994 +
@@ -2174,6 +2190,8 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
                      as.factor(MINORITY) ,
                    data = df_classic)
 )
+
+
 
 ```
 

@@ -105,8 +105,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -114,16 +114,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -170,7 +163,7 @@ pre code {
 
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason Garrison</h4>
-<h4 class="date">August 17 2022</h4>
+<h4 class="date">November 03 2022</h4>
 
 </div>
 
@@ -181,9 +174,13 @@ pre code {
 <h2>Import</h2>
 <div id="depression" class="section level3">
 <h3>Depression</h3>
+<pre><code>## * Removing package(s) from library &#39;C:/Users/emmas/AppData/Local/R/win-library/4.2&#39; ...</code></pre>
+<pre><code>## Error in if (!renv_file_exists(path)) {: the condition has length &gt; 1</code></pre>
 </div>
 <div id="crime" class="section level3">
 <h3>Crime</h3>
+<pre><code>## * Removing package(s) from library &#39;C:/Users/emmas/AppData/Local/R/win-library/4.2&#39; ...</code></pre>
+<pre><code>## Error in if (!renv_file_exists(path)) {: the condition has length &gt; 1</code></pre>
 </div>
 <div id="age" class="section level3">
 <h3>age</h3>
@@ -453,301 +450,12 @@ lm_og_CESD7_1992 &lt;- lm(DELIN_AVERAGE ~
                      as.factor(MINORITY) ,
                    data = df_classic)
 
-lm_og_CESD20_1992 &lt;- lm(DELIN_AVERAGE ~
-                      CESD20_1992 +
-                      as.factor(SEX) +
-                        AGE_1979+
-                      as.factor(MINORITY),
-                    data = df_classic)
-
-
-lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
-                     CESD7_1994 +
-                     as.factor(SEX) +
-                       AGE_1979+
-                     as.factor(MINORITY) ,
-                   data = df_classic)
-
-
-
-(lm_predog_CESD7_1992 &lt;- lm(CESD7_1992 ~
-                     DELIN_AVERAGE +
-                     as.factor(SEX) +
-                       AGE_1979+
-                     as.factor(MINORITY) ,
-                   data = df_classic))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = CESD7_1992 ~ DELIN_AVERAGE + as.factor(SEX) + AGE_1979 + 
-##     as.factor(MINORITY), data = df_classic)
-## 
-## Coefficients:
-##                         (Intercept)                        DELIN_AVERAGE  
-##                            5.000799                             0.907945  
-##                     as.factor(SEX)1                             AGE_1979  
-##                           -1.142182                            -0.005234  
-## as.factor(MINORITY)nonblackhispanic  
-##                           -0.829392</code></pre>
-<pre class="r"><code>(lm_predog_CESD20_1992 &lt;- lm(CESD20_1992 ~
-                     DELIN_AVERAGE +
-                      as.factor(SEX) +
-                       AGE_1979+
-                      as.factor(MINORITY),
-                    data = df_classic))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = CESD20_1992 ~ DELIN_AVERAGE + as.factor(SEX) + AGE_1979 + 
-##     as.factor(MINORITY), data = df_classic)
-## 
-## Coefficients:
-##                         (Intercept)                        DELIN_AVERAGE  
-##                            11.11514                              2.10150  
-##                     as.factor(SEX)1                             AGE_1979  
-##                            -2.21415                              0.02185  
-## as.factor(MINORITY)nonblackhispanic  
-##                            -2.61436</code></pre>
-<pre class="r"><code>(lm_predog_CESD7_1994 &lt;- lm(CESD7_1994 ~
-                      DELIN_AVERAGE+
-                     as.factor(SEX) +
-                       AGE_1979+
-                     as.factor(MINORITY) ,
-                   data = df_classic)
-)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = CESD7_1994 ~ DELIN_AVERAGE + as.factor(SEX) + AGE_1979 + 
-##     as.factor(MINORITY), data = df_classic)
-## 
-## Coefficients:
-##                         (Intercept)                        DELIN_AVERAGE  
-##                              4.1934                               0.7167  
-##                     as.factor(SEX)1                             AGE_1979  
-##                             -1.4936                               0.0233  
-## as.factor(MINORITY)nonblackhispanic  
-##                             -0.6574</code></pre>
-</div>
-<div id="between-family" class="section level1">
-<h1>between-family</h1>
-<pre class="r"><code>df_btwn &lt;- df_dyad_delinq
-
-data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%&gt;%
-  summary()</code></pre>
-<pre><code>##  as.factor.df_btwn.SEX_all4. as.factor.df_btwn.SEX_all3.
-##  BoyBoy  :1022               BoyBoy  :1022              
-##  BoyGirl :1215               GirlGirl: 898              
-##  GirlBoy : 549               mixed   :1764              
-##  GirlGirl: 898</code></pre>
-<pre class="r"><code>#note: you only need s1 race because they&#39;re determined by the mother
-lm_btwfam_sex4_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                             CESD7_1992_mean +
-                            SEX_all4 +
-                              AGE_1979_mean+
-                           #  factor(SEX_1)+factor(SEX_2)+
-                            as.factor(MINORITY_1),
-                           data = df_btwn)
-
-lm_btwfam_sex3_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                             CESD7_1992_mean +
-                            SEX_all3 +
-                           #  factor(SEX_1)+factor(SEX_2)+
-                             AGE_1979_mean+
-                            as.factor(MINORITY_1),
-                           data = df_btwn)
-
-
-lm_btwfam_sex3_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                             CESD20_1992_mean +
-                            SEX_all3 +
-                              AGE_1979_mean+
-                           #  factor(SEX_1)+factor(SEX_2)+
-                            as.factor(MINORITY_1), 
-                           data = df_btwn)
-
-lm_btwfam_dep_sex3_CESD20_1992 &lt;- lm(CESD20_1992_mean ~ 
-                             DELIN_AVERAGE_mean +
-                            SEX_all3 +
-                              AGE_1979_mean+
-                           #  factor(SEX_1)+factor(SEX_2)+
-                            as.factor(MINORITY_1), 
-                           data = df_btwn)
-lm_btwfam_sex4_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                             CESD20_1992_mean +
-                            SEX_all4 +
-                              AGE_1979_mean+
-                           #  factor(SEX_1)+factor(SEX_2)+
-                            as.factor(MINORITY_1), 
-                           data = df_btwn)
-
-lm_btwfam_sex4_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                            CESD7_1994_mean +
-                            SEX_all4 +
-                              AGE_1979_mean+
-                           #  factor(SEX_1)+factor(SEX_2)+
-                            as.factor(MINORITY_1),
-                           data = df_btwn)
-lm_btwfam_sex3_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
-                            CESD7_1994_mean +
-                            SEX_all3 +
-                            AGE_1979_mean+
-                           #  factor(SEX_1)+factor(SEX_2)+
-                            as.factor(MINORITY_1),
-                           data = df_btwn)</code></pre>
-</div>
-<div id="within-family-analyses" class="section level1">
-<h1>within-family analyses</h1>
-<pre class="r"><code># 
-
-lm_discord_sex4_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
-                                DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean+
-                                CESD7_1992_diff + 
-                                CESD7_1992_mean+
-                                  AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all4 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_sex3_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
-                                DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean+
-                                CESD7_1992_diff + 
-                                CESD7_1992_mean+
-                                     AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all3 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_sex3_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
-                              DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                CESD20_1992_diff + 
-                                CESD20_1992_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all3 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_sex4_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
-                              DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                CESD20_1992_diff + 
-                                CESD20_1992_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all4 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-
-lm_discord_sex3_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
-                              DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                CESD7_1994_diff + 
-                                CESD7_1994_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all3 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_sex4_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
-                              DELIN_AVERAGE_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                CESD7_1994_diff + 
-                                CESD7_1994_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all4 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-
-
-df_dyad&lt;-df_dyad_CESD7_1992
-
-lm_discord_dep_sex4_CESD7_1992 &lt;- lm(data=df_dyad,
-                                CESD7_1992_diff ~ 
-                                DELIN_AVERAGE_mean+
-                                DELIN_AVERAGE_diff + 
-                                CESD7_1992_mean+
-                                     AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all4 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_dep_sex3_CESD7_1992 &lt;- lm(data=df_dyad,
-                                CESD7_1992_diff ~ 
-                                DELIN_AVERAGE_mean+
-                                DELIN_AVERAGE_diff + 
-                                CESD7_1992_mean+
-                                     AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all3 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-df_dyad&lt;-df_dyad_CESD20_1992
-lm_discord_dep_sex3_CESD20_1992 &lt;- lm(data=df_dyad,
-                              CESD20_1992_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                DELIN_AVERAGE_diff + 
-                                CESD20_1992_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all3 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_dep_sex4_CESD20_1992 &lt;- lm(data=df_dyad,
-                              CESD20_1992_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                DELIN_AVERAGE_diff + 
-                                CESD20_1992_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all4 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-df_dyad&lt;-df_dyad_CESD7_1994
-
-lm_discord_dep_sex3_CESD7_1994 &lt;- lm(data=df_dyad,
-                              CESD7_1994_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                DELIN_AVERAGE_diff + 
-                                CESD7_1994_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all3 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )
-
-lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
-                              CESD7_1994_diff ~ 
-                                DELIN_AVERAGE_mean +
-                                DELIN_AVERAGE_diff + 
-                                CESD7_1994_mean +
-                                   AGE_1979_diff+
-                                  AGE_1979_mean+
-                                SEX_all4 +
-                              #  factor(SEX_1)+factor(SEX_2)+
-                                factor(MINORITY_1) )</code></pre>
-<div id="results" class="section level2">
-<h2>Results</h2>
-<div id="raw" class="section level3">
-<h3>raw</h3>
-<pre class="r"><code>lm_og_CESD7_1992 %&gt;%
-    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ &quot;F-Statistic&quot;,
-                   df  ~ &quot;DF1&quot;,
-                   df.residual  ~ &quot;DF2&quot;),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %&gt;%
-    gtsummary::modify_header(
-      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
+lm_og_CESD7_1992 %&gt;%
+ tbl_regression() %&gt;%
+    add_glance_source_note() %&gt;%
+    modify_header(
+      statistic ~ &quot;**t-statistic**&quot;, 
+      p.value ~ &quot;**p-value**&quot;
       )</code></pre>
 <div id="xorqybhtsx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
@@ -1122,15 +830,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#xorqybhtsx .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #xorqybhtsx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -1143,41 +842,38 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#xorqybhtsx .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#xorqybhtsx .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#xorqybhtsx .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#xorqybhtsx .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#xorqybhtsx .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#xorqybhtsx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xorqybhtsx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xorqybhtsx .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.44</td>
-<td class="gt_row gt_center">11.1</td>
-<td class="gt_row gt_center">0.37, 0.52</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992</td>
 <td class="gt_row gt_center">0.01</td>
 <td class="gt_row gt_center">9.60</td>
@@ -1188,12 +884,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
+    <tr><td class="gt_row gt_left">    0</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+    <tr><td class="gt_row gt_left">    1</td>
 <td class="gt_row gt_center">0.25</td>
 <td class="gt_row gt_center">25.2</td>
 <td class="gt_row gt_center">0.23, 0.27</td>
@@ -1208,12 +904,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
 <td class="gt_row gt_center">0.05</td>
 <td class="gt_row gt_center">5.24</td>
 <td class="gt_row gt_center">0.03, 0.07</td>
@@ -1221,7 +917,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.086; F-Statistic = 200; DF1 = 4; DF2 = 8,451; p-value = &lt;0.001; No. Obs. = 8,456</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.086; Adjusted R² = 0.086; Sigma = 0.452; Statistic = 200; p-value = &lt;0.001; df = 4; Log-likelihood = -5,289; AIC = 10,589; BIC = 10,632; Deviance = 1,730; Residual df = 8,451; No. Obs. = 8,456</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -1231,16 +927,19 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_og_CESD20_1992 %&gt;%
-    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ &quot;F-Statistic&quot;,
-                   df  ~ &quot;DF1&quot;,
-                   df.residual  ~ &quot;DF2&quot;),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %&gt;%
-    gtsummary::modify_header(
-      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
+<pre class="r"><code>lm_og_CESD20_1992 &lt;- lm(DELIN_AVERAGE ~
+                      CESD20_1992 +
+                      as.factor(SEX) +
+                        AGE_1979+
+                      as.factor(MINORITY),
+                    data = df_classic)
+
+lm_og_CESD20_1992 %&gt;%
+ tbl_regression() %&gt;%
+    add_glance_source_note() %&gt;%
+    modify_header(
+      statistic ~ &quot;**t-statistic**&quot;, 
+      p.value ~ &quot;**p-value**&quot;
       )</code></pre>
 <div id="nxylbztrkq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
@@ -1615,15 +1314,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#nxylbztrkq .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #nxylbztrkq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -1636,41 +1326,38 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#nxylbztrkq .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#nxylbztrkq .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#nxylbztrkq .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#nxylbztrkq .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#nxylbztrkq .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#nxylbztrkq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#nxylbztrkq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#nxylbztrkq .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.44</td>
-<td class="gt_row gt_center">11.1</td>
-<td class="gt_row gt_center">0.37, 0.52</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD20_1992</td>
 <td class="gt_row gt_center">0.01</td>
 <td class="gt_row gt_center">9.72</td>
@@ -1681,12 +1368,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
+    <tr><td class="gt_row gt_left">    0</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+    <tr><td class="gt_row gt_left">    1</td>
 <td class="gt_row gt_center">0.25</td>
 <td class="gt_row gt_center">25.2</td>
 <td class="gt_row gt_center">0.23, 0.27</td>
@@ -1701,12 +1388,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
 <td class="gt_row gt_center">0.05</td>
 <td class="gt_row gt_center">5.48</td>
 <td class="gt_row gt_center">0.03, 0.07</td>
@@ -1714,7 +1401,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.087; F-Statistic = 202; DF1 = 4; DF2 = 8,493; p-value = &lt;0.001; No. Obs. = 8,498</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.087; Adjusted R² = 0.086; Sigma = 0.453; Statistic = 202; p-value = &lt;0.001; df = 4; Log-likelihood = -5,331; AIC = 10,674; BIC = 10,716; Deviance = 1,745; Residual df = 8,493; No. Obs. = 8,498</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -1724,7 +1411,284 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_og_CESD7_1994 %&gt;%
+<pre class="r"><code>lm_og_CESD7_1994 &lt;- lm(DELIN_AVERAGE ~
+                     CESD7_1994 +
+                     as.factor(SEX) +
+                       AGE_1979+
+                     as.factor(MINORITY) ,
+                   data = df_classic)
+
+
+
+(lm_predog_CESD7_1992 &lt;- lm(CESD7_1992 ~
+                     DELIN_AVERAGE +
+                     as.factor(SEX) +
+                       AGE_1979+
+                     as.factor(MINORITY) ,
+                   data = df_classic))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CESD7_1992 ~ DELIN_AVERAGE + as.factor(SEX) + AGE_1979 + 
+##     as.factor(MINORITY), data = df_classic)
+## 
+## Coefficients:
+##                         (Intercept)                        DELIN_AVERAGE  
+##                            5.000799                             0.907945  
+##                     as.factor(SEX)1                             AGE_1979  
+##                           -1.142182                            -0.005234  
+## as.factor(MINORITY)nonblackhispanic  
+##                           -0.829392</code></pre>
+<pre class="r"><code>(lm_predog_CESD20_1992 &lt;- lm(CESD20_1992 ~
+                     DELIN_AVERAGE +
+                      as.factor(SEX) +
+                       AGE_1979+
+                      as.factor(MINORITY),
+                    data = df_classic))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CESD20_1992 ~ DELIN_AVERAGE + as.factor(SEX) + AGE_1979 + 
+##     as.factor(MINORITY), data = df_classic)
+## 
+## Coefficients:
+##                         (Intercept)                        DELIN_AVERAGE  
+##                            11.11514                              2.10150  
+##                     as.factor(SEX)1                             AGE_1979  
+##                            -2.21415                              0.02185  
+## as.factor(MINORITY)nonblackhispanic  
+##                            -2.61436</code></pre>
+<pre class="r"><code>(lm_predog_CESD7_1994 &lt;- lm(CESD7_1994 ~
+                      DELIN_AVERAGE+
+                     as.factor(SEX) +
+                       AGE_1979+
+                     as.factor(MINORITY) ,
+                   data = df_classic)
+)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CESD7_1994 ~ DELIN_AVERAGE + as.factor(SEX) + AGE_1979 + 
+##     as.factor(MINORITY), data = df_classic)
+## 
+## Coefficients:
+##                         (Intercept)                        DELIN_AVERAGE  
+##                              4.1934                               0.7167  
+##                     as.factor(SEX)1                             AGE_1979  
+##                             -1.4936                               0.0233  
+## as.factor(MINORITY)nonblackhispanic  
+##                             -0.6574</code></pre>
+</div>
+<div id="between-family" class="section level1">
+<h1>between-family</h1>
+<pre class="r"><code>df_btwn &lt;- df_dyad_delinq
+
+data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%&gt;%
+  summary()</code></pre>
+<pre><code>##  as.factor.df_btwn.SEX_all4. as.factor.df_btwn.SEX_all3.
+##  BoyBoy  :1022               BoyBoy  :1022              
+##  BoyGirl :1215               GirlGirl: 898              
+##  GirlBoy : 549               mixed   :1764              
+##  GirlGirl: 898</code></pre>
+<pre class="r"><code>#note: you only need s1 race because they&#39;re determined by the mother
+lm_btwfam_sex4_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD7_1992_mean +
+                            SEX_all4 +
+                              AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+
+lm_btwfam_sex3_CESD7_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD7_1992_mean +
+                            SEX_all3 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                             AGE_1979_mean+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+
+
+lm_btwfam_sex3_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD20_1992_mean +
+                            SEX_all3 +
+                              AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
+
+lm_btwfam_dep_sex3_CESD20_1992 &lt;- lm(CESD20_1992_mean ~ 
+                             DELIN_AVERAGE_mean +
+                            SEX_all3 +
+                              AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
+lm_btwfam_sex4_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                             CESD20_1992_mean +
+                            SEX_all4 +
+                              AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1), 
+                           data = df_btwn)
+
+lm_btwfam_sex4_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                            CESD7_1994_mean +
+                            SEX_all4 +
+                              AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)
+lm_btwfam_sex3_CESD7_1994 &lt;- lm(DELIN_AVERAGE_mean ~ 
+                            CESD7_1994_mean +
+                            SEX_all3 +
+                            AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btwn)</code></pre>
+</div>
+<div id="within-family-analyses" class="section level1">
+<h1>within-family analyses</h1>
+<pre class="r"><code># 
+
+lm_discord_sex4_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
+                                DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                CESD7_1992_diff + 
+                                CESD7_1992_mean+
+                                  AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex3_CESD7_1992 &lt;- lm(data=df_dyad_delinq,
+                                DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                CESD7_1992_diff + 
+                                CESD7_1992_mean+
+                                     AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex3_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD20_1992_diff + 
+                                CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex4_CESD20_1992 &lt;- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD20_1992_diff + 
+                                CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+
+lm_discord_sex3_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD7_1994_diff + 
+                                CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_sex4_CESD7_1994 &lt;- lm(data=df_dyad_delinq,
+                              DELIN_AVERAGE_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                CESD7_1994_diff + 
+                                CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+
+
+df_dyad&lt;-df_dyad_CESD7_1992
+
+lm_discord_dep_sex4_CESD7_1992 &lt;- lm(data=df_dyad,
+                                CESD7_1992_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1992_mean+
+                                     AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_dep_sex3_CESD7_1992 &lt;- lm(data=df_dyad,
+                                CESD7_1992_diff ~ 
+                                DELIN_AVERAGE_mean+
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1992_mean+
+                                     AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+df_dyad&lt;-df_dyad_CESD20_1992
+lm_discord_dep_sex3_CESD20_1992 &lt;- lm(data=df_dyad,
+                              CESD20_1992_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_dep_sex4_CESD20_1992 &lt;- lm(data=df_dyad,
+                              CESD20_1992_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD20_1992_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+df_dyad&lt;-df_dyad_CESD7_1994
+
+lm_discord_dep_sex3_CESD7_1994 &lt;- lm(data=df_dyad,
+                              CESD7_1994_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all3 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )
+
+lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
+                              CESD7_1994_diff ~ 
+                                DELIN_AVERAGE_mean +
+                                DELIN_AVERAGE_diff + 
+                                CESD7_1994_mean +
+                                   AGE_1979_diff+
+                                  AGE_1979_mean+
+                                SEX_all4 +
+                              #  factor(SEX_1)+factor(SEX_2)+
+                                factor(MINORITY_1) )</code></pre>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<div id="raw" class="section level3">
+<h3>raw</h3>
+<pre class="r"><code>lm_og_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -2108,15 +2072,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#sexsdgiqpv .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #sexsdgiqpv .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -2129,44 +2084,46 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#sexsdgiqpv .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#sexsdgiqpv .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#sexsdgiqpv .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#sexsdgiqpv .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#sexsdgiqpv .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#sexsdgiqpv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sexsdgiqpv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sexsdgiqpv .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.47</td>
-<td class="gt_row gt_center">11.7</td>
-<td class="gt_row gt_center">0.39, 0.55</td>
+<td class="gt_row gt_center">0.44</td>
+<td class="gt_row gt_center">11.1</td>
+<td class="gt_row gt_center">0.37, 0.52</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1994</td>
+    <tr><td class="gt_row gt_left">CESD7_1992</td>
 <td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">7.58</td>
+<td class="gt_row gt_center">9.60</td>
 <td class="gt_row gt_center">0.01, 0.01</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(SEX)</td>
@@ -2174,19 +2131,19 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
+    <tr><td class="gt_row gt_left">    0</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+    <tr><td class="gt_row gt_left">    1</td>
 <td class="gt_row gt_center">0.25</td>
 <td class="gt_row gt_center">25.2</td>
 <td class="gt_row gt_center">0.23, 0.27</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979</td>
 <td class="gt_row gt_center">-0.02</td>
-<td class="gt_row gt_center">-9.26</td>
+<td class="gt_row gt_center">-9.02</td>
 <td class="gt_row gt_center">-0.02, -0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY)</td>
@@ -2194,20 +2151,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
 <td class="gt_row gt_center">0.05</td>
-<td class="gt_row gt_center">4.56</td>
+<td class="gt_row gt_center">5.24</td>
 <td class="gt_row gt_center">0.03, 0.07</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.083; F-Statistic = 191; DF1 = 4; DF2 = 8,395; p-value = &lt;0.001; No. Obs. = 8,400</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.086; F-Statistic = 200; DF1 = 4; DF2 = 8,451; p-value = &lt;0.001; No. Obs. = 8,456</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -2217,10 +2174,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-</div>
-<div id="btween" class="section level3">
-<h3>Btween</h3>
-<pre class="r"><code>lm_btwfam_sex3_CESD7_1992 %&gt;%
+<pre class="r"><code>lm_og_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -2604,15 +2558,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#sfofriwmwy .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #sfofriwmwy .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -2625,90 +2570,87 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#sfofriwmwy .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#sfofriwmwy .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#sfofriwmwy .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#sfofriwmwy .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#sfofriwmwy .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#sfofriwmwy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sfofriwmwy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sfofriwmwy .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.75</td>
-<td class="gt_row gt_center">9.79</td>
-<td class="gt_row gt_center">0.60, 0.91</td>
+<td class="gt_row gt_center">0.44</td>
+<td class="gt_row gt_center">11.1</td>
+<td class="gt_row gt_center">0.37, 0.52</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">7.50</td>
-<td class="gt_row gt_center">0.01, 0.02</td>
+    <tr><td class="gt_row gt_left">CESD20_1992</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">9.72</td>
+<td class="gt_row gt_center">0.00, 0.01</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">SEX_all3</td>
+    <tr><td class="gt_row gt_left">as.factor(SEX)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    0</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.22</td>
-<td class="gt_row gt_center">-12.3</td>
-<td class="gt_row gt_center">-0.26, -0.19</td>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">0.25</td>
+<td class="gt_row gt_center">25.2</td>
+<td class="gt_row gt_center">0.23, 0.27</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
-<td class="gt_row gt_center">-0.12</td>
-<td class="gt_row gt_center">-7.67</td>
-<td class="gt_row gt_center">-0.15, -0.09</td>
+    <tr><td class="gt_row gt_left">AGE_1979</td>
+<td class="gt_row gt_center">-0.02</td>
+<td class="gt_row gt_center">-9.05</td>
+<td class="gt_row gt_center">-0.02, -0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">-0.03</td>
-<td class="gt_row gt_center">-5.86</td>
-<td class="gt_row gt_center">-0.03, -0.02</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
+    <tr><td class="gt_row gt_left">as.factor(MINORITY)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.08</td>
-<td class="gt_row gt_center">5.98</td>
-<td class="gt_row gt_center">0.05, 0.10</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">0.05</td>
+<td class="gt_row gt_center">5.48</td>
+<td class="gt_row gt_center">0.03, 0.07</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 50.5; DF1 = 5; DF2 = 2,917; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.087; F-Statistic = 202; DF1 = 4; DF2 = 8,493; p-value = &lt;0.001; No. Obs. = 8,498</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -2718,7 +2660,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_btwfam_sex3_CESD20_1992 %&gt;%
+<pre class="r"><code>lm_og_CESD7_1994 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -3102,15 +3044,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#yloovgljbv .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #yloovgljbv .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -3123,90 +3056,87 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#yloovgljbv .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#yloovgljbv .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#yloovgljbv .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#yloovgljbv .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#yloovgljbv .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#yloovgljbv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yloovgljbv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yloovgljbv .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.76</td>
-<td class="gt_row gt_center">9.88</td>
-<td class="gt_row gt_center">0.61, 0.91</td>
+<td class="gt_row gt_center">0.47</td>
+<td class="gt_row gt_center">11.7</td>
+<td class="gt_row gt_center">0.39, 0.55</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
+    <tr><td class="gt_row gt_left">CESD7_1994</td>
 <td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">7.56</td>
+<td class="gt_row gt_center">7.58</td>
 <td class="gt_row gt_center">0.01, 0.01</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">SEX_all3</td>
+    <tr><td class="gt_row gt_left">as.factor(SEX)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    0</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.22</td>
-<td class="gt_row gt_center">-12.3</td>
-<td class="gt_row gt_center">-0.26, -0.19</td>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">0.25</td>
+<td class="gt_row gt_center">25.2</td>
+<td class="gt_row gt_center">0.23, 0.27</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
-<td class="gt_row gt_center">-0.12</td>
-<td class="gt_row gt_center">-7.59</td>
-<td class="gt_row gt_center">-0.15, -0.09</td>
+    <tr><td class="gt_row gt_left">AGE_1979</td>
+<td class="gt_row gt_center">-0.02</td>
+<td class="gt_row gt_center">-9.26</td>
+<td class="gt_row gt_center">-0.02, -0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">-0.03</td>
-<td class="gt_row gt_center">-5.98</td>
-<td class="gt_row gt_center">-0.03, -0.02</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
+    <tr><td class="gt_row gt_left">as.factor(MINORITY)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.08</td>
-<td class="gt_row gt_center">6.22</td>
-<td class="gt_row gt_center">0.06, 0.11</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">0.05</td>
+<td class="gt_row gt_center">4.56</td>
+<td class="gt_row gt_center">0.03, 0.07</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 51.4; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.083; F-Statistic = 191; DF1 = 4; DF2 = 8,395; p-value = &lt;0.001; No. Obs. = 8,400</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -3216,7 +3146,10 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_btwfam_sex3_CESD7_1994 %&gt;%
+</div>
+<div id="btween" class="section level3">
+<h3>Btween</h3>
+<pre class="r"><code>lm_btwfam_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -3600,15 +3533,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#zwlhfapbtl .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #zwlhfapbtl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -3621,44 +3545,46 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#zwlhfapbtl .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#zwlhfapbtl .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#zwlhfapbtl .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#zwlhfapbtl .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#zwlhfapbtl .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#zwlhfapbtl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zwlhfapbtl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zwlhfapbtl .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.78</td>
-<td class="gt_row gt_center">10.1</td>
-<td class="gt_row gt_center">0.63, 0.93</td>
+<td class="gt_row gt_center">0.75</td>
+<td class="gt_row gt_center">9.79</td>
+<td class="gt_row gt_center">0.60, 0.91</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
+    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
 <td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">7.23</td>
+<td class="gt_row gt_center">7.50</td>
 <td class="gt_row gt_center">0.01, 0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
@@ -3666,24 +3592,24 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.24</td>
-<td class="gt_row gt_center">-12.8</td>
-<td class="gt_row gt_center">-0.27, -0.20</td>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
+<td class="gt_row gt_center">-0.22</td>
+<td class="gt_row gt_center">-12.3</td>
+<td class="gt_row gt_center">-0.26, -0.19</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
-<td class="gt_row gt_center">-0.13</td>
-<td class="gt_row gt_center">-8.16</td>
-<td class="gt_row gt_center">-0.16, -0.10</td>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">-0.12</td>
+<td class="gt_row gt_center">-7.67</td>
+<td class="gt_row gt_center">-0.15, -0.09</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_mean</td>
 <td class="gt_row gt_center">-0.03</td>
-<td class="gt_row gt_center">-5.85</td>
+<td class="gt_row gt_center">-5.86</td>
 <td class="gt_row gt_center">-0.03, -0.02</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
@@ -3691,20 +3617,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
 <td class="gt_row gt_center">0.08</td>
-<td class="gt_row gt_center">5.83</td>
+<td class="gt_row gt_center">5.98</td>
 <td class="gt_row gt_center">0.05, 0.10</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.081; F-Statistic = 51.0; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 50.5; DF1 = 5; DF2 = 2,917; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -3714,12 +3640,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-</div>
-<div id="discordant" class="section level3">
-<h3>Discordant</h3>
-<div id="cesd_7_1992" class="section level4">
-<h4>CESD_7_1992</h4>
-<pre class="r"><code>lm_discord_sex3_CESD7_1992 %&gt;%
+<pre class="r"><code>lm_btwfam_sex3_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4103,15 +4024,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#fqdnnnbanz .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #fqdnnnbanz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -4124,105 +4036,92 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#fqdnnnbanz .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#fqdnnnbanz .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#fqdnnnbanz .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#fqdnnnbanz .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#fqdnnnbanz .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#fqdnnnbanz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#fqdnnnbanz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#fqdnnnbanz .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">-0.06</td>
-<td class="gt_row gt_center">-0.98</td>
-<td class="gt_row gt_center">-0.19, 0.07</td>
-<td class="gt_row gt_center">0.3</td></tr>
-    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">64.8</td>
-<td class="gt_row gt_center">1.0, 1.0</td>
+<td class="gt_row gt_center">0.76</td>
+<td class="gt_row gt_center">9.88</td>
+<td class="gt_row gt_center">0.61, 0.91</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1992_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">0.98</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.3</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.327</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.7</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-2.53</td>
-<td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.011</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">1.20</td>
-<td class="gt_row gt_center">0.00, 0.01</td>
-<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">7.56</td>
+<td class="gt_row gt_center">0.01, 0.01</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.814</td>
-<td class="gt_row gt_center">-0.02, 0.04</td>
-<td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
-<td class="gt_row gt_center">0.07</td>
-<td class="gt_row gt_center">4.90</td>
-<td class="gt_row gt_center">0.04, 0.09</td>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
+<td class="gt_row gt_center">-0.22</td>
+<td class="gt_row gt_center">-12.3</td>
+<td class="gt_row gt_center">-0.26, -0.19</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">-0.12</td>
+<td class="gt_row gt_center">-7.59</td>
+<td class="gt_row gt_center">-0.15, -0.09</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">-0.03</td>
+<td class="gt_row gt_center">-5.98</td>
+<td class="gt_row gt_center">-0.03, -0.02</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.406</td>
-<td class="gt_row gt_center">-0.03, 0.02</td>
-<td class="gt_row gt_center">0.7</td></tr>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">0.08</td>
+<td class="gt_row gt_center">6.22</td>
+<td class="gt_row gt_center">0.06, 0.11</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.610; F-Statistic = 569; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 51.4; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4232,7 +4131,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD7_1992 %&gt;%
+<pre class="r"><code>lm_btwfam_sex3_CESD7_1994 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4616,15 +4515,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#dvtuuqbbcq .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #dvtuuqbbcq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -4637,105 +4527,92 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#dvtuuqbbcq .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#dvtuuqbbcq .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#dvtuuqbbcq .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#dvtuuqbbcq .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#dvtuuqbbcq .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#dvtuuqbbcq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dvtuuqbbcq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dvtuuqbbcq .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.021</td>
-<td class="gt_row gt_center">-1.2, 1.3</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
-    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">0.03</td>
-<td class="gt_row gt_center">0.206</td>
-<td class="gt_row gt_center">-0.26, 0.33</td>
-<td class="gt_row gt_center">0.8</td></tr>
-    <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
-<td class="gt_row gt_center">0.10</td>
-<td class="gt_row gt_center">1.14</td>
-<td class="gt_row gt_center">-0.07, 0.28</td>
-<td class="gt_row gt_center">0.3</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.69</td>
-<td class="gt_row gt_center">36.1</td>
-<td class="gt_row gt_center">0.65, 0.72</td>
+<td class="gt_row gt_center">0.78</td>
+<td class="gt_row gt_center">10.1</td>
+<td class="gt_row gt_center">0.63, 0.93</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.709</td>
-<td class="gt_row gt_center">-0.02, 0.05</td>
-<td class="gt_row gt_center">0.5</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">0.05</td>
-<td class="gt_row gt_center">1.35</td>
-<td class="gt_row gt_center">-0.02, 0.12</td>
-<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
+<td class="gt_row gt_center">0.02</td>
+<td class="gt_row gt_center">7.23</td>
+<td class="gt_row gt_center">0.01, 0.02</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
-<td class="gt_row gt_center">-0.02</td>
-<td class="gt_row gt_center">-0.105</td>
-<td class="gt_row gt_center">-0.31, 0.28</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
-<td class="gt_row gt_center">0.04</td>
-<td class="gt_row gt_center">0.276</td>
-<td class="gt_row gt_center">-0.22, 0.29</td>
-<td class="gt_row gt_center">0.8</td></tr>
-    <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
+<td class="gt_row gt_center">-0.24</td>
+<td class="gt_row gt_center">-12.8</td>
+<td class="gt_row gt_center">-0.27, -0.20</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">-0.13</td>
+<td class="gt_row gt_center">-8.16</td>
+<td class="gt_row gt_center">-0.16, -0.10</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">-0.03</td>
+<td class="gt_row gt_center">-5.85</td>
+<td class="gt_row gt_center">-0.03, -0.02</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">0.27</td>
-<td class="gt_row gt_center">2.51</td>
-<td class="gt_row gt_center">0.06, 0.48</td>
-<td class="gt_row gt_center">0.012</td></tr>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">0.08</td>
+<td class="gt_row gt_center">5.83</td>
+<td class="gt_row gt_center">0.05, 0.10</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.317; F-Statistic = 169; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.081; F-Statistic = 51.0; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4746,13 +4623,11 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 </table>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div id="cesd_20_1992" class="section level1">
-<h1>CESD_20_1992</h1>
-<p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
-<pre class="r"><code>lm_discord_sex3_CESD20_1992 %&gt;%
+<div id="discordant" class="section level3">
+<h3>Discordant</h3>
+<div id="cesd_7_1992" class="section level4">
+<h4>CESD_7_1992</h4>
+<pre class="r"><code>lm_discord_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -5136,15 +5011,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#xugjiyoamv .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #xugjiyoamv .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -5157,64 +5023,66 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#xugjiyoamv .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#xugjiyoamv .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#xugjiyoamv .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#xugjiyoamv .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#xugjiyoamv .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#xugjiyoamv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xugjiyoamv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xugjiyoamv .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">-0.07</td>
-<td class="gt_row gt_center">-1.01</td>
-<td class="gt_row gt_center">-0.20, 0.06</td>
+<td class="gt_row gt_center">-0.06</td>
+<td class="gt_row gt_center">-0.978</td>
+<td class="gt_row gt_center">-0.19, 0.07</td>
 <td class="gt_row gt_center">0.3</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
 <td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">65.6</td>
-<td class="gt_row gt_center">1.0, 1.1</td>
+<td class="gt_row gt_center">64.8</td>
+<td class="gt_row gt_center">0.99, 1.0</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD20_1992_diff</td>
+    <tr><td class="gt_row gt_left">CESD7_1992_diff</td>
 <td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">0.376</td>
+<td class="gt_row gt_center">0.978</td>
 <td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.7</td></tr>
-    <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
+<td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
 <td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.376</td>
+<td class="gt_row gt_center">-0.327</td>
 <td class="gt_row gt_center">0.00, 0.00</td>
 <td class="gt_row gt_center">0.7</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-2.60</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-2.53</td>
 <td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.009</td></tr>
+<td class="gt_row gt_center">0.011</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_mean</td>
 <td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">1.21</td>
+<td class="gt_row gt_center">1.20</td>
 <td class="gt_row gt_center">0.00, 0.01</td>
 <td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
@@ -5222,19 +5090,19 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
 <td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.854</td>
+<td class="gt_row gt_center">0.814</td>
 <td class="gt_row gt_center">-0.02, 0.04</td>
 <td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
+    <tr><td class="gt_row gt_left">    mixed</td>
 <td class="gt_row gt_center">0.07</td>
-<td class="gt_row gt_center">5.07</td>
+<td class="gt_row gt_center">4.90</td>
 <td class="gt_row gt_center">0.04, 0.09</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
@@ -5242,20 +5110,20 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-0.516</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.406</td>
 <td class="gt_row gt_center">-0.03, 0.02</td>
-<td class="gt_row gt_center">0.6</td></tr>
+<td class="gt_row gt_center">0.7</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.612; F-Statistic = 582; DF1 = 8; DF2 = 2,948; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.610; F-Statistic = 569; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -5265,7 +5133,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_sex3_CESD7_1994%&gt;%
+<pre class="r"><code>lm_discord_dep_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -5649,15 +5517,6 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   font-size: 65%;
 }
 
-#xvlqgpjttv .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
 #xvlqgpjttv .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
@@ -5670,33 +5529,1054 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
   vertical-align: 0;
 }
 
-#xvlqgpjttv .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#xvlqgpjttv .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#xvlqgpjttv .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#xvlqgpjttv .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#xvlqgpjttv .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#xvlqgpjttv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xvlqgpjttv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xvlqgpjttv .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>t-Statistic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(Intercept)</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.021</td>
+<td class="gt_row gt_center">-1.2, 1.3</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
+<td class="gt_row gt_center">0.03</td>
+<td class="gt_row gt_center">0.206</td>
+<td class="gt_row gt_center">-0.26, 0.33</td>
+<td class="gt_row gt_center">0.8</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
+<td class="gt_row gt_center">0.10</td>
+<td class="gt_row gt_center">1.14</td>
+<td class="gt_row gt_center">-0.07, 0.28</td>
+<td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
+<td class="gt_row gt_center">0.69</td>
+<td class="gt_row gt_center">36.1</td>
+<td class="gt_row gt_center">0.65, 0.72</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.709</td>
+<td class="gt_row gt_center">-0.02, 0.05</td>
+<td class="gt_row gt_center">0.5</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">0.05</td>
+<td class="gt_row gt_center">1.35</td>
+<td class="gt_row gt_center">-0.02, 0.12</td>
+<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">SEX_all3</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
+<td class="gt_row gt_center">-0.02</td>
+<td class="gt_row gt_center">-0.105</td>
+<td class="gt_row gt_center">-0.31, 0.28</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">0.04</td>
+<td class="gt_row gt_center">0.276</td>
+<td class="gt_row gt_center">-0.22, 0.29</td>
+<td class="gt_row gt_center">0.8</td></tr>
+    <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">0.27</td>
+<td class="gt_row gt_center">2.51</td>
+<td class="gt_row gt_center">0.06, 0.48</td>
+<td class="gt_row gt_center">0.012</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">R² = 0.317; F-Statistic = 169; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> CI = Confidence Interval</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="cesd_20_1992" class="section level1">
+<h1>CESD_20_1992</h1>
+<p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
+<pre class="r"><code>lm_discord_sex3_CESD20_1992 %&gt;%
+    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ &quot;F-Statistic&quot;,
+                   df  ~ &quot;DF1&quot;,
+                   df.residual  ~ &quot;DF2&quot;),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %&gt;%
+    gtsummary::modify_header(
+      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
+      )</code></pre>
+<div id="xiudbawyif" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xiudbawyif .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xiudbawyif .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xiudbawyif .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xiudbawyif .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xiudbawyif .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xiudbawyif .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xiudbawyif .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xiudbawyif .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xiudbawyif .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xiudbawyif .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xiudbawyif .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xiudbawyif .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xiudbawyif .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xiudbawyif .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xiudbawyif .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xiudbawyif .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xiudbawyif .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xiudbawyif .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xiudbawyif .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xiudbawyif .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xiudbawyif .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xiudbawyif .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xiudbawyif .gt_left {
+  text-align: left;
+}
+
+#xiudbawyif .gt_center {
+  text-align: center;
+}
+
+#xiudbawyif .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xiudbawyif .gt_font_normal {
+  font-weight: normal;
+}
+
+#xiudbawyif .gt_font_bold {
+  font-weight: bold;
+}
+
+#xiudbawyif .gt_font_italic {
+  font-style: italic;
+}
+
+#xiudbawyif .gt_super {
+  font-size: 65%;
+}
+
+#xiudbawyif .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#xiudbawyif .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xiudbawyif .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xiudbawyif .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xiudbawyif .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xiudbawyif .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xiudbawyif .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(Intercept)</td>
+<td class="gt_row gt_center">-0.07</td>
+<td class="gt_row gt_center">-1.01</td>
+<td class="gt_row gt_center">-0.20, 0.06</td>
+<td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
+<td class="gt_row gt_center">1.0</td>
+<td class="gt_row gt_center">65.6</td>
+<td class="gt_row gt_center">1.0, 1.1</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">CESD20_1992_diff</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.376</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">0.7</td></tr>
+    <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.376</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">0.7</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-2.60</td>
+<td class="gt_row gt_center">-0.01, 0.00</td>
+<td class="gt_row gt_center">0.009</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">1.21</td>
+<td class="gt_row gt_center">0.00, 0.01</td>
+<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">SEX_all3</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.854</td>
+<td class="gt_row gt_center">-0.02, 0.04</td>
+<td class="gt_row gt_center">0.4</td></tr>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">0.07</td>
+<td class="gt_row gt_center">5.07</td>
+<td class="gt_row gt_center">0.04, 0.09</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.516</td>
+<td class="gt_row gt_center">-0.03, 0.02</td>
+<td class="gt_row gt_center">0.6</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">R² = 0.612; F-Statistic = 582; DF1 = 8; DF2 = 2,948; p-value = &lt;0.001; No. Obs. = 2,957</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> CI = Confidence Interval</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<pre class="r"><code>lm_discord_sex3_CESD7_1994%&gt;%
+    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ &quot;F-Statistic&quot;,
+                   df  ~ &quot;DF1&quot;,
+                   df.residual  ~ &quot;DF2&quot;),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %&gt;%
+    gtsummary::modify_header(
+      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
+      )</code></pre>
+<div id="gfyaimqmde" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gfyaimqmde .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gfyaimqmde .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gfyaimqmde .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gfyaimqmde .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gfyaimqmde .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gfyaimqmde .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gfyaimqmde .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gfyaimqmde .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gfyaimqmde .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gfyaimqmde .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gfyaimqmde .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gfyaimqmde .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gfyaimqmde .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfyaimqmde .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gfyaimqmde .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gfyaimqmde .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfyaimqmde .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gfyaimqmde .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfyaimqmde .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gfyaimqmde .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfyaimqmde .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gfyaimqmde .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfyaimqmde .gt_left {
+  text-align: left;
+}
+
+#gfyaimqmde .gt_center {
+  text-align: center;
+}
+
+#gfyaimqmde .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gfyaimqmde .gt_font_normal {
+  font-weight: normal;
+}
+
+#gfyaimqmde .gt_font_bold {
+  font-weight: bold;
+}
+
+#gfyaimqmde .gt_font_italic {
+  font-style: italic;
+}
+
+#gfyaimqmde .gt_super {
+  font-size: 65%;
+}
+
+#gfyaimqmde .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#gfyaimqmde .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gfyaimqmde .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gfyaimqmde .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gfyaimqmde .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gfyaimqmde .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gfyaimqmde .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -5708,7 +6588,7 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
 <td class="gt_row gt_center">1.0</td>
 <td class="gt_row gt_center">64.6</td>
-<td class="gt_row gt_center">1.0, 1.1</td>
+<td class="gt_row gt_center">0.99, 1.1</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1994_diff</td>
 <td class="gt_row gt_center">0.00</td>
@@ -5735,17 +6615,17 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">BoyBoy</td>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">GirlGirl</td>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
 <td class="gt_row gt_center">0.02</td>
 <td class="gt_row gt_center">1.13</td>
 <td class="gt_row gt_center">-0.01, 0.05</td>
 <td class="gt_row gt_center">0.3</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">mixed</td>
+    <tr><td class="gt_row gt_left">    mixed</td>
 <td class="gt_row gt_center">0.07</td>
 <td class="gt_row gt_center">5.22</td>
 <td class="gt_row gt_center">0.04, 0.10</td>
@@ -5755,12 +6635,12 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">blackorhispanic</td>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">nonblackhispanic</td>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
 <td class="gt_row gt_center">0.00</td>
 <td class="gt_row gt_center">-0.069</td>
 <td class="gt_row gt_center">-0.02, 0.02</td>
