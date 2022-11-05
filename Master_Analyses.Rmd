@@ -55,7 +55,6 @@ library(dplyr)
 library(ggplot2)
 
 ```
-
 # Data
 
 ## Import
@@ -1617,7 +1616,6 @@ varlabels <- c("ID# (1-12686) 79",
   "REASONS FOR NON-INT 2016"
 )
 
-
 # Use qnames rather than rnums
 
 qnames = function(data) {
@@ -1901,7 +1899,7 @@ ungroup()
 summary(df_spsp_gen1)
 }
 ```
-```{r} 
+```{r data visualization} 
 #Data visualization
 
 ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) + 
@@ -2287,7 +2285,7 @@ lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~
 # within-family analyses
 
 ```{r discordmodels}
-# 
+
 
 lm_discord_sex4_CESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
@@ -2436,6 +2434,7 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 ```{r raw}
 
 #classical regression
+
 lm_og_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
@@ -2475,7 +2474,7 @@ lm_og_CESD7_1994 %>%
 
 ### Btween
 
-```{r}
+```{r raw btw}
 
 #between family 
 
@@ -2493,7 +2492,7 @@ lm_btwfam_sex3_CESD7_1992 %>%
 
 ```
 
-```{r}
+```{r raw bt fam}
 #between family
 
 lm_btwfam_sex3_CESD20_1992 %>%
@@ -2509,7 +2508,7 @@ lm_btwfam_sex3_CESD20_1992 %>%
       )
 ```
 
-```{r}
+```{r raw btw2}
 
 lm_btwfam_sex3_CESD7_1994 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
@@ -2528,7 +2527,8 @@ lm_btwfam_sex3_CESD7_1994 %>%
 
 #### CESD_7\_1992
 
-```{r}
+```{r discord}
+
 lm_discord_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
@@ -2553,47 +2553,11 @@ lm_discord_dep_sex3_CESD7_1992 %>%
     gtsummary::modify_header(
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
+
 ```
+CESD7_1994
 
-Discord
-CESD20-1992
-
-```{r}
-lm_discord_sex3_CESD20_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
-
-lm_discord_sex3_CESD20_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
-
-lm_discord_dep_sex3_CESD20_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+```{r raw3}
 
 lm_discord_sex3_CESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
@@ -2621,7 +2585,7 @@ lm_discord_dep_sex3_CESD7_1994%>%
 
 ```
 
-# CESD_20_1992
+#CESD_20_1992
 
 The CESD_20 depression difference was not significant..
 The CESD_20 depression score did not predict criminal behavior.
@@ -2632,7 +2596,10 @@ The variance in criminal behavior explained by the regression model is 61.48% f(
 The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07.
 Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.
 
-```{r}
+CESD20_1992
+
+```{r raw5}
+
 lm_discord_sex3_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
@@ -2644,10 +2611,9 @@ lm_discord_sex3_CESD20_1992 %>%
     gtsummary::modify_header(
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
-```
 
-```{r}
-lm_discord_sex3_CESD7_1994%>%
+
+lm_discord_dep_sex3_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2675,7 +2641,8 @@ Unadjusted univariate and bivariate descriptive statistics were consist with wha
 We examined the between-family results. We tested whether the sibling average for delinquency was associated with sibling averages in depression. We examined this relationship in both directions, in other words we examined whether delinquency predicted depression or whether depression predicted delinquency. Results, as expected, were similar. Accordingly we report results looking at <direction of interest>, and direct interested readers to the appendix. Similarly, we focused on the CES-D 20 as our measure of depression, but include results for the other two variants in the appendix. We discuss the variants of these models, when the results differ.
 
 ### Depression predicting deliquency
-```{r}
+```{r dep predict delinq}
+
 library(lm.beta)
 lm_result <- lm.beta(lm_btwfam_sex3_CESD20_1992)
 print(lm_result)
@@ -2698,7 +2665,8 @@ result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Similarly, older sibling pairs were predictive of lower levels of OUTCOME (`r result_age_mean`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviationsfor average of the siblings' delinquency measure.
 
 ### Deliquency predicting depression
-```{r}
+```{r delin pred dep2}
+
 library(lm.beta)
 
 lm_result <- lm.beta(lm_btwfam_dep_sex3_CESD20_1992)
@@ -2726,7 +2694,8 @@ Sibling averages of delinquency were used to predict sibling averages of depress
 We then implemented within-family versions of the between-family results we presented in the previous subsection. Specifically, we modeled the relationship of sibling differences in depression and differences in delinquency. We modeled them in both directions, while controlling for the means of outcomes and predictors. Just as we did in the between-family analyses, we applied these models to the other measures of depression. They are available in the appendix, but we make note of any meaningful differences.
 
 ### Deliquency predicting depression
-```{r}
+```{r deli predict depr}
+
 library(lm.beta)
 lm_result <- lm.beta(lm_discord_dep_sex3_CESD20_1992)
 print(lm_result)
