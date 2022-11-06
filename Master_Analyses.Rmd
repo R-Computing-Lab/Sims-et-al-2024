@@ -1902,6 +1902,21 @@ summary(df_spsp_gen1)
 ```{r data visualization} 
 #Data visualization
 
+
+lm_discord_dep_sex3_CESD20_1992 %>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
+
+
 ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) + 
   geom_bar(fill = "cornflowerblue", 
            color="black") +
