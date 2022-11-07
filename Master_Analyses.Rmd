@@ -1901,19 +1901,20 @@ summary(df_spsp_gen1)
 ```
 ```{r data visualization} 
 #Data visualization
+#sex, minoirity/race, age.
+#correlation table
 
 
-lm_discord_dep_sex3_CESD20_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+df_spsp_gen1 %>%
+  select(DELIN_AVERAGE, SEX, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994, MINORITY) %>%
+tbl_summary(
+    label= list(
+  DELIN_AVERAGE ~ "Delinquency Average",
+  AGE_1979 ~ "Age" ))
+
+df_spsp_gen1 %>%
+  select(DELIN_AVERAGE, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994) %>%
+
 
 
 
@@ -2271,6 +2272,9 @@ lm_btwfam_dep_sex3_CESD20_1992 <- lm(CESD20_1992_mean ~
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
+summary(lm_btwfam_sex3_CESD20_1992)
+summary(lm_btwfam_dep_sex3_CESD20_1992)
+
 lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
@@ -2505,9 +2509,6 @@ lm_btwfam_sex3_CESD7_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-```
-
-```{r raw bt fam}
 #between family
 
 lm_btwfam_sex3_CESD20_1992 %>%
@@ -2521,9 +2522,7 @@ lm_btwfam_sex3_CESD20_1992 %>%
     gtsummary::modify_header(
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
-```
 
-```{r raw btw2}
 
 lm_btwfam_sex3_CESD7_1994 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
@@ -2536,7 +2535,21 @@ lm_btwfam_sex3_CESD7_1994 %>%
     gtsummary::modify_header(
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
+
+lm_btwfam_dep_sex3_CESD20_1992%>%
+    gtsummary::tbl_regression(intercept=TRUE) %>%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ "F-Statistic",
+                   df  ~ "DF1",
+                   df.residual  ~ "DF2"),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %>%
+    gtsummary::modify_header(
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
+      )
+
 ```
+
 
 ### Discordant
 

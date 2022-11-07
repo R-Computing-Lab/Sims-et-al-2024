@@ -163,7 +163,7 @@ pre code {
 
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason Garrison</h4>
-<h4 class="date">November 04 2022</h4>
+<h4 class="date">November 07 2022</h4>
 
 </div>
 
@@ -215,6 +215,492 @@ pre code {
 ##  Max.   :22.0  
 ## </code></pre>
 <pre class="r"><code>#Data visualization
+#sex, minoirity/race, age.
+#correlation table
+
+
+df_spsp_gen1 %&gt;%
+  select(DELIN_AVERAGE, SEX, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994, MINORITY) %&gt;%
+tbl_summary(
+    label= list(
+  DELIN_AVERAGE ~ &quot;Delinquency Average&quot;,
+  AGE_1979 ~ &quot;Age&quot; ))</code></pre>
+<div id="gtoyntxhyb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gtoyntxhyb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gtoyntxhyb .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gtoyntxhyb .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gtoyntxhyb .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gtoyntxhyb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gtoyntxhyb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gtoyntxhyb .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gtoyntxhyb .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gtoyntxhyb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gtoyntxhyb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gtoyntxhyb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gtoyntxhyb .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gtoyntxhyb .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtoyntxhyb .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gtoyntxhyb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gtoyntxhyb .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtoyntxhyb .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gtoyntxhyb .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtoyntxhyb .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gtoyntxhyb .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtoyntxhyb .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gtoyntxhyb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtoyntxhyb .gt_left {
+  text-align: left;
+}
+
+#gtoyntxhyb .gt_center {
+  text-align: center;
+}
+
+#gtoyntxhyb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gtoyntxhyb .gt_font_normal {
+  font-weight: normal;
+}
+
+#gtoyntxhyb .gt_font_bold {
+  font-weight: bold;
+}
+
+#gtoyntxhyb .gt_font_italic {
+  font-style: italic;
+}
+
+#gtoyntxhyb .gt_super {
+  font-size: 65%;
+}
+
+#gtoyntxhyb .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#gtoyntxhyb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gtoyntxhyb .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gtoyntxhyb .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gtoyntxhyb .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gtoyntxhyb .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gtoyntxhyb .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>N = 12,686</strong><sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Delinquency Average</td>
+<td class="gt_row gt_center">0.13 (0.00, 0.38)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">861</td></tr>
+    <tr><td class="gt_row gt_left">SEX</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">6,283 (50%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">6,403 (50%)</td></tr>
+    <tr><td class="gt_row gt_left">Age</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    14</td>
+<td class="gt_row gt_center">950 (7.5%)</td></tr>
+    <tr><td class="gt_row gt_left">    15</td>
+<td class="gt_row gt_center">1,563 (12%)</td></tr>
+    <tr><td class="gt_row gt_left">    16</td>
+<td class="gt_row gt_center">1,561 (12%)</td></tr>
+    <tr><td class="gt_row gt_left">    17</td>
+<td class="gt_row gt_center">1,508 (12%)</td></tr>
+    <tr><td class="gt_row gt_left">    18</td>
+<td class="gt_row gt_center">1,634 (13%)</td></tr>
+    <tr><td class="gt_row gt_left">    19</td>
+<td class="gt_row gt_center">1,677 (13%)</td></tr>
+    <tr><td class="gt_row gt_left">    20</td>
+<td class="gt_row gt_center">1,666 (13%)</td></tr>
+    <tr><td class="gt_row gt_left">    21</td>
+<td class="gt_row gt_center">1,690 (13%)</td></tr>
+    <tr><td class="gt_row gt_left">    22</td>
+<td class="gt_row gt_center">437 (3.4%)</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1992</td>
+<td class="gt_row gt_center">3.0 (1.0, 6.0)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">3,755</td></tr>
+    <tr><td class="gt_row gt_left">CESD20_1992</td>
+<td class="gt_row gt_center">7 (3, 14)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">3,708</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1994</td>
+<td class="gt_row gt_center">3.0 (0.0, 6.0)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">3,811</td></tr>
+    <tr><td class="gt_row gt_left">MINORITY</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
+<td class="gt_row gt_center">5,176 (41%)</td></tr>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">7,510 (59%)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> Median (IQR); n (%)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<pre class="r"><code>df_spsp_gen1 %&gt;%
+  select(DELIN_AVERAGE, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994) %&gt;%
+
+
+
 
 ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) + 
   geom_bar(fill = &quot;cornflowerblue&quot;, 
@@ -223,8 +709,8 @@ ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) +
        y = &quot;Frequency&quot;, 
        title = &quot;Participants by Race&quot;) +
    theme_minimal()</code></pre>
-<pre><code>## Warning: Use of `df_spsp_gen1$MINORITY` is discouraged. Use `MINORITY` instead.</code></pre>
-<p><img src="data:image/png;base64,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" width="672" /></p>
+<pre><code>## Error in `ggplot()`:
+## ! Mapping should be created with `aes()` or `aes_()`.</code></pre>
 <pre class="r"><code>ggplot(df_spsp_gen1, aes(x =AGE_1979)) + 
   geom_bar(fill = &quot;Light Blue&quot;, 
            color=&quot;black&quot;) +
@@ -597,7 +1083,57 @@ lm_btwfam_dep_sex3_CESD20_1992 &lt;- lm(CESD20_1992_mean ~
                             as.factor(MINORITY_1), 
                            data = df_btwn)
 
-lm_btwfam_sex4_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
+summary(lm_btwfam_sex3_CESD20_1992)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE_mean ~ CESD20_1992_mean + SEX_all3 + 
+##     AGE_1979_mean + as.factor(MINORITY_1), data = df_btwn)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5901 -0.2179 -0.0894  0.1158  4.0089 
+## 
+## Coefficients:
+##                                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                            0.757994   0.076722   9.880  &lt; 2e-16 ***
+## CESD20_1992_mean                       0.007589   0.001004   7.562 5.27e-14 ***
+## SEX_all3GirlGirl                      -0.221737   0.018068 -12.272  &lt; 2e-16 ***
+## SEX_all3mixed                         -0.118151   0.015576  -7.585 4.41e-14 ***
+## AGE_1979_mean                         -0.026023   0.004350  -5.982 2.47e-09 ***
+## as.factor(MINORITY_1)nonblackhispanic  0.082235   0.013227   6.217 5.78e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3522 on 2951 degrees of freedom
+##   (727 observations deleted due to missingness)
+## Multiple R-squared:  0.08008,    Adjusted R-squared:  0.07852 
+## F-statistic: 51.38 on 5 and 2951 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>summary(lm_btwfam_dep_sex3_CESD20_1992)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = CESD20_1992_mean ~ DELIN_AVERAGE_mean + SEX_all3 + 
+##     AGE_1979_mean + as.factor(MINORITY_1), data = df_btwn)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -12.743  -4.639  -1.306   3.391  35.784 
+## 
+## Coefficients:
+##                                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                            9.019354   1.406974   6.410 1.68e-10 ***
+## DELIN_AVERAGE_mean                     2.504907   0.331248   7.562 5.27e-14 ***
+## SEX_all3GirlGirl                       1.736992   0.335013   5.185 2.31e-07 ***
+## SEX_all3mixed                          0.769378   0.285379   2.696  0.00706 ** 
+## AGE_1979_mean                          0.005937   0.079515   0.075  0.94049    
+## as.factor(MINORITY_1)nonblackhispanic -2.736789   0.236577 -11.568  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.4 on 2951 degrees of freedom
+##   (727 observations deleted due to missingness)
+## Multiple R-squared:  0.06035,    Adjusted R-squared:  0.05875 
+## F-statistic:  37.9 on 5 and 2951 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>lm_btwfam_sex4_CESD20_1992 &lt;- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
                               AGE_1979_mean+
@@ -3705,12 +4241,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-</div>
-<div id="discordant" class="section level3">
-<h3>Discordant</h3>
-<div id="cesd_7_1992" class="section level4">
-<h4>CESD_7_1992</h4>
-<pre class="r"><code>lm_discord_sex3_CESD7_1992 %&gt;%
+<pre class="r"><code>lm_btwfam_dep_sex3_CESD20_1992%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4139,35 +4670,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">-0.06</td>
-<td class="gt_row gt_center">-0.978</td>
-<td class="gt_row gt_center">-0.19, 0.07</td>
-<td class="gt_row gt_center">0.3</td></tr>
-    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">64.8</td>
-<td class="gt_row gt_center">0.99, 1.0</td>
+<td class="gt_row gt_center">9.0</td>
+<td class="gt_row gt_center">6.41</td>
+<td class="gt_row gt_center">6.3, 12</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1992_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">0.978</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.3</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.327</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.7</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-2.53</td>
-<td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.011</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">1.20</td>
-<td class="gt_row gt_center">0.00, 0.01</td>
-<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
+<td class="gt_row gt_center">2.5</td>
+<td class="gt_row gt_center">7.56</td>
+<td class="gt_row gt_center">1.9, 3.2</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -4179,16 +4690,21 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    GirlGirl</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.814</td>
-<td class="gt_row gt_center">-0.02, 0.04</td>
-<td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left">    mixed</td>
-<td class="gt_row gt_center">0.07</td>
-<td class="gt_row gt_center">4.90</td>
-<td class="gt_row gt_center">0.04, 0.09</td>
+<td class="gt_row gt_center">1.7</td>
+<td class="gt_row gt_center">5.18</td>
+<td class="gt_row gt_center">1.1, 2.4</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">0.77</td>
+<td class="gt_row gt_center">2.70</td>
+<td class="gt_row gt_center">0.21, 1.3</td>
+<td class="gt_row gt_center">0.007</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.075</td>
+<td class="gt_row gt_center">-0.15, 0.16</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
+    <tr><td class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -4199,14 +4715,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    nonblackhispanic</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.406</td>
-<td class="gt_row gt_center">-0.03, 0.02</td>
-<td class="gt_row gt_center">0.7</td></tr>
+<td class="gt_row gt_center">-2.7</td>
+<td class="gt_row gt_center">-11.6</td>
+<td class="gt_row gt_center">-3.2, -2.3</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.610; F-Statistic = 569; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.060; F-Statistic = 37.9; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4216,7 +4732,12 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD7_1992 %&gt;%
+</div>
+<div id="discordant" class="section level3">
+<h3>Discordant</h3>
+<div id="cesd_7_1992" class="section level4">
+<h4>CESD_7_1992</h4>
+<pre class="r"><code>lm_discord_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4645,34 +5166,34 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.021</td>
-<td class="gt_row gt_center">-1.2, 1.3</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
+<td class="gt_row gt_center">-0.06</td>
+<td class="gt_row gt_center">-0.978</td>
+<td class="gt_row gt_center">-0.19, 0.07</td>
+<td class="gt_row gt_center">0.3</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">0.03</td>
-<td class="gt_row gt_center">0.206</td>
-<td class="gt_row gt_center">-0.26, 0.33</td>
-<td class="gt_row gt_center">0.8</td></tr>
-    <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
-<td class="gt_row gt_center">0.10</td>
-<td class="gt_row gt_center">1.14</td>
-<td class="gt_row gt_center">-0.07, 0.28</td>
+<td class="gt_row gt_center">1.0</td>
+<td class="gt_row gt_center">64.8</td>
+<td class="gt_row gt_center">0.99, 1.0</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1992_diff</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.978</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
 <td class="gt_row gt_center">0.3</td></tr>
     <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
-<td class="gt_row gt_center">0.69</td>
-<td class="gt_row gt_center">36.1</td>
-<td class="gt_row gt_center">0.65, 0.72</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.327</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">0.7</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.709</td>
-<td class="gt_row gt_center">-0.02, 0.05</td>
-<td class="gt_row gt_center">0.5</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-2.53</td>
+<td class="gt_row gt_center">-0.01, 0.00</td>
+<td class="gt_row gt_center">0.011</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">0.05</td>
-<td class="gt_row gt_center">1.35</td>
-<td class="gt_row gt_center">-0.02, 0.12</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">1.20</td>
+<td class="gt_row gt_center">0.00, 0.01</td>
 <td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
@@ -4685,15 +5206,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    GirlGirl</td>
-<td class="gt_row gt_center">-0.02</td>
-<td class="gt_row gt_center">-0.105</td>
-<td class="gt_row gt_center">-0.31, 0.28</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.814</td>
+<td class="gt_row gt_center">-0.02, 0.04</td>
+<td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left">    mixed</td>
-<td class="gt_row gt_center">0.04</td>
-<td class="gt_row gt_center">0.276</td>
-<td class="gt_row gt_center">-0.22, 0.29</td>
-<td class="gt_row gt_center">0.8</td></tr>
+<td class="gt_row gt_center">0.07</td>
+<td class="gt_row gt_center">4.90</td>
+<td class="gt_row gt_center">0.04, 0.09</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -4705,14 +5226,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    nonblackhispanic</td>
-<td class="gt_row gt_center">0.27</td>
-<td class="gt_row gt_center">2.51</td>
-<td class="gt_row gt_center">0.06, 0.48</td>
-<td class="gt_row gt_center">0.012</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.406</td>
+<td class="gt_row gt_center">-0.03, 0.02</td>
+<td class="gt_row gt_center">0.7</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.317; F-Statistic = 169; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.610; F-Statistic = 569; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4722,8 +5243,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-<p>CESD7_1994</p>
-<pre class="r"><code>lm_discord_sex3_CESD7_1994%&gt;%
+<pre class="r"><code>lm_discord_dep_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -5152,35 +5672,35 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">-0.05</td>
-<td class="gt_row gt_center">-0.698</td>
-<td class="gt_row gt_center">-0.18, 0.08</td>
-<td class="gt_row gt_center">0.5</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.021</td>
+<td class="gt_row gt_center">-1.2, 1.3</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">64.6</td>
-<td class="gt_row gt_center">0.99, 1.1</td>
+<td class="gt_row gt_center">0.03</td>
+<td class="gt_row gt_center">0.206</td>
+<td class="gt_row gt_center">-0.26, 0.33</td>
+<td class="gt_row gt_center">0.8</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
+<td class="gt_row gt_center">0.10</td>
+<td class="gt_row gt_center">1.14</td>
+<td class="gt_row gt_center">-0.07, 0.28</td>
+<td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1992_mean</td>
+<td class="gt_row gt_center">0.69</td>
+<td class="gt_row gt_center">36.1</td>
+<td class="gt_row gt_center">0.65, 0.72</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1994_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.784</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-1.31</td>
-<td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-2.84</td>
-<td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.005</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.709</td>
+<td class="gt_row gt_center">-0.02, 0.05</td>
+<td class="gt_row gt_center">0.5</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">0.906</td>
-<td class="gt_row gt_center">0.00, 0.01</td>
-<td class="gt_row gt_center">0.4</td></tr>
+<td class="gt_row gt_center">0.05</td>
+<td class="gt_row gt_center">1.35</td>
+<td class="gt_row gt_center">-0.02, 0.12</td>
+<td class="gt_row gt_center">0.2</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5192,15 +5712,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    GirlGirl</td>
-<td class="gt_row gt_center">0.02</td>
-<td class="gt_row gt_center">1.13</td>
-<td class="gt_row gt_center">-0.01, 0.05</td>
-<td class="gt_row gt_center">0.3</td></tr>
+<td class="gt_row gt_center">-0.02</td>
+<td class="gt_row gt_center">-0.105</td>
+<td class="gt_row gt_center">-0.31, 0.28</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td class="gt_row gt_left">    mixed</td>
-<td class="gt_row gt_center">0.07</td>
-<td class="gt_row gt_center">5.22</td>
-<td class="gt_row gt_center">0.04, 0.10</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.04</td>
+<td class="gt_row gt_center">0.276</td>
+<td class="gt_row gt_center">-0.22, 0.29</td>
+<td class="gt_row gt_center">0.8</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5212,14 +5732,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    nonblackhispanic</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.069</td>
-<td class="gt_row gt_center">-0.02, 0.02</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
+<td class="gt_row gt_center">0.27</td>
+<td class="gt_row gt_center">2.51</td>
+<td class="gt_row gt_center">0.06, 0.48</td>
+<td class="gt_row gt_center">0.012</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.611; F-Statistic = 563; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.317; F-Statistic = 169; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -5229,7 +5749,8 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD7_1994%&gt;%
+<p>CESD7_1994</p>
+<pre class="r"><code>lm_discord_sex3_CESD7_1994%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -5658,35 +6179,35 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">1.1</td>
-<td class="gt_row gt_center">1.78</td>
-<td class="gt_row gt_center">-0.11, 2.4</td>
-<td class="gt_row gt_center">0.075</td></tr>
+<td class="gt_row gt_center">-0.05</td>
+<td class="gt_row gt_center">-0.698</td>
+<td class="gt_row gt_center">-0.18, 0.08</td>
+<td class="gt_row gt_center">0.5</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">-0.04</td>
-<td class="gt_row gt_center">-0.238</td>
-<td class="gt_row gt_center">-0.33, 0.26</td>
-<td class="gt_row gt_center">0.8</td></tr>
-    <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.098</td>
-<td class="gt_row gt_center">-0.16, 0.18</td>
-<td class="gt_row gt_center">&gt;0.9</td></tr>
-    <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
-<td class="gt_row gt_center">0.76</td>
-<td class="gt_row gt_center">41.4</td>
-<td class="gt_row gt_center">0.72, 0.79</td>
+<td class="gt_row gt_center">1.0</td>
+<td class="gt_row gt_center">64.6</td>
+<td class="gt_row gt_center">0.99, 1.1</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.761</td>
-<td class="gt_row gt_center">-0.02, 0.05</td>
+    <tr><td class="gt_row gt_left">CESD7_1994_diff</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.784</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
 <td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+    <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-1.31</td>
+<td class="gt_row gt_center">-0.01, 0.00</td>
+<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
 <td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-0.304</td>
-<td class="gt_row gt_center">-0.08, 0.06</td>
-<td class="gt_row gt_center">0.8</td></tr>
+<td class="gt_row gt_center">-2.84</td>
+<td class="gt_row gt_center">-0.01, 0.00</td>
+<td class="gt_row gt_center">0.005</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.906</td>
+<td class="gt_row gt_center">0.00, 0.01</td>
+<td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5698,15 +6219,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    GirlGirl</td>
-<td class="gt_row gt_center">-0.12</td>
-<td class="gt_row gt_center">-0.795</td>
-<td class="gt_row gt_center">-0.42, 0.18</td>
-<td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left">    mixed</td>
-<td class="gt_row gt_center">0.14</td>
-<td class="gt_row gt_center">1.06</td>
-<td class="gt_row gt_center">-0.12, 0.39</td>
+<td class="gt_row gt_center">0.02</td>
+<td class="gt_row gt_center">1.13</td>
+<td class="gt_row gt_center">-0.01, 0.05</td>
 <td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">0.07</td>
+<td class="gt_row gt_center">5.22</td>
+<td class="gt_row gt_center">0.04, 0.10</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -5718,14 +6239,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    nonblackhispanic</td>
-<td class="gt_row gt_center">0.14</td>
-<td class="gt_row gt_center">1.29</td>
-<td class="gt_row gt_center">-0.07, 0.35</td>
-<td class="gt_row gt_center">0.2</td></tr>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.069</td>
+<td class="gt_row gt_center">-0.02, 0.02</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.384; F-Statistic = 223; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.611; F-Statistic = 563; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -5735,10 +6256,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-<p>#CESD_20_1992</p>
-<p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
-<p>CESD20_1992</p>
-<pre class="r"><code>lm_discord_sex3_CESD20_1992 %&gt;%
+<pre class="r"><code>lm_discord_dep_sex3_CESD7_1994%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -6167,35 +6685,35 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">-0.07</td>
-<td class="gt_row gt_center">-1.01</td>
-<td class="gt_row gt_center">-0.20, 0.06</td>
-<td class="gt_row gt_center">0.3</td></tr>
+<td class="gt_row gt_center">1.1</td>
+<td class="gt_row gt_center">1.78</td>
+<td class="gt_row gt_center">-0.11, 2.4</td>
+<td class="gt_row gt_center">0.075</td></tr>
     <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td class="gt_row gt_center">1.0</td>
-<td class="gt_row gt_center">65.6</td>
-<td class="gt_row gt_center">1.0, 1.1</td>
+<td class="gt_row gt_center">-0.04</td>
+<td class="gt_row gt_center">-0.238</td>
+<td class="gt_row gt_center">-0.33, 0.26</td>
+<td class="gt_row gt_center">0.8</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_diff</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.098</td>
+<td class="gt_row gt_center">-0.16, 0.18</td>
+<td class="gt_row gt_center">&gt;0.9</td></tr>
+    <tr><td class="gt_row gt_left">CESD7_1994_mean</td>
+<td class="gt_row gt_center">0.76</td>
+<td class="gt_row gt_center">41.4</td>
+<td class="gt_row gt_center">0.72, 0.79</td>
 <td class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td class="gt_row gt_left">CESD20_1992_diff</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">0.376</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.7</td></tr>
-    <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">-0.376</td>
-<td class="gt_row gt_center">0.00, 0.00</td>
-<td class="gt_row gt_center">0.7</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_diff</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-2.60</td>
-<td class="gt_row gt_center">-0.01, 0.00</td>
-<td class="gt_row gt_center">0.009</td></tr>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.761</td>
+<td class="gt_row gt_center">-0.02, 0.05</td>
+<td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left">AGE_1979_mean</td>
-<td class="gt_row gt_center">0.00</td>
-<td class="gt_row gt_center">1.21</td>
-<td class="gt_row gt_center">0.00, 0.01</td>
-<td class="gt_row gt_center">0.2</td></tr>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.304</td>
+<td class="gt_row gt_center">-0.08, 0.06</td>
+<td class="gt_row gt_center">0.8</td></tr>
     <tr><td class="gt_row gt_left">SEX_all3</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -6207,15 +6725,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    GirlGirl</td>
-<td class="gt_row gt_center">0.01</td>
-<td class="gt_row gt_center">0.854</td>
-<td class="gt_row gt_center">-0.02, 0.04</td>
+<td class="gt_row gt_center">-0.12</td>
+<td class="gt_row gt_center">-0.795</td>
+<td class="gt_row gt_center">-0.42, 0.18</td>
 <td class="gt_row gt_center">0.4</td></tr>
     <tr><td class="gt_row gt_left">    mixed</td>
-<td class="gt_row gt_center">0.07</td>
-<td class="gt_row gt_center">5.07</td>
-<td class="gt_row gt_center">0.04, 0.09</td>
-<td class="gt_row gt_center">&lt;0.001</td></tr>
+<td class="gt_row gt_center">0.14</td>
+<td class="gt_row gt_center">1.06</td>
+<td class="gt_row gt_center">-0.12, 0.39</td>
+<td class="gt_row gt_center">0.3</td></tr>
     <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
@@ -6227,14 +6745,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 <td class="gt_row gt_center">—</td>
 <td class="gt_row gt_center"></td></tr>
     <tr><td class="gt_row gt_left">    nonblackhispanic</td>
-<td class="gt_row gt_center">-0.01</td>
-<td class="gt_row gt_center">-0.516</td>
-<td class="gt_row gt_center">-0.03, 0.02</td>
-<td class="gt_row gt_center">0.6</td></tr>
+<td class="gt_row gt_center">0.14</td>
+<td class="gt_row gt_center">1.29</td>
+<td class="gt_row gt_center">-0.07, 0.35</td>
+<td class="gt_row gt_center">0.2</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.612; F-Statistic = 582; DF1 = 8; DF2 = 2,948; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.384; F-Statistic = 223; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -6244,7 +6762,10 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD20_1992 %&gt;%
+<p>#CESD_20_1992</p>
+<p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
+<p>CESD20_1992</p>
+<pre class="r"><code>lm_discord_sex3_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -6657,6 +7178,512 @@ lm_btwfam_sex3_CESD20_1992 %&gt;%
 }
 
 #gfyaimqmde .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(Intercept)</td>
+<td class="gt_row gt_center">-0.07</td>
+<td class="gt_row gt_center">-1.01</td>
+<td class="gt_row gt_center">-0.20, 0.06</td>
+<td class="gt_row gt_center">0.3</td></tr>
+    <tr><td class="gt_row gt_left">DELIN_AVERAGE_mean</td>
+<td class="gt_row gt_center">1.0</td>
+<td class="gt_row gt_center">65.6</td>
+<td class="gt_row gt_center">1.0, 1.1</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">CESD20_1992_diff</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.376</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">0.7</td></tr>
+    <tr><td class="gt_row gt_left">CESD20_1992_mean</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">-0.376</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">0.7</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_diff</td>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-2.60</td>
+<td class="gt_row gt_center">-0.01, 0.00</td>
+<td class="gt_row gt_center">0.009</td></tr>
+    <tr><td class="gt_row gt_left">AGE_1979_mean</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">1.21</td>
+<td class="gt_row gt_center">0.00, 0.01</td>
+<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td class="gt_row gt_left">SEX_all3</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    BoyBoy</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    GirlGirl</td>
+<td class="gt_row gt_center">0.01</td>
+<td class="gt_row gt_center">0.854</td>
+<td class="gt_row gt_center">-0.02, 0.04</td>
+<td class="gt_row gt_center">0.4</td></tr>
+    <tr><td class="gt_row gt_left">    mixed</td>
+<td class="gt_row gt_center">0.07</td>
+<td class="gt_row gt_center">5.07</td>
+<td class="gt_row gt_center">0.04, 0.09</td>
+<td class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td class="gt_row gt_left">factor(MINORITY_1)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    blackorhispanic</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    nonblackhispanic</td>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.516</td>
+<td class="gt_row gt_center">-0.03, 0.02</td>
+<td class="gt_row gt_center">0.6</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">R² = 0.612; F-Statistic = 582; DF1 = 8; DF2 = 2,948; p-value = &lt;0.001; No. Obs. = 2,957</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> CI = Confidence Interval</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<pre class="r"><code>lm_discord_dep_sex3_CESD20_1992 %&gt;%
+    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ &quot;F-Statistic&quot;,
+                   df  ~ &quot;DF1&quot;,
+                   df.residual  ~ &quot;DF2&quot;),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %&gt;%
+    gtsummary::modify_header(
+      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
+      )</code></pre>
+<div id="znhulxqrop" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#znhulxqrop .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#znhulxqrop .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#znhulxqrop .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#znhulxqrop .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#znhulxqrop .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#znhulxqrop .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#znhulxqrop .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#znhulxqrop .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#znhulxqrop .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#znhulxqrop .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#znhulxqrop .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#znhulxqrop .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#znhulxqrop .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#znhulxqrop .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#znhulxqrop .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#znhulxqrop .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#znhulxqrop .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_left {
+  text-align: left;
+}
+
+#znhulxqrop .gt_center {
+  text-align: center;
+}
+
+#znhulxqrop .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#znhulxqrop .gt_font_normal {
+  font-weight: normal;
+}
+
+#znhulxqrop .gt_font_bold {
+  font-weight: bold;
+}
+
+#znhulxqrop .gt_font_italic {
+  font-style: italic;
+}
+
+#znhulxqrop .gt_super {
+  font-size: 65%;
+}
+
+#znhulxqrop .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#znhulxqrop .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#znhulxqrop .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#znhulxqrop .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#znhulxqrop .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#znhulxqrop .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#znhulxqrop .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
