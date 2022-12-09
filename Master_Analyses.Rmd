@@ -2454,7 +2454,7 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 
 #classical regression
 
-lm_og_CESD7_1992 %>%
+lm_og_CESD7_1992 %>%lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2466,7 +2466,7 @@ lm_og_CESD7_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_og_CESD20_1992 %>%
+lm_og_CESD20_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2478,7 +2478,7 @@ lm_og_CESD20_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_og_CESD7_1994 %>%
+lm_og_CESD7_1994 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2497,7 +2497,7 @@ lm_og_CESD7_1994 %>%
 
 #between family 
 
-lm_btwfam_sex3_CESD7_1992 %>%
+lm_btwfam_sex3_CESD7_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2511,7 +2511,7 @@ lm_btwfam_sex3_CESD7_1992 %>%
 
 #between family
 
-lm_btwfam_sex3_CESD20_1992 %>%
+lm_btwfam_sex3_CESD20_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2524,7 +2524,7 @@ lm_btwfam_sex3_CESD20_1992 %>%
       )
 
 
-lm_btwfam_sex3_CESD7_1994 %>%
+lm_btwfam_sex3_CESD7_1994 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2536,7 +2536,7 @@ lm_btwfam_sex3_CESD7_1994 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_btwfam_dep_sex3_CESD20_1992%>%
+lm_btwfam_dep_sex3_CESD20_1992%>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2557,7 +2557,7 @@ lm_btwfam_dep_sex3_CESD20_1992%>%
 
 ```{r discord}
 
-lm_discord_sex3_CESD7_1992 %>%
+lm_discord_sex3_CESD7_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2570,7 +2570,7 @@ lm_discord_sex3_CESD7_1992 %>%
       )
 
 
-lm_discord_dep_sex3_CESD7_1992 %>%
+lm_discord_dep_sex3_CESD7_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2587,7 +2587,7 @@ CESD7_1994
 
 ```{r raw3}
 
-lm_discord_sex3_CESD7_1994%>%
+lm_discord_sex3_CESD7_1994%>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2599,7 +2599,7 @@ lm_discord_sex3_CESD7_1994%>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_discord_dep_sex3_CESD7_1994%>%
+lm_discord_dep_sex3_CESD7_1994%>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2628,7 +2628,7 @@ CESD20_1992
 
 ```{r raw5}
 
-lm_discord_sex3_CESD20_1992 %>%
+lm_discord_sex3_CESD20_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2641,7 +2641,7 @@ lm_discord_sex3_CESD20_1992 %>%
       )
 
 
-lm_discord_dep_sex3_CESD20_1992 %>%
+lm_discord_dep_sex3_CESD20_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
