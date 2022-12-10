@@ -31,6 +31,7 @@ if (!require("glue")) install.packages("glue")
 if (!require("psych")) install.packages("psych")
 if (!require("foreign")) install.packages("foreign")
 if(!require("ggplot2")) install.packages("ggplot2")
+if(!require("parameters")) install.packages("parameters")
 
 ## Installs most recent dev version
 remotes::install_github(repo="nlsy-links/NlsyLinks")
@@ -39,6 +40,7 @@ devtools::install_github('R-Computing-Lab/discord')
 if (!require("dplyr")) install.packages("dplyr")
 
 library(tidyverse)
+library(parameters)
 library(devtools) 
 library(remotes)
 library(NlsyLinks)
@@ -2454,8 +2456,12 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 
 #classical regression
 
-lm_og_CESD7_1992 %>%lm.beta()%>% 
-    gtsummary::tbl_regression(intercept=TRUE) %>%
+
+#lm.beta(object, complete.standardization = FALSE)
+
+
+lm_og_CESD7_1992 %>%
+    gtsummary::tbl_regression(lm_og_CESD7_1992, intercept=TRUE, tidy_fun=tidy_standardize,)%>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
                    df  ~ "DF1",
@@ -2463,8 +2469,8 @@ lm_og_CESD7_1992 %>%lm.beta()%>%
       include = c(r.squared, statistic, df, df.residual, p.value, nobs)
       ) %>%
     gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+      statistic ~ "**t-Statistic**", p.value ~ "**p-value**",
+      ) 
 
 lm_og_CESD20_1992 %>% lm.beta()%>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
