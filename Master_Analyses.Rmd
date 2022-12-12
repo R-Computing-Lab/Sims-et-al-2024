@@ -2457,11 +2457,10 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 #classical regression
 
 
-#lm.beta(object, complete.standardization = FALSE)
-
+#lm.beta(object, complete.standardization = FALSE) 
 
 lm_og_CESD7_1992 %>%
-    gtsummary::tbl_regression(lm_og_CESD7_1992, intercept=TRUE, tidy_fun=tidy_standardize,)%>%
+    gtsummary::tbl_regression(lm_og_CESD7_1992, intercept=TRUE,tidy_fun = tidy_standardize,)%>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
                    df  ~ "DF1",
