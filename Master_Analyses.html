@@ -163,7 +163,7 @@ pre code {
 
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason Garrison</h4>
-<h4 class="date">December 11 2022</h4>
+<h4 class="date">December 15 2022</h4>
 
 </div>
 
@@ -1311,12 +1311,8 @@ lm_discord_dep_sex4_CESD7_1994 &lt;- lm(data=df_dyad,
 <h3>raw</h3>
 <pre class="r"><code>#classical regression
 
-
-#lm.beta(object, complete.standardization = FALSE)
-
-
 lm_og_CESD7_1992 %&gt;%
-    gtsummary::tbl_regression(lm_og_CESD7_1992, intercept=TRUE, tidy_fun=tidy_standardize,)%&gt;%
+    gtsummary::tbl_regression()%&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
                    df  ~ &quot;DF1&quot;,
@@ -1326,25 +1322,6 @@ lm_og_CESD7_1992 %&gt;%
     gtsummary::modify_header(
       statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;,
       ) </code></pre>
-<pre><code>## tidy_standardize(): Estimating standardized coefs with
-## `parameters::standardize_parameters(model = x, ci = 0.95)`</code></pre>
-<pre><code>## Error in `dplyr::mutate()`:
-## ! Problem while computing `var_label = dplyr::case_when(...)`.
-## Caused by error in `dplyr::case_when()`:</code></pre>
-<pre class="r"><code>lm_og_CESD20_1992 %&gt;% lm.beta()%&gt;% 
-    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ &quot;F-Statistic&quot;,
-                   df  ~ &quot;DF1&quot;,
-                   df.residual  ~ &quot;DF2&quot;),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %&gt;%
-    gtsummary::modify_header(
-      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
-      )</code></pre>
-<pre><code>## Warning: The `glance()` method for objects of class `lm.beta` is not maintained by the broom team, and is only supported through the `lm` tidier method. Please be cautious in interpreting and reporting broom output.
-## 
-## This warning is displayed once per session.</code></pre>
 <div id="xorqybhtsx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1768,15 +1745,10 @@ lm_og_CESD7_1992 %&gt;%
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">0.44</td>
-<td headers="statistic" class="gt_row gt_center">11.1</td>
-<td headers="ci" class="gt_row gt_center"></td>
-<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD20_1992</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1992</td>
 <td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">9.72</td>
-<td headers="ci" class="gt_row gt_center">0.10, 0.10</td>
+<td headers="statistic" class="gt_row gt_center">9.60</td>
+<td headers="ci" class="gt_row gt_center">0.01, 0.01</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(SEX)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -1791,12 +1763,12 @@ lm_og_CESD7_1992 %&gt;%
     <tr><td headers="label" class="gt_row gt_left">    1</td>
 <td headers="estimate" class="gt_row gt_center">0.25</td>
 <td headers="statistic" class="gt_row gt_center">25.2</td>
-<td headers="ci" class="gt_row gt_center">0.24, 0.28</td>
+<td headers="ci" class="gt_row gt_center">0.23, 0.27</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979</td>
 <td headers="estimate" class="gt_row gt_center">-0.02</td>
-<td headers="statistic" class="gt_row gt_center">-9.05</td>
-<td headers="ci" class="gt_row gt_center">-0.10, -0.09</td>
+<td headers="statistic" class="gt_row gt_center">-9.02</td>
+<td headers="ci" class="gt_row gt_center">-0.02, -0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -1810,13 +1782,13 @@ lm_og_CESD7_1992 %&gt;%
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
 <td headers="estimate" class="gt_row gt_center">0.05</td>
-<td headers="statistic" class="gt_row gt_center">5.48</td>
-<td headers="ci" class="gt_row gt_center">0.04, 0.08</td>
+<td headers="statistic" class="gt_row gt_center">5.24</td>
+<td headers="ci" class="gt_row gt_center">0.03, 0.07</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.087; F-Statistic = 202; DF1 = 4; DF2 = 8,493; p-value = &lt;0.001; No. Obs. = 8,498</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.086; F-Statistic = 200; DF1 = 4; DF2 = 8,451; p-value = &lt;0.001; No. Obs. = 8,456</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -1826,7 +1798,7 @@ lm_og_CESD7_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_og_CESD7_1994 %&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>lm_og_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -2261,14 +2233,14 @@ lm_og_CESD7_1992 %&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">0.47</td>
-<td headers="statistic" class="gt_row gt_center">11.7</td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center">0.44</td>
+<td headers="statistic" class="gt_row gt_center">11.1</td>
+<td headers="ci" class="gt_row gt_center">0.37, 0.52</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1994</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD20_1992</td>
 <td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">7.58</td>
-<td headers="ci" class="gt_row gt_center">0.08, 0.08</td>
+<td headers="statistic" class="gt_row gt_center">9.72</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.01</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(SEX)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -2283,12 +2255,12 @@ lm_og_CESD7_1992 %&gt;%
     <tr><td headers="label" class="gt_row gt_left">    1</td>
 <td headers="estimate" class="gt_row gt_center">0.25</td>
 <td headers="statistic" class="gt_row gt_center">25.2</td>
-<td headers="ci" class="gt_row gt_center">0.25, 0.29</td>
+<td headers="ci" class="gt_row gt_center">0.23, 0.27</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979</td>
 <td headers="estimate" class="gt_row gt_center">-0.02</td>
-<td headers="statistic" class="gt_row gt_center">-9.26</td>
-<td headers="ci" class="gt_row gt_center">-0.10, -0.09</td>
+<td headers="statistic" class="gt_row gt_center">-9.05</td>
+<td headers="ci" class="gt_row gt_center">-0.02, -0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -2302,13 +2274,13 @@ lm_og_CESD7_1992 %&gt;%
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
 <td headers="estimate" class="gt_row gt_center">0.05</td>
-<td headers="statistic" class="gt_row gt_center">4.56</td>
+<td headers="statistic" class="gt_row gt_center">5.48</td>
 <td headers="ci" class="gt_row gt_center">0.03, 0.07</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.083; F-Statistic = 191; DF1 = 4; DF2 = 8,395; p-value = &lt;0.001; No. Obs. = 8,400</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.087; F-Statistic = 202; DF1 = 4; DF2 = 8,493; p-value = &lt;0.001; No. Obs. = 8,498</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -2318,12 +2290,7 @@ lm_og_CESD7_1992 %&gt;%
   </tfoot>
 </table>
 </div>
-</div>
-<div id="btween" class="section level3">
-<h3>Btween</h3>
-<pre class="r"><code>#between family 
-
-lm_btwfam_sex3_CESD7_1992 %&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>lm_og_CESD7_1994 %&gt;% 
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -2758,41 +2725,36 @@ lm_btwfam_sex3_CESD7_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">0.75</td>
-<td headers="statistic" class="gt_row gt_center">9.79</td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center">0.47</td>
+<td headers="statistic" class="gt_row gt_center">11.7</td>
+<td headers="ci" class="gt_row gt_center">0.39, 0.55</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1992_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.02</td>
-<td headers="statistic" class="gt_row gt_center">7.50</td>
-<td headers="ci" class="gt_row gt_center">0.13, 0.14</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1994</td>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">7.58</td>
+<td headers="ci" class="gt_row gt_center">0.01, 0.01</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
+    <tr><td headers="label" class="gt_row gt_left">as.factor(SEX)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
 <td headers="ci" class="gt_row gt_center"></td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    BoyBoy</td>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
 <td headers="statistic" class="gt_row gt_center">—</td>
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">-0.22</td>
-<td headers="statistic" class="gt_row gt_center">-12.3</td>
-<td headers="ci" class="gt_row gt_center">-0.30, -0.23</td>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="estimate" class="gt_row gt_center">0.25</td>
+<td headers="statistic" class="gt_row gt_center">25.2</td>
+<td headers="ci" class="gt_row gt_center">0.23, 0.27</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">-0.12</td>
-<td headers="statistic" class="gt_row gt_center">-7.67</td>
-<td headers="ci" class="gt_row gt_center">-0.19, -0.13</td>
+    <tr><td headers="label" class="gt_row gt_left">AGE_1979</td>
+<td headers="estimate" class="gt_row gt_center">-0.02</td>
+<td headers="statistic" class="gt_row gt_center">-9.26</td>
+<td headers="ci" class="gt_row gt_center">-0.02, -0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
-<td headers="estimate" class="gt_row gt_center">-0.03</td>
-<td headers="statistic" class="gt_row gt_center">-5.86</td>
-<td headers="ci" class="gt_row gt_center">-0.11, -0.10</td>
-<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY_1)</td>
+    <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
 <td headers="ci" class="gt_row gt_center"></td>
@@ -2803,14 +2765,14 @@ lm_btwfam_sex3_CESD7_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">0.08</td>
-<td headers="statistic" class="gt_row gt_center">5.98</td>
-<td headers="ci" class="gt_row gt_center">0.08, 0.13</td>
+<td headers="estimate" class="gt_row gt_center">0.05</td>
+<td headers="statistic" class="gt_row gt_center">4.56</td>
+<td headers="ci" class="gt_row gt_center">0.03, 0.07</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 50.5; DF1 = 5; DF2 = 2,917; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.083; F-Statistic = 191; DF1 = 4; DF2 = 8,395; p-value = &lt;0.001; No. Obs. = 8,400</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -2820,9 +2782,12 @@ lm_btwfam_sex3_CESD7_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>#between family
+</div>
+<div id="btween" class="section level3">
+<h3>Btween</h3>
+<pre class="r"><code>#between family 
 
-lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;% 
+lm_btwfam_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -3257,14 +3222,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">0.76</td>
-<td headers="statistic" class="gt_row gt_center">9.88</td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center">0.75</td>
+<td headers="statistic" class="gt_row gt_center">9.79</td>
+<td headers="ci" class="gt_row gt_center">0.60, 0.91</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD20_1992_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">7.56</td>
-<td headers="ci" class="gt_row gt_center">0.13, 0.14</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1992_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.02</td>
+<td headers="statistic" class="gt_row gt_center">7.50</td>
+<td headers="ci" class="gt_row gt_center">0.01, 0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -3279,17 +3244,17 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
 <td headers="estimate" class="gt_row gt_center">-0.22</td>
 <td headers="statistic" class="gt_row gt_center">-12.3</td>
-<td headers="ci" class="gt_row gt_center">-0.30, -0.23</td>
+<td headers="ci" class="gt_row gt_center">-0.26, -0.19</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
 <td headers="estimate" class="gt_row gt_center">-0.12</td>
-<td headers="statistic" class="gt_row gt_center">-7.59</td>
-<td headers="ci" class="gt_row gt_center">-0.19, -0.13</td>
+<td headers="statistic" class="gt_row gt_center">-7.67</td>
+<td headers="ci" class="gt_row gt_center">-0.15, -0.09</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
 <td headers="estimate" class="gt_row gt_center">-0.03</td>
-<td headers="statistic" class="gt_row gt_center">-5.98</td>
-<td headers="ci" class="gt_row gt_center">-0.11, -0.10</td>
+<td headers="statistic" class="gt_row gt_center">-5.86</td>
+<td headers="ci" class="gt_row gt_center">-0.03, -0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -3303,13 +3268,13 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
 <td headers="estimate" class="gt_row gt_center">0.08</td>
-<td headers="statistic" class="gt_row gt_center">6.22</td>
-<td headers="ci" class="gt_row gt_center">0.09, 0.14</td>
+<td headers="statistic" class="gt_row gt_center">5.98</td>
+<td headers="ci" class="gt_row gt_center">0.05, 0.10</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 51.4; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 50.5; DF1 = 5; DF2 = 2,917; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -3319,7 +3284,9 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_btwfam_sex3_CESD7_1994 %&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>#between family
+
+lm_btwfam_sex3_CESD20_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -3754,14 +3721,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">0.78</td>
-<td headers="statistic" class="gt_row gt_center">10.1</td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center">0.76</td>
+<td headers="statistic" class="gt_row gt_center">9.88</td>
+<td headers="ci" class="gt_row gt_center">0.61, 0.91</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.02</td>
-<td headers="statistic" class="gt_row gt_center">7.23</td>
-<td headers="ci" class="gt_row gt_center">0.13, 0.14</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD20_1992_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">7.56</td>
+<td headers="ci" class="gt_row gt_center">0.01, 0.01</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -3774,19 +3741,19 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">-0.24</td>
-<td headers="statistic" class="gt_row gt_center">-12.8</td>
-<td headers="ci" class="gt_row gt_center">-0.31, -0.24</td>
+<td headers="estimate" class="gt_row gt_center">-0.22</td>
+<td headers="statistic" class="gt_row gt_center">-12.3</td>
+<td headers="ci" class="gt_row gt_center">-0.26, -0.19</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">-0.13</td>
-<td headers="statistic" class="gt_row gt_center">-8.16</td>
-<td headers="ci" class="gt_row gt_center">-0.21, -0.14</td>
+<td headers="estimate" class="gt_row gt_center">-0.12</td>
+<td headers="statistic" class="gt_row gt_center">-7.59</td>
+<td headers="ci" class="gt_row gt_center">-0.15, -0.09</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
 <td headers="estimate" class="gt_row gt_center">-0.03</td>
-<td headers="statistic" class="gt_row gt_center">-5.85</td>
-<td headers="ci" class="gt_row gt_center">-0.11, -0.10</td>
+<td headers="statistic" class="gt_row gt_center">-5.98</td>
+<td headers="ci" class="gt_row gt_center">-0.03, -0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -3800,13 +3767,13 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
 <td headers="estimate" class="gt_row gt_center">0.08</td>
-<td headers="statistic" class="gt_row gt_center">5.83</td>
-<td headers="ci" class="gt_row gt_center">0.08, 0.13</td>
+<td headers="statistic" class="gt_row gt_center">6.22</td>
+<td headers="ci" class="gt_row gt_center">0.06, 0.11</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.081; F-Statistic = 51.0; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.080; F-Statistic = 51.4; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -3816,7 +3783,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_btwfam_dep_sex3_CESD20_1992%&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>lm_btwfam_sex3_CESD7_1994 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4251,14 +4218,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">9.0</td>
-<td headers="statistic" class="gt_row gt_center">6.41</td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center">0.78</td>
+<td headers="statistic" class="gt_row gt_center">10.1</td>
+<td headers="ci" class="gt_row gt_center">0.63, 0.93</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td headers="estimate" class="gt_row gt_center">2.5</td>
-<td headers="statistic" class="gt_row gt_center">7.56</td>
-<td headers="ci" class="gt_row gt_center">-0.51, 0.79</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.02</td>
+<td headers="statistic" class="gt_row gt_center">7.23</td>
+<td headers="ci" class="gt_row gt_center">0.01, 0.02</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -4271,20 +4238,20 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">1.7</td>
-<td headers="statistic" class="gt_row gt_center">5.18</td>
-<td headers="ci" class="gt_row gt_center">-0.54, 0.77</td>
+<td headers="estimate" class="gt_row gt_center">-0.24</td>
+<td headers="statistic" class="gt_row gt_center">-12.8</td>
+<td headers="ci" class="gt_row gt_center">-0.27, -0.20</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">0.77</td>
-<td headers="statistic" class="gt_row gt_center">2.70</td>
-<td headers="ci" class="gt_row gt_center">-0.50, 0.62</td>
-<td headers="p.value" class="gt_row gt_center">0.007</td></tr>
+<td headers="estimate" class="gt_row gt_center">-0.13</td>
+<td headers="statistic" class="gt_row gt_center">-8.16</td>
+<td headers="ci" class="gt_row gt_center">-0.16, -0.10</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.075</td>
-<td headers="ci" class="gt_row gt_center">-0.15, 0.16</td>
-<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
+<td headers="estimate" class="gt_row gt_center">-0.03</td>
+<td headers="statistic" class="gt_row gt_center">-5.85</td>
+<td headers="ci" class="gt_row gt_center">-0.03, -0.02</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -4296,14 +4263,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">-2.7</td>
-<td headers="statistic" class="gt_row gt_center">-11.6</td>
-<td headers="ci" class="gt_row gt_center">-0.67, 0.26</td>
+<td headers="estimate" class="gt_row gt_center">0.08</td>
+<td headers="statistic" class="gt_row gt_center">5.83</td>
+<td headers="ci" class="gt_row gt_center">0.05, 0.10</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.060; F-Statistic = 37.9; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.081; F-Statistic = 51.0; DF1 = 5; DF2 = 2,874; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4313,12 +4280,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-</div>
-<div id="discordant" class="section level3">
-<h3>Discordant</h3>
-<div id="cesd_7_1992" class="section level4">
-<h4>CESD_7_1992</h4>
-<pre class="r"><code>lm_discord_sex3_CESD7_1992 %&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>lm_btwfam_dep_sex3_CESD20_1992%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -4753,35 +4715,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">-0.06</td>
-<td headers="statistic" class="gt_row gt_center">-0.978</td>
-<td headers="ci" class="gt_row gt_center"></td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td headers="estimate" class="gt_row gt_center">1.0</td>
-<td headers="statistic" class="gt_row gt_center">64.8</td>
-<td headers="ci" class="gt_row gt_center">0.75, 0.81</td>
+<td headers="estimate" class="gt_row gt_center">9.0</td>
+<td headers="statistic" class="gt_row gt_center">6.41</td>
+<td headers="ci" class="gt_row gt_center">6.3, 12</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1992_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">0.978</td>
-<td headers="ci" class="gt_row gt_center">0.01, 0.01</td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1992_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-0.327</td>
-<td headers="ci" class="gt_row gt_center">-0.01, 0.00</td>
-<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-2.53</td>
-<td headers="ci" class="gt_row gt_center">-0.03, -0.03</td>
-<td headers="p.value" class="gt_row gt_center">0.011</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">1.20</td>
-<td headers="ci" class="gt_row gt_center">0.01, 0.02</td>
-<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
+<td headers="estimate" class="gt_row gt_center">2.5</td>
+<td headers="statistic" class="gt_row gt_center">7.56</td>
+<td headers="ci" class="gt_row gt_center">1.9, 3.2</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -4793,16 +4735,21 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.814</td>
-<td headers="ci" class="gt_row gt_center">-0.02, 0.04</td>
-<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">0.07</td>
-<td headers="statistic" class="gt_row gt_center">4.90</td>
-<td headers="ci" class="gt_row gt_center">0.04, 0.10</td>
+<td headers="estimate" class="gt_row gt_center">1.7</td>
+<td headers="statistic" class="gt_row gt_center">5.18</td>
+<td headers="ci" class="gt_row gt_center">1.1, 2.4</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
+    <tr><td headers="label" class="gt_row gt_left">    mixed</td>
+<td headers="estimate" class="gt_row gt_center">0.77</td>
+<td headers="statistic" class="gt_row gt_center">2.70</td>
+<td headers="ci" class="gt_row gt_center">0.21, 1.3</td>
+<td headers="p.value" class="gt_row gt_center">0.007</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.075</td>
+<td headers="ci" class="gt_row gt_center">-0.15, 0.16</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">as.factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
 <td headers="ci" class="gt_row gt_center"></td>
@@ -4813,14 +4760,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-0.406</td>
-<td headers="ci" class="gt_row gt_center">-0.03, 0.02</td>
-<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+<td headers="estimate" class="gt_row gt_center">-2.7</td>
+<td headers="statistic" class="gt_row gt_center">-11.6</td>
+<td headers="ci" class="gt_row gt_center">-3.2, -2.3</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.610; F-Statistic = 569; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.060; F-Statistic = 37.9; DF1 = 5; DF2 = 2,951; p-value = &lt;0.001; No. Obs. = 2,957</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -4830,7 +4777,12 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD7_1992 %&gt;% lm.beta()%&gt;% 
+</div>
+<div id="discordant" class="section level3">
+<h3>Discordant</h3>
+<div id="cesd_7_1992" class="section level4">
+<h4>CESD_7_1992</h4>
+<pre class="r"><code>lm_discord_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -5265,34 +5217,34 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.021</td>
-<td headers="ci" class="gt_row gt_center"></td>
-<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
+<td headers="estimate" class="gt_row gt_center">-0.06</td>
+<td headers="statistic" class="gt_row gt_center">-0.978</td>
+<td headers="ci" class="gt_row gt_center">-0.19, 0.07</td>
+<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.03</td>
-<td headers="statistic" class="gt_row gt_center">0.206</td>
-<td headers="ci" class="gt_row gt_center">-0.29, 0.30</td>
-<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.10</td>
-<td headers="statistic" class="gt_row gt_center">1.14</td>
-<td headers="ci" class="gt_row gt_center">-0.16, 0.19</td>
+<td headers="estimate" class="gt_row gt_center">1.0</td>
+<td headers="statistic" class="gt_row gt_center">64.8</td>
+<td headers="ci" class="gt_row gt_center">0.99, 1.0</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1992_diff</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">0.978</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.00</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">CESD7_1992_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.69</td>
-<td headers="statistic" class="gt_row gt_center">36.1</td>
-<td headers="ci" class="gt_row gt_center">0.53, 0.60</td>
-<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-0.327</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.709</td>
-<td headers="ci" class="gt_row gt_center">-0.03, 0.05</td>
-<td headers="p.value" class="gt_row gt_center">0.5</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-2.53</td>
+<td headers="ci" class="gt_row gt_center">-0.01, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.011</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.05</td>
-<td headers="statistic" class="gt_row gt_center">1.35</td>
-<td headers="ci" class="gt_row gt_center">-0.05, 0.09</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">1.20</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.01</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -5305,15 +5257,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">-0.02</td>
-<td headers="statistic" class="gt_row gt_center">-0.105</td>
-<td headers="ci" class="gt_row gt_center">-0.30, 0.30</td>
-<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.814</td>
+<td headers="ci" class="gt_row gt_center">-0.02, 0.04</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">0.04</td>
-<td headers="statistic" class="gt_row gt_center">0.276</td>
-<td headers="ci" class="gt_row gt_center">-0.25, 0.26</td>
-<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.07</td>
+<td headers="statistic" class="gt_row gt_center">4.90</td>
+<td headers="ci" class="gt_row gt_center">0.04, 0.09</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -5325,14 +5277,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">0.27</td>
-<td headers="statistic" class="gt_row gt_center">2.51</td>
-<td headers="ci" class="gt_row gt_center">-0.17, 0.25</td>
-<td headers="p.value" class="gt_row gt_center">0.012</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-0.406</td>
+<td headers="ci" class="gt_row gt_center">-0.03, 0.02</td>
+<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.317; F-Statistic = 169; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.610; F-Statistic = 569; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -5342,8 +5294,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<p>CESD7_1994</p>
-<pre class="r"><code>lm_discord_sex3_CESD7_1994%&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>lm_discord_dep_sex3_CESD7_1992 %&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -5778,35 +5729,35 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">-0.05</td>
-<td headers="statistic" class="gt_row gt_center">-0.698</td>
-<td headers="ci" class="gt_row gt_center"></td>
-<td headers="p.value" class="gt_row gt_center">0.5</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.021</td>
+<td headers="ci" class="gt_row gt_center">-1.2, 1.3</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td headers="estimate" class="gt_row gt_center">1.0</td>
-<td headers="statistic" class="gt_row gt_center">64.6</td>
-<td headers="ci" class="gt_row gt_center">0.75, 0.82</td>
+<td headers="estimate" class="gt_row gt_center">0.03</td>
+<td headers="statistic" class="gt_row gt_center">0.206</td>
+<td headers="ci" class="gt_row gt_center">-0.26, 0.33</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_diff</td>
+<td headers="estimate" class="gt_row gt_center">0.10</td>
+<td headers="statistic" class="gt_row gt_center">1.14</td>
+<td headers="ci" class="gt_row gt_center">-0.07, 0.28</td>
+<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1992_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.69</td>
+<td headers="statistic" class="gt_row gt_center">36.1</td>
+<td headers="ci" class="gt_row gt_center">0.65, 0.72</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-0.784</td>
-<td headers="ci" class="gt_row gt_center">-0.01, -0.01</td>
-<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-1.31</td>
-<td headers="ci" class="gt_row gt_center">-0.02, -0.01</td>
-<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
-<td headers="estimate" class="gt_row gt_center">-0.01</td>
-<td headers="statistic" class="gt_row gt_center">-2.84</td>
-<td headers="ci" class="gt_row gt_center">-0.04, -0.03</td>
-<td headers="p.value" class="gt_row gt_center">0.005</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.709</td>
+<td headers="ci" class="gt_row gt_center">-0.02, 0.05</td>
+<td headers="p.value" class="gt_row gt_center">0.5</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">0.906</td>
-<td headers="ci" class="gt_row gt_center">0.00, 0.02</td>
-<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.05</td>
+<td headers="statistic" class="gt_row gt_center">1.35</td>
+<td headers="ci" class="gt_row gt_center">-0.02, 0.12</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -5818,15 +5769,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">0.02</td>
-<td headers="statistic" class="gt_row gt_center">1.13</td>
-<td headers="ci" class="gt_row gt_center">-0.02, 0.05</td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+<td headers="estimate" class="gt_row gt_center">-0.02</td>
+<td headers="statistic" class="gt_row gt_center">-0.105</td>
+<td headers="ci" class="gt_row gt_center">-0.31, 0.28</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">0.07</td>
-<td headers="statistic" class="gt_row gt_center">5.22</td>
-<td headers="ci" class="gt_row gt_center">0.05, 0.10</td>
-<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.04</td>
+<td headers="statistic" class="gt_row gt_center">0.276</td>
+<td headers="ci" class="gt_row gt_center">-0.22, 0.29</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -5838,14 +5789,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-0.069</td>
-<td headers="ci" class="gt_row gt_center">-0.02, 0.02</td>
-<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.27</td>
+<td headers="statistic" class="gt_row gt_center">2.51</td>
+<td headers="ci" class="gt_row gt_center">0.06, 0.48</td>
+<td headers="p.value" class="gt_row gt_center">0.012</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.611; F-Statistic = 563; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.317; F-Statistic = 169; DF1 = 8; DF2 = 2,914; p-value = &lt;0.001; No. Obs. = 2,923</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -5855,7 +5806,8 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD7_1994%&gt;% lm.beta()%&gt;% 
+<p>CESD7_1994</p>
+<pre class="r"><code>lm_discord_sex3_CESD7_1994%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -6290,35 +6242,35 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">1.1</td>
-<td headers="statistic" class="gt_row gt_center">1.78</td>
-<td headers="ci" class="gt_row gt_center"></td>
-<td headers="p.value" class="gt_row gt_center">0.075</td></tr>
+<td headers="estimate" class="gt_row gt_center">-0.05</td>
+<td headers="statistic" class="gt_row gt_center">-0.698</td>
+<td headers="ci" class="gt_row gt_center">-0.18, 0.08</td>
+<td headers="p.value" class="gt_row gt_center">0.5</td></tr>
     <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td headers="estimate" class="gt_row gt_center">-0.04</td>
-<td headers="statistic" class="gt_row gt_center">-0.238</td>
-<td headers="ci" class="gt_row gt_center">-0.30, 0.29</td>
-<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.098</td>
-<td headers="ci" class="gt_row gt_center">-0.17, 0.17</td>
-<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.76</td>
-<td headers="statistic" class="gt_row gt_center">41.4</td>
-<td headers="ci" class="gt_row gt_center">0.59, 0.66</td>
+<td headers="estimate" class="gt_row gt_center">1.0</td>
+<td headers="statistic" class="gt_row gt_center">64.6</td>
+<td headers="ci" class="gt_row gt_center">0.99, 1.1</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.761</td>
-<td headers="ci" class="gt_row gt_center">-0.02, 0.05</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_diff</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-0.784</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.00</td>
 <td headers="p.value" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-1.31</td>
+<td headers="ci" class="gt_row gt_center">-0.01, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
 <td headers="estimate" class="gt_row gt_center">-0.01</td>
-<td headers="statistic" class="gt_row gt_center">-0.304</td>
-<td headers="ci" class="gt_row gt_center">-0.07, 0.07</td>
-<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+<td headers="statistic" class="gt_row gt_center">-2.84</td>
+<td headers="ci" class="gt_row gt_center">-0.01, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.005</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">0.906</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.01</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -6330,15 +6282,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">-0.12</td>
-<td headers="statistic" class="gt_row gt_center">-0.795</td>
-<td headers="ci" class="gt_row gt_center">-0.31, 0.28</td>
-<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">0.14</td>
-<td headers="statistic" class="gt_row gt_center">1.06</td>
-<td headers="ci" class="gt_row gt_center">-0.23, 0.27</td>
+<td headers="estimate" class="gt_row gt_center">0.02</td>
+<td headers="statistic" class="gt_row gt_center">1.13</td>
+<td headers="ci" class="gt_row gt_center">-0.01, 0.05</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    mixed</td>
+<td headers="estimate" class="gt_row gt_center">0.07</td>
+<td headers="statistic" class="gt_row gt_center">5.22</td>
+<td headers="ci" class="gt_row gt_center">0.04, 0.10</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -6350,14 +6302,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">0.14</td>
-<td headers="statistic" class="gt_row gt_center">1.29</td>
-<td headers="ci" class="gt_row gt_center">-0.19, 0.23</td>
-<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-0.069</td>
+<td headers="ci" class="gt_row gt_center">-0.02, 0.02</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.384; F-Statistic = 223; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.611; F-Statistic = 563; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -6367,10 +6319,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<p>#CESD_20_1992</p>
-<p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
-<p>CESD20_1992</p>
-<pre class="r"><code>lm_discord_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;% 
+<pre class="r"><code>lm_discord_dep_sex3_CESD7_1994%&gt;%
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -6805,35 +6754,35 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_center">-0.07</td>
-<td headers="statistic" class="gt_row gt_center">-1.01</td>
-<td headers="ci" class="gt_row gt_center"></td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+<td headers="estimate" class="gt_row gt_center">1.1</td>
+<td headers="statistic" class="gt_row gt_center">1.78</td>
+<td headers="ci" class="gt_row gt_center">-0.11, 2.4</td>
+<td headers="p.value" class="gt_row gt_center">0.075</td></tr>
     <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
-<td headers="estimate" class="gt_row gt_center">1.0</td>
-<td headers="statistic" class="gt_row gt_center">65.6</td>
-<td headers="ci" class="gt_row gt_center">0.75, 0.82</td>
+<td headers="estimate" class="gt_row gt_center">-0.04</td>
+<td headers="statistic" class="gt_row gt_center">-0.238</td>
+<td headers="ci" class="gt_row gt_center">-0.33, 0.26</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_diff</td>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.098</td>
+<td headers="ci" class="gt_row gt_center">-0.16, 0.18</td>
+<td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CESD7_1994_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.76</td>
+<td headers="statistic" class="gt_row gt_center">41.4</td>
+<td headers="ci" class="gt_row gt_center">0.72, 0.79</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD20_1992_diff</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">0.376</td>
-<td headers="ci" class="gt_row gt_center">0.00, 0.01</td>
-<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">CESD20_1992_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">-0.376</td>
-<td headers="ci" class="gt_row gt_center">-0.01, 0.00</td>
-<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
-<td headers="estimate" class="gt_row gt_center">-0.01</td>
-<td headers="statistic" class="gt_row gt_center">-2.60</td>
-<td headers="ci" class="gt_row gt_center">-0.03, -0.03</td>
-<td headers="p.value" class="gt_row gt_center">0.009</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.761</td>
+<td headers="ci" class="gt_row gt_center">-0.02, 0.05</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
-<td headers="estimate" class="gt_row gt_center">0.00</td>
-<td headers="statistic" class="gt_row gt_center">1.21</td>
-<td headers="ci" class="gt_row gt_center">0.01, 0.02</td>
-<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+<td headers="estimate" class="gt_row gt_center">-0.01</td>
+<td headers="statistic" class="gt_row gt_center">-0.304</td>
+<td headers="ci" class="gt_row gt_center">-0.08, 0.06</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -6845,15 +6794,15 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
-<td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="statistic" class="gt_row gt_center">0.854</td>
-<td headers="ci" class="gt_row gt_center">-0.02, 0.04</td>
+<td headers="estimate" class="gt_row gt_center">-0.12</td>
+<td headers="statistic" class="gt_row gt_center">-0.795</td>
+<td headers="ci" class="gt_row gt_center">-0.42, 0.18</td>
 <td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
-<td headers="estimate" class="gt_row gt_center">0.07</td>
-<td headers="statistic" class="gt_row gt_center">5.07</td>
-<td headers="ci" class="gt_row gt_center">0.04, 0.10</td>
-<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.14</td>
+<td headers="statistic" class="gt_row gt_center">1.06</td>
+<td headers="ci" class="gt_row gt_center">-0.12, 0.39</td>
+<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
 <td headers="statistic" class="gt_row gt_center"></td>
@@ -6865,14 +6814,14 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <td headers="ci" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
-<td headers="estimate" class="gt_row gt_center">-0.01</td>
-<td headers="statistic" class="gt_row gt_center">-0.516</td>
-<td headers="ci" class="gt_row gt_center">-0.03, 0.02</td>
-<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.14</td>
+<td headers="statistic" class="gt_row gt_center">1.29</td>
+<td headers="ci" class="gt_row gt_center">-0.07, 0.35</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="5">R² = 0.612; F-Statistic = 582; DF1 = 8; DF2 = 2,948; p-value = &lt;0.001; No. Obs. = 2,957</td>
+      <td class="gt_sourcenote" colspan="5">R² = 0.384; F-Statistic = 223; DF1 = 8; DF2 = 2,871; p-value = &lt;0.001; No. Obs. = 2,880</td>
     </tr>
   </tfoot>
   <tfoot class="gt_footnotes">
@@ -6882,7 +6831,10 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </tfoot>
 </table>
 </div>
-<pre class="r"><code>lm_discord_dep_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;% 
+<p>#CESD_20_1992</p>
+<p>The CESD_20 depression difference was not significant.. The CESD_20 depression score did not predict criminal behavior. This means that the difference was not meaningful above or beyond the other sources of variance. Our hypothesis was not supported. Increased depression did not lead to more crime in adolescents. The variance in criminal behavior explained by the regression model is 61.48% f(6, 2950) = 787.4, p = &lt; 2.2e-16. The Sex Sibling 1 was significant t(2950) = 5.141, p= 2.91e-07. Sex Sibling 2 was signifcant t(2950) = -6.513, p = 8.62e-11.</p>
+<p>CESD20_1992</p>
+<pre class="r"><code>lm_discord_sex3_CESD20_1992 %&gt;% 
     gtsummary::tbl_regression(intercept=TRUE) %&gt;%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ &quot;F-Statistic&quot;,
@@ -7317,34 +7269,546 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
+<td headers="estimate" class="gt_row gt_center">-0.07</td>
+<td headers="statistic" class="gt_row gt_center">-1.01</td>
+<td headers="ci" class="gt_row gt_center">-0.20, 0.06</td>
+<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
+<td headers="estimate" class="gt_row gt_center">1.0</td>
+<td headers="statistic" class="gt_row gt_center">65.6</td>
+<td headers="ci" class="gt_row gt_center">1.0, 1.1</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CESD20_1992_diff</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">0.376</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">CESD20_1992_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">-0.376</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
+<td headers="estimate" class="gt_row gt_center">-0.01</td>
+<td headers="statistic" class="gt_row gt_center">-2.60</td>
+<td headers="ci" class="gt_row gt_center">-0.01, 0.00</td>
+<td headers="p.value" class="gt_row gt_center">0.009</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="statistic" class="gt_row gt_center">1.21</td>
+<td headers="ci" class="gt_row gt_center">0.00, 0.01</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
+<td headers="estimate" class="gt_row gt_center"></td>
+<td headers="statistic" class="gt_row gt_center"></td>
+<td headers="ci" class="gt_row gt_center"></td>
+<td headers="p.value" class="gt_row gt_center"></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    BoyBoy</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="statistic" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
+<td headers="estimate" class="gt_row gt_center">0.01</td>
+<td headers="statistic" class="gt_row gt_center">0.854</td>
+<td headers="ci" class="gt_row gt_center">-0.02, 0.04</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    mixed</td>
+<td headers="estimate" class="gt_row gt_center">0.07</td>
+<td headers="statistic" class="gt_row gt_center">5.07</td>
+<td headers="ci" class="gt_row gt_center">0.04, 0.09</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
+<td headers="estimate" class="gt_row gt_center"></td>
+<td headers="statistic" class="gt_row gt_center"></td>
+<td headers="ci" class="gt_row gt_center"></td>
+<td headers="p.value" class="gt_row gt_center"></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    blackorhispanic</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="statistic" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
+<td headers="estimate" class="gt_row gt_center">-0.01</td>
+<td headers="statistic" class="gt_row gt_center">-0.516</td>
+<td headers="ci" class="gt_row gt_center">-0.03, 0.02</td>
+<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">R² = 0.612; F-Statistic = 582; DF1 = 8; DF2 = 2,948; p-value = &lt;0.001; No. Obs. = 2,957</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> CI = Confidence Interval</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<pre class="r"><code>lm_discord_dep_sex3_CESD20_1992 %&gt;%  
+    gtsummary::tbl_regression(intercept=TRUE) %&gt;%
+    gtsummary::add_glance_source_note(
+      label = list(statistic ~ &quot;F-Statistic&quot;,
+                   df  ~ &quot;DF1&quot;,
+                   df.residual  ~ &quot;DF2&quot;),
+      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+      ) %&gt;%
+    gtsummary::modify_header(
+      statistic ~ &quot;**t-Statistic**&quot;, p.value ~ &quot;**p-value**&quot;
+      )</code></pre>
+<div id="znhulxqrop" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#znhulxqrop .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#znhulxqrop .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#znhulxqrop .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#znhulxqrop .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#znhulxqrop .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#znhulxqrop .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#znhulxqrop .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#znhulxqrop .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#znhulxqrop .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#znhulxqrop .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#znhulxqrop .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#znhulxqrop .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#znhulxqrop .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#znhulxqrop .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#znhulxqrop .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#znhulxqrop .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#znhulxqrop .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#znhulxqrop .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#znhulxqrop .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znhulxqrop .gt_left {
+  text-align: left;
+}
+
+#znhulxqrop .gt_center {
+  text-align: center;
+}
+
+#znhulxqrop .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#znhulxqrop .gt_font_normal {
+  font-weight: normal;
+}
+
+#znhulxqrop .gt_font_bold {
+  font-weight: bold;
+}
+
+#znhulxqrop .gt_font_italic {
+  font-style: italic;
+}
+
+#znhulxqrop .gt_super {
+  font-size: 65%;
+}
+
+#znhulxqrop .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#znhulxqrop .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#znhulxqrop .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#znhulxqrop .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#znhulxqrop .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#znhulxqrop .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#znhulxqrop .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;t-Statistic&lt;/strong&gt;"><strong>t-Statistic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;sup class=&quot;gt_footnote_marks&quot;&gt;1&lt;/sup&gt;"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
 <td headers="estimate" class="gt_row gt_center">0.54</td>
 <td headers="statistic" class="gt_row gt_center">0.382</td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="ci" class="gt_row gt_center">-2.2, 3.3</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_mean</td>
 <td headers="estimate" class="gt_row gt_center">-0.06</td>
 <td headers="statistic" class="gt_row gt_center">-0.168</td>
-<td headers="ci" class="gt_row gt_center">-0.65, 0.65</td>
+<td headers="ci" class="gt_row gt_center">-0.71, 0.60</td>
 <td headers="p.value" class="gt_row gt_center">0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">DELIN_AVERAGE_diff</td>
 <td headers="estimate" class="gt_row gt_center">0.11</td>
 <td headers="statistic" class="gt_row gt_center">0.580</td>
-<td headers="ci" class="gt_row gt_center">-0.38, 0.39</td>
+<td headers="ci" class="gt_row gt_center">-0.27, 0.50</td>
 <td headers="p.value" class="gt_row gt_center">0.6</td></tr>
     <tr><td headers="label" class="gt_row gt_left">CESD20_1992_mean</td>
 <td headers="estimate" class="gt_row gt_center">0.75</td>
 <td headers="statistic" class="gt_row gt_center">41.4</td>
-<td headers="ci" class="gt_row gt_center">0.59, 0.66</td>
+<td headers="ci" class="gt_row gt_center">0.72, 0.79</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_diff</td>
 <td headers="estimate" class="gt_row gt_center">-0.10</td>
 <td headers="statistic" class="gt_row gt_center">-2.51</td>
-<td headers="ci" class="gt_row gt_center">-0.12, 0.04</td>
+<td headers="ci" class="gt_row gt_center">-0.18, -0.02</td>
 <td headers="p.value" class="gt_row gt_center">0.012</td></tr>
     <tr><td headers="label" class="gt_row gt_left">AGE_1979_mean</td>
 <td headers="estimate" class="gt_row gt_center">0.02</td>
 <td headers="statistic" class="gt_row gt_center">0.252</td>
-<td headers="ci" class="gt_row gt_center">-0.15, 0.16</td>
+<td headers="ci" class="gt_row gt_center">-0.13, 0.17</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">SEX_all3</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -7359,12 +7823,12 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
     <tr><td headers="label" class="gt_row gt_left">    GirlGirl</td>
 <td headers="estimate" class="gt_row gt_center">-0.02</td>
 <td headers="statistic" class="gt_row gt_center">-0.053</td>
-<td headers="ci" class="gt_row gt_center">-0.65, 0.65</td>
+<td headers="ci" class="gt_row gt_center">-0.67, 0.64</td>
 <td headers="p.value" class="gt_row gt_center">&gt;0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    mixed</td>
 <td headers="estimate" class="gt_row gt_center">0.10</td>
 <td headers="statistic" class="gt_row gt_center">0.370</td>
-<td headers="ci" class="gt_row gt_center">-0.55, 0.56</td>
+<td headers="ci" class="gt_row gt_center">-0.45, 0.66</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(MINORITY_1)</td>
 <td headers="estimate" class="gt_row gt_center"></td>
@@ -7379,7 +7843,7 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
     <tr><td headers="label" class="gt_row gt_left">    nonblackhispanic</td>
 <td headers="estimate" class="gt_row gt_center">0.96</td>
 <td headers="statistic" class="gt_row gt_center">4.02</td>
-<td headers="ci" class="gt_row gt_center">-0.41, 0.53</td>
+<td headers="ci" class="gt_row gt_center">0.49, 1.4</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
@@ -7404,6 +7868,63 @@ lm_btwfam_sex3_CESD20_1992 %&gt;% lm.beta()%&gt;%
 <div id="unadjusted" class="section level2">
 <h2>Unadjusted</h2>
 <p>Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note,</p>
+<pre class="r"><code>library(lm.beta)
+lm_result &lt;- lm.beta(lm_og_CESD20_1992)
+print(lm_result)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE ~ CESD20_1992 + as.factor(SEX) + AGE_1979 + 
+##     as.factor(MINORITY), data = df_classic)
+## 
+## Standardized Coefficients::
+##                         (Intercept)                         CESD20_1992 
+##                                  NA                          0.10221611 
+##                     as.factor(SEX)1                            AGE_1979 
+##                          0.26308253                         -0.09389458 
+## as.factor(MINORITY)nonblackhispanic 
+##                          0.05736163</code></pre>
+<pre class="r"><code>summary(lm_result)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE ~ CESD20_1992 + as.factor(SEX) + AGE_1979 + 
+##     as.factor(MINORITY), data = df_classic)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.6863 -0.2370 -0.1118  0.0895  4.4938 
+## 
+## Coefficients:
+##                                       Estimate Standardized Std. Error t value
+## (Intercept)                          0.4435243           NA  0.0399506  11.102
+## CESD20_1992                          0.0052373    0.1022161  0.0005387   9.722
+## as.factor(SEX)1                      0.2494883    0.2630825  0.0098815  25.248
+## AGE_1979                            -0.0197856   -0.0938946  0.0021862  -9.050
+## as.factor(MINORITY)nonblackhispanic  0.0543968    0.0573616  0.0099280   5.479
+##                                     Pr(&gt;|t|)    
+## (Intercept)                          &lt; 2e-16 ***
+## CESD20_1992                          &lt; 2e-16 ***
+## as.factor(SEX)1                      &lt; 2e-16 ***
+## AGE_1979                             &lt; 2e-16 ***
+## as.factor(MINORITY)nonblackhispanic  4.4e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4532 on 8493 degrees of freedom
+##   (4188 observations deleted due to missingness)
+## Multiple R-squared:  0.0867, Adjusted R-squared:  0.08627 
+## F-statistic: 201.6 on 4 and 8493 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>result_coef &lt;- coef(lm_result)
+writeup_btw&lt;-summary(lm_result)
+result_r2&lt;-round(writeup_btw$adj.r.squared,4)
+result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
+result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
+result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
+result_n &lt;-length(writeup_btw$residuals)
+result_predictor_mean &lt;- round(result_coef[&#39;CESD20_1992&#39;],4)
+result_age_mean &lt;- round(result_coef[&#39;AGE_1979&#39;],4)
+result_bg &lt;- round(result_coef[&#39;as.factor(SEX)&#39;],4)
+result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY)nonblackhispanic&#39;],4)</code></pre>
+<p>Averages of CESD-20 were used to predict averages of delinquency. Table X presents the unstandardized regression results (n =8498). The F-statistic (201.5668,df1=4,df2=8493) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0863. A standard-deviation increase in average depression predicted a statistically significant increase of 0.1022 standard deviations in the average delinquency score. As expected, gender composition, age, and minority status were also predictive. Being female was predictive of having more average delinquency (NA). Similarly, older age was predictive of lower levels of delinquency (-0.0939). Being in the nonminority group was predictive of 0.0574 standard deviations for average of the delinquency measure.</p>
 </div>
 <div id="between-family-1" class="section level2">
 <h2>Between-Family</h2>
@@ -7464,12 +7985,12 @@ result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
 result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
 result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;-length(writeup_btw$residuals)
-result_predictor_mean &lt;- round(result_coef[&#39;CESD7_1992_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;DELIN_AVERAGE_mean&#39;],4)
 result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
 result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
-<p>Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the regression results (n =2957). The F-statistic (51.3772,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0785. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of NA standard deviations in the average of the siblings’ average delinquency score. As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (-0.1609) or two (-0.261) sisters had lower averages in OUTCOME. Similarly, older sibling pairs were predictive of lower levels of OUTCOME (-0.1057). Relative to the reference group (of respondents classified as either Black or Hispanic), had 0.112 standard deviationsfor average of the siblings’ delinquency measure.</p>
+<p>Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =2957). The F-statistic (51.3772,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0785. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of NA standard deviations in the average of the siblings’ average delinquency score. As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (-0.1609) or two (-0.261) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (-0.1057). Relative to the reference group (of respondents classified as either Black or Hispanic), had 0.112 standard deviationsfor average of the siblings’ delinquency measure.</p>
 </div>
 <div id="deliquency-predicting-depression" class="section level3">
 <h3>Deliquency predicting depression</h3>
@@ -7528,12 +8049,12 @@ result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
 result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
 result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;-length(writeup_btw$residuals)
-result_predictor_mean &lt;- round(result_coef[&#39;CESD7_1992_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;CESD20_1992_mean&#39;],4)
 result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
 result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
-<p>Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the regression results (n =2957). The F-statistic (37.9041,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0588. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of NA standard deviations in the average of the siblings’ OUTCOME. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (0.0583) or two (0.1137) sisters had higher averages in depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = -0.2074).</p>
+<p>Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the unstandardized regression results (n =2957). The F-statistic (37.9041,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0588. A standard-deviation increase in the siblings average delinquency predicted a statistically significant increase of NA standard deviations in the average of the siblings’ depression. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (0.0583) or two (0.1137) sisters had higher averages in depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = -0.2074).</p>
 </div>
 </div>
 <div id="sibling-difference-score" class="section level2">
@@ -7607,7 +8128,7 @@ result_f &lt;- round(writeup_wth$fstatistic[&#39;value&#39;],4)
 result_ndf &lt;- round(writeup_wth$fstatistic[&#39;numdf&#39;],0)
 result_ddf &lt;- round(writeup_wth$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;- length(writeup_wth$residuals)
-result_outcome_mean &lt;- round(result_coef[&#39;CESD20_1992_mean&#39;],4)
+result_outcome_mean &lt;- round(result_coef[&#39;CESD20_1992_diff&#39;],4)
 result_predictor_mean &lt;- round(result_coef[&#39;DELIN_AVERAGE_mean&#39;],4)
 result_predictor_diff &lt;- round(result_coef[&#39;DELIN_AVERAGE_diff&#39;],4)
 result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
@@ -7616,14 +8137,91 @@ result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
 </div>
+<div id="deliquency-predicting-depression-2" class="section level3">
+<h3>Deliquency predicting depression</h3>
+</div>
 <div id="section" class="section level3">
 <h3></h3>
-<p>Sibling differences in PREDICTOR were used to predict differences in OUTCOME, controlling for family level gender composition, family minority status, and sibling averages of both OUTCOME and PREDICTOR. Table X displays the results of MODEL. The CESD20 model reports the averages and differences where depression is measured using CESD20 (n =2957). The CESD7.92 model reports the averages and differences where depression is measured using CESD7 in 1992 (n =2957). The CESD7.94 reports the averages and differences where depression is measured using CESD7 in 1992 (n =2957).</p>
-<ul>
-<li>above is done</li>
-</ul>
-<p>All three models reveal similar results. Averages of OUTCOME were significant predictors of differences in OUTCOME (p <span class="math inline">\(&lt; .01\)</span>). A one standard deviation increase in the sibling average of OUTCOME predicted a 0.6217 increase in average OUTCOME difference, controlling for all over variables in the model. (We don’t encourage people to interpret these coefficients deeply).</p>
-<p>In the CESD20 model, the sibling difference in age was a significant predictor of differences in OUTCOME (p <span class="math inline">\(&lt; .01\)</span>). A one standard deviation increase in the average difference in age predicted <span class="math inline">\(\approx\)</span> -0.0367 decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R<span class="math inline">\(^{2}\)</span> varied slightly by Gen2 linking (Mixed <span class="math inline">\(= .066\)</span>, Daughters <span class="math inline">\(= .072\)</span>, Sons <span class="math inline">\(= .106\)</span>).</p>
+<p>Sibling differences in delinquency were used to predict differences in depression, controlling for family level gender composition, family minority status, and sibling averages of both delinquency and depression. Table X presents the unstandardized regression results (n =2957). The F-statistic (222.0721,df1=8,df2=2948) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.3743. A standard-deviation increase in the average delinquency predicted a statistically significant increase of -0.0026 standard deviations in the average of the siblings’ depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = NA). Similarly, older sibling pairs were predictive of lower levels of depression (-0.0367).</p>
+<p>##depression predicting delinquency</p>
+<pre class="r"><code>library(lm.beta)
+lm_result &lt;- lm.beta(lm_discord_sex3_CESD20_1992)
+print(lm_result)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD20_1992_diff + 
+##     CESD20_1992_mean + AGE_1979_diff + AGE_1979_mean + SEX_all3 + 
+##     factor(MINORITY_1), data = df_dyad_delinq)
+## 
+## Standardized Coefficients::
+##                        (Intercept)                 DELIN_AVERAGE_mean 
+##                                 NA                        0.784527099 
+##                   CESD20_1992_diff                   CESD20_1992_mean 
+##                        0.004322952                       -0.004458727 
+##                      AGE_1979_diff                      AGE_1979_mean 
+##                       -0.029945925                        0.014012809 
+##                   SEX_all3GirlGirl                      SEX_all3mixed 
+##                        0.012100163                        0.070591429 
+## factor(MINORITY_1)nonblackhispanic 
+##                       -0.006076191</code></pre>
+<pre class="r"><code>summary(lm_result)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = DELIN_AVERAGE_diff ~ DELIN_AVERAGE_mean + CESD20_1992_diff + 
+##     CESD20_1992_mean + AGE_1979_diff + AGE_1979_mean + SEX_all3 + 
+##     factor(MINORITY_1), data = df_dyad_delinq)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.3922 -0.0912 -0.0111  0.0970  2.1716 
+## 
+## Coefficients:
+##                                      Estimate Standardized Std. Error t value
+## (Intercept)                        -0.0671804           NA  0.0662783  -1.014
+## DELIN_AVERAGE_mean                  1.0260779    0.7845271  0.0156475  65.575
+## CESD20_1992_diff                    0.0001786    0.0043230  0.0004744   0.376
+## CESD20_1992_mean                   -0.0003244   -0.0044587  0.0008622  -0.376
+## AGE_1979_diff                      -0.0050198   -0.0299459  0.0019287  -2.603
+## AGE_1979_mean                       0.0045121    0.0140128  0.0037214   1.212
+## SEX_all3GirlGirl                    0.0134471    0.0121002  0.0157464   0.854
+## SEX_all3mixed                       0.0677909    0.0705914  0.0133624   5.073
+## factor(MINORITY_1)nonblackhispanic -0.0058334   -0.0060762  0.0113123  -0.516
+##                                    Pr(&gt;|t|)    
+## (Intercept)                          0.3109    
+## DELIN_AVERAGE_mean                  &lt; 2e-16 ***
+## CESD20_1992_diff                     0.7066    
+## CESD20_1992_mean                     0.7068    
+## AGE_1979_diff                        0.0093 ** 
+## AGE_1979_mean                        0.2254    
+## SEX_all3GirlGirl                     0.3932    
+## SEX_all3mixed                      4.15e-07 ***
+## factor(MINORITY_1)nonblackhispanic   0.6061    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2993 on 2948 degrees of freedom
+##   (727 observations deleted due to missingness)
+## Multiple R-squared:  0.6122, Adjusted R-squared:  0.6112 
+## F-statistic: 581.8 on 8 and 2948 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>result_coef &lt;- coef(lm_result)
+writeup_wth &lt;- summary(lm_result)
+result_r2 &lt;- round(writeup_wth$adj.r.squared,4)
+result_f &lt;- round(writeup_wth$fstatistic[&#39;value&#39;],4)
+result_ndf &lt;- round(writeup_wth$fstatistic[&#39;numdf&#39;],0)
+result_ddf &lt;- round(writeup_wth$fstatistic[&#39;dendf&#39;],0)
+result_n &lt;- length(writeup_wth$residuals)
+result_outcome_mean &lt;- round(result_coef[&#39;DELIN_AVERAGE_diff&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;CESD20_1992_mean&#39;],4)
+result_predictor_diff &lt;- round(result_coef[&#39;CESD20_1992_diff&#39;],4)
+result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
+result_age_diff &lt;- round(result_coef[&#39;AGE_1979_diff&#39;],4)
+result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
+result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
+result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
+<p>##depression predicting delinquency</p>
+<p>Sibling differences in depression were used to predict differences in delinquency, controlling for family level gender composition, family minority status, and sibling averages of both delinquency and depression. Table X presents the unstandardized regression results (n =2957). The F-statistic (581.8171,df1=8,df2=2948) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.6112. A standard-deviation increase in the average delinquency predicted a statistically significant increase of -0.0045 standard deviations in the average of the siblings’ depression. Similarly, older sibling pairs were predictive of lower levels of delinquency (-0.0299). Relative to the reference group of brothers, families with one (0.0706) sister had higher averages in delinquency.</p>
+<p>All three models reveal similar results. Averages of deqlinuency were significant predictors of differences in delinquency (p <span class="math inline">\(&lt; .01\)</span>). A one standard deviation increase in the sibling average of delinquency predicted a NA increase in average delinquency difference, controlling for all over variables in the model. (We don’t encourage people to interpret these coefficients deeply).</p>
+<p>#In the CESD20 model, the sibling difference in age was a significant predictor of differences in delinquency (p <span class="math inline">\(&lt; .01\)</span>). A one standard deviation increase in the average difference in age predicted <span class="math inline">\(\approx\)</span> -0.0299 decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R<span class="math inline">\(^{2}\)</span> varied slightly by Gen2 linking (Mixed <span class="math inline">\(= .066\)</span>, Daughters <span class="math inline">\(= .072\)</span>, Sons <span class="math inline">\(= .106\)</span>).</p>
 </div>
 </div>
 </div>

@@ -2456,11 +2456,8 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 
 #classical regression
 
-
-#lm.beta(object, complete.standardization = FALSE) 
-
 lm_og_CESD7_1992 %>%
-    gtsummary::tbl_regression(lm_og_CESD7_1992, intercept=TRUE,tidy_fun = tidy_standardize,)%>%
+    gtsummary::tbl_regression()%>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
                    df  ~ "DF1",
@@ -2471,7 +2468,7 @@ lm_og_CESD7_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**",
       ) 
 
-lm_og_CESD20_1992 %>% lm.beta()%>% 
+lm_og_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2483,7 +2480,7 @@ lm_og_CESD20_1992 %>% lm.beta()%>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_og_CESD7_1994 %>% lm.beta()%>% 
+lm_og_CESD7_1994 %>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2502,7 +2499,7 @@ lm_og_CESD7_1994 %>% lm.beta()%>%
 
 #between family 
 
-lm_btwfam_sex3_CESD7_1992 %>% lm.beta()%>% 
+lm_btwfam_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2516,7 +2513,7 @@ lm_btwfam_sex3_CESD7_1992 %>% lm.beta()%>%
 
 #between family
 
-lm_btwfam_sex3_CESD20_1992 %>% lm.beta()%>% 
+lm_btwfam_sex3_CESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2529,7 +2526,7 @@ lm_btwfam_sex3_CESD20_1992 %>% lm.beta()%>%
       )
 
 
-lm_btwfam_sex3_CESD7_1994 %>% lm.beta()%>% 
+lm_btwfam_sex3_CESD7_1994 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2541,7 +2538,7 @@ lm_btwfam_sex3_CESD7_1994 %>% lm.beta()%>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_btwfam_dep_sex3_CESD20_1992%>% lm.beta()%>% 
+lm_btwfam_dep_sex3_CESD20_1992%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2562,7 +2559,7 @@ lm_btwfam_dep_sex3_CESD20_1992%>% lm.beta()%>%
 
 ```{r discord}
 
-lm_discord_sex3_CESD7_1992 %>% lm.beta()%>% 
+lm_discord_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2575,7 +2572,7 @@ lm_discord_sex3_CESD7_1992 %>% lm.beta()%>%
       )
 
 
-lm_discord_dep_sex3_CESD7_1992 %>% lm.beta()%>% 
+lm_discord_dep_sex3_CESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2592,7 +2589,7 @@ CESD7_1994
 
 ```{r raw3}
 
-lm_discord_sex3_CESD7_1994%>% lm.beta()%>% 
+lm_discord_sex3_CESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2604,7 +2601,7 @@ lm_discord_sex3_CESD7_1994%>% lm.beta()%>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_discord_dep_sex3_CESD7_1994%>% lm.beta()%>% 
+lm_discord_dep_sex3_CESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2633,7 +2630,7 @@ CESD20_1992
 
 ```{r raw5}
 
-lm_discord_sex3_CESD20_1992 %>% lm.beta()%>% 
+lm_discord_sex3_CESD20_1992 %>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2646,7 +2643,7 @@ lm_discord_sex3_CESD20_1992 %>% lm.beta()%>%
       )
 
 
-lm_discord_dep_sex3_CESD20_1992 %>% lm.beta()%>% 
+lm_discord_dep_sex3_CESD20_1992 %>%  
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -2668,6 +2665,25 @@ First, we looked at the overall relationship without accounting for family struc
 
 Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note, 
 
+```{r og dep predict delinq}
+library(lm.beta)
+lm_result <- lm.beta(lm_og_CESD20_1992)
+print(lm_result)
+summary(lm_result)
+result_coef <- coef(lm_result)
+writeup_btw<-summary(lm_result)
+result_r2<-round(writeup_btw$adj.r.squared,4)
+result_f<-round(writeup_btw$fstatistic['value'],4)
+result_ndf<-round(writeup_btw$fstatistic['numdf'],0)
+result_ddf<-round(writeup_btw$fstatistic['dendf'],0)
+result_n <-length(writeup_btw$residuals)
+result_predictor_mean <- round(result_coef['CESD20_1992'],4)
+result_age_mean <- round(result_coef['AGE_1979'],4)
+result_bg <- round(result_coef['as.factor(SEX)'],4)
+result_minority <- round(result_coef['as.factor(MINORITY)nonblackhispanic'],4)
+```
+Averages of CESD-20 were used to predict averages of delinquency. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Being female was predictive of having more average delinquency (`r result_bg`). Similarly, older age was predictive of lower levels of delinquency (`r result_age_mean`). Being in the nonminority group was predictive of `r result_minority` standard deviations for average of the delinquency measure.
+
 
 ## Between-Family
 
@@ -2687,7 +2703,7 @@ result_f<-round(writeup_btw$fstatistic['value'],4)
 result_ndf<-round(writeup_btw$fstatistic['numdf'],0)
 result_ddf<-round(writeup_btw$fstatistic['dendf'],0)
 result_n <-length(writeup_btw$residuals)
-result_predictor_mean <- round(result_coef['CESD7_1992_mean'],4)
+result_predictor_mean <- round(result_coef['DELIN_AVERAGE_mean'],4)
 result_age_mean <- round(result_coef['AGE_1979_mean'],4)
 result_gg <- round(result_coef['SEX_all3GirlGirl'],4)
 result_bg <- round(result_coef['SEX_all3mixed'],4)
@@ -2695,7 +2711,7 @@ result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
 
-Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in OUTCOME. Similarly, older sibling pairs were predictive of lower levels of OUTCOME (`r result_age_mean`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviationsfor average of the siblings' delinquency measure.
+Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (`r result_age_mean`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviationsfor average of the siblings' delinquency measure.
 
 ### Deliquency predicting depression
 ```{r delin pred dep2}
@@ -2712,14 +2728,14 @@ result_f<-round(writeup_btw$fstatistic['value'],4)
 result_ndf<-round(writeup_btw$fstatistic['numdf'],0)
 result_ddf<-round(writeup_btw$fstatistic['dendf'],0)
 result_n <-length(writeup_btw$residuals)
-result_predictor_mean <- round(result_coef['CESD7_1992_mean'],4)
+result_predictor_mean <- round(result_coef['CESD20_1992_mean'],4)
 result_age_mean <- round(result_coef['AGE_1979_mean'],4)
 result_gg <- round(result_coef['SEX_all3GirlGirl'],4)
 result_bg <- round(result_coef['SEX_all3mixed'],4)
 result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
-Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average PREDICTOR predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' OUTCOME. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had higher averages in depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = `r result_minority`).
+Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the siblings average delinquency predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' depression. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had higher averages in depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = `r result_minority`).
 
 
 ## Sibling Difference Score
@@ -2740,7 +2756,7 @@ result_f <- round(writeup_wth$fstatistic['value'],4)
 result_ndf <- round(writeup_wth$fstatistic['numdf'],0)
 result_ddf <- round(writeup_wth$fstatistic['dendf'],0)
 result_n <- length(writeup_wth$residuals)
-result_outcome_mean <- round(result_coef['CESD20_1992_mean'],4)
+result_outcome_mean <- round(result_coef['CESD20_1992_diff'],4)
 result_predictor_mean <- round(result_coef['DELIN_AVERAGE_mean'],4)
 result_predictor_diff <- round(result_coef['DELIN_AVERAGE_diff'],4)
 result_age_mean <- round(result_coef['AGE_1979_mean'],4)
@@ -2750,13 +2766,40 @@ result_bg <- round(result_coef['SEX_all3mixed'],4)
 result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
-
+### Deliquency predicting depression
 ### 
 
-Sibling differences in PREDICTOR were used to predict differences in OUTCOME, controlling for family level gender composition, family minority status, and sibling averages of both OUTCOME and PREDICTOR. Table X displays the results of MODEL. The CESD20 model reports the averages and differences where depression is measured using CESD20  (n =`r result_n`). The CESD7.92 model reports the averages and differences where depression is measured using CESD7 in 1992  (n =`r result_n`). The CESD7.94 reports the averages and differences where depression is measured using CESD7 in 1992  (n =`r result_n`).
+Sibling differences in delinquency were used to predict differences in depression, controlling for family level gender composition, family minority status, and sibling averages of both delinquency and depression. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average delinquency predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = `r result_minority`). Similarly, older sibling pairs were predictive of lower levels of depression (`r result_age_diff`).
 
-* above is done
+##depression predicting delinquency
 
-All three models reveal similar results. Averages of OUTCOME were significant predictors of differences in OUTCOME (p $< .01$). A one standard deviation increase in the sibling average of OUTCOME predicted a `r result_outcome_mean` increase in average OUTCOME difference, controlling for all over variables in the model. (We don't encourage people to interpret these coefficients deeply).
+```{r dep predict deli}
 
-In the CESD20 model, the sibling difference in age was a significant predictor of differences in OUTCOME (p $< .01$). A one standard deviation increase in the average difference in age predicted $\approx$ `r result_age_diff` decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R$^{2}$ varied slightly by Gen2 linking (Mixed $= .066$, Daughters $= .072$, Sons $= .106$).
+library(lm.beta)
+lm_result <- lm.beta(lm_discord_sex3_CESD20_1992)
+print(lm_result)
+summary(lm_result)
+result_coef <- coef(lm_result)
+writeup_wth <- summary(lm_result)
+result_r2 <- round(writeup_wth$adj.r.squared,4)
+result_f <- round(writeup_wth$fstatistic['value'],4)
+result_ndf <- round(writeup_wth$fstatistic['numdf'],0)
+result_ddf <- round(writeup_wth$fstatistic['dendf'],0)
+result_n <- length(writeup_wth$residuals)
+result_outcome_mean <- round(result_coef['DELIN_AVERAGE_diff'],4)
+result_predictor_mean <- round(result_coef['CESD20_1992_mean'],4)
+result_predictor_diff <- round(result_coef['CESD20_1992_diff'],4)
+result_age_mean <- round(result_coef['AGE_1979_mean'],4)
+result_age_diff <- round(result_coef['AGE_1979_diff'],4)
+result_gg <- round(result_coef['SEX_all3GirlGirl'],4)
+result_bg <- round(result_coef['SEX_all3mixed'],4)
+result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
+```
+
+##depression predicting delinquency
+
+Sibling differences in depression were used to predict differences in delinquency, controlling for family level gender composition, family minority status, and sibling averages of both delinquency and depression. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average delinquency predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' depression. Similarly, older sibling pairs were predictive of lower levels of delinquency (`r result_age_diff`). Relative to the reference group of brothers, families with one (`r result_bg`) sister had higher averages in delinquency.
+
+All three models reveal similar results. Averages of deqlinuency were significant predictors of differences in delinquency (p $< .01$). A one standard deviation increase in the sibling average of delinquency predicted a `r result_outcome_mean` increase in average delinquency difference, controlling for all over variables in the model. (We don't encourage people to interpret these coefficients deeply).
+
+#In the CESD20 model, the sibling difference in age was a significant predictor of differences in delinquency (p $< .01$). A one standard deviation increase in the average difference in age predicted $\approx$ `r result_age_diff` decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R$^{2}$ varied slightly by Gen2 linking (Mixed $= .066$, Daughters $= .072$, Sons $= .106$).
