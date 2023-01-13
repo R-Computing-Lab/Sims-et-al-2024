@@ -163,7 +163,7 @@ pre code {
 
 <h1 class="title toc-ignore">Results</h1>
 <h4 class="author">Emma Sims, Jonathan Trattner, and S. Mason Garrison</h4>
-<h4 class="date">December 15 2022</h4>
+<h4 class="date">January 13 2023</h4>
 
 </div>
 
@@ -214,17 +214,6 @@ pre code {
 ##  3rd Qu.:20.0  
 ##  Max.   :22.0  
 ## </code></pre>
-<pre class="r"><code>#Data visualization
-#sex, minoirity/race, age.
-#correlation table
-
-
-df_spsp_gen1 %&gt;%
-  select(DELIN_AVERAGE, SEX, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994, MINORITY) %&gt;%
-tbl_summary(
-    label= list(
-  DELIN_AVERAGE ~ &quot;Delinquency Average&quot;,
-  AGE_1979 ~ &quot;Age&quot; ))</code></pre>
 <div id="gtoyntxhyb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -633,6 +622,1518 @@ tbl_summary(
 }
 
 #gtoyntxhyb .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="SEX">SEX</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_Delin_Avg">mean_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_Delin_Avg">sd_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_Delin_Avg">n_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD7_1992">mean_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD7_1992">sd_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD7_1992">n_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD7_1994">mean_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD7_1994">sd_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD7_1994">n_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD20_1992">mean_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD20_1992">sd_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD20_1992">n_CESD20_1992</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="SEX" class="gt_row gt_center">0</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.1738366</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.2940849</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">6283</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.665926</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.28941</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">6283</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">4.432052</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.431404</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">6283</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">10.619532</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.849080</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">6283</td></tr>
+    <tr><td headers="SEX" class="gt_row gt_center">1</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.4209970</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.5930538</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">6403</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">3.728114</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">3.70649</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">6403</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.097478</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">3.564764</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">6403</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">8.874888</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">8.599939</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">6403</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<div id="aydrzmppyq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#aydrzmppyq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#aydrzmppyq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#aydrzmppyq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#aydrzmppyq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#aydrzmppyq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aydrzmppyq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#aydrzmppyq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#aydrzmppyq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#aydrzmppyq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#aydrzmppyq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#aydrzmppyq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#aydrzmppyq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#aydrzmppyq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#aydrzmppyq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aydrzmppyq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#aydrzmppyq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#aydrzmppyq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aydrzmppyq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#aydrzmppyq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aydrzmppyq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#aydrzmppyq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aydrzmppyq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aydrzmppyq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aydrzmppyq .gt_left {
+  text-align: left;
+}
+
+#aydrzmppyq .gt_center {
+  text-align: center;
+}
+
+#aydrzmppyq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#aydrzmppyq .gt_font_normal {
+  font-weight: normal;
+}
+
+#aydrzmppyq .gt_font_bold {
+  font-weight: bold;
+}
+
+#aydrzmppyq .gt_font_italic {
+  font-style: italic;
+}
+
+#aydrzmppyq .gt_super {
+  font-size: 65%;
+}
+
+#aydrzmppyq .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#aydrzmppyq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#aydrzmppyq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#aydrzmppyq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#aydrzmppyq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#aydrzmppyq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#aydrzmppyq .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="AGE_1979">AGE_1979</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_Delin_Avg">mean_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_Delin_Avg">sd_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_Delin_Avg">n_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD7_1992">mean_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD7_1992">sd_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD7_1992">n_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD7_1994">mean_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD7_1994">sd_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD7_1994">n_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD20_1992">mean_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD20_1992">sd_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD20_1992">n_CESD20_1992</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="AGE_1979" class="gt_row gt_right">14</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.3472891</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.4909847</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">950</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.235984</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">3.895550</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">950</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.673997</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">3.808201</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">950</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">9.715215</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">8.937036</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">950</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">15</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.3591537</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.5346481</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1563</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.379143</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.080816</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1563</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.826861</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.119368</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1563</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">10.232877</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.380561</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1563</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">16</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.3464444</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.5395295</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1561</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.172830</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">3.921170</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1561</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.747343</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">3.946132</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1561</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">9.609600</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.063316</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1561</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">17</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.3328724</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.5096266</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1508</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.139364</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.100608</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1508</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.701235</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.049584</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1508</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">9.489051</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.427617</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1508</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">18</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.3094470</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.4973877</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1634</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.147727</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.045147</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1634</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.727419</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.046329</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1634</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">9.683871</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.407383</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1634</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">19</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.2680842</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.4548221</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1677</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.339570</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.092761</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1677</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.971618</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.308328</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1677</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">10.087523</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.357743</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1677</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">20</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.2402540</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.4140372</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1666</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.212343</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.042690</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1666</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.816737</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.247049</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1666</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">9.775234</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.171823</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1666</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">21</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.2256847</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.4346292</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">1690</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.054192</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.116289</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">1690</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.740206</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.082803</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">1690</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">9.645390</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.554790</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">1690</td></tr>
+    <tr><td headers="AGE_1979" class="gt_row gt_right">22</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.2024946</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.3455139</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">437</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">3.791855</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">3.895467</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">437</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.502304</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.015162</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">437</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">8.686099</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">8.812876</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">437</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<div id="ccjyaokqky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ccjyaokqky .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ccjyaokqky .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ccjyaokqky .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ccjyaokqky .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ccjyaokqky .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ccjyaokqky .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ccjyaokqky .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ccjyaokqky .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ccjyaokqky .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ccjyaokqky .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ccjyaokqky .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ccjyaokqky .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ccjyaokqky .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ccjyaokqky .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ccjyaokqky .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ccjyaokqky .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ccjyaokqky .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ccjyaokqky .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ccjyaokqky .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ccjyaokqky .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ccjyaokqky .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ccjyaokqky .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ccjyaokqky .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ccjyaokqky .gt_left {
+  text-align: left;
+}
+
+#ccjyaokqky .gt_center {
+  text-align: center;
+}
+
+#ccjyaokqky .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ccjyaokqky .gt_font_normal {
+  font-weight: normal;
+}
+
+#ccjyaokqky .gt_font_bold {
+  font-weight: bold;
+}
+
+#ccjyaokqky .gt_font_italic {
+  font-style: italic;
+}
+
+#ccjyaokqky .gt_super {
+  font-size: 65%;
+}
+
+#ccjyaokqky .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#ccjyaokqky .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ccjyaokqky .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ccjyaokqky .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ccjyaokqky .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ccjyaokqky .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ccjyaokqky .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="MINORITY">MINORITY</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_Delin_Avg">mean_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_Delin_Avg">sd_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_Delin_Avg">n_Delin_Avg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD7_1992">mean_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD7_1992">sd_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD7_1992">n_CESD7_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD7_1994">mean_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD7_1994">sd_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD7_1994">n_CESD7_1994</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_CESD20_1992">mean_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_CESD20_1992">sd_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD20_1992">n_CESD20_1992</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="MINORITY" class="gt_row gt_center">blackorhispanic</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.2755650</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.4543250</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">5176</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">4.596067</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">4.134938</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">5176</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">4.104488</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">4.171587</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">5176</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">11.013705</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">9.528434</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">5176</td></tr>
+    <tr><td headers="MINORITY" class="gt_row gt_center">nonblackhispanic</td>
+<td headers="mean_Delin_Avg" class="gt_row gt_right">0.3124476</td>
+<td headers="sd_Delin_Avg" class="gt_row gt_right">0.5030336</td>
+<td headers="n_Delin_Avg" class="gt_row gt_right">7510</td>
+<td headers="mean_CESD7_1992" class="gt_row gt_right">3.812292</td>
+<td headers="sd_CESD7_1992" class="gt_row gt_right">3.901847</td>
+<td headers="n_CESD7_1992" class="gt_row gt_right">7510</td>
+<td headers="mean_CESD7_1994" class="gt_row gt_right">3.439839</td>
+<td headers="sd_CESD7_1994" class="gt_row gt_right">3.959725</td>
+<td headers="n_CESD7_1994" class="gt_row gt_right">7510</td>
+<td headers="mean_CESD20_1992" class="gt_row gt_right">8.516236</td>
+<td headers="sd_CESD20_1992" class="gt_row gt_right">8.880666</td>
+<td headers="n_CESD20_1992" class="gt_row gt_right">7510</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<pre><code>##    SubjectTag          CASEID      RACE     SEX      DELIN_AVERAGE   
+##  Min.   :    100   Min.   :    1   1:2002   0:6283   Min.   :0.0000  
+##  1st Qu.: 317225   1st Qu.: 3172   2:3174   1:6403   1st Qu.:0.0000  
+##  Median : 634350   Median : 6344   3:7510            Median :0.1333  
+##  Mean   : 634350   Mean   : 6344                     Mean   :0.2974  
+##  3rd Qu.: 951475   3rd Qu.: 9515                     3rd Qu.:0.3750  
+##  Max.   :1268600   Max.   :12686                     Max.   :5.6250  
+##                                                      NA&#39;s   :861     
+##              MINORITY      CESD7_1994     CESD20_1992       CESD7_1992    
+##  blackorhispanic :5176   Min.   : 0.00   Min.   : 0.000   Min.   : 0.000  
+##  nonblackhispanic:7510   1st Qu.: 0.00   1st Qu.: 3.000   1st Qu.: 1.000  
+##                          Median : 3.00   Median : 7.000   Median : 3.000  
+##                          Mean   : 3.77   Mean   : 9.754   Mean   : 4.201  
+##                          3rd Qu.: 6.00   3rd Qu.:14.000   3rd Qu.: 6.000  
+##                          Max.   :21.00   Max.   :59.000   Max.   :21.000  
+##                          NA&#39;s   :3811    NA&#39;s   :3708     NA&#39;s   :3755    
+##     AGE_1979   
+##  Min.   :14.0  
+##  1st Qu.:16.0  
+##  Median :18.0  
+##  Mean   :17.9  
+##  3rd Qu.:20.0  
+##  Max.   :22.0  
+## </code></pre>
+<pre class="r"><code>#Data visualization
+#sex, minoirity/race, age.
+#correlation table
+
+
+df_spsp_gen1 %&gt;%
+  select(DELIN_AVERAGE, SEX, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994, MINORITY) %&gt;%
+tbl_summary(
+    label= list(
+  DELIN_AVERAGE ~ &quot;Delinquency Average&quot;,
+  AGE_1979 ~ &quot;Age&quot; ))</code></pre>
+<div id="tzfucjwlxe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#tzfucjwlxe .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tzfucjwlxe .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tzfucjwlxe .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tzfucjwlxe .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tzfucjwlxe .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tzfucjwlxe .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tzfucjwlxe .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tzfucjwlxe .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tzfucjwlxe .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tzfucjwlxe .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tzfucjwlxe .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tzfucjwlxe .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tzfucjwlxe .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tzfucjwlxe .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tzfucjwlxe .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tzfucjwlxe .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tzfucjwlxe .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tzfucjwlxe .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tzfucjwlxe .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tzfucjwlxe .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tzfucjwlxe .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tzfucjwlxe .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tzfucjwlxe .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tzfucjwlxe .gt_left {
+  text-align: left;
+}
+
+#tzfucjwlxe .gt_center {
+  text-align: center;
+}
+
+#tzfucjwlxe .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tzfucjwlxe .gt_font_normal {
+  font-weight: normal;
+}
+
+#tzfucjwlxe .gt_font_bold {
+  font-weight: bold;
+}
+
+#tzfucjwlxe .gt_font_italic {
+  font-style: italic;
+}
+
+#tzfucjwlxe .gt_super {
+  font-size: 65%;
+}
+
+#tzfucjwlxe .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#tzfucjwlxe .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tzfucjwlxe .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tzfucjwlxe .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tzfucjwlxe .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tzfucjwlxe .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tzfucjwlxe .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -7985,12 +9486,12 @@ result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
 result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
 result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;-length(writeup_btw$residuals)
-result_predictor_mean &lt;- round(result_coef[&#39;DELIN_AVERAGE_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;CESD20_1992_mean&#39;],4)
 result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
 result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
-<p>Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =2957). The F-statistic (51.3772,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0785. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of NA standard deviations in the average of the siblings’ average delinquency score. As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (-0.1609) or two (-0.261) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (-0.1057). Relative to the reference group (of respondents classified as either Black or Hispanic), had 0.112 standard deviationsfor average of the siblings’ delinquency measure.</p>
+<p>Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =2957). The F-statistic (51.3772,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0785. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of 0.1364 standard deviations in the average of the siblings’ average delinquency score. As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (-0.1609) or two (-0.261) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (-0.1057). Relative to the reference group (of respondents classified as either Black or Hispanic), had 0.112 standard deviationsfor average of the siblings’ delinquency measure.</p>
 </div>
 <div id="deliquency-predicting-depression" class="section level3">
 <h3>Deliquency predicting depression</h3>
@@ -8049,12 +9550,12 @@ result_f&lt;-round(writeup_btw$fstatistic[&#39;value&#39;],4)
 result_ndf&lt;-round(writeup_btw$fstatistic[&#39;numdf&#39;],0)
 result_ddf&lt;-round(writeup_btw$fstatistic[&#39;dendf&#39;],0)
 result_n &lt;-length(writeup_btw$residuals)
-result_predictor_mean &lt;- round(result_coef[&#39;CESD20_1992_mean&#39;],4)
+result_predictor_mean &lt;- round(result_coef[&#39;DELIN_AVERAGE_mean&#39;],4)
 result_age_mean &lt;- round(result_coef[&#39;AGE_1979_mean&#39;],4)
 result_gg &lt;- round(result_coef[&#39;SEX_all3GirlGirl&#39;],4)
 result_bg &lt;- round(result_coef[&#39;SEX_all3mixed&#39;],4)
 result_minority &lt;- round(result_coef[&#39;as.factor(MINORITY_1)nonblackhispanic&#39;],4)</code></pre>
-<p>Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the unstandardized regression results (n =2957). The F-statistic (37.9041,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0588. A standard-deviation increase in the siblings average delinquency predicted a statistically significant increase of NA standard deviations in the average of the siblings’ depression. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (0.0583) or two (0.1137) sisters had higher averages in depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = -0.2074).</p>
+<p>Sibling averages of delinquency were used to predict sibling averages of depression. Table X presents the unstandardized regression results (n =2957). The F-statistic (37.9041,df1=5,df2=2951) was significant, and the adjusted R<span class="math inline">\(^{2}\)</span> was 0.0588. A standard-deviation increase in the siblings average delinquency predicted a statistically significant increase of 0.1393 standard deviations in the average of the siblings’ depression. As expected, gender composition and minority status were also predictive, whereas age was not. Relative to the reference group of brothers, families with one (0.0583) or two (0.1137) sisters had higher averages in depression. Relative to the reference group, non-Black non-Hispanic families had higher family levels of depression (b = -0.2074).</p>
 </div>
 </div>
 <div id="sibling-difference-score" class="section level2">

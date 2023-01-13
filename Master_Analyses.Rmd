@@ -32,6 +32,7 @@ if (!require("psych")) install.packages("psych")
 if (!require("foreign")) install.packages("foreign")
 if(!require("ggplot2")) install.packages("ggplot2")
 if(!require("parameters")) install.packages("parameters")
+if(!require("gt")) install.packages("gt")
 
 ## Installs most recent dev version
 remotes::install_github(repo="nlsy-links/NlsyLinks")
@@ -55,6 +56,7 @@ library(psych)
 library(foreign)
 library(dplyr)
 library(ggplot2)
+library(gt)
 
 ```
 # Data
@@ -1897,10 +1899,74 @@ df_spsp_gen1 <- group_by(df_spsp_gen1, SEX) %>%
          CESD20_1992 = as.numeric(scale(CESD20_1992)),
          CESD7_1994 = as.numeric(scale(CESD7_1994))) %>%
 ungroup()
+}
+
+#sex
+df_spsp_SEX<-
+df_spsp_gen1%>%
+group_by(SEX)%>%
+summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation
+            n_Delin_Avg = n(), # calculates the total number of observations
+mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
+ sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
+            n_CESD7_1992 = n(),
+mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE),
+ sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  
+            n_CESD7_1994 = n(),
+mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
+ sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
+            n_CESD20_1992 = n()) %>%   
+  ungroup()
+
+gt(df_spsp_SEX, "Depression and Delinquency means divided by Gender")
+
+#age
+df_spsp_AGE<-
+df_spsp_gen1%>%
+group_by(AGE_1979)%>%
+summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation
+            n_Delin_Avg = n(), # calculates the total number of observations
+mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
+ sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
+            n_CESD7_1992 = n(),
+mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE),
+ sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  
+            n_CESD7_1994 = n(),
+mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
+ sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
+            n_CESD20_1992 = n()) %>%   
+  ungroup()
+
+gt(df_spsp_AGE, "Depression and Delinquency means divided by Age")
+
+#race
+df_spsp_RACE<-
+df_spsp_gen1%>%
+group_by(MINORITY)%>%
+summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation
+            n_Delin_Avg = n(), # calculates the total number of observations
+mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
+ sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
+            n_CESD7_1992 = n(),
+mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE),
+ sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  
+            n_CESD7_1994 = n(),
+mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
+ sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
+            n_CESD20_1992 = n()) %>%   
+  ungroup()
+
+gt(df_spsp_RACE, "Depression and Delinquency means divided by Age")
+
 
 summary(df_spsp_gen1)
-}
+
 ```
+
+
 ```{r data visualization} 
 #Data visualization
 #sex, minoirity/race, age.
