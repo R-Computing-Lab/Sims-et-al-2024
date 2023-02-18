@@ -10,6 +10,8 @@ editor_options:
 ---
 
 ```{r setup,include=FALSE}
+## TODO: add distinct(extended_id, .keep_all = TRUE) # default is to keep the first row
+
 
 knitr::opts_chunk$set(echo = TRUE,error=TRUE)
 
@@ -505,6 +507,7 @@ df_crime_gen1 <-
   df_crime_gen1 %>% 
   mutate(
     SubjectTag=CASEID*100,
+    dq_sum = rowSums(select(.,starts_with("DELIN_")),na.rm=TRUE),
     DELIN_AVERAGE = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
 #DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
 )
@@ -1461,7 +1464,7 @@ result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
 
-Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (`r result_age_mean`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviationsfor average of the siblings' delinquency measure.
+Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (`r result_age_mean`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviations for average of the siblings' delinquency measure.
 
 ### Deliquency predicting depression
 ```{r delin pred dep2}
@@ -1546,10 +1549,10 @@ result_bg <- round(result_coef['SEX_all3mixed'],4)
 result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 ```
 
-##depression predicting delinquency
+## depression predicting delinquency
 
 Sibling differences in depression were used to predict differences in delinquency, controlling for family level gender composition, family minority status, and sibling averages of both delinquency and depression. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the average delinquency predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' depression. Similarly, older sibling pairs were predictive of lower levels of delinquency (`r result_age_diff`). Relative to the reference group of brothers, families with one (`r result_bg`) sister had higher averages in delinquency.
 
-All three models reveal similar results. Averages of deqlinuency were significant predictors of differences in delinquency (p $< .01$). A one standard deviation increase in the sibling average of delinquency predicted a `r result_outcome_mean` increase in average delinquency difference, controlling for all over variables in the model. (We don't encourage people to interpret these coefficients deeply).
+All three models reveal similar results. Averages of delinquency were significant predictors of differences in delinquency (p $< .01$). A one standard deviation increase in the sibling average of delinquency predicted a `r result_outcome_mean` increase in average delinquency difference, controlling for all over variables in the model. (We don't encourage people to interpret these coefficients deeply).
 
-#In the CESD20 model, the sibling difference in age was a significant predictor of differences in delinquency (p $< .01$). A one standard deviation increase in the average difference in age predicted $\approx$ `r result_age_diff` decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R$^{2}$ varied slightly by Gen2 linking (Mixed $= .066$, Daughters $= .072$, Sons $= .106$).
+# In the CESD20 model, the sibling difference in age was a significant predictor of differences in delinquency (p $< .01$). A one standard deviation increase in the average difference in age predicted $\approx$ `r result_age_diff` decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R$^{2}$ varied slightly by Gen2 linking (Mixed $= .066$, Daughters $= .072$, Sons $= .106$).
