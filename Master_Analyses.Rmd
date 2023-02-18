@@ -66,7 +66,7 @@ library(gt)
 ### Depression
 
 ```{r df_dep, echo=FALSE}
-new_data <- readr::read_csv('df_dep_gen1/df_dep_gen1.csv', 
+new_data <- readr::read_csv('data/df_dep_gen1/df_dep_gen1.csv', 
                             col_types = cols())
 names(new_data) <- c('H0000300',
   'H0000400',
@@ -800,7 +800,7 @@ remove(new_data)
 
 ```{r data_crim, echo=FALSE}
 
-new_data <- readr::read_csv('df_crime_gen1/df_crime_gen1.csv',
+new_data <- readr::read_csv('data/df_crime_gen1/df_crime_gen1.csv',
                             col_types = cols())
 
 names(new_data) <- c('R0000100',
@@ -1721,11 +1721,8 @@ qnames = function(data) {
 }
 
 
-#********************************************************************************************************
-
 df_crime_gen1 <- qnames(vallabels(new_data))
 
-#************************************************************************************************************
 
 remove(new_data)
 
@@ -1737,7 +1734,7 @@ remove(new_data)
 
 #How old is everyone? 
 
-df_age <- readr::read_csv('default/default.csv',show_col_types = FALSE)
+df_age <- readr::read_csv('data/default/default.csv',show_col_types = FALSE)
 
 names(df_age) <- c('R0000100',
   'R0000300',
