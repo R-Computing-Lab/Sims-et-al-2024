@@ -513,9 +513,7 @@ df_crime_gen1 <-
 # creating smaller dataframe to only include variables of interest
 # recoding Race and Sex ; todo, name race to minority
 
-
-
-df_spsp_gen1 <- df_crime_gen1 %>%
+df_data_gen1 <- df_crime_gen1 %>%
   select(
     SubjectTag,
     CASEID,
@@ -543,7 +541,7 @@ df_spsp_gen1 <- df_crime_gen1 %>%
   )
 
 
-df_spsp_gen1 %>%
+df_data_gen1 %>%
   select(-c(SEX,
             MINORITY,
             RACE,
@@ -552,7 +550,7 @@ df_spsp_gen1 %>%
   cor(use = "pairwise.complete")
 
 # convert sex into factor
-df_spsp_gen1 <- df_spsp_gen1 %>%  mutate(
+df_data_gen1 <- df_data_gen1 %>%  mutate(
     SEX = as.factor(SEX),
     RACE = as.factor(RACE),
     MINORITY = as.factor(MINORITY)
@@ -560,13 +558,13 @@ df_spsp_gen1 <- df_spsp_gen1 %>%  mutate(
 
 
 
-summary(df_spsp_gen1)
+#summary(df_data_gen1)
 
 
 stardadized_by_gender=FALSE
 # standardize by gender
 if(stardadized_by_gender){
-df_spsp_gen1 <- group_by(df_spsp_gen1, SEX) %>% 
+df_data_gen1 <- group_by(df_data_gen1, SEX) %>% 
   mutate(DELIN_AVERAGE = as.numeric(scale(DELIN_AVERAGE)),
          CESD7_1992 = as.numeric(scale(CESD7_1992)),
          CESD20_1992 = as.numeric(scale(CESD20_1992)),
@@ -574,30 +572,30 @@ df_spsp_gen1 <- group_by(df_spsp_gen1, SEX) %>%
 ungroup()
 }
 
-#sex
-df_spsp_SEX<-
-df_spsp_gen1%>%
-group_by(SEX)%>%
-summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean
-            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation
-            n_Delin_Avg = n(), # calculates the total number of observations
-mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
- sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
-            n_CESD7_1992 = n(),
-mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE),
- sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  
-            n_CESD7_1994 = n(),
-mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
- sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
-            n_CESD20_1992 = n()) %>%   
-  ungroup()
+# Group the data by sex and calculate mean, standard deviation, and sample size for different variables
+df_data_SEX <- df_data_gen1 %>% 
+  group_by(SEX) %>% 
+  summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
+            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+            mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
+            sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
+            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+            mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
+            sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
+            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+            mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
+            sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
+            n_CESD20_1992 = n()) %>%   # calculates the sample size for the CESD20_1992 variable
+  ungroup() # remove grouping from the data frame
 
-gt(df_spsp_SEX, "Depression and Delinquency means divided by Gender")
+# Display the resulting data frame as a nice table using the gt package
+gt(df_data_SEX, title = "Depression and Delinquency means divided by Gender")
 
 #age
 
 # Group the data by age and calculate mean, standard deviation, and sample size for different variables
-df_spsp_AGE <- df_spsp_gen1 %>% 
+df_data_AGE <- df_data_gen1 %>% 
   group_by(AGE_1979) %>% 
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
@@ -613,30 +611,33 @@ df_spsp_AGE <- df_spsp_gen1 %>%
             n_CESD20_1992 = n()) %>%   
   ungroup()
 
-gt(df_spsp_AGE, title = "Depression and Delinquency means divided by Age")
+gt(df_data_AGE, title = "Depression and Delinquency means divided by Age")
 
 #race
-df_spsp_RACE<-
-df_spsp_gen1%>%
-group_by(MINORITY)%>%
-summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean
-            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation
-            n_Delin_Avg = n(), # calculates the total number of observations
-mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
- sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
-            n_CESD7_1992 = n(),
-mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE),
- sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  
-            n_CESD7_1994 = n(),
-mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
- sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
-            n_CESD20_1992 = n()) %>%   
-  ungroup()
+library(tidyverse)
 
-gt(df_spsp_RACE, "Depression and Delinquency means divided by Age")
+# Group the data by minority status and calculate mean, standard deviation, and sample size for different variables
+df_data_RACE <- df_data_gen1 %>% 
+  group_by(MINORITY) %>% 
+  summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
+            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+            mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
+            sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
+            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+            mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
+            sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
+            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+            mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
+            sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
+            n_CESD20_1992 = n()) %>%   # calculates the sample size for the CESD20_1992 variable
+  ungroup() # remove grouping from the data frame
+
+# Display the resulting data frame as a nice table using the gt package
+gt(df_data_RACE, title = "Depression and Delinquency means divided by Race")
 
 
-summary(df_spsp_gen1)
+summary(df_data_gen1)
 
 ```
 
@@ -647,20 +648,15 @@ summary(df_spsp_gen1)
 #correlation table
 
 
-df_spsp_gen1 %>%
+df_data_gen1 %>%
   select(DELIN_AVERAGE, SEX, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994, MINORITY) %>%
 tbl_summary(
     label= list(
   DELIN_AVERAGE ~ "Delinquency Average",
   AGE_1979 ~ "Age" ))
 
-df_spsp_gen1 %>%
-  select(DELIN_AVERAGE, AGE_1979, CESD7_1992, CESD20_1992, CESD7_1994) %>%
 
-
-
-
-ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) + 
+ggplot(df_data_gen1, aes(x =df_data_gen1$MINORITY)) + 
   geom_bar(fill = "cornflowerblue", 
            color="black") +
   labs(x = "Race", 
@@ -668,7 +664,7 @@ ggplot(df_spsp_gen1, aes(x =df_spsp_gen1$MINORITY)) +
        title = "Participants by Race") +
    theme_minimal()
 
-ggplot(df_spsp_gen1, aes(x =AGE_1979)) + 
+ggplot(df_data_gen1, aes(x =AGE_1979)) + 
   geom_bar(fill = "Light Blue", 
            color="black") +
   labs(x = "Age", 
@@ -678,7 +674,7 @@ ggplot(df_spsp_gen1, aes(x =AGE_1979)) +
    theme_minimal()
 
 #have female be 0 and male be 1
-   ggplot(df_spsp_gen1, aes(x = df_spsp_gen1$SEX))+
+   ggplot(df_data_gen1, aes(x = SEX))+
        geom_bar(fill = "cornflowerblue", 
            color="black") +
   labs(x = "Gender", 
@@ -693,7 +689,7 @@ ggplot(df_spsp_gen1, aes(x =AGE_1979)) +
 
 # Data Linking
 
-```{r kinship, warning=FALSE}
+```{r kinship, warning=FALSE,include=FALSE}
 
 #link dyads
 
@@ -711,7 +707,7 @@ outcomeNames <- c("MINORITY",
 
 # only full full sibs
 dsSingle_G1 <- CreatePairLinksSingleEntered(
-  outcomeDataset = df_spsp_gen1,
+  outcomeDataset = df_data_gen1,
   linksPairDataset = dsLinking[dsLinking$RelationshipPath == "Gen1Housemates" &
                                  dsLinking$RFull == .5,],
   outcomeNames = outcomeNames,
@@ -914,10 +910,16 @@ df_dyad_CESD7_1994 <- dsSingle_G1 %>%
 # classic regression
 
 ```{r classic}
+#naming notation
 
-df_classic <- df_spsp_gen1
+# lm is linear model
+# og is classic regression
+# xdelin means that delinquency is the predictor
+# ydelin means that delinguency is the outcome
 
-lm_og_CESD7_1992 <- lm(DELIN_AVERAGE ~
+df_classic <- df_data_gen1
+
+lm_og_ydelin_xCESD7_1992 <- lm(DELIN_AVERAGE ~
                      CESD7_1992 +
                      as.factor(SEX) +
                      AGE_1979+
@@ -926,7 +928,7 @@ lm_og_CESD7_1992 <- lm(DELIN_AVERAGE ~
 
 
 
-lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
+lm_og_ydelin_xCESD20_1992 <- lm(DELIN_AVERAGE ~
                       CESD20_1992 +
                       as.factor(SEX) +
                         AGE_1979+
@@ -935,7 +937,7 @@ lm_og_CESD20_1992 <- lm(DELIN_AVERAGE ~
 
 
 
-lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
+lm_og_ydelin_xCESD7_1994 <- lm(DELIN_AVERAGE ~
                      CESD7_1994 +
                      as.factor(SEX) +
                        AGE_1979+
@@ -944,28 +946,28 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
 
 
 
-(lm_predog_CESD7_1992 <- lm(CESD7_1992 ~
+lm_og_xdelin_yCESD7_1992 <- lm(CESD7_1992 ~
                      DELIN_AVERAGE +
                      as.factor(SEX) +
                        AGE_1979+
                      as.factor(MINORITY) ,
-                   data = df_classic))
+                   data = df_classic)
 
-(lm_predog_CESD20_1992 <- lm(CESD20_1992 ~
+lm_og_xdelin_yCESD20_1992 <- lm(CESD20_1992 ~
                      DELIN_AVERAGE +
                       as.factor(SEX) +
                        AGE_1979+
                       as.factor(MINORITY),
-                    data = df_classic))
+                    data = df_classic)
 
 
-(lm_predog_CESD7_1994 <- lm(CESD7_1994 ~
+lm_og_xdelin_yCESD7_1994 <- lm(CESD7_1994 ~
                       DELIN_AVERAGE+
                      as.factor(SEX) +
                        AGE_1979+
                      as.factor(MINORITY) ,
                    data = df_classic)
-)
+
 
 
 
@@ -975,71 +977,79 @@ lm_og_CESD7_1994 <- lm(DELIN_AVERAGE ~
 
 ```{r betweenfamily}
 
-df_btwn <- df_dyad_delinq
+#naming notation
 
-data.frame(as.factor(df_btwn$SEX_all4),as.factor(df_btwn$SEX_all3))%>%
-  summary()
+# lm is linear model
+# btw is between family
+# xdelin means that delinquency is the predictor
+# ydelin means that delinguency is the outcome
+# sex4 means that there are 4 sex categories
+# sex3 means that there are 3
+
+df_btw <- df_dyad_delinq
+
+
 
 #note: you only need s1 race because they're determined by the mother
-lm_btwfam_sex4_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btw_ydelin_sex4_xCESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
-                            SEX_all4 +
+                             SEX_all4 +
                               AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
-                           data = df_btwn)
+                           data = df_btw)
 
-lm_btwfam_sex3_CESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btw_ydelin_sex3_xCESD7_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD7_1992_mean +
                             SEX_all3 +
                            #  factor(SEX_1)+factor(SEX_2)+
                              AGE_1979_mean+
                             as.factor(MINORITY_1),
-                           data = df_btwn)
+                           data = df_btw)
 
 
-lm_btwfam_sex3_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btw_ydelin_sex3_xCESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all3 +
                               AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
-                           data = df_btwn)
+                           data = df_btw)
 
-lm_btwfam_dep_sex3_CESD20_1992 <- lm(CESD20_1992_mean ~ 
+lm_btw_xdelin_sex3_yCESD20_1992 <- lm(CESD20_1992_mean ~ 
                              DELIN_AVERAGE_mean +
                             SEX_all3 +
                               AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
-                           data = df_btwn)
+                           data = df_btw)
 
-summary(lm_btwfam_sex3_CESD20_1992)
-summary(lm_btwfam_dep_sex3_CESD20_1992)
+summary(lm_btw_ydelin_sex3_xCESD20_1992)
+summary(lm_btw_xdelin_sex3_yCESD20_1992)
 
-lm_btwfam_sex4_CESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btw_ydelin_sex4_xCESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
                             SEX_all4 +
                               AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1), 
-                           data = df_btwn)
+                           data = df_btw)
 
-lm_btwfam_sex4_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btw_ydelin_sex4_xCESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all4 +
                               AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
-                           data = df_btwn)
+                           data = df_btw)
 
-lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
+lm_btw_ydelin_sex3_xCESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
                             SEX_all3 +
                             AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
                             as.factor(MINORITY_1),
-                           data = df_btwn)
+                           data = df_btw)
 
 ```
 
@@ -1048,7 +1058,7 @@ lm_btwfam_sex3_CESD7_1994 <- lm(DELIN_AVERAGE_mean ~
 ```{r discordmodels}
 
 
-lm_discord_sex4_CESD7_1992 <- lm(data=df_dyad_delinq,
+lm_discord_ydelin_sex4_xCESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
@@ -1059,7 +1069,7 @@ lm_discord_sex4_CESD7_1992 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_sex3_CESD7_1992 <- lm(data=df_dyad_delinq,
+lm_discord_ydelin_sex3_xCESD7_1992 <- lm(data=df_dyad_delinq,
                                 DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 CESD7_1992_diff + 
@@ -1070,7 +1080,7 @@ lm_discord_sex3_CESD7_1992 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_sex3_CESD20_1992 <- lm(data=df_dyad_delinq,
+lm_discord_ydelin_sex3_xCESD20_1992 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
@@ -1081,7 +1091,7 @@ lm_discord_sex3_CESD20_1992 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_sex4_CESD20_1992 <- lm(data=df_dyad_delinq,
+lm_discord_ydelin_sex4_xCESD20_1992 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD20_1992_diff + 
@@ -1093,7 +1103,7 @@ lm_discord_sex4_CESD20_1992 <- lm(data=df_dyad_delinq,
                                 factor(MINORITY_1) )
 
 
-lm_discord_sex3_CESD7_1994 <- lm(data=df_dyad_delinq,
+lm_discord_ydelin_sex3_xCESD7_1994 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
@@ -1104,7 +1114,7 @@ lm_discord_sex3_CESD7_1994 <- lm(data=df_dyad_delinq,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_sex4_CESD7_1994 <- lm(data=df_dyad_delinq,
+lm_discord_ydelin_sex4_xCESD7_1994 <- lm(data=df_dyad_delinq,
                               DELIN_AVERAGE_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 CESD7_1994_diff + 
@@ -1119,7 +1129,7 @@ lm_discord_sex4_CESD7_1994 <- lm(data=df_dyad_delinq,
 
 df_dyad<-df_dyad_CESD7_1992
 
-lm_discord_dep_sex4_CESD7_1992 <- lm(data=df_dyad,
+lm_discord_xdelin_sex4_yCESD7_1992 <- lm(data=df_dyad,
                                 CESD7_1992_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 DELIN_AVERAGE_diff + 
@@ -1130,7 +1140,7 @@ lm_discord_dep_sex4_CESD7_1992 <- lm(data=df_dyad,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_dep_sex3_CESD7_1992 <- lm(data=df_dyad,
+lm_discord_xdelin_sex3_yCESD7_1992 <- lm(data=df_dyad,
                                 CESD7_1992_diff ~ 
                                 DELIN_AVERAGE_mean+
                                 DELIN_AVERAGE_diff + 
@@ -1142,7 +1152,7 @@ lm_discord_dep_sex3_CESD7_1992 <- lm(data=df_dyad,
                                 factor(MINORITY_1) )
 df_dyad<-df_dyad_CESD20_1992
 
-lm_discord_dep_sex3_CESD20_1992 <- lm(data=df_dyad,
+lm_discord_xdelin_sex3_yCESD20_1992 <- lm(data=df_dyad,
                               CESD20_1992_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
@@ -1153,7 +1163,7 @@ lm_discord_dep_sex3_CESD20_1992 <- lm(data=df_dyad,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_dep_sex4_CESD20_1992 <- lm(data=df_dyad,
+lm_discord_xdelin_sex4_yCESD20_1992 <- lm(data=df_dyad,
                               CESD20_1992_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
@@ -1165,7 +1175,7 @@ lm_discord_dep_sex4_CESD20_1992 <- lm(data=df_dyad,
                                 factor(MINORITY_1) )
 df_dyad<-df_dyad_CESD7_1994
 
-lm_discord_dep_sex3_CESD7_1994 <- lm(data=df_dyad,
+lm_discord_xdelin_sex3_yCESD7_1994 <- lm(data=df_dyad,
                               CESD7_1994_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
@@ -1176,7 +1186,7 @@ lm_discord_dep_sex3_CESD7_1994 <- lm(data=df_dyad,
                               #  factor(SEX_1)+factor(SEX_2)+
                                 factor(MINORITY_1) )
 
-lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
+lm_discord_xdelin_sex4_yCESD7_1994 <- lm(data=df_dyad,
                               CESD7_1994_diff ~ 
                                 DELIN_AVERAGE_mean +
                                 DELIN_AVERAGE_diff + 
@@ -1196,7 +1206,7 @@ lm_discord_dep_sex4_CESD7_1994 <- lm(data=df_dyad,
 
 #classical regression
 
-lm_og_CESD7_1992 %>%
+lm_og_ydelin_xCESD7_1992 %>%
     gtsummary::tbl_regression()%>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1208,7 +1218,7 @@ lm_og_CESD7_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**",
       ) 
 
-lm_og_CESD20_1992 %>%
+lm_og_ydelin_xCESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1220,7 +1230,7 @@ lm_og_CESD20_1992 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_og_CESD7_1994 %>% 
+lm_og_ydelin_xCESD7_1994 %>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1239,7 +1249,7 @@ lm_og_CESD7_1994 %>%
 
 #between family 
 
-lm_btwfam_sex3_CESD7_1992 %>%
+lm_btw_ydelin_sex3_xCESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1253,7 +1263,7 @@ lm_btwfam_sex3_CESD7_1992 %>%
 
 #between family
 
-lm_btwfam_sex3_CESD20_1992 %>%
+lm_btw_ydelin_sex3_xCESD20_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1266,7 +1276,7 @@ lm_btwfam_sex3_CESD20_1992 %>%
       )
 
 
-lm_btwfam_sex3_CESD7_1994 %>%
+lm_btw_ydelin_sex3_xCESD7_1994 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1278,7 +1288,7 @@ lm_btwfam_sex3_CESD7_1994 %>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_btwfam_dep_sex3_CESD20_1992%>%
+lm_btw_xdelin_sex3_yCESD20_1992%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1299,7 +1309,7 @@ lm_btwfam_dep_sex3_CESD20_1992%>%
 
 ```{r discord}
 
-lm_discord_sex3_CESD7_1992 %>%
+lm_discord_ydelin_sex3_xCESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1312,7 +1322,7 @@ lm_discord_sex3_CESD7_1992 %>%
       )
 
 
-lm_discord_dep_sex3_CESD7_1992 %>%
+lm_discord_xdelin_sex3_yCESD7_1992 %>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1329,7 +1339,7 @@ CESD7_1994
 
 ```{r raw3}
 
-lm_discord_sex3_CESD7_1994%>%
+lm_discord_ydelin_sex3_xCESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1341,7 +1351,7 @@ lm_discord_sex3_CESD7_1994%>%
       statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
       )
 
-lm_discord_dep_sex3_CESD7_1994%>%
+lm_discord_xdelin_sex3_yCESD7_1994%>%
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1370,7 +1380,7 @@ CESD20_1992
 
 ```{r raw5}
 
-lm_discord_sex3_CESD20_1992 %>% 
+lm_discord_ydelin_sex3_xCESD20_1992 %>% 
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1383,7 +1393,7 @@ lm_discord_sex3_CESD20_1992 %>%
       )
 
 
-lm_discord_dep_sex3_CESD20_1992 %>%  
+lm_discord_xdelin_sex3_yCESD20_1992 %>%  
     gtsummary::tbl_regression(intercept=TRUE) %>%
     gtsummary::add_glance_source_note(
       label = list(statistic ~ "F-Statistic",
@@ -1407,7 +1417,7 @@ Unadjusted univariate and bivariate descriptive statistics were consist with wha
 
 ```{r og dep predict delinq}
 library(lm.beta)
-lm_result <- lm.beta(lm_og_CESD20_1992)
+lm_result <- lm.beta(lm_og_ydelin_xCESD20_1992)
 print(lm_result)
 summary(lm_result)
 result_coef <- coef(lm_result)
@@ -1433,7 +1443,7 @@ We examined the between-family results. We tested whether the sibling average fo
 ```{r dep predict delinq}
 
 library(lm.beta)
-lm_result <- lm.beta(lm_btwfam_sex3_CESD20_1992)
+lm_result <- lm.beta(lm_btw_ydelin_sex3_xCESD20_1992)
 print(lm_result)
 summary(lm_result)
 result_coef <- coef(lm_result)
@@ -1458,7 +1468,7 @@ Sibling averages of CESD-20 were used to predict sibling averages of delinquency
 
 library(lm.beta)
 
-lm_result <- lm.beta(lm_btwfam_dep_sex3_CESD20_1992)
+lm_result <- lm.beta(lm_btw_xdelin_sex3_yCESD20_1992)
 print(lm_result)
 summary(lm_result)
 result_coef <- coef(lm_result)
@@ -1486,7 +1496,7 @@ We then implemented within-family versions of the between-family results we pres
 ```{r deli predict depr}
 
 library(lm.beta)
-lm_result <- lm.beta(lm_discord_dep_sex3_CESD20_1992)
+lm_result <- lm.beta(lm_discord_xdelin_sex3_yCESD20_1992)
 print(lm_result)
 summary(lm_result)
 result_coef <- coef(lm_result)
@@ -1516,7 +1526,7 @@ Sibling differences in delinquency were used to predict differences in depressio
 ```{r dep predict deli}
 
 library(lm.beta)
-lm_result <- lm.beta(lm_discord_sex3_CESD20_1992)
+lm_result <- lm.beta(lm_discord_ydelin_sex3_xCESD20_1992)
 print(lm_result)
 summary(lm_result)
 result_coef <- coef(lm_result)
