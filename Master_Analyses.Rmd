@@ -60,6 +60,54 @@ library(dplyr)
 library(ggplot2)
 library(gt)
 
+
+
+# functions
+
+## good workaround for stupid default setting; runningg mean function but we are overriding default
+new_mean=function(x){
+  mean(x,na.rm=TRUE)
+}
+
+prettify_regression_results <- function(regression_object,
+                                        intercept=TRUE,
+                                        standardize=FALSE,
+					digits=3) {
+										
+temp <-  regression_object %>%
+            gtsummary::tbl_regression(intercept=intercept, 
+                                      pvalue_fun = ~ gtsummary::style_pvalue(.x, digits = digits),
+                                      estimate_fun = ~ gtsummary::style_sigfig(.x, digits = digits)
+            ) %>%
+        gtsummary::modify_header(
+            statistic ~ "**t-statistic**", p.value ~ "**p-value**"
+        ) %>%
+        gtsummary::add_glance_source_note(
+            label = list(statistic ~ "F-statistic",
+                         df  ~ "DF1",
+                         df.residual  ~ "DF2"),
+            include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+        )
+
+if(standardize){
+temp_stnd <-      regression_object %>%
+        gtsummary::tbl_regression(intercept=intercept, 
+                                  estimate_fun = ~ gtsummary::style_sigfig(.x, digits = digits),
+                                  pvalue_fun = ~ gtsummary::style_pvalue(.x, digits = digits),
+                                  tidy_fun = gtsummary::tidy_standardize,
+								  conf.int=FALSE) %>%
+        gtsummary::modify_header(
+            estimate ~ "**β**"
+        ) 
+
+temp <-
+  tbl_merge(
+    list(temp_stnd, temp),
+    tab_spanner = c("**Standardized**", "**Unstandardized*")
+  )
+}
+temp  
+}
 ```
 # Data
 
@@ -1209,41 +1257,13 @@ lm_discord_xdelin_sex4_yCESD7_1994 <- lm(data=df_dyad,
 
 #classical regression
 
-lm_og_ydelin_xCESD7_1992 %>%
-    gtsummary::tbl_regression()%>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**",
-      ) 
+lm_og_ydelin_xCESD7_1992  %>%  
+prettify_regression_results(standardize=TRUE)
+lm_og_ydelin_xCESD20_1992  %>%  
+prettify_regression_results(standardize=TRUE)
 
-lm_og_ydelin_xCESD20_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
-
-lm_og_ydelin_xCESD7_1994 %>% 
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_og_ydelin_xCESD7_1994  %>%  
+prettify_regression_results(standardize=TRUE)
 ```
 
 ### Btween
@@ -1252,56 +1272,19 @@ lm_og_ydelin_xCESD7_1994 %>%
 
 #between family 
 
-lm_btw_ydelin_sex3_xCESD7_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_btw_ydelin_sex3_xCESD7_1992  %>%  
+prettify_regression_results(standardize=TRUE)
 
 #between family
 
-lm_btw_ydelin_sex3_xCESD20_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_btw_ydelin_sex3_xCESD20_1992  %>%  
+prettify_regression_results(standardize=TRUE)
 
+lm_btw_ydelin_sex3_xCESD7_1994  %>%  
+prettify_regression_results(standardize=TRUE)
 
-lm_btw_ydelin_sex3_xCESD7_1994 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
-
-lm_btw_xdelin_sex3_yCESD20_1992%>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_btw_xdelin_sex3_yCESD20_1992 %>%  
+prettify_regression_results(standardize=TRUE)
 
 ```
 
@@ -1312,59 +1295,23 @@ lm_btw_xdelin_sex3_yCESD20_1992%>%
 
 ```{r discord}
 
-lm_discord_ydelin_sex3_xCESD7_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_discord_ydelin_sex3_xCESD7_1992  %>%  
+prettify_regression_results(standardize=TRUE)
 
 
-lm_discord_xdelin_sex3_yCESD7_1992 %>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_discord_xdelin_sex3_yCESD7_1992  %>%  
+prettify_regression_results(standardize=TRUE)
 
 ```
 CESD7_1994
 
 ```{r raw3}
 
-lm_discord_ydelin_sex3_xCESD7_1994%>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_discord_ydelin_sex3_xCESD7_1994 %>%  
+prettify_regression_results(standardize=TRUE)
 
-lm_discord_xdelin_sex3_yCESD7_1994%>%
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+lm_discord_xdelin_sex3_yCESD7_1994 %>%  
+prettify_regression_results(standardize=TRUE)
 
 ```
 
@@ -1384,29 +1331,11 @@ CESD20_1992
 ```{r raw5}
 
 lm_discord_ydelin_sex3_xCESD20_1992 %>% 
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+prettify_regression_results(standardize=TRUE)
 
 
 lm_discord_xdelin_sex3_yCESD20_1992 %>%  
-    gtsummary::tbl_regression(intercept=TRUE) %>%
-    gtsummary::add_glance_source_note(
-      label = list(statistic ~ "F-Statistic",
-                   df  ~ "DF1",
-                   df.residual  ~ "DF2"),
-      include = c(r.squared, statistic, df, df.residual, p.value, nobs)
-      ) %>%
-    gtsummary::modify_header(
-      statistic ~ "**t-Statistic**", p.value ~ "**p-value**"
-      )
+prettify_regression_results(standardize=TRUE)
 ```
 
 # Results
