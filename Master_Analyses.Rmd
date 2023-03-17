@@ -103,12 +103,13 @@ temp_stnd <-      regression_object %>%
 temp <-
   tbl_merge(
     list(temp_stnd, temp),
-    tab_spanner = c("**Standardized**", "**Unstandardized*")
+    tab_spanner = c("**Standardized**", "**Unstandardized**")
   )
 }
 temp  
 }
 ```
+
 # Data
 
 ## Import
@@ -1484,4 +1485,6 @@ Sibling differences in depression were used to predict differences in delinquenc
 
 All three models reveal similar results. Averages of delinquency were significant predictors of differences in delinquency (p $< .01$). A one standard deviation increase in the sibling average of delinquency predicted a `r result_outcome_mean` increase in average delinquency difference, controlling for all over variables in the model. (We don't encourage people to interpret these coefficients deeply).
 
-# In the CESD20 model, the sibling difference in age was a significant predictor of differences in delinquency (p $< .01$). A one standard deviation increase in the average difference in age predicted $\approx$ `r result_age_diff` decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R$^{2}$ varied slightly by Gen2 linking (Mixed $= .066$, Daughters $= .072$, Sons $= .106$).
+# 
+
+In the CESD20 model, the sibling difference in age was a significant predictor of differences in delinquency (p $< .01$). A one standard deviation increase in the average difference in age predicted $\approx$ `r result_age_diff` decrease in the AFI difference between siblings. All other variables were not significant, including all kin difference variables. The adjusted R$^{2}$ varied slightly by Gen2 linking (Mixed $= .066$, Daughters $= .072$, Sons $= .106$).
