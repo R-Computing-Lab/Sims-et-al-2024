@@ -638,11 +638,11 @@ df_data_SEX <- df_data_gen1 %>%
             n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
             mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n()) %>%   # calculates the sample size for the CESD20_1992 variable
-  ungroup() # remove grouping from the data frame
+            n_CESD20_1992 = n()) %>% # calculates the sample size for the CESD20_1992 variable
+  # Display the resulting data frame as a nice table using the gt package
+ungroup() # remove grouping from the data frame
+gt(df_data_SEX,(title = "Depression and Delinquency means divided by Gender"))
 
-# Display the resulting data frame as a nice table using the gt package
-gt(df_data_SEX, title = "Depression and Delinquency means divided by Gender")
 
 #age
 
@@ -707,14 +707,82 @@ tbl_summary(
   DELIN_AVERAGE ~ "Delinquency Average",
   AGE_1979 ~ "Age" ))
 
-
-ggplot(df_data_gen1, aes(x =df_data_gen1$MINORITY)) + 
+ggplot(df_data_SEX, aes(x = df_data_SEX$SEX)) + 
   geom_bar(fill = "cornflowerblue", 
            color="black") +
-  labs(x = "Race", 
-       y = "Frequency", 
-       title = "Participants by Race") +
+  labs(x = "Gender", 
+       y = "Mean", 
+       title = "Gender Descriptives") +
    theme_minimal()
+
+
+df_data_RACE
+
+#RACE
+
+ggplot(df_data_RACE, aes(x= MINORITY, y= mean_Delin_Avg)) +
+ geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_Delin_Avg - sd_Delin_Avg, ymax=mean_Delin_Avg+sd_Delin_Avg), width=.2)
+
+ggplot(df_data_RACE, aes(x= MINORITY, y= mean_CESD7_1992)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD7_1992 - sd_CESD7_1992, ymax=mean_CESD7_1992+sd_CESD7_1992), width=.2)
+
+ggplot(df_data_RACE, aes(x=MINORITY, y= mean_CESD7_1994)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD7_1994 - sd_CESD7_1994, ymax=mean_CESD7_1994+sd_CESD7_1994), width=.2)
+
+ggplot(df_data_RACE, aes(x=MINORITY, y= mean_CESD20_1992)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD20_1992 - sd_CESD20_1992, ymax=mean_CESD20_1992+sd_CESD20_1992), width=.2)
+
+
+#AGE
+
+ggplot(df_data_AGE, aes(x=AGE_1979, y= mean_Delin_Avg)) +
+ geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_Delin_Avg - sd_Delin_Avg, ymax=mean_Delin_Avg+sd_Delin_Avg), width=.2)
+
+ggplot(df_data_AGE, aes(x=AGE_1979, y= mean_CESD7_1992)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD7_1992 - sd_CESD7_1992, ymax=mean_CESD7_1992+sd_CESD7_1992), width=.2)
+
+ggplot(df_data_AGE, aes(x=AGE_1979, y= mean_CESD7_1994)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD7_1994 - sd_CESD7_1994, ymax=mean_CESD7_1994+sd_CESD7_1994), width=.2)
+
+ggplot(df_data_AGE, aes(x=AGE_1979, y= mean_CESD20_1992)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD20_1992 - sd_CESD20_1992, ymax=mean_CESD20_1992+sd_CESD20_1992), width=.2)
+
+#SEX
+ggplot(df_data_SEX, aes(x=SEX, y= mean_Delin_Avg)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_Delin_Avg - sd_Delin_Avg, ymax=mean_Delin_Avg+sd_Delin_Avg), width=.2)
+          
+ggplot(df_data_SEX, aes(x=SEX, y= mean_CESD7_1992)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD7_1992 - sd_CESD7_1992, ymax=mean_CESD7_1992+sd_CESD7_1992), width=.2)
+
+ggplot(df_data_SEX, aes(x=SEX, y= mean_CESD7_1994)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD7_1994 - sd_CESD7_1994, ymax=mean_CESD7_1994+sd_CESD7_1994), width=.2)
+
+ggplot(df_data_SEX, aes(x=SEX, y= mean_CESD20_1992)) +
+geom_bar(position=position_dodge(), stat="identity",
+		colour='black') +
+geom_errorbar(aes(ymin= mean_CESD20_1992 - sd_CESD20_1992, ymax=mean_CESD20_1992+sd_CESD20_1992), width=.2)
 
 ggplot(df_data_gen1, aes(x =AGE_1979)) + 
   geom_bar(fill = "Light Blue", 
