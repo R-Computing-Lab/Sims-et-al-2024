@@ -733,9 +733,46 @@ ggplot(df_data_gen1, aes(x =AGE_1979)) +
        y = "Frequency", 
        title = "Participants by Gender",
        subtitle = "0=female, 1=male")
-    
 
+   
+#To convert the given bar plot code into a violin plot that shows the distribution of DELIN_AVERAGE grouped #by MINORITY, you can make the following changes to the code:
+
+#1. Replace `geom_bar` with `geom_violin`.
+#2. Change the aesthetics `aes` to include `y = DELIN_AVERAGE`.
+#3. Modify the `labs` to update the y-axis label.
+#4. Update the fill and color options to your preference.
+
+#Here's the modified code:
+
+
+ggplot(df_data_gen1, aes(x = MINORITY, y = DELIN_AVERAGE)) + 
+  geom_violin(fill = "cornflowerblue", 
+              color = "black") +
+  labs(x = "Race", 
+       y = "DELIN_AVERAGE", 
+       title = "Distribution of DELIN_AVERAGE by Race") +
+  theme_minimal()
+
+
+
+ggplot(df_data_gen1, aes(x = SEX, y = DELIN_AVERAGE)) + 
+  geom_violin(fill = "cornflowerblue", 
+              color = "black") +
+  labs(x = "SEX", 
+       y = "DELIN_AVERAGE", 
+       title = "Distribution of DELIN_AVERAGE by Sex") +
+  theme_minimal()
+
+ggplot(df_data_gen1, aes(x = AGE_1979, y = DELIN_AVERAGE)) + 
+  geom_violin(fill = "cornflowerblue", 
+              color = "black") +
+  labs(x = "AGE_1979", 
+       y = "DELIN_AVERAGE", 
+       title = "Distribution of DELIN_AVERAGE by AGE_1979") +
+  theme_minimal()
 ```
+
+
 
 ## Summarize
 
