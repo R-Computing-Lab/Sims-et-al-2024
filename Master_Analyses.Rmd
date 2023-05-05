@@ -1613,9 +1613,13 @@ prettify_regression_results(standardize=TRUE)
 We examined the relationship between depression and crime in three distinct stages.
 First, we looked at the overall relationship without accounting for family structure. Second, we looked at the between-family relationships. between-family analyses report the relationships between the within-family average AFI and various measures of ability. Lastly we looked at the within-family relationships. Throughout, this process we also examined whether gender, race, and age impacted these dynamics.
 
-## Unadjusted
 
-Unadjusted univariate and bivariate descriptive statistics were consist with what others have found in this literature. See tables X and Y. Of note, 
+
+This study investigates the relationship between depression and delinquent behavior using a sibling comparison framework. We examined these relationships in three stages: a classical regression model, a between-family model, and a discordant kinship model. We also explored the influence of gender, race, and age on these associations.
+
+Our primary focus was on the CES-D 20 as the depression measure due to its comprehensive 20-item scale, compared to the alternative short-form versions. For readers interested in replicated analyses using the other two measures, please refer to the appendix. Any discrepancies between the results are addressed in the main text.
+
+## Unadjusted Multiple Regressions
 
 ```{r og dep predict delinq}
 library(lm.beta)
@@ -1634,7 +1638,18 @@ result_age_mean <- round(result_coef['AGE_1979'],4)
 result_bg <- round(result_coef['as.factor(SEX)1'],4)
 result_minority <- round(result_coef['as.factor(MINORITY)nonblackhispanic'],4)
 ```
-Averages of CESD-20 were used to predict averages of delinquency. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Being female was predictive of having more average delinquency (`r result_bg`). Similarly, older age was predictive of lower levels of delinquency (`r result_age_mean`). Being in the nonminority group was predictive of `r result_minority` standard deviations for average of the delinquency measure.
+
+
+We first analyzed the data using unadjusted bivariate descriptive statistics without accounting for family structure. The results aligned with previous research (see Table 2), showing a weak but positive correlation (r = 0.07) between delinquency average and depression, as measured by CES-D 20.
+
+Next, we employed a classical regression model to examine the associations without adjusting for family structure. The dependent variable was the delinquency average (DELIN_AVERAGE), and the independent variables were CES-D 20 scores in 1992 (CESD20_1992), sex (as.factor(SEX)), age in 1979 (AGE_1979), and minority status (as.factor(MINORITY)). The analysis included `r result_n` observations, with 4188 observations deleted due to missing data. The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. 
+
+
+The regression model revealed that depression significantly predicted criminal behavior, even after controlling for race, gender, and age. As anticipated, gender composition, age, and minority status also significantly predicted delinquency levels. Specifically, being male was associated with a higher average delinquency score (β = `r result_bg`), whereas older age predicted lower delinquency levels (β = `r result_age_mean`). In contrast, belonging to a minority group was linked to a `r result_minority` standard deviation decrease in the average delinquency measure. Collectively, these factors—sex, age, minority status, and depression—accounted for `r result_r2 * 100`% of the variability in criminal behavior, as indicated by an R-squared value of 0.0867 and an adjusted R-squared value of `r result_r2`.
+
+The multiple regression model results indicated that the greater the depression experienced by an adolescent, the higher the likelihood of criminal activity. In the past, being in a minority group was associated with increased crime rates; however, our findings suggest that belonging to a minority group does not contribute to higher crime rates. The interpretation of these results highlights the direct influence of gender and increased depression on criminal activity.
+
+A standard-deviation increase in average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Being female was predictive of having more average delinquency (`r result_bg`). Similarly, older age was predictive of lower levels of delinquency (`r result_age_mean`). Being in the nonminority group was predictive of `r result_minority` standard deviations for average of the delinquency measure.
 
 
 ## Between-Family
@@ -1642,6 +1657,7 @@ Averages of CESD-20 were used to predict averages of delinquency. Table X presen
 We examined the between-family results. We tested whether the sibling average for delinquency was associated with sibling averages in depression. We examined this relationship in both directions, in other words we examined whether delinquency predicted depression or whether depression predicted delinquency. Results, as expected, were similar. Accordingly we report results looking at <direction of interest>, and direct interested readers to the appendix. Similarly, we focused on the CES-D 20 as our measure of depression, but include results for the other two variants in the appendix. We discuss the variants of these models, when the results differ.
 
 ### Depression predicting deliquency
+
 ```{r dep predict delinq}
 
 library(lm.beta)
@@ -1666,6 +1682,7 @@ result_minority <- round(result_coef['as.factor(MINORITY_1)nonblackhispanic'],4)
 Sibling averages of CESD-20 were used to predict sibling averages of delinquency. Table X presents the unstandardized regression results (n =`r result_n`). The F-statistic (`r result_f`,df1=`r result_ndf`,df2=`r result_ddf`) was significant, and the adjusted R$^{2}$ was `r result_r2`. A standard-deviation increase in the siblings average depression predicted a statistically significant increase of `r result_predictor_mean` standard deviations in the average of the siblings' average delinquency score.  As expected, gender composition, age, and minority status were also predictive. Relative to the reference group of brothers, families with one (`r result_bg`) or two (`r result_gg`) sisters had lower averages in delinquency. Similarly, older sibling pairs were predictive of lower levels of delinquency (`r result_age_mean`). Relative to the reference group (of respondents classified as either Black or Hispanic), had `r result_minority` standard deviations for average of the siblings' delinquency measure.
 
 ### Deliquency predicting depression
+
 ```{r delin pred dep2}
 
 library(lm.beta)
