@@ -1536,6 +1536,16 @@ prettify_regression_results(standardize=TRUE)
 
 lm_og_ydelin_xCESD7_1994  %>%  
 prettify_regression_results(standardize=TRUE)
+
+
+lm_og_xdelin_yCESD7_1992  %>%  
+prettify_regression_results(standardize=TRUE)
+lm_og_xdelin_yCESD20_1992  %>%  
+prettify_regression_results(standardize=TRUE)
+
+lm_og_xdelin_yCESD7_1994  %>%  
+prettify_regression_results(standardize=TRUE)
+
 ```
 
 ### Btween
