@@ -1330,6 +1330,14 @@ lm_btw_ydelin_sex3_xCESD7_1992 <- lm(DELIN_AVERAGE_mean ~
                             as.factor(MINORITY_1),
                            data = df_btw)
 
+#NEWTABLE
+lm_btw_xdelin_sex3_yCESD7_1992 <- lm(CESD7_1992_mean ~ 
+                             DELIN_AVERAGE_mean +
+                            SEX_all3 +
+                           #  factor(SEX_1)+factor(SEX_2)+
+                             AGE_1979_mean+
+                            as.factor(MINORITY_1),
+                           data = df_btw)
 
 lm_btw_ydelin_sex3_xCESD20_1992 <- lm(DELIN_AVERAGE_mean ~ 
                              CESD20_1992_mean +
@@ -1368,6 +1376,14 @@ lm_btw_ydelin_sex4_xCESD7_1994 <- lm(DELIN_AVERAGE_mean ~
 
 lm_btw_ydelin_sex3_xCESD7_1994 <- lm(DELIN_AVERAGE_mean ~ 
                             CESD7_1994_mean +
+                            SEX_all3 +
+                            AGE_1979_mean+
+                           #  factor(SEX_1)+factor(SEX_2)+
+                            as.factor(MINORITY_1),
+                           data = df_btw)
+
+lm_btw_xdelin_sex3_yCESD7_1994 <- lm(CESD7_1994_mean ~ 
+                            DELIN_AVERAGE_mean+
                             SEX_all3 +
                             AGE_1979_mean+
                            #  factor(SEX_1)+factor(SEX_2)+
@@ -1568,6 +1584,11 @@ prettify_regression_results(standardize=TRUE)
 lm_btw_xdelin_sex3_yCESD20_1992 %>%  
 prettify_regression_results(standardize=TRUE)
 
+lm_btw_xdelin_sex3_yCESD7_1994 %>%  
+prettify_regression_results(standardize=TRUE)
+
+lm_btw_xdelin_sex3_yCESD7_1992 %>%  
+prettify_regression_results(standardize=TRUE)
 ```
 
 
