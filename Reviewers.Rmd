@@ -854,8 +854,8 @@ df_data_SEX <- df_data_gen1 %>%
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
             n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
-            min_Delin_Avg = <- min(DELIN_AVERAGE, na.rm = TRUE) #calculates the min for DELIN_AVERAGE variable
-            max_Delin_Avg <- max(DELIN_AVERAGE, na.rm = TRUE) #calculates the max for DELIN_AVERAGE variable
+            min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
+            max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE), #calculates the max for DELIN_AVERAGE variable
            mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
             n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
@@ -868,13 +868,12 @@ df_data_SEX <- df_data_gen1 %>%
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
             mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n())  # calculates the sample size for the CESD20_1992 variable
+            n_CESD20_1992 = n(),  # calculates the sample size for the CESD20_1992 variable
    min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
-           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),  # calculates the max for the CESD20_1992 variable%>%
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE))%>%  # calculates the max for the CESD20_1992 variable 
   # Display the resulting data frame as a nice table using the gt package
-ungroup() # remove grouping from the data frame
-gt(df_data_SEX)#,title = "Depression and Delinquency means divided by Gender")
-
+ ungroup() # remove grouping from the data frame
+gt(df_data_SEX)#title = ("Depression and Delinquency means divided by Gender")
 
 #age
 
@@ -884,8 +883,8 @@ df_data_AGE <- df_data_gen1 %>%
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
             n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
-             min_Delin_Avg = <- min(DELIN_AVERAGE, na.rm = TRUE) #calculates the min for DELIN_AVERAGE variable
-            max_Delin_Avg <- max(DELIN_AVERAGE, na.rm = TRUE) #calculates the max for DELIN_AVERAGE variable
+             min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
+            max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE), #calculates the max for DELIN_AVERAGE variable
             mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
             n_CESD7_1992 = n(),
@@ -898,12 +897,12 @@ df_data_AGE <- df_data_gen1 %>%
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
             mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
-            n_CESD20_1992 = n())
+            n_CESD20_1992 = n(),
 min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
-           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),  # calculates the max for the CESD20_1992 variable %>%   
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE))%>%  # calculates the max for the CESD20_1992 variable    
   ungroup()
 
-gt(df_data_AGE)#, title = "Depression and Delinquency means divided by Age")
+gt(df_data_AGE) #title = ("Depression and Delinquency means divided by Age")
 
 #race
 library(tidyverse)
@@ -914,8 +913,8 @@ df_data_RACE <- df_data_gen1 %>%
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
             n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
-             min_Delin_Avg = <- min(DELIN_AVERAGE, na.rm = TRUE) #calculates the min for DELIN_AVERAGE variable
-            max_Delin_Avg <- max(DELIN_AVERAGE, na.rm = TRUE) #calculates the max for DELIN_AVERAGE variable
+             min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
+            max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE), #calculates the max for DELIN_AVERAGE variable
             mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
             n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
@@ -928,13 +927,13 @@ df_data_RACE <- df_data_gen1 %>%
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
                 mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n()) # calculates the sample size for the CESD20_1992 variable
+            n_CESD20_1992 = n(), # calculates the sample size for the CESD20_1992 variable
 min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
-           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),  # calculates the max for the CESD20_1992 variable %>%   
-  ungroup() # remove grouping from the data frame
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE)) %>%   # calculates the max for the CESD20_1992 variable    
+ungroup() # remove grouping from the data frame
 
 # Display the resulting data frame as a nice table using the gt package
-gt(df_data_RACE)#, title = "Depression and Delinquency means divided by Race")
+gt(df_data_RACE) #title = ("Depression and Delinquency means divided by Race")
 
 
 summary(df_data_gen1)
