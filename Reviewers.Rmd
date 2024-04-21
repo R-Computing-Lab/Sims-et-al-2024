@@ -1,0 +1,945 @@
+---
+title: "Reviewer"
+author: "Emma SIms"
+date: "4/20/2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+## TODO: add distinct(extended_id, .keep_all = TRUE) # default is to keep the first row
+
+
+knitr::opts_chunk$set(echo = TRUE,error=TRUE)
+
+# set seed
+set.seed(20200804)
+
+## Installs library if missing
+
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("devtools")) install.packages("devtools")
+if (!require("remotes")) install.packages("remotes")
+#if (!require("NlsyLinks")) install.packages("NlsyLinks")
+#if (!require("discord")) install.packages("discord")
+if (!require("janitor")) install.packages("janitor")
+if (!require("lm.beta")) install.packages("lm.beta")
+if (!require("matrixStats")) install.packages("matrixStats")
+if (!require("tictoc")) install.packages("tictoc")
+if (!require("glue")) install.packages("glue")
+if (!require("psych")) install.packages("psych")
+if (!require("foreign")) install.packages("foreign")
+if(!require("ggplot2")) install.packages("ggplot2")
+if(!require("parameters")) install.packages("parameters")
+if(!require("gt")) install.packages("gt")
+if(!require("ggcorrplot")) install.packages("ggcorrplot")
+
+## Installs most recent dev version
+remotes::install_github(repo="nlsy-links/NlsyLinks")
+devtools::install_github('R-Computing-Lab/discord') 
+
+if (!require("dplyr")) install.packages("dplyr")
+
+library(ggcorrplot)
+library(tidyverse)
+library(parameters)
+library(devtools) 
+library(remotes)
+library(NlsyLinks)
+library(gtsummary)
+library(discord)
+library(janitor)
+library(lm.beta)
+library(matrixStats)
+library(tictoc)
+library(glue)
+library(psych)
+library(foreign)
+library(dplyr)
+library(ggplot2)
+library(gt)
+
+
+
+# functions
+
+## good workaround for stupid default setting; runningg mean function but we are overriding default
+new_mean=function(x){
+  mean(x,na.rm=TRUE)
+}
+
+prettify_regression_results <- function(regression_object,
+                                        intercept=TRUE,
+                                        standardize=FALSE,
+					digits=3) {
+										
+temp <-  regression_object %>%
+            gtsummary::tbl_regression(intercept=intercept, 
+                                      pvalue_fun = ~ gtsummary::style_pvalue(.x, digits = digits),
+                                      estimate_fun = ~ gtsummary::style_sigfig(.x, digits = digits)
+            ) %>%
+        gtsummary::modify_header(
+            statistic ~ "**t-statistic**", p.value ~ "**p-value**"
+        ) %>%
+        gtsummary::add_glance_source_note(
+            label = list(statistic ~ "F-statistic",
+                         df  ~ "DF1",
+                         df.residual  ~ "DF2"),
+            include = c(r.squared, statistic, df, df.residual, p.value, nobs)
+        )
+
+if(standardize){
+temp_stnd <-      regression_object %>%
+        gtsummary::tbl_regression(intercept=intercept, 
+                                  estimate_fun = ~ gtsummary::style_sigfig(.x, digits = digits),
+                                  pvalue_fun = ~ gtsummary::style_pvalue(.x, digits = digits),
+                                  tidy_fun = gtsummary::tidy_standardize,
+								  conf.int=FALSE) %>%
+        gtsummary::modify_header(
+            estimate ~ "**β**"
+        ) 
+
+temp <-
+  tbl_merge(
+    list(temp_stnd, temp),
+    tab_spanner = c("**Standardized**", "**Unstandardized**")
+  )
+}
+temp  
+}
+
+```
+
+# Data
+
+## Import
+
+### Depression
+
+```{r df_dep, echo=FALSE}
+
+source('scripts/depression.R')
+
+varlabels <- c("CES-D - POOR APPETITE XRND",
+  "CES-D - COULD NOT SHAKE BLUES XRND",
+  "CES-D - TROUBL KEEPING MIND ON TASKS XRND",
+  "CES-D - DEPRESSED XRND",
+  "CES-D - EVERYTHING TOOK EXTRA EFFORT XRND",
+  "CES-D - RESTLESS SLEEP XRND",
+  "CES-D - FELT LONELY XRND",
+  "CES-D - SAD XRND",
+  "CES-D - COULD NOT GET GOING XRND",
+  "H40 7-ITEM CES-D SCORE XRND",
+  "SF-12 - EMOTIONAL PRBS LIMIT ACCMPLSHMT? XRND",
+  "SF-12 - EMOTIONAL PRBS MADE LESS CARFUL? XRND",
+  "SF-12 - HLTH PRBS HINDER SOC ACTIV? XRND",
+  "CCR-DR DIAGNS EMTNL,NRVS,PSYC PRBS? XRND",
+  "CCR-DATE DR DIAG EMTN,NRVS,PSYC PRB XRND",
+  "CCR-DATE DR DIAG EMTN,NRVS,PSYC PRB XRND",
+  "CCR-EMTN,NRVS,PSYC PROBS LST 12 MO? XRND",
+  "CCR-DEPRESN,EXCESS WORRY,NERVS PRB XRND",
+  "H50 7-ITEM CES-D SCORE XRND",
+  "CESD -  POOR APPETITE XRND",
+  "CESD - COULD NOT SHAKE BLUES XRND",
+  "CESD - TROUBLE KEEPING MIND ON TASK XRND",
+  "CESD - DEPRESSION XRND",
+  "CESD - EVERYTHING TAKING EXTRA EFFORT XRND",
+  "CESD - RESTLESS SLEEP XRND",
+  "CESD - FEELING LONELY XRND",
+  "CESD -  FEELING SAD XRND",
+  "CESD - COULD NOT GET GOING XRND",
+  "SF12 - EMOTIONAL PRBS LIMIT ACCMPLSHMT? XRND",
+  "SF12 - EMOTIONAL PRBS MADE LESS CARFUL? XRND",
+  "SF12 - CALM/PEACEFUL PAST 4 WKS? XRND",
+  "SF12 - HAVE ENERGY PAST 4 WKS? XRND",
+  "SF12 - DOWNHRTD OR BLUE PAST 4 WKS? XRND",
+  "SF12 - HLTH PRBS HINDER SOC ACTIV? XRND",
+  "DOCTOR EVER DIAGNOSED R SUFFERING FROM DEPRESSION XRND",
+  "DATE RS DEPRESSION DIAGNOSED XRND",
+  "DATE RS DEPRESSION DIAGNOSED XRND",
+  "R SUFFERED FROM DEPRESSION IN LAST 12 MOS XRND",
+  "PSYCHIATRIC DIAGNOSIS IN 40+ HEALTH MOD XRND",
+  "DR EVER SAID R HAD EMO/NERV/PSYC PBLS OT THAN DEP XRND",
+  "DATE R EMO/NERV/PSYC PBLS DIAGNOSED XRND",
+  "DATE R EMO/NERV/PSYC PBLS DIAGNOSED XRND",
+  "R HAD ANY EMO/NERV/PSYC PROBLEMS IN LAST 12 MOS XRND",
+  "ID# (1-12686) 79",
+  "HLTH CONSOLIDATION CODE 5-D 79",
+  "SAMPLE ID  79 INT",
+  "CES-D-BOTHERED BY THINGS 92",
+  "CES-D-POOR APPETITE 92",
+  "CES-D-UNABLE TO SHAKE BLUES 92",
+  "CES-D-FELT GOOD AS OTHR PEOPLE 92",
+  "CES-D-TRBLE KEEPING MIND ON TASKS 92",
+  "CES-D-DEPRESSED 92",
+  "CES-D-THINGS TOOK EXTRA EFFORT 92",
+  "CES-D-HOPEFUL 92",
+  "CES-D-A FAILURE 92",
+  "CES-D-FEARFUL 92",
+  "CES-D-RESTLESS SLEEP 92",
+  "CES-D-HAPPY 92",
+  "CES-D-LESS TALKATIVE THAN USUAL 92",
+  "CES-D-LONELY 92",
+  "CES-D-OTHERS WERE UNFRIENDLY 92",
+  "CES-D-ENJOYED LIFE 92",
+  "CES-D-CRYING SPELLS 92",
+  "CES-D-SAD 92",
+  "CES-D-DISLIKED BY OTHERS 92",
+  "CES-D-COULD NOT GET GOING 92",
+  "20-ITEM CES-D SCORE 92",
+  "FLAG FOR 20-ITEM CES-D SCORE 92",
+  "7-ITEM CES-D SCORE 92",
+  "CES-D - POOR APPETITE 94",
+  "CES-D-TRBLE KPNG MIND ON TASKS 94",
+  "CES-D - DEPRESSED 94",
+  "CES-D - TOOK EXTRA EFFORT 94",
+  "CES-D - RESTLESS SLEEP 94",
+  "CES-D - SAD 94",
+  "CES-D - COULD NOT GET GOING 94",
+  "7-ITEM CES-D SCORE 94",
+  "R SATISFACTION WITH LIFE 2014",
+  "R SATISFACTION WITH LIFE 2016"
+)
+
+
+# Use qnames rather than rnums
+
+qnames = function(data) {
+  names(data) <- c("H40_CESD_01",
+    "H40_CESD_02",
+    "H40_CESD_03",
+    "H40_CESD_04",
+    "H40_CESD_05",
+    "H40_CESD_06",
+    "H40_CESD_07",
+    "H40_CESD_08",
+    "H40_CESD_09",
+    "H40_CESD_SCORE_7_ITEM",
+    "H40_SF12_5",
+    "H40_SF12_5B",
+    "H40_SF12_8",
+    "H40_CHRC_8",
+    "H40_CHRC_8A_M",
+    "H40_CHRC_8A_Y",
+    "H40_CHRC_8B",
+    "H40_CHRC_10K",
+    "H50_CESD_SCORE_7_ITEM",
+    "H50_CESD_01",
+    "H50_CESD_02",
+    "H50_CESD_03",
+    "H50_CESD_04",
+    "H50_CESD_05",
+    "H50_CESD_06",
+    "H50_CESD_07",
+    "H50_CESD_08",
+    "H50_CESD_09",
+    "H50_SF12_5",
+    "H50_SF12_5B",
+    "H50_SF12_7",
+    "H50_SF12_7B",
+    "H50_SF12_7C",
+    "H50_SF12_8",
+    "H50_CHRC_7B",
+    "H50_CHRC_7C_M",
+    "H50_CHRC_7C_Y",
+    "H50_CHRC_7D",
+    "H50_CHRC_CHK6",
+    "H50_CHRC_8",
+    "H50_CHRC_8A_M",
+    "H50_CHRC_8A_Y",
+    "H50_CHRC_8B",
+    "CASEID",
+    "HEALTH_CODE_1979",
+    "SAMPLE_ID",
+    "CESD_00_1992",
+    "CESD_01_1992",
+    "CESD_02_1992",
+    "CESD_02A_1992",
+    "CESD_03_1992",
+    "CESD_04_1992",
+    "CESD_05_1992",
+    "CESD_05A_1992",
+    "CESD_05B_1992",
+    "CESD_05C_1992",
+    "CESD_06_1992",
+    "CESD_06A_1992",
+    "CESD_06B_1992",
+    "CESD_07_1992",
+    "CESD_07A_1992",
+    "CESD_07B_1992",
+    "CESD_07C_1992",
+    "CESD_08_1992",
+    "CESD_08A_1992",
+    "CESD_09_1992",
+    "CESD_SCORE_20_ITEM_1992",
+    "CESD_FLAG_1992",
+    "CESD_SCORE_7_ITEM_1992",
+    "CESD_01_1994",
+    "CESD_03_1994",
+    "CESD_04_1994",
+    "CESD_05_1994",
+    "CESD_06_1994",
+    "CESD_08_1994",
+    "CESD_09_1994",
+    "CESD_SCORE_7_ITEM_1994",
+    "LIFE-SATISFACTION_2014",
+    "LIFE-SATISFACTION_2016")
+  return(data)
+}
+
+
+
+df_dep_gen1 <- qnames(vallabels(new_data))
+
+remove(new_data)
+
+
+```
+
+### Crime
+
+```{r data_crime, echo=FALSE}
+source('scripts/crime.R')
+
+varlabels <- c("ID# (1-12686) 79",
+  "SAMPLE ID  79 INT",
+  "RACL/ETHNIC COHORT /SCRNR 79",
+  "SEX OF R 79",
+  "ILL ACT RUN AWAY PAST YR (AGE <18) 80",
+  "ILL ACT INTENTION DAMAGED PROP PAST 80",
+  "ILL ACT FOUGHT @ SCHOOL/WRK PAST YR 80",
+  "ILL ACT SHOPLIFTED PAST YR 80",
+  "ILL ACT STEEL PAST YR (<$50) 80",
+  "ILL ACT STEEL PAST YR (>$50) 80",
+  "ILL ACT USED FORCE OBTAIN THINGS YR 80",
+  "ILL ACT # SERIOUS THREAT HIT PAST 80",
+  "ILL ACT ATTACK W/INTNT INJR/KILL PAST 80",
+  "ILL ACT SOLD MARJ PAST YR 80",
+  "ILL ACT SOLD HARD DRUGS PAST YR 80",
+  "ILL ACT ATTEMPTED TO 80",
+  "ILL ACT TAKE AUTO W/O PERM PAST YR 80",
+  "ILL ACT BROKEN INTO A BUILDING PAST 80",
+  "ILL ACT KNOW SOLD/HELD STOLEN PAST 80",
+  "ILL ACT AID GAMBLING OPER PAST YR 80",
+  "STOP BY POLICE O/THAN MIN TRAFIC OFF 80",
+  "TIMES STOP BY POLICE MINOR 80",
+  "TIMES STOP POLICE EXCLD MINOR PAST YR 80",
+  "AGE OF R 1ST TIME STOPPED BY POLICE 80",
+  "EVER CHARGED W/ILGL ACT 80",
+  "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
+  "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
+  "MONTH M-RCNT ILGL ACT CHARGE 80",
+  "YR M-RCNT ILGL ACT CHARGE 80",
+  "AGE @ TIME 1ST ILGL ACT CHARGE 80",
+  "EVER CHARGED ILGL ACT ADLT COURT 80",
+  "EVER CONVICTED ON ILGL ACT CHARGES 80",
+  "TIMES CONVICTED ILGL ACT EXCLD MINOR 80",
+  "AGE @ TIME 1ST ILGL ACT CONVICTION 80",
+  "MONTH M-RCNT ILGL ACT CONVICTION 80",
+  "YR M-RCNT ILGL ACT CONVICTION 80",
+  "ILL ACT ASSAULT 80",
+  "ILL ACT ROBBERY 80",
+  "ILL ACT THEFT 80",
+  "ILL ACT THEFT BY DECEPTION 80",
+  "ILL ACT STOLEN PROP 80",
+  "ILL ACT DESTRUCTION OF PROP 80",
+  "ILL ACT OTHER PROP OFFENSE 80",
+  "ILL ACT GAMBLING 80",
+  "ILL ACT COMMERCIAL VICE 80",
+  "ILL ACT POSSESSION OF MARJ/HASH 80",
+  "ILL ACT SELL MARJ/HASH 80",
+  "ILL ACT POSSESSION OTHER DRUGS 80",
+  "ILL ACT SALE/MANUF ILLICIT DRUGS 80",
+  "ILL ACT MAJOR TRAFIC OFFENSE 80",
+  "ILL ACT STATUS OFFENSE 80",
+  "ILL ACT OTHER 80",
+  "EVER CONVICTED ILGL ACT ADLT COURT 80",
+  "EVER REFUSED COURT-RELATED COUNSELING 80",
+  "TIMES REFER COURT-RELATED COUNSELING 80",
+  "AGE @ TIME 1ST COURT-REL COUNSELING 80",
+  "MONTH M-RCNT COURT-REL COUNSELING END 80",
+  "YR M-RCNT COURT-REL COUNSELING END 80",
+  "EVER BEEN ON PROBATION 80",
+  "TIMES ON PROBATION 80",
+  "DATE M-RCNT PROBATION PRD END 80",
+  "YR M-RCNT PROBATION PRD END 80",
+  "EVER SNTNCD ANY CORP INSTITUTN 80",
+  "TIMES SENT TO YTH CORP INSTITUTN 80",
+  "TIMES SENT TO ADLT CORP INSTITUTN 80",
+  "MONTH M-RCNT RLSE CORP INSTITUTN 80",
+  "YR M-RCNT RLSE CORP INSTITUTN 80",
+  "REASON FOR NONINT 80",
+  "REASON FOR NONINT 81",
+  "REASON FOR NONINT 82",
+  "REASON FOR NONINT 83",
+  "REASON FOR NONINT 84",
+  "REASON FOR NONINT 85",
+  "REASON FOR NONINT 86",
+  "REASON FOR NONINT 87",
+  "REASON FOR NONINT 88",
+  "REASON FOR NONINT 89",
+  "REASON FOR NONINT 90",
+  "REASON FOR NONINT 91",
+  "REASON FOR NONINT 92",
+  "REASONS FOR NON-INT 93",
+  "ARRESTED, IN POLICE TROUBLE 94",
+  "REASONS FOR NON-INT 94",
+  "REASONS FOR NON-INT 96",
+  "REASONS FOR NON-INT 1998",
+  "REASONS FOR NON-INT 2000",
+  "REASONS FOR NON-INT 2002",
+  "REASONS FOR NON-INT 2004",
+  "REASONS FOR NON-INT 2006",
+  "REASONS FOR NON-INT 2008",
+  "REASONS FOR NON-INT 2010",
+  "REASONS FOR NON-INT 2012",
+  "REASONS FOR NON-INT 2014",
+  "REASONS FOR NON-INT 2016"
+)
+
+# Use qnames rather than rnums
+
+qnames = function(data) {
+  names(data) <- c("CASEID",
+     "SAMPLE_ID",	#	  "SAMPLE ID  79 INT",
+    "RACE",	#	  "RACL/ETHNIC COHORT /SCRNR 79",
+    "SEX",	#	  "SEX OF R 79",
+    "DELIN_1_1980",	  #	  "ILL ACT RUN AWAY PAST YR (AGE <18) 80",
+    "DELIN_4_1980",	  #	  "ILL ACT INTENTION DAMAGED PROP PAST 80",
+    "DELIN_5_1980",	  #	  "ILL ACT FOUGHT @ SCHOOL/WRK PAST YR 80",
+    "DELIN_6_1980",	  #	  "ILL ACT SHOPLIFTED PAST YR 80",
+    "DELIN_7_1980",	  #	  "ILL ACT STEEL PAST YR (<$50) 80",
+    "DELIN_8_1980",	  #	  "ILL ACT STEEL PAST YR (>$50) 80",
+    "DELIN_9_1980",	  #	  "ILL ACT USED FORCE OBTAIN THINGS YR 80",
+    "DELIN_10_1980",	#	  "ILL ACT # SERIOUS THREAT HIT PAST 80",
+    "DELIN_11_1980",	#	  "ILL ACT ATTACK W/INTNT INJR/KILL PAST 80",
+    "DELIN_14_1980",	#	  "ILL ACT SOLD MARJ PAST YR 80",
+    "DELIN_15_1980",	#	  "ILL ACT SOLD HARD DRUGS PAST YR 80",
+    "DELIN_16_1980",	#	  "ILL ACT ATTEMPTED TO 80",
+    "DELIN_17_1980",	#	  "ILL ACT TAKE AUTO W/O PERM PAST YR 80",
+    "DELIN_18_1980",	#	  "ILL ACT BROKEN INTO A BUILDING PAST 80",
+    "DELIN_19_1980",	#	  "ILL ACT KNOW SOLD/HELD STOLEN PAST 80",
+    "DELIN_20_1980",	#	  "ILL ACT AID GAMBLING OPER PAST YR 80",
+    "POLICE_1_1980",	#	  "STOP BY POLICE O/THAN MIN TRAFIC OFF 80",
+    "POLICE_1A_1980",	#	  "TIMES STOP BY POLICE MINOR 80",
+    "POLICE_1B_1980",	#	  "TIMES STOP POLICE EXCLD MINOR PAST YR 80",
+    "POLICE_1C_1980",	#	  "AGE OF R 1ST TIME STOPPED BY POLICE 80",
+    "POLICE_2_1980",	#	  "EVER CHARGED W/ILGL ACT 80",
+    "POLICE_2A_1980",	#	  "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
+    "POLICE_2B_1980",	#	  "TIMES CHARGE W/ILGL ACT EXCLD MINOR 80",
+    "POLICE_2C_M_1980",	#	  "MONTH M-RCNT ILGL ACT CHARGE 80",
+    "POLICE_2C_Y_1980",	#	  "YR M-RCNT ILGL ACT CHARGE 80",
+    "POLICE_2D_1980",	#	  "AGE @ TIME 1ST ILGL ACT CHARGE 80",
+    "POLICE_2E_1980",	#	  "EVER CHARGED ILGL ACT ADLT COURT 80",
+    "POLICE_3_1980",	#	  "EVER CONVICTED ON ILGL ACT CHARGES 80",
+    "POLICE_3A_1980",	#	  "TIMES CONVICTED ILGL ACT EXCLD MINOR 80",
+    "POLICE_3B_1980",	#	  "AGE @ TIME 1ST ILGL ACT CONVICTION 80",
+    "POLICE_3C_M_1980",	#	  "MONTH M-RCNT ILGL ACT CONVICTION 80",
+    "POLICE_3C_Y_1980",	#	  "YR M-RCNT ILGL ACT CONVICTION 80",
+    "POLICE_3D_01_1980",	#	  "ILL ACT ASSAULT 80",
+    "POLICE_3D_02_1980",	#	  "ILL ACT ROBBERY 80",
+    "POLICE_3D_03_1980",	#	  "ILL ACT THEFT 80",
+    "POLICE_3D_04_1980",	#	  "ILL ACT THEFT BY DECEPTION 80",
+    "POLICE_3D_05_1980",	#	  "ILL ACT STOLEN PROP 80",
+    "POLICE_3D_06_1980",	#	  "ILL ACT DESTRUCTION OF PROP 80",
+    "POLICE_3D_07_1980",	#	  "ILL ACT OTHER PROP OFFENSE 80",
+    "POLICE_3D_08_1980",	#	  "ILL ACT GAMBLING 80",
+    "POLICE_3D_09_1980",	#	  "ILL ACT COMMERCIAL VICE 80",
+    "POLICE_3D_10_1980",	#	  "ILL ACT POSSESSION OF MARJ/HASH 80",
+    "POLICE_3D_11_1980",	#	  "ILL ACT SELL MARJ/HASH 80",
+    "POLICE_3D_12_1980",	#	  "ILL ACT POSSESSION OTHER DRUGS 80",
+    "POLICE_3D_13_1980",	#	  "ILL ACT SALE/MANUF ILLICIT DRUGS 80",
+    "POLICE_3D_14_1980",	#	  "ILL ACT MAJOR TRAFIC OFFENSE 80",
+    "POLICE_3D_16_1980",	#	  "ILL ACT STATUS OFFENSE 80",
+    "POLICE_3D_17_1980",	#	  "ILL ACT OTHER 80",
+    "POLICE_3E_1980",   #	  "EVER CONVICTED ILGL ACT ADLT COURT 80",
+    "POLICE_4_1980",    #	  "EVER REFUSED COURT-RELATED COUNSELING 80",
+    "POLICE_4A_1980",   #	  "TIMES REFER COURT-RELATED COUNSELING 80",
+    "POLICE_4B_1980",   #	  "AGE @ TIME 1ST COURT-REL COUNSELING 80",
+    "POLICE_4C_M_1980",	#	  "MONTH M-RCNT COURT-REL COUNSELING END 80",
+    "POLICE_4C_Y_1980",	#	  "YR M-RCNT COURT-REL COUNSELING END 80",
+    "POLICE_6_1980",    #	  "EVER BEEN ON PROBATION 80",
+    "POLICE_6A_1980",	  #	  "TIMES ON PROBATION 80",
+    "POLICE_6B_M_1980",	#	  "DATE M-RCNT PROBATION PRD END 80",
+    "POLICE_6B_Y_1980",	#	  "YR M-RCNT PROBATION PRD END 80",
+    "POLICE_7_1980",    #	  "EVER SNTNCD ANY CORP INSTITUTN 80",
+    "POLICE_7A_1980",   #	  "TIMES SENT TO YTH CORP INSTITUTN 80",
+    "POLICE_7B_1980",   #	  "TIMES SENT TO ADLT CORP INSTITUTN 80",
+    "POLICE_7C_M_1980",	#	  "MONTH M-RCNT RLSE CORP INSTITUTN 80",
+    "POLICE_7C_Y_1980",	#	  "YR M-RCNT RLSE CORP INSTITUTN 80",
+    "RNI_1980",	        #	  "REASON FOR NONINT 80",
+    "RNI_1981",	        #	  "REASON FOR NONINT 81",
+    "RNI_1982",         #	  "REASON FOR NONINT 82",
+    "RNI_1983",         #	  "REASON FOR NONINT 83",
+    "RNI_1984",         #	  "REASON FOR NONINT 84",
+    "RNI_1985",         #	  "REASON FOR NONINT 85",
+    "RNI_1986",         #	  "REASON FOR NONINT 86",
+    "RNI_1987",         #	  "REASON FOR NONINT 87",
+    "RNI_1988",         #	  "REASON FOR NONINT 88",     
+    "RNI_1989",         #	  "REASON FOR NONINT 89",
+    "RNI_1990",         #	  "REASON FOR NONINT 90",
+    "RNI_1991",         #	  "REASON FOR NONINT 91",
+    "RNI_1992",         #	  "REASON FOR NONINT 92",
+    "RNI_1993",         #	  "REASONS FOR NON-INT 93",
+    "ARREST_7N_1994",   #	  "ARRESTED, IN POLICE TROUBLE 94",
+    "RNI_1994",         #	  "REASONS FOR NON-INT 94",
+    "RNI_1996",         #	  "REASONS FOR NON-INT 96",
+    "RNI_1998",         #	  "REASONS FOR NON-INT 1998",
+    "RNI_2000",         #	  "REASONS FOR NON-INT 2000",
+    "RNI_2002",         #	  "REASONS FOR NON-INT 2002",
+    "RNI_2004",         #	  "REASONS FOR NON-INT 2004",
+    "RNI_2006",         #	  "REASONS FOR NON-INT 2006",
+    "RNI_2008",         #	  "REASONS FOR NON-INT 2008",
+    "RNI_2010",         #	  "REASONS FOR NON-INT 2010",
+    "RNI_2012",         #	  "REASONS FOR NON-INT 2012",
+    "RNI_2014",         #	  "REASONS FOR NON-INT 2014",
+    "RNI_2016")         #	  "REASONS FOR NON-INT 2016"
+
+  return(data)
+}
+
+
+df_crime_gen1 <- qnames(vallabels(new_data))
+
+
+remove(new_data)
+
+```
+
+### age
+
+```{r people_age, echo=FALSE}
+
+#How old is everyone? 
+source("scripts/age.R")
+
+varlabels <- c("ID# (1-12686) 79",
+  "DATE OF BIRTH - MONTH 79",
+  "DATE OF BIRTH - YR 79",
+  "AGE OF R 79",
+  "SAMPLE ID  79 INT",
+  "RACL/ETHNIC COHORT /SCRNR 79",
+  "SEX OF R 79"
+)
+
+
+# Use qnames rather than rnums
+
+qnames = function(data) {
+  names(data) <- c("CASEID",
+    "M_1979",
+    "Y_1979",
+    "AGE_1979",
+    "SAMPLE_ID",
+    "RACE_78SCRN",
+    "SEX_1979")
+  return(data)
+}
+
+
+#********************************************************************************************************
+
+
+# Remove the '#' before the following lines to rename variables using Qnames instead of Reference Numbers
+df_age <- qnames(vallabels(df_age))
+
+
+
+```
+
+
+## Clean
+
+```{r data_cleaning, echo=FALSE}
+
+# is average delinquency score; so that missing data doesn't deflate score
+df_crime_gen1 <- 
+  df_crime_gen1 %>% 
+  mutate(
+    SubjectTag=CASEID*100,
+    dq_sum = rowSums(select(.,starts_with("DELIN_")),na.rm=TRUE),
+    DELIN_AVERAGE = rowMeans(select(.,starts_with("DELIN_")),na.rm=TRUE)#,
+#DELIN_Median = rowMedians(select(., starts_with("DELIN_")),na.rm=TRUE)
+)
+
+
+# creating smaller dataframe to only include variables of interest
+# recoding Race and Sex ; todo, name race to minority
+
+df_data_gen1 <- df_crime_gen1 %>%
+  select(
+    SubjectTag,
+    CASEID,
+    RACE,
+    SEX,
+    DELIN_AVERAGE
+  ) %>%
+  mutate(
+      # effectively race is 0 for white; and 1 for non-white
+    MINORITY = case_when(
+      RACE == 3 ~ "nonblackhispanic",
+      RACE %in% c(1, 2) ~ "blackorhispanic"       #black or hisp
+    ),
+    # have female be 0 and male be 1
+    SEX = case_when(
+      SEX == 2 ~ 0,
+      TRUE ~ 1
+    )
+  ) %>% 
+  bind_cols(
+    CESD7_1994 = df_dep_gen1$CESD_SCORE_7_ITEM_1994,
+    CESD20_1992 = as.numeric(df_dep_gen1$CESD_SCORE_20_ITEM_1992),
+    CESD7_1992 = df_dep_gen1$CESD_SCORE_7_ITEM_1992,
+    AGE_1979 = df_age$AGE_1979
+  )
+
+
+df_data_gen1 %>%
+  select(-c(SEX,
+            MINORITY,
+            RACE,
+            SubjectTag,
+            CASEID)) %>%
+  cor(use = "pairwise.complete")
+
+# convert sex into factor
+df_data_gen1 <- df_data_gen1 %>%  mutate(
+    SEX = as.factor(SEX),
+    RACE = as.factor(RACE),
+    MINORITY = as.factor(MINORITY)
+  )
+
+
+```
+
+## Summarize
+
+# Data Linking
+
+```{r kinship, warning=FALSE,include=FALSE}
+
+#link dyads
+
+dsLinks <- Links79PairExpanded
+dsLinks$R <- dsLinks$RFull
+dsLinking <- dsLinks
+
+outcomeNames <- c("MINORITY",
+                  "SEX",
+                  "CESD20_1992",
+                  "DELIN_AVERAGE",
+                  "CESD7_1994",
+                  "CESD7_1992",
+                  "AGE_1979")
+
+# only full full sibs
+dsSingle_G1 <- CreatePairLinksSingleEntered(
+  outcomeDataset = df_data_gen1,
+  linksPairDataset = dsLinking[dsLinking$RelationshipPath == "Gen1Housemates" &
+                                 dsLinking$RFull == .5,],
+  outcomeNames = outcomeNames,
+  subject1Qualifier = "_S1",
+  subject2Qualifier = "_S2"
+)
+
+
+
+
+set.seed(18)
+
+
+
+df_dyad_delinq <- dsSingle_G1 %>%
+  drop_na(contains("DELIN_AVERAGE")) %>%
+  discord_data(
+    outcome = "DELIN_AVERAGE",
+    predictors = c("CESD7_1992",
+                   "CESD20_1992",
+                   "CESD7_1994",
+                   "AGE_1979"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+
+
+df_dyad_CESD20_1992 <- dsSingle_G1 %>%
+  drop_na(contains("CESD20_1992")) %>%
+  discord_data(
+    outcome = "CESD20_1992",
+    predictors = c("CESD7_1992",
+                   "DELIN_AVERAGE",
+                   "CESD7_1994",
+                   "AGE_1979"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+df_dyad_CESD7_1992 <- dsSingle_G1 %>%
+  drop_na(contains("CESD7_1992")) %>%
+  discord_data(
+    outcome = "CESD7_1992",
+    predictors = c("CESD20_1992",
+                   "DELIN_AVERAGE",
+                   "CESD7_1994",
+                   "AGE_1979"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+
+df_dyad_CESD7_1994 <- dsSingle_G1 %>%
+  drop_na(contains("CESD7_1994")) %>%
+  discord_data(
+    outcome = "CESD7_1994",
+    predictors = c("CESD20_1992",
+                   "DELIN_AVERAGE",
+                   "CESD7_1992",
+                   "AGE_1979"),
+    id = "ExtendedID",
+    sex = "SEX",
+    race = "MINORITY",
+    pair_identifiers = c("_S1", "_S2"),
+    demographics = "both"
+  ) %>%
+  mutate(
+    # sex is 0 for girl; and 1 for boy
+    SEX_all4 = case_when(
+      # boyboy
+      SEX_1 == 1 &
+        SEX_2 == 1 ~ "BoyBoy",
+      # girlboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "GirlBoy",
+      #opposite
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "BoyGirl",
+      #girgirl
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    ),
+    #opposite
+    SEX_all3 = case_when(
+      SEX_1 == 1 & SEX_2 == 1 ~ "BoyBoy",
+      # boyboy
+      SEX_1 == 0 &
+        SEX_2 == 1 ~ "mixed",
+      # girlboy
+      SEX_1 == 1 &
+        SEX_2 == 0 ~ "mixed",
+      #opposite
+      SEX_1 == 0 &
+        SEX_2 == 0 ~ "GirlGirl"
+    )
+  )
+
+```
+
+```{r}
+#summary(df_data_gen1)
+
+
+stardadized_by_gender=FALSE
+# standardize by gender
+if(stardadized_by_gender){
+df_data_gen1 <- group_by(df_data_gen1, SEX) %>% 
+  mutate(DELIN_AVERAGE = as.numeric(scale(DELIN_AVERAGE)),
+         CESD7_1992 = as.numeric(scale(CESD7_1992)),
+         CESD20_1992 = as.numeric(scale(CESD20_1992)),
+         CESD7_1994 = as.numeric(scale(CESD7_1994))) %>%
+ungroup()
+}
+
+# Group the data by sex and calculate mean, standard deviation, and sample size for different variables
+df_data_SEX <- df_data_gen1 %>% 
+  group_by(SEX) %>% 
+  summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
+            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+            min_Delin_Avg = <- min(DELIN_AVERAGE, na.rm = TRUE) #calculates the min for DELIN_AVERAGE variable
+            max_Delin_Avg <- max(DELIN_AVERAGE, na.rm = TRUE) #calculates the max for DELIN_AVERAGE variable
+           mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
+            sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
+            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+           min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
+           max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable
+            mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
+            sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
+            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+           min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
+           max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
+            mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
+            sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
+            n_CESD20_1992 = n())  # calculates the sample size for the CESD20_1992 variable
+   min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),  # calculates the max for the CESD20_1992 variable%>%
+  # Display the resulting data frame as a nice table using the gt package
+ungroup() # remove grouping from the data frame
+gt(df_data_SEX)#,title = "Depression and Delinquency means divided by Gender")
+
+
+#age
+
+# Group the data by age and calculate mean, standard deviation, and sample size for different variables
+df_data_AGE <- df_data_gen1 %>% 
+  group_by(AGE_1979) %>% 
+  summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
+            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+             min_Delin_Avg = <- min(DELIN_AVERAGE, na.rm = TRUE) #calculates the min for DELIN_AVERAGE variable
+            max_Delin_Avg <- max(DELIN_AVERAGE, na.rm = TRUE) #calculates the max for DELIN_AVERAGE variable
+            mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE),
+            sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  
+            n_CESD7_1992 = n(),
+            min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
+           max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable
+            mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE),
+            sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  
+            n_CESD7_1994 = n(),
+             min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
+           max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
+            mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE),
+            sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  
+            n_CESD20_1992 = n())
+min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),  # calculates the max for the CESD20_1992 variable %>%   
+  ungroup()
+
+gt(df_data_AGE)#, title = "Depression and Delinquency means divided by Age")
+
+#race
+library(tidyverse)
+
+# Group the data by minority status and calculate mean, standard deviation, and sample size for different variables
+df_data_RACE <- df_data_gen1 %>% 
+  group_by(MINORITY) %>% 
+  summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
+            sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
+            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+             min_Delin_Avg = <- min(DELIN_AVERAGE, na.rm = TRUE) #calculates the min for DELIN_AVERAGE variable
+            max_Delin_Avg <- max(DELIN_AVERAGE, na.rm = TRUE) #calculates the max for DELIN_AVERAGE variable
+            mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
+            sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
+            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+        min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
+           max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable    
+            mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
+            sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
+            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+        min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
+           max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
+                mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
+            sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
+            n_CESD20_1992 = n()) # calculates the sample size for the CESD20_1992 variable
+min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),  # calculates the max for the CESD20_1992 variable %>%   
+  ungroup() # remove grouping from the data frame
+
+# Display the resulting data frame as a nice table using the gt package
+gt(df_data_RACE)#, title = "Depression and Delinquency means divided by Race")
+
+
+summary(df_data_gen1)
+
+
+```
+
+
