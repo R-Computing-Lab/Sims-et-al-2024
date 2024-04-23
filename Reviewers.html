@@ -2013,7 +2013,13 @@ df_data_summary &lt;- dsSingle_unpaired %&gt;%
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
             n_CESD20_1992 = n(), # calculates the sample size for the CESD20_1992 variable
 min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
-           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE))   
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),
+     mean_AGE_1979 = mean(AGE_1979, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
+            sd_AGE_1979 = sd(AGE_1979, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
+            n_AGE_1979 = n(), # calculates the sample size for the CESD20_1992 variable
+min_AGE_1979 = min(AGE_1979, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
+           max_AGE_1979 = max(AGE_1979, na.rm = TRUE)
+)   
   # calculates the max for the CESD20_1992 variable    
   gt(df_data_summary)</code></pre>
 <div id="tzfucjwlxe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -2480,6 +2486,11 @@ min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the 
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_CESD20_1992">n_CESD20_1992</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="min_CESD20_1992">min_CESD20_1992</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max_CESD20_1992">max_CESD20_1992</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_AGE_1979">mean_AGE_1979</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd_AGE_1979">sd_AGE_1979</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n_AGE_1979">n_AGE_1979</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="min_AGE_1979">min_AGE_1979</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max_AGE_1979">max_AGE_1979</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2502,7 +2513,12 @@ min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the 
 <td headers="sd_CESD20_1992" class="gt_row gt_right">8.834059</td>
 <td headers="n_CESD20_1992" class="gt_row gt_right">8012</td>
 <td headers="min_CESD20_1992" class="gt_row gt_right">0</td>
-<td headers="max_CESD20_1992" class="gt_row gt_right">55</td></tr>
+<td headers="max_CESD20_1992" class="gt_row gt_right">55</td>
+<td headers="mean_AGE_1979" class="gt_row gt_right">17.28108</td>
+<td headers="sd_AGE_1979" class="gt_row gt_right">2.084084</td>
+<td headers="n_AGE_1979" class="gt_row gt_right">8012</td>
+<td headers="min_AGE_1979" class="gt_row gt_right">14</td>
+<td headers="max_AGE_1979" class="gt_row gt_right">22</td></tr>
   </tbody>
   
   

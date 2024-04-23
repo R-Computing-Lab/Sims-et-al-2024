@@ -749,7 +749,13 @@ df_data_summary <- dsSingle_unpaired %>%
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
             n_CESD20_1992 = n(), # calculates the sample size for the CESD20_1992 variable
 min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
-           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE))   
+           max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),
+     mean_AGE_1979 = mean(AGE_1979, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
+            sd_AGE_1979 = sd(AGE_1979, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
+            n_AGE_1979 = n(), # calculates the sample size for the CESD20_1992 variable
+min_AGE_1979 = min(AGE_1979, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
+           max_AGE_1979 = max(AGE_1979, na.rm = TRUE)
+)   
   # calculates the max for the CESD20_1992 variable    
   gt(df_data_summary)
 
