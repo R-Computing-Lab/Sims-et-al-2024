@@ -631,22 +631,22 @@ df_data_SEX <- df_data_gen1 %>%
   group_by(SEX) %>% 
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
-            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+           n_Delin_Avg <- sum(!is.na(DELIN_AVERAGE)), # calculates the sample size for the DELIN_AVERAGE variable
             min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
             max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE),
             mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
-            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+            n_CESD7_1992 <- sum(!is.na(CESD7_1992)), # calculates the sample size for the CESD7_1992 variable
             min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
            max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable
             mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
             sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
-            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+            n_CESD7_1994 <- sum(!is.na(CESD7_1994)), # calculates the sample size for the CESD7_1994 variable
               min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
             mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n(),
+             n_CESD20_1992 <- sum(!is.na(CESD20_1992)),
            min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
            max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE)) %>% # calculates the sample size for the CESD20_1992 variable
   # Display the resulting data frame as a nice table using the gt package
@@ -661,22 +661,22 @@ df_data_AGE <- df_data_gen1 %>%
   group_by(AGE_1979) %>% 
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
-            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+            n_Delin_Avg <- sum(!is.na(DELIN_AVERAGE)), # calculates the sample size for the DELIN_AVERAGE variable
             min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
             max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE),
             mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
-            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+           n_CESD7_1992 <- sum(!is.na(CESD7_1992)), # calculates the sample size for the CESD7_1992 variable
             min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
            max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable
             mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
             sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
-            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+           n_CESD7_1994 <- sum(!is.na(CESD7_1994)), # calculates the sample size for the CESD7_1994 variable
               min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
             mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n(),
+           n_CESD20_1992 <- sum(!is.na(CESD20_1992)),
            min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
            max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE)) %>% # calculates the sample size for the CESD20_1992 variable
   ungroup()
@@ -691,22 +691,22 @@ df_data_RACE <- df_data_gen1 %>%
   group_by(MINORITY) %>% 
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
-            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+            n_Delin_Avg <- sum(!is.na(DELIN_AVERAGE)), # calculates the sample size for the DELIN_AVERAGE variable
             min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
             max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE),
             mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
-            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+             n_CESD7_1992 <- sum(!is.na(CESD7_1992)), # calculates the sample size for the CESD7_1992 variable
             min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
            max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable
             mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
             sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
-            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+            n_CESD7_1994 <- sum(!is.na(CESD7_1994)), # calculates the sample size for the CESD7_1994 variable
               min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
             mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n(),
+             n_CESD20_1992 <- sum(!is.na(CESD20_1992)),
            min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
            max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE)) %>% # calculates the sample size for the CESD20_1992 variable
   ungroup() # remove grouping from the data frame
@@ -718,34 +718,32 @@ gt(df_data_RACE)#, title = "Depression and Delinquency means divided by Race")
 df_data_summary <- df_data_gen1 %>% 
   summarize(mean_Delin_Avg = mean(DELIN_AVERAGE, na.rm = TRUE), # calculates the mean for the DELIN_AVERAGE variable
             sd_Delin_Avg = sd(DELIN_AVERAGE, na.rm = TRUE),   # calculates the standard deviation for the DELIN_AVERAGE variable
-            n_Delin_Avg = n(), # calculates the sample size for the DELIN_AVERAGE variable
+            n_Delin_Avg <- sum(!is.na(DELIN_AVERAGE)),# calculates the sample size for the DELIN_AVERAGE variable
              min_Delin_Avg = min(DELIN_AVERAGE, na.rm = TRUE), #calculates the min for DELIN_AVERAGE variable
             max_Delin_Avg = max(DELIN_AVERAGE, na.rm = TRUE), #calculates the max for DELIN_AVERAGE variable
             mean_CESD7_1992 = mean(CESD7_1992, na.rm = TRUE), # calculates the mean for the CESD7_1992 variable
             sd_CESD7_1992 = sd(CESD7_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1992 variable
-            n_CESD7_1992 = n(), # calculates the sample size for the CESD7_1992 variable
+            n_CESD7_1992 <- sum(!is.na(CESD7_1992)), # calculates the sample size for the CESD7_1992 variable
         min_CESD7_1992 = min(CESD7_1992, na.rm = TRUE),  # calculates the min for the CESD7_1992 variable
            max_CESD7_1992 = max(CESD7_1992, na.rm = TRUE),  # calculates the max for the CESD7_1992 variable    
-            mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
+        mean_CESD7_1994 = mean(CESD7_1994, na.rm = TRUE), # calculates the mean for the CESD7_1994 variable
             sd_CESD7_1994 = sd(CESD7_1994, na.rm = TRUE),  # calculates the standard deviation for the CESD7_1994 variable
-            n_CESD7_1994 = n(), # calculates the sample size for the CESD7_1994 variable
+           n_CESD7_1994 <- sum(!is.na(CESD7_1994)), # calculates the sample size for the CESD7_1994 variable
         min_CESD7_1994 = min(CESD7_1994, na.rm = TRUE),  # calculates the min for the CESD7_1994 variable
            max_CESD7_1994 = max(CESD7_1994, na.rm = TRUE),  # calculates the max for the CESD7_1994 variable
                 mean_CESD20_1992 = mean(CESD20_1992, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_CESD20_1992 = sd(CESD20_1992, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_CESD20_1992 = n(), # calculates the sample size for the CESD20_1992 variable
+           n_CESD20_1992 <- sum(!is.na(CESD20_1992)), # calculates the sample size for the CESD20_1992 variable
 min_CESD20_1992 = min(CESD20_1992, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
            max_CESD20_1992 = max(CESD20_1992, na.rm = TRUE),
      mean_AGE_1979 = mean(AGE_1979, na.rm = TRUE), # calculates the mean for the CESD20_1992 variable
             sd_AGE_1979 = sd(AGE_1979, na.rm = TRUE),  # calculates the standard deviation for the CESD20_1992 variable
-            n_AGE_1979 = n(), # calculates the sample size for the CESD20_1992 variable
+            n_AGE_1979 <- sum(!is.na(AGE_1979)), # calculates the sample size for the CESD20_1992 variable
 min_AGE_1979 = min(AGE_1979, na.rm = TRUE),  # calculates the min for the CESD20_1992 variable
-           max_AGE_1979 = max(AGE_1979, na.rm = TRUE)
-)   
+           max_AGE_1979 = max(AGE_1979, na.rm = TRUE))   
 # calculates the max for the CESD20_1992 variable    
   gt(df_data_summary)
-  
-summary(df_data_gen1)
+
 
 ```
 
